@@ -1,3 +1,3 @@
-exploRDF
+#exploRDF
 
 Visualisation of RDF data
