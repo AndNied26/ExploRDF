@@ -23,3 +23,9 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+/.mvn
+/.settings
+.classpath
+.project
+mvnw
+mvnw.cmd
