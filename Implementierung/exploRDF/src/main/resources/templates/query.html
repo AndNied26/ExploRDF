@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="index :: head"></head>
+
+<body>
+
+	<div th:replace="index :: sidebar"></div>
+
+	<div class="main">
+		<h1>Das ist die Query-Seite</h1>
+		<svg id="main-svg"></svg>
+	</div>
+
+
+	<script src="https://d3js.org/d3.v5.js"></script>
+	<script src="js/explordf.js"></script>
+
+</body>
+
+</html>
