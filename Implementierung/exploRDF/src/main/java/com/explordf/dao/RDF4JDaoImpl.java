@@ -15,9 +15,14 @@ import org.eclipse.rdf4j.query.TupleQueryResult;
 import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
 import org.eclipse.rdf4j.repository.http.HTTPRepository;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
+
+import dto.PredicateDto;
 
 
 /**
@@ -82,6 +87,48 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 		}
 
 		return res;
+	}
+	
+	
+	public List<PredicateDto> getPredicates() throws JSONException {
+		
+		logger.info("Method getPredicates() entered.");
+		List<PredicateDto> resultDto = new LinkedList<>();
+		
+		
+		
+		repo.initialize();
+		
+		
+		try(RepositoryConnection con = repo.getConnection()){
+			
+			String queryString = "SELECT DISTINCT ?p WHERE {?s ?p ?o.}";
+			
+			List<BindingSet> resultList;
+			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);		
+			try(TupleQueryResult result = tupleQuery.evaluate()){
+				resultList = QueryResults.asList(result);
+			}
+			
+			String predicate = "predicate";
+			String label = "label";
+			String edge = "edge";
+			
+			for (BindingSet bindingSet : resultList) {
+				
+				Value value = bindingSet.getValue("p");
+				
+				PredicateDto dto = new PredicateDto(value.toString(), false, false);
+				resultDto.add(dto);
+				System.out.println(dto);
+			}
+			
+		}finally {
+			repo.shutDown();
+		}
+		System.out.println(resultDto);
+		return resultDto;
+		
 	}
 
 }

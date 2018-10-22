@@ -11,6 +11,8 @@ import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -25,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.explordf.service.ExploRDFService;
+
+import dto.PredicateDto;
 
 @RestController
 public class ExploRDFRestController {
@@ -81,6 +85,11 @@ public class ExploRDFRestController {
 	@RequestMapping(value="/simpleSearch", method = RequestMethod.GET, consumes = MediaType.TEXT_PLAIN_VALUE)
 	public Collection<String> simpleSearch(@RequestBody String term) {
 		return exploRDFService.simpleSearch(term);
+	}
+	
+	@RequestMapping(value="/getPredicates", method=RequestMethod.GET)
+	public List<PredicateDto> getPredicates() throws JSONException {
+		return exploRDFService.getPredicates();
 	}
 	
 }

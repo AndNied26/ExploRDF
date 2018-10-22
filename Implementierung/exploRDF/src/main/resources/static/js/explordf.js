@@ -1,3 +1,69 @@
+var predicates;
+var columns = ["predicate", "label", "edge"];
+
+$('#btnFunClick').one('click', function(){
+
+d3.json("getPredicates").then(function(data){
+  predicates = data;
+  console.log(predicates);
+  tabulate(predicates)
+});
+
+function tabulate(data){
+  //create table in body
+  var table = d3.selectAll('#table1')
+    .append('table')
+    .attr('id', 'table')
+    .attr('class', 'table table-bordered table-striped"');
+//create table head row and append headers
+var thead = table.append('thead').append('tr');
+thead.selectAll('th')
+    .data(d3.keys(data[0]))
+    .enter()
+    .append('th')
+    .text(function(d){return d});
+
+//create table body
+var tbody = table.append('tbody');
+
+//create table body rows
+var rows = tbody.selectAll('tr')
+  .data(data).enter()
+  .append('tr')
+  .attr('class', 'trbody');
+
+//create cells in each table body row
+$('.trbody').each(function(index, element){
+  $(this).append('<td>' + element.__data__.predicate + '</td>');
+
+  var s = '<td><input class="checkboxLabel" type="checkbox" ';
+  var t = element.__data__.label ? 'checked':'';
+  var q = '></td>';
+  console.log(element.__data__.label);
+
+  $(this).append(s+t+q);
+  
+  var s2 = '<td><input type="checkbox" ';
+  var t2 = element.__data__.edge ? 'checked':'';
+  var q2 = '></td>';
+  
+  $(this).append(s2+t2+q2);
+
+  
+});
+
+}
+
+
+
+});
+
+
+// Keeps only one checkbox checked at the same time. 
+$('#table1').on('click','input.checkboxLabel', function(){
+  $('.checkboxLabel').not(this).prop('checked', false);
+}); 
+
 
 $("#postBtn").click(function(){
 	var txt = $("#uname").val();
@@ -21,7 +87,7 @@ $("#postBtn").click(function(){
  * ---------Begin-----------------
  */
 
-// Function to toggle between opening and closing the navbar.
+//Function to toggle between opening and closing the navbar.
 function tog() {
   if($("#buttonSymbol").hasClass("glyphicon-chevron-left")) {
     closeNav();
@@ -33,22 +99,17 @@ function tog() {
 
 // Open the navbar
 function openNav() {
-  document.getElementById("mainSidebar").style.width = "160px";
-  document.getElementById("sidebar").style.width = "200px";
-  document.getElementById("main").style.marginLeft = "200px";
+  $("#mainSidebar").css("width", "160px");
+  $("#sidebar").css("width", "200px");
+  $("#main").css("margin-left", "200px");
 }
 
 // Close the navbar
 function closeNav() {
-  document.getElementById("mainSidebar").style.width = "0";
-  document.getElementById("sidebar").style.width = "40px";
-  document.getElementById("main").style.marginLeft = "40px";
+  $("#mainSidebar").css("width", "0px");
+  $("#sidebar").css("width", "40px");
+  $("#main").css("margin-left", "40px");
 } 
-
-$("#navQuery").click(function(){
-	
-});
-
 /*
  * Functions concerning the navbar.
  * ---------End-------------------

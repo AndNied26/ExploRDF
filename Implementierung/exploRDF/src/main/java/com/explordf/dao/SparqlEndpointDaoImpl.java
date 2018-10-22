@@ -2,6 +2,8 @@ package com.explordf.dao;
 
 import java.util.Collection;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
@@ -13,13 +15,19 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @Qualifier("sparqlEndpointRepo")
-public class SparqlEndpointDaoImpl implements ExploRDFDao {
+public class SparqlEndpointDaoImpl {
 
 	
 	//TODO Hier muss SPARQLRepository von rdf4j verwendet werden
 	
-	@Override
+
 	public Collection<String> simpleSearch(String term) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	public JSONArray getPredicates() throws JSONException {
 		// TODO Auto-generated method stub
 		return null;
 	}

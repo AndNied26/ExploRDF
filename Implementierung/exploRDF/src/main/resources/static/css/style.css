@@ -82,3 +82,35 @@ a:visited {
     stroke:rgb(255, 141, 76);
     fill: rgb(243, 215, 137);
 }
+
+#table1 { 
+    /* border: 1px solid rgb(66, 63, 63); */
+    
+    max-width: 800px;
+     
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+    background: #eee; 
+}
+
+th { 
+    background: rgb(80, 104, 241); 
+    color: white; 
+    font-weight: bold; 
+    cursor: s-resize;
+    background-repeat: no-repeat;
+    background-position: 3% center;
+}
+td, th { 
+    padding: 6px; 
+    border: 1px solid rgb(21, 28, 32); 
+    text-align: left; 
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+    max-height: 400px;
+    overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
