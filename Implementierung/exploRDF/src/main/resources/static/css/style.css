@@ -1,111 +1,221 @@
-.body {
-    font: size 2.5em;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bolder;
-    /*text-align: center;*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-a:link {
-	text-decoration: none;
-	
+#grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "sidebar main";
+    overflow-x: hidden; /* disable horizontal scroll*/
 }
+
 a:hover {
-    text-decoration: underline;
-}
-
-a:visited {
+    cursor: pointer;
     text-decoration: none;
 }
 
-#main-svg{
-    background-color: rgb(245, 241, 220);
-    width: 90%;
-    height: 100%;
+h2, h3, h4 {
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
 }
 
-* {
-    box-sizing: border-box;
+.btn:hover {
+    background-color: rgb(109, 107, 107);
+    color: white;
 }
 
-.main {
-    margin-left: 200px;
-    position: fixed;
-    padding: 20px;
-    height: 100%;
-    width: 100%;
-    transition: 0.5s;
-}
+/* -------------------------------------------------------- */
+/* ------------------------Sidebar------------------------- */
+/* -------------------------Start-------------------------- */
 .sidebar {
-    height: 100%;
-    width: 200px;
-    position: fixed;
-    background-color: aliceblue;
+    grid-area: sidebar;
+    height: 100vh;
+    width: 140px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas: "mainSidebar sidebarToggle";
+    background-color: #000016;
     transition: 0.5s;
 }
 
-.mainSidebar, sidebarToggle {
-    float: left;
-    height: 100%;
+/* Side navigation links */
+.sidebar a {
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding-left: 10px;
+}
+
+/* Change color on hover */
+.sidebar li:hover {
+    background-color: #ddd;
+    color: black;
 }
 
 .mainSidebar {
-    height: 100%;
-    width: 160px;
-    z-index: 1; /* Stay on top */
-    top: 0;
-    left: 0;
-    background-color: #111; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px; /* Place content 60px from the top */
+    grid-area: mainSidebar;
+    width: 105px;
+    background-color: #000016;
+    padding-top: 20px; /* Place content 20px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the*/
 }
 
-.mainSidebar ul {
-    list-style: none;
-    padding: 5px;
+.sidebarToggle {
+    grid-area: sidebarToggle;
+    width: 35px;
+    background-color: #000016;
+    transition: 0.5s;
+}
+/* ------------------------Sidebar--------------------------- */
+/* --------------------------End----------------------------- */
+/* ---------------------------------------------------------- */
+
+
+/* ---------------------------------------------------------- */
+/* -------------------------main ---------------------------- */
+/* ---------------------------------------------------------- */
+.main {
+    grid-area: main;
+    height: 100vh;
+    padding: 10px;
+    background-color: rgb(245, 241, 220);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "caption" "content";
     transition: 0.5s;
 }
 
-.mainSidebar li {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
+/* ------------------------Caption(main)------------------------------ */
+.caption {
+    grid-area: caption;
+    /* background-color:palegreen; */
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "captionHead captionConnection";
+    overflow: auto;
+}
+
+#captionHead {
+    grid-area: captionHead;
+    /* background-color: beige; */
+    padding: 20px 0 10px 0px;
+}
+
+#captionConnection {
+    grid-area: captionConnection;
+    /* background-color: yellow; */
+
+}
+
+#captionConnection p {
+    padding: 0;
+    margin: 0;
+}
+
+
+/* ------------------------Content(main)----------------------------- */
+.content {
+    grid-area: content;
+    background-color: white;
+    overflow: auto;
+}
+
+.containerDiv {
+    padding-top: 10px;
+    /* text-align: center; */
+    overflow: auto;
+    margin: auto;
     display: block;
-    transition: 0.3s;
+}
+
+/* -------------------------Search div------------------------- */
+#searchDiv {
+    padding-top: 60px;
+}
+
+.input-group {
+    max-width: 300px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr auto;    
+}
+
+/* -----------------------Content header-------------------------- */
+#contentHeader {
+    grid-area: contentHeader;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "heading searchBackBtn";
+    text-align: left;
+    margin: auto;
+    width: 85%;
+    padding: 20px 0 0 0;
+}
+
+.heading {
+    grid-area: heading;
+    padding-top: 10px;
+}
+
+#headingChoice {
+    display: none;
+}
+
+#headingPredicates {
+    display: none;
+}
+
+#searchBackBtn {
+    grid-area: searchBackBtn;
+    font-weight: bold;
 }
 
 
 
-.circle {
-    stroke-width: 5px;
-    stroke:rgb(255, 141, 76);
-    fill: rgb(243, 215, 137);
+/* ------------------------------table div------------------------ */
+/* ------------------------------START------------------------------ */
+.tableDiv {
+    overflow: auto;
+    max-height: 450px;
+    width: 85%;
+    margin: auto;
 }
 
-#table1 { 
-    /* border: 1px solid rgb(66, 63, 63); */
-    
-    max-width: 800px;
-     
+.tableDiv table {
+    border-collapse: collapse;
+    width: 100%;
 }
-/* Zebra striping */
+
+.tableDiv tbody {
+    overflow-y: auto;
+}
+
 tr:nth-of-type(odd) { 
     background: #eee; 
 }
 
-th { 
-    background: rgb(80, 104, 241); 
-    color: white; 
-    font-weight: bold; 
-    cursor: s-resize;
-    background-repeat: no-repeat;
-    background-position: 3% center;
-}
-td, th { 
+.tableDiv th,
+.tableDiv td {
     padding: 6px; 
     border: 1px solid rgb(21, 28, 32); 
     text-align: left; 
+}
+  
+.tableDiv th {
+    background: rgb(80, 104, 241); 
+    color: white; 
+    font-weight: bold; 
+    background-position: 3% center;
+    position: sticky;
+    top: 0;
 }
 
 .table-wrapper-scroll-y {
@@ -113,4 +223,116 @@ td, th {
     max-height: 400px;
     overflow-y: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
-  }
+  } 
+
+table#predicatesTable th {
+    width: 100%;
+    
+}  
+.checkboxTd {
+    width: 100%;
+    text-align: center;
+}
+
+
+/* ----------------------------table div-------------------------------- */
+/* -------------------------------END------------------------------------ */
+
+
+
+
+/* ----------------------Result div with header------------------------ */
+#resultDiv {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-areas: "contentHeader" "resultTableDiv";
+}
+
+
+#resultTableDiv {
+    grid-area: resultTableDiv;
+}
+
+
+
+
+/* ----------------------Choice div -------------------------------- */
+/* ----------------------with header, and footer-------------------- */
+#choiceDiv {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "contentHeader" "choiceTableDiv" "contentFooter";
+}
+
+/* Content footer*/
+#contentFooter {
+    grid-area: contentFooter;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "contentFooterFormDiv exploreBtn";
+    text-align: left;
+    margin: auto;
+    width: 85%;
+    padding: 0;
+}
+
+#contentFooterFormDiv {
+    grid-area: contentFooterFormDiv;
+    align-self: center;
+}
+
+#contentFooterInput {
+    margin: 0;
+}
+
+#exploreBtn {
+    grid-area: exploreBtn;
+    background-color: rgb(80, 104, 241);
+    color: white;
+    font-weight: bold;
+}
+
+#exploreBtn:hover {
+    background-color: rgb(97, 159, 240);
+}
+
+
+/* ----------------------Predicates div -------------------------------- */
+/* ----------------------with header, and form div---------------------- */
+#predicatesDiv {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "contentHeader" "savePredicatesDiv" "predicatesTableDiv";
+}
+
+#savePredicatesDiv {
+    grid-area: savePredicatesDiv;
+    margin: auto;
+    width: 85%;
+    padding: 10px 0 10px 0;
+}
+
+#predicatesInputDiv {
+    margin: 0;
+}
+
+
+/* --------------------Hiding the content divs-------------------------- */
+#contentHeader {
+    display: none;
+}
+/* #searchDiv { 
+    display: none;
+} */
+#resultDiv {
+    display: none;
+}
+#choiceDiv {
+    display: none;
+}
+#predicatesDiv {
+    display: none;
+}
+#exploreDiv {
+    display: none;
+}

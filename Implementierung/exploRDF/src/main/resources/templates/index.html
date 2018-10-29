@@ -1,56 +1,173 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
-<head th:fragment="head">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ExploRDF</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
-
-<title>ExploRDF</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
 
-	<div th:fragment="sidebar" id="sidebar" class="sidebar">
-		<div id="mainSidebar" class="mainSidebar">
-			<ul>
-				<li id="navLogo"><a href="/">ExploRDF</a></li>
-				<li id="navConnect"><a href="connect">Connect</a></li>
-				<li id="navQuery"><a href="query">Query</a></li>
-				<li id="navHelp"><a href="help">Help</a></li>
-			</ul>
-		</div>
-		<div id="sidebarToggle" class="sidebarToggle">
-			<button id="toggleButton" type="button"
-				class="btn btn-default btn-sm closebtn" onclick="tog()">
-				<span id="buttonSymbol" class="glyphicon glyphicon-chevron-left"></span>
-			</button>
-		</div>
-	</div>
-
-	<div class="main">
-<!-- 	<button id="postBtn">Click</button> -->
-<!-- 	<div class="username"> -->
-<!--         <label for="uname">Username:</label> -->
-<!--         <input type="text" id="uname" name="uname" required -->
-<!--                minlength="4" maxlength="8" -->
-<!--                placeholder="4 to 8 characters long" /> -->
-<!--         <span class="validity"></span> -->
-<!--     </div> -->
-
-		<button id="btnFunClick">Click</button>
-		<div id="table1" class = 'table-wrapper-scroll-y'></div>
-
-	</div>
+    <div id="grid">
 
 
-	<script src="https://d3js.org/d3.v5.js"></script>
-<script src="js/explordf.js"></script>
-	
 
+        <div id="sidebar" class="sidebar">
+            <div id="mainSidebar" class="mainSidebar">
+                <ul>
+                    <li id="navLogo"><a href="/">ExploRDF</a></li>
+                    <li id="navConnect"><a href="connect">Connect</a></li>
+                    <li id="navQuery"><a href="query">Query</a></li>
+                    <li id="navHelp"><a href="help">Help</a></li>
+                </ul>
+            </div>
+            <div id="sidebarToggle" class="sidebarToggle">
+                <button id="toggleButton" type="button" class="btn btn-default btn-sm closebtn">
+                    <span id="buttonSymbol" class="glyphicon glyphicon-chevron-left"></span>
+                </button>
+            </div>
+        </div>
+
+        <!------------------------------------------------------------->
+
+        <!-- Main content - begin -->
+        <div id="main" class="main">
+            <!-- Caption - begin -->
+            <div class="caption">
+                <h3 id="captionHead">Simple Search</h3>
+                <div id="captionConnection">
+                    <p id="repoP">Repository: dummyRepo</p>
+                    <p id="dbP">Triple-Store: dummyServer</p>
+
+                </div>
+            </div>
+            <!-- Caption - end -->
+
+            <!-- Content - begin -->
+            <div class="content">
+
+                <!-- Container for simple search -->
+                <div id="searchDiv" class="containerDiv">
+                    <div id="searchInput" class="input-group">
+                        <input id="searchTerm" type="text" class="form-control" placeholder="Enter a search term...">
+                        <span class="input-group-btn">
+                            <button id="searchBtn" class="btn" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Header for all possible tables  -->
+                <div id="contentHeader">
+                    <h4 id="headingResult" class="heading">Results for ""</h4>
+                    <h4 id="headingChoice" class="heading"></h4>
+                    <h4 id="headingPredicates" class="heading">Choose Predicates</h4>
+                    <button id="searchBackBtn" type="button" class="btn btn-sm">Back</button>
+                </div>
+
+                <!-- Container for result table -->
+                <div id="resultDiv" class="containerDiv">
+                    <div id="resultTableDiv" class="tableDiv">
+                        <table class="table table-fixed table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>Predicate</th>
+                                    <th>Object</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultTbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Container for chosen result -->
+                <div id="choiceDiv" class="containerDiv">
+                    <div id="choiceTableDiv" class="tableDiv">
+                        <table class="table table-fixed table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>Predicate</th>
+                                    <th>Object</th>
+                                </tr>
+                            </thead>
+                            <tbody id="choiceTbody"></tbody>
+                        </table>
+
+
+                    </div>
+
+                    <!-- Footer with explore button -->
+                    <div id="contentFooter">
+                        <div id="contentFooterFormDiv">
+                            <div id="contentFooterInput" class="input-group-sm input-group">
+                                <select id="visualizationTypeGroup" class="form-control">
+                                    <option value="gnd">GND</option>
+                                    <option value="skos">SKOS</option>
+                                    <option value="eigene">Example</option>
+                                </select>
+                                <span class="input-group-btn">
+                                    <button id="newVisualizationBtn" type="button" class="btn">New</button>
+                                </span>
+                            </div>
+                        </div>
+                        <button id="exploreBtn" type="button" class="btn">Explore</button>
+
+                    </div>
+                </div>
+
+                <!-- Container for predicates choice -->
+                <div id="predicatesDiv" class="containerDiv">
+                    <div id="savePredicatesDiv">
+                        <div id="predicatesInputDiv" class="input-group-sm input-group">
+                            <input id="predicatesInput" type="text" class="form-control">
+                            <span class="input-group-btn">
+                                <button id="searchBtn" class="btn" type="button">Save</button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div id="predicatesTableDiv" class="tableDiv">
+                        <table id="predicatesTable" class="table table-fixed table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>Predicate</th>
+                                    <th>Label</th>
+                                    <th>Object</th>
+                                </tr>
+                            </thead>
+                            <tbody id="predicatesTbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <!-- Container for exploring the graph -->
+            <div id="exploreDiv" class="containerDiv">asd</div>
+
+
+        </div>
+
+        <!-- Help - begin -->
+        <div class="help"></div>
+        <!-- Help - end -->
+
+    </div>
+
+
+
+
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="js/explordf.js"></script>
 </body>
 
 </html>

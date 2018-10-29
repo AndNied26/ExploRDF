@@ -1,0 +1,116 @@
+.body {
+    font: size 2.5em;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    /*text-align: center;*/
+}
+
+a:link {
+	text-decoration: none;
+	
+}
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+#main-svg{
+    background-color: rgb(245, 241, 220);
+    width: 90%;
+    height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.main {
+    margin-left: 200px;
+    position: fixed;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    transition: 0.5s;
+}
+.sidebar {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    background-color: aliceblue;
+    transition: 0.5s;
+}
+
+.mainSidebar, sidebarToggle {
+    float: left;
+    height: 100%;
+}
+
+.mainSidebar {
+    height: 100%;
+    width: 160px;
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the*/
+}
+
+.mainSidebar ul {
+    list-style: none;
+    padding: 5px;
+    transition: 0.5s;
+}
+
+.mainSidebar li {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+
+
+.circle {
+    stroke-width: 5px;
+    stroke:rgb(255, 141, 76);
+    fill: rgb(243, 215, 137);
+}
+
+#table1 { 
+    /* border: 1px solid rgb(66, 63, 63); */
+    
+    max-width: 800px;
+     
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+    background: #eee; 
+}
+
+th { 
+    background: rgb(80, 104, 241); 
+    color: white; 
+    font-weight: bold; 
+    cursor: s-resize;
+    background-repeat: no-repeat;
+    background-position: 3% center;
+}
+td, th { 
+    padding: 6px; 
+    border: 1px solid rgb(21, 28, 32); 
+    text-align: left; 
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+    max-height: 400px;
+    overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }

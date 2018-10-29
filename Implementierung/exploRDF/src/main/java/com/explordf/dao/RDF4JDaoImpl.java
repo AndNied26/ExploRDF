@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import dto.PredicateDto;
+import dto.TripleDto;
 
 
 /**
@@ -53,50 +54,46 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 	
 	
 	@Override
-	public Collection<String> simpleSearch(String term) {
+	public List<TripleDto> simpleSearch(String term) {
+		
+		logger.info("Method simpleSearch() entered.");
+		List<TripleDto> resultDto = new LinkedList<>();
 		
 		repo.initialize();
 		
-		List<String> res = new LinkedList<>();
-		
 		try(RepositoryConnection con = repo.getConnection()){
 			
-			String queryString = "SELECT ?s ?p ?o WHERE {?s ?p ?o. ?s ?p \"" + term + "\"}";
+			String queryString = "SELECT ?s ?p ?o WHERE {?s ?p \"" + term + "\". ?s ?p ?o}";
 			
 			List<BindingSet> resultList;
-			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);		
+			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+			
 			try(TupleQueryResult result = tupleQuery.evaluate()){
 				resultList = QueryResults.asList(result);
 			}
 			
-			// same as above
-//			List<BindingSet> results = Repositories.tupleQuery(rep,
-//				     "SELECT * WHERE {?s ?p ?o }", r -> QueryResults.asList(r));
-			
 			for (BindingSet bindingSet : resultList) {
-				String s = "";
-				Value valueOfS = bindingSet.getValue("s");
-				Value valueOfP = bindingSet.getValue("p");
-				Value valueOfO = bindingSet.getValue("o");
-				s += valueOfS + " " + valueOfP + " " + valueOfO;
-				res.add(s);
+				
+				Value subject = bindingSet.getValue("s");
+				Value predicate = bindingSet.getValue("p");
+				Value object = bindingSet.getValue("o");
+				
+				TripleDto dto = new TripleDto(subject.toString(), predicate.toString(), object.toString());
+				resultDto.add(dto);
 			}
 			
 		}finally {
 			repo.shutDown();
 		}
-
-		return res;
+		
+		return resultDto;
 	}
 	
 	
 	public List<PredicateDto> getPredicates() throws JSONException {
-		
 		logger.info("Method getPredicates() entered.");
 		List<PredicateDto> resultDto = new LinkedList<>();
-		
-		
-		
+
 		repo.initialize();
 		
 		
@@ -110,25 +107,60 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 				resultList = QueryResults.asList(result);
 			}
 			
-			String predicate = "predicate";
-			String label = "label";
-			String edge = "edge";
-			
 			for (BindingSet bindingSet : resultList) {
 				
 				Value value = bindingSet.getValue("p");
-				
+				System.out.println(value.toString());
 				PredicateDto dto = new PredicateDto(value.toString(), false, false);
 				resultDto.add(dto);
-				System.out.println(dto);
+				
 			}
 			
 		}finally {
 			repo.shutDown();
 		}
-		System.out.println(resultDto);
-		return resultDto;
-		
+		return resultDto;	
 	}
 
+
+
+	@Override
+	public List<TripleDto> getSubject(String subject) {
+		logger.info("Method getSubject() entered.");
+		List<TripleDto> resultDto = new LinkedList<>();
+		
+		repo.initialize();
+		
+		try(RepositoryConnection con = repo.getConnection()){
+			String subjt = "<"+subject+">";
+			System.out.println(subjt);
+//			String queryString = "SELECT ?s ?p ?o WHERE {<" + subject + "> ?p ?o. ?s ?p ?o}";
+			
+			String queryString = "SELECT ( "+ subjt +" as ?s) ?p ?o ?g { "
+					+ "{ "+subjt+" ?p ?o } union { graph ?g { " + subjt + " ?p ?o } } }";
+			
+			
+			List<BindingSet> resultList;
+			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+			
+			try(TupleQueryResult result = tupleQuery.evaluate()){
+				resultList = QueryResults.asList(result);
+			}
+			
+			for (BindingSet bindingSet : resultList) {
+				
+				Value subj = bindingSet.getValue("s");
+				Value pred = bindingSet.getValue("p");
+				Value obj = bindingSet.getValue("o");
+				
+				TripleDto dto = new TripleDto(subj.toString(), pred.toString(), obj.toString());
+				resultDto.add(dto);
+			}
+			
+		}finally {
+			repo.shutDown();
+		}
+		
+		return resultDto;
+	}
 }
