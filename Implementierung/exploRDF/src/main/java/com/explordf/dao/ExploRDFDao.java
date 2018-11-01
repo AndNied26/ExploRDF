@@ -9,9 +9,9 @@ import dto.TripleDto;
 
 public interface ExploRDFDao {
 
-	List<TripleDto> simpleSearch(String term);
+	List<TripleDto> simpleSearch(String term, boolean broaderSearch);
 	
-	List<PredicateDto> getPredicates()  throws JSONException;
+	List<PredicateDto> getPredicates();
 
 	List<TripleDto> getSubject(String subject);
 	

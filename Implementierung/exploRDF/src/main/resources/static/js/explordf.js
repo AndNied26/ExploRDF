@@ -22,17 +22,17 @@ $('#resultTbody').on("click", "a", function (e) {
   console.log(subj);
   $("body").css("cursor", "progress");
 
-//  d3.json("getSubject/" + subj).then(function (data) {
-//    choiceResult = data;
-//    drawChoiceTable(choiceResult, subj);
-//    $("body").css("cursor", "default");
-//  });
+  d3.json("getSubject/" + subj).then(function (data) {
+    choiceResult = data;
+    drawChoiceTable(choiceResult, subj);
+    $("body").css("cursor", "default");
+  });
   
-  d3.json("getSubject", {method: 'post', body: subj}).then(function (data) {
-	    choiceResult = data;
-	    drawChoiceTable(choiceResult, subj);
-	    $("body").css("cursor", "default");
-	  });
+//  d3.json("getSubject", {method: 'post', body: subj}).then(function (data) {
+//	    choiceResult = data;
+//	    drawChoiceTable(choiceResult, subj);
+//	    $("body").css("cursor", "default");
+//	  });
   
 });
 
@@ -70,8 +70,13 @@ function searchTerm() {
   var term = $('#searchTerm').val();
   $("body").css("cursor", "progress");
   $('#headingResult').text('Results for "' + term + '"');
-  d3.json("simpleSearch/" + term).then(function (data) {
-    searchResults = data;
+  
+  console.log("hallo");
+  var broaderSearch = $("#broaderSearchRadio").is(":checked") ? "1" : "0";
+  
+  d3.json("simpleSearch/" + term + "/" + broaderSearch).then(function (data) {
+	  console.log("simpleSearch/" + term + "/" + broaderSearch);
+	searchResults = data;
     drawSearchTable(searchResults);
     $("body").css("cursor", "default");
   });
@@ -97,19 +102,25 @@ function drawSearchTable(data) {
 
 // Choosing which predicates to visualize.
 $("#newVisualizationBtn").on('click', function () {
-  d3.json("predicates.json").then(function (data) {
+	$("body").css("cursor", "progress");
+	$('#choiceDiv').css("display", "none");
+	  $('#predicatesDiv').css('display', 'block');
+	  $('#headingChoice').css('display', 'none');
+	  $('#headingPredicates').css('display', 'block');
+  d3.json("getPredicates").then(function (data) {
     predicates = data;
     drawPredicatesTable(predicates);
+    $("body").css("cursor", "default");
   });
 });
 
 // Drawing a table with all predicates
 function drawPredicatesTable(data) {
   var tbody = d3.select('#predicatesTbody');
-  $('#choiceDiv').css("display", "none");
-  $('#predicatesDiv').css('display', 'block');
-  $('#headingChoice').css('display', 'none');
-  $('#headingPredicates').css('display', 'block');
+//  $('#choiceDiv').css("display", "none");
+//  $('#predicatesDiv').css('display', 'block');
+//  $('#headingChoice').css('display', 'none');
+//  $('#headingPredicates').css('display', 'block');
   tbody.selectAll('tr')
     .data(data).enter()
     .append('tr')

@@ -16,16 +16,16 @@ import dto.TripleDto;
 public class ExploRDFService {
 
 	@Autowired
-	@Qualifier("rdf4jRepo")
+//	@Qualifier("rdf4jRepo")
 	ExploRDFDao exploRDFDao;
 	
 	
-	public List<TripleDto> simpleSearch(String term) {
-		return exploRDFDao.simpleSearch(term);
+	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
+		return exploRDFDao.simpleSearch(term, broaderSearch);
 	}
 
 
-	public List<PredicateDto> getPredicates() throws JSONException {
+	public List<PredicateDto> getPredicates() {
 		return exploRDFDao.getPredicates();
 	}
 

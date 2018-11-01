@@ -141,11 +141,35 @@ h2, h3, h4 {
     padding-top: 60px;
 }
 
+input[type="radio"] {
+    -webkit-appearance: checkbox;
+    -moz-appearance: checkbox;
+    appearance: checkbox;
+  }
+
 .input-group {
     max-width: 300px;
     margin: auto;
     display: grid;
     grid-template-columns: 1fr auto;    
+}  
+.radio-inline {
+    max-width: 300px;
+    padding: 0;
+    padding-top: 10px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+}
+
+.radio-inline input {
+    margin-left: 0 !important;
+    margin-top: 13px;
+}
+
+.radio-label {
+    padding-left: 20px;
 }
 
 /* -----------------------Content header-------------------------- */

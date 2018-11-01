@@ -5,11 +5,18 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -85,19 +92,46 @@ public class ExploRDFRestController {
 		
 	}
 
-	@RequestMapping(value="/simpleSearch/{term}", method = RequestMethod.GET)
-	public List<TripleDto> simpleSearch(@PathVariable String term) {
-		return exploRDFService.simpleSearch(term);
+//	@RequestMapping(value="/simpleSearch/{term}/{broaderSearch}", method = RequestMethod.GET)
+//	public List<TripleDto> simpleSearch(@PathVariable(name="term") String term, @PathVariable(name="broaderSearch") char broaderSearch) {
+//		System.out.println("first Method simpleSearch() entered");
+//		return exploRDFService.simpleSearch(term, broaderSearch == '1');
+//	}
+	
+	@RequestMapping(value="/simpleSearch/**/{broaderSearch}", method = RequestMethod.GET)
+	public List<TripleDto> simpleSearch(HttpServletRequest request, @PathVariable(name = "broaderSearch") char broaderSearch){
+		System.out.println("second Method simpleSearch() entered");
+		
+		String url = "";
+		try {
+			url = URLDecoder.decode(request.getRequestURI(), StandardCharsets.UTF_8.name());
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return new LinkedList<>();
+		}
+		System.out.println(url);
+
+		String term = url.split("/simpleSearch/")[1];
+		term = term.substring(0, term.length()-2);
+		System.out.println("term: " + term + ", broaderSearch: " + broaderSearch);
+		return exploRDFService.simpleSearch(term, broaderSearch == '1');
 	}
 	
 	@RequestMapping(value="/getPredicates", method=RequestMethod.GET)
-	public List<PredicateDto> getPredicates() throws JSONException {
+	public List<PredicateDto> getPredicates() {
 		return exploRDFService.getPredicates();
 	}
 	
-	@RequestMapping(value="/getSubject", method = RequestMethod.POST)
-	public List<TripleDto> getSubject(@RequestBody String subject) {
+//	@RequestMapping(value="/getSubject", method = RequestMethod.POST)
+//	public List<TripleDto> getSubject(@RequestBody String subject) {
+//		System.out.println("Entered Controller");
+//		return exploRDFService.getSubject(subject);
+//	}
+	
+	@RequestMapping(value="/getSubject/**", method = RequestMethod.GET)
+	public List<TripleDto> getSubject(HttpServletRequest request) {
 		System.out.println("Entered Controller");
+		String subject = request.getRequestURI().split("/getSubject/")[1];
 		return exploRDFService.getSubject(subject);
 	}
 	

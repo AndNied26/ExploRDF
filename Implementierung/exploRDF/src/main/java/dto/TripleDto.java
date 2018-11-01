@@ -14,6 +14,7 @@ public class TripleDto {
 		this.predicate = predicate;
 		this.object = object;
 	}
+	
 	public String getSubject() {
 		return subject;
 	}

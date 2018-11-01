@@ -54,7 +54,7 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 	
 	
 	@Override
-	public List<TripleDto> simpleSearch(String term) {
+	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
 		
 		logger.info("Method simpleSearch() entered.");
 		List<TripleDto> resultDto = new LinkedList<>();
@@ -63,7 +63,13 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 		
 		try(RepositoryConnection con = repo.getConnection()){
 			
-			String queryString = "SELECT ?s ?p ?o WHERE {?s ?p \"" + term + "\". ?s ?p ?o}";
+			String queryString;
+			
+			if(broaderSearch) {
+				queryString = "select ?s ?p ?o where {filter(regex(?o, \""+ term + "\", \"i\")).?s ?p ?o} order by ?s";
+			} else {
+				queryString = "SELECT ?s ?p ?o WHERE {?s ?p \"" + term + "\". ?s ?p ?o}";
+			}		
 			
 			List<BindingSet> resultList;
 			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
@@ -90,7 +96,7 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 	}
 	
 	
-	public List<PredicateDto> getPredicates() throws JSONException {
+	public List<PredicateDto> getPredicates() {
 		logger.info("Method getPredicates() entered.");
 		List<PredicateDto> resultDto = new LinkedList<>();
 
@@ -136,8 +142,11 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 			System.out.println(subjt);
 //			String queryString = "SELECT ?s ?p ?o WHERE {<" + subject + "> ?p ?o. ?s ?p ?o}";
 			
-			String queryString = "SELECT ( "+ subjt +" as ?s) ?p ?o ?g { "
-					+ "{ "+subjt+" ?p ?o } union { graph ?g { " + subjt + " ?p ?o } } }";
+//			String queryString = "SELECT ( "+ subjt +" as ?s) ?p ?o ?g { "
+//					+ "{ "+subjt+" ?p ?o } union { graph ?g { " + subjt + " ?p ?o } } }";
+			
+			String queryString = "SELECT ( "+ subjt +" as ?s) ?p ?o WHERE { "
+					+subjt+" ?p ?o }";
 			
 			
 			List<BindingSet> resultList;
