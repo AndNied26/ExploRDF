@@ -34,7 +34,7 @@ import dto.TripleDto;
  */
 @org.springframework.stereotype.Repository
 @Qualifier("rdf4jRepo")
-public class RDF4JDaoImpl implements ExploRDFDao {
+public class RDF4JDaoImpl{ /*implements ExploRDFDao {
 
 	private static final Logger logger = LoggerFactory.getLogger(RDF4JDaoImpl.class);
 	
@@ -171,5 +171,5 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 		}
 		
 		return resultDto;
-	}
+	}*/
 }

@@ -16,7 +16,7 @@ import dto.TripleDto;
 public class ExploRDFService {
 
 	@Autowired
-//	@Qualifier("rdf4jRepo")
+	@Qualifier("dummyRepo")
 	ExploRDFDao exploRDFDao;
 	
 	
