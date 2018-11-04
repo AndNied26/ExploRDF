@@ -1,10 +1,12 @@
 package com.explordf.dao;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 import org.eclipse.rdf4j.model.Value;
 import org.eclipse.rdf4j.query.BindingSet;
@@ -15,9 +17,7 @@ import org.eclipse.rdf4j.query.TupleQueryResult;
 import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
 import org.eclipse.rdf4j.repository.http.HTTPRepository;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,7 +34,7 @@ import dto.TripleDto;
  */
 @org.springframework.stereotype.Repository
 @Qualifier("rdf4jRepo")
-public class RDF4JDaoImpl{ /*implements ExploRDFDao {
+public class RDF4JDaoImpl implements ExploRDFDao {
 
 	private static final Logger logger = LoggerFactory.getLogger(RDF4JDaoImpl.class);
 	
@@ -48,18 +48,24 @@ public class RDF4JDaoImpl{ /*implements ExploRDFDao {
 	@PostConstruct
 	private void init() {
 		repo = new HTTPRepository(rdf4jServer, repoName);
+		repo.initialize();
 		logger.info("Repository created.");
+	}
+	
+	@PreDestroy
+	private void destroy() {
+		repo.shutDown();
 	}
 	
 	
 	
 	@Override
 	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
-		
-		logger.info("Method simpleSearch() entered.");
+		double start = new Date().getTime();
+		logger.info("Method simpleSearch() in RDF4JDaoImpl entered.");
 		List<TripleDto> resultDto = new LinkedList<>();
 		
-		repo.initialize();
+//		repo.initialize();
 		
 		try(RepositoryConnection con = repo.getConnection()){
 			
@@ -88,10 +94,11 @@ public class RDF4JDaoImpl{ /*implements ExploRDFDao {
 				resultDto.add(dto);
 			}
 			
-		}finally {
-			repo.shutDown();
+//		}finally {
+//			repo.shutDown();
 		}
-		
+		double end = new Date().getTime();
+		System.out.println((end-start)/1000);
 		return resultDto;
 	}
 	
@@ -171,5 +178,23 @@ public class RDF4JDaoImpl{ /*implements ExploRDFDao {
 		}
 		
 		return resultDto;
-	}*/
+	}
+
+	@Override
+	public List<PredicateDto> getPredicatesList(String listName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String savePredicatesList(List<PredicateDto> predicateDtoList, String listName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<String> getAllPredicatesLists() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

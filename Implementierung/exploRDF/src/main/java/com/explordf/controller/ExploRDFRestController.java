@@ -113,7 +113,7 @@ public class ExploRDFRestController {
 
 		String term = url.split("/simpleSearch/")[1];
 		term = term.substring(0, term.length()-2);
-		System.out.println("term: " + term + ", broaderSearch: " + broaderSearch);
+		System.out.println("term: " + term + ", broaderSearch: " + (broaderSearch == '1'));
 		return exploRDFService.simpleSearch(term, broaderSearch == '1');
 	}
 	

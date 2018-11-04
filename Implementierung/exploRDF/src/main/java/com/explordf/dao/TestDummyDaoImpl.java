@@ -15,8 +15,10 @@ import org.eclipse.rdf4j.query.TupleQueryResult;
 import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
 import org.eclipse.rdf4j.repository.http.HTTPRepository;
+import org.eclipse.rdf4j.repository.manager.RemoteRepositoryManager;
 import org.eclipse.rdf4j.repository.manager.RepositoryManager;
 import org.eclipse.rdf4j.repository.manager.RepositoryProvider;
+import org.eclipse.rdf4j.repository.sparql.SPARQLRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,11 +34,27 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 	
 	String rdf4jServer = "http://localhost:8080/rdf4j-server";
 	String repoName = "test";
-	RepositoryManager manager;
+	
+	//rdf4j server
+//	RepositoryManager manager;
+	
+	//stardog
+	RemoteRepositoryManager manager;
+	
+	
+	String stardogServer = "http://localhost:5820";
+	String username = "admin", password = "admin";
+	String db = "geograficumDB";
 	
 	@PostConstruct
 	private void init() {
-		manager = RepositoryProvider.getRepositoryManager(rdf4jServer);
+		// redf4j server
+		//manager = RepositoryProvider.getRepositoryManager(rdf4jServer);
+		
+		// stardog server
+		manager = new RemoteRepositoryManager("http://localhost:5820/sachbegriffeDB/query");
+		manager.setUsernameAndPassword(username, password);
+
 		logger.info("TestDummy Repository created.");
 	}
 	
@@ -44,11 +62,19 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
 		double start = new Date().getTime();
 		System.out.println(start);
-		Repository repo = manager.getRepository(repoName);
+		
+		// rdf4j server
+//		Repository repo = manager.getRepository(repoName);
+		
+		//stardog server
+		Repository repo = new SPARQLRepository("http://localhost:5820/sachbegriffeDB/query");
+		((SPARQLRepository) repo).setUsernameAndPassword(username, password);
+		repo.initialize();
+		
 		logger.info("Method simpleSearch() in TestDummyDaoImpl entered.");
 		List<TripleDto> resultDto = new LinkedList<>();
 		
-		repo.initialize();
+//		repo.initialize();
 		
 		try(RepositoryConnection con = repo.getConnection()){
 			
@@ -94,6 +120,24 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 
 	@Override
 	public List<TripleDto> getSubject(String subject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PredicateDto> getPredicatesList(String listName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String savePredicatesList(List<PredicateDto> predicateDtoList, String listName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<String> getAllPredicatesLists() {
 		// TODO Auto-generated method stub
 		return null;
 	}
