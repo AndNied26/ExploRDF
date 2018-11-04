@@ -12,6 +12,7 @@ import com.explordf.dao.ExploRDFDao;
 import dto.PredicateDto;
 import dto.TripleDto;
 
+// dies ist der daoFactory branch
 @Service
 public class ExploRDFService {
 
