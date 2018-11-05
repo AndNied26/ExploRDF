@@ -38,16 +38,21 @@ public class ExploRDFService {
 	
 	ExploRDFDao exploRDFDao;
 	
-//	@Autowired
-//	private Environment env;
+	@Autowired
+	private Environment env;
 	
 	@PostConstruct
 	private void postConstruct() {
 		System.out.println("Service postconstruct method entered");
 //		String daoName = env.getProperty("dao.name");
 		
+		System.out.println("New approach daoName: " + daoFactory.getDaoName());
+		
 		Properties props = new Properties();
 		File f = new File("classpath:explordf.properties");
+		System.out.println("Env: " + env.getProperty("triplestore.server"));
+		System.setProperty("triplestore.server", "testSErver");
+		System.out.println("Env: " + env.getProperty("triplestore.server"));
 		String daoName = "";
 		try {
 //			OutputStream out = new FileOutputStream(f);
@@ -55,6 +60,12 @@ public class ExploRDFService {
 			DefaultPropertiesPersister p = new DefaultPropertiesPersister();
 			p.load(props, in);
 			daoName = props.getProperty("dao.name");
+			System.out.println(props.getProperty("dao.name"));
+			System.out.println(props.getProperty("triplestore.server"));
+			System.out.println(props.getProperty("triplestore.repo"));
+			System.out.println(props.getProperty("triplestore.username"));
+			System.out.println(props.getProperty("triplestore.password"));
+			System.out.println(f.getAbsolutePath());
 //			p.store(props, out, "Triple Store Connection");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -65,7 +76,6 @@ public class ExploRDFService {
 		}
 		
 		
-		System.out.println(daoName);
 		exploRDFDao = daoFactory.getDao(daoName);
 	}
 	
@@ -97,6 +107,7 @@ public class ExploRDFService {
 			OutputStream out = new FileOutputStream(f);
 			DefaultPropertiesPersister p = new DefaultPropertiesPersister();
 			p.store(props, out, "Triple Store Connection");
+			
 			
 			InputStream in = new FileInputStream(f);
 			props = new Properties();
