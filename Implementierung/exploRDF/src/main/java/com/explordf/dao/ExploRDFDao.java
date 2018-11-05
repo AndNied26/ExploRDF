@@ -59,5 +59,7 @@ public interface ExploRDFDao {
 	 * @return List with the names of the predicates lists.
 	 */
 	List<String> getAllPredicatesLists();
+
+	String getType();
 	
 }

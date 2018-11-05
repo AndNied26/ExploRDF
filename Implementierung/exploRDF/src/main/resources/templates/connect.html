@@ -1,21 +1,63 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 
 <head th:replace="index :: head"></head>
 
 <body>
 
-	<div th:replace="index :: sidebar"></div>
+	<div id="grid">
+		<div th:replace="index :: sidebar"></div>
+		
+		<div id="main" class="main">
+			<!-- Caption - begin -->
+            <div class="caption">
+                <h3 id="captionHead">Connection</h3>
+                <div id="captionConnection">
+                    <p id="repoP">Repository: dummyRepo</p>
+                    <p id="dbP">Triple-Store: dummyServer</p>
 
-	<div class="main">
-		<h1>Das ist die Connect-Seite</h1>
+                </div>
+            </div>
+            <!-- Caption - end -->
+            
+            <div class="content">
+            	<form action="#" th:action="@{/connect}" th:object="${connectionFormDto}" method="post">
+    				<table>
+    					<tr>
+    						<td>Name: </td>
+    						<td><input type="text" th:field="*{name}" /></td>
+    					</tr>
+    					<tr>
+    						<td>Server: </td>
+    						<td><input type="text" th:field="*{tripleStoreServer}" /></td>
+    					</tr>
+    					<tr>
+    						<td>Repository: </td>
+    						<td><input type="text" th:field="*{tripleStoreRepo}" /></td>
+    					</tr>
+    					<tr>
+    						<td>User Name: </td>
+    						<td><input type="text" th:field="*{tripleStoreUsername}" /></td>
+    					</tr>
+    					<tr>
+    						<td>Password: </td>
+    						<td><input type="text" th:field="*{tripleStorePassword}" /></td>
+    					</tr>
+    					<tr>
+    						<td><input type="submit" value="Submit" /></td>
+    						<td><input type="reset" value="Reset" /></td>
+    					</tr>
+    				</table>
+    			</form>
+            </div>
+            
+		</div>
 	</div>
-
+	
 
 	<script src="https://d3js.org/d3.v5.js"></script>
 	<script src="js/explordf.js"></script>
-
 </body>
 
 </html>

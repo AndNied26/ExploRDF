@@ -21,6 +21,7 @@ import org.eclipse.rdf4j.repository.http.HTTPRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 
 import dto.PredicateDto;
 import dto.TripleDto;
@@ -33,7 +34,7 @@ import dto.TripleDto;
  * proxy to a repository available on a remote RDF4J Server, accessible through HTTP.
  */
 @org.springframework.stereotype.Repository
-@Qualifier("rdf4jRepo")
+@Lazy
 public class RDF4JDaoImpl implements ExploRDFDao {
 
 	private static final Logger logger = LoggerFactory.getLogger(RDF4JDaoImpl.class);
@@ -196,5 +197,10 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 	public List<String> getAllPredicatesLists() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public String getType() {
+		return "rdf4jRepo";
 	}
 }
