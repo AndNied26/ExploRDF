@@ -5,14 +5,15 @@ import javax.validation.constraints.NotNull;
 
 public class ConnectionFormDto {
 
-	private String name;
-	
-	@NotNull
 	private String tripleStoreServer;
+	
+	
+//	@NotNull
+	private String tripleStoreName;
 	
 	private String tripleStoreRepo;
 	
-	private String tripleStoreUsername;
+	private String tripleStoreUserName;
 	
 	private String tripleStorePassword;
 
@@ -20,21 +21,21 @@ public class ConnectionFormDto {
 	public ConnectionFormDto() {
 	}
 
-	public ConnectionFormDto(String name, String tripleStoreServer, String tripleStoreRepo, String tripleStoreUsername,
+	public ConnectionFormDto(String tripleStoreName, String tripleStoreServer, String tripleStoreRepo, String tripleStoreUsername,
 			String tripleStorePassword) {
-		this.name = name;
+		this.tripleStoreName = tripleStoreName;
 		this.tripleStoreServer = tripleStoreServer;
 		this.tripleStoreRepo = tripleStoreRepo;
-		this.tripleStoreUsername = tripleStoreUsername;
+		this.tripleStoreUserName = tripleStoreUsername;
 		this.tripleStorePassword = tripleStorePassword;
 	}
 
-	public String getName() {
-		return name;
+	public String getTripleStoreName() {
+		return tripleStoreName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTripleStoreName(String name) {
+		this.tripleStoreName = name;
 	}
 
 	public String getTripleStoreServer() {
@@ -53,12 +54,12 @@ public class ConnectionFormDto {
 		this.tripleStoreRepo = tripleStoreRepo;
 	}
 
-	public String getTripleStoreUsername() {
-		return tripleStoreUsername;
+	public String getTripleStoreUserName() {
+		return tripleStoreUserName;
 	}
 
-	public void setTripleStoreUsername(String tripleStoreUsername) {
-		this.tripleStoreUsername = tripleStoreUsername;
+	public void setTripleStoreUserName(String tripleStoreUsername) {
+		this.tripleStoreUserName = tripleStoreUsername;
 	}
 
 	public String getTripleStorePassword() {

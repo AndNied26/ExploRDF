@@ -27,9 +27,6 @@ public class ExploRDFDaoFactory {
 	
 	private final Map<String, ExploRDFDao> daoCache = new HashMap<>();
 	
-	@Value("${dao.name}")
-	private String daoName;
-	
 	@PostConstruct
 	public void initDaoCache() {
 		System.out.println("DaoFactory post construct");
@@ -43,27 +40,5 @@ public class ExploRDFDaoFactory {
 		ExploRDFDao dao = daoCache.get(type);
 		return dao;
 	}
-	
-	public String getDaoName() {
-		return daoName;
-	}
-	
-	public void setDaoName(String daoName) {
-		this.daoName = daoName;
-	}
-	
-	@PreDestroy
-	public void close() {
-		DefaultPropertiesPersister persister = new DefaultPropertiesPersister();
-		Properties props = new Properties();
-		props.setProperty("dao.name", "montesoryDB");
-		File f = new File("classpath/:explordf.properties");
-		try {
-			FileOutputStream out = new FileOutputStream(f);
-			persister.store(props, out, "db");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 }

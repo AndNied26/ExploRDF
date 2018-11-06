@@ -10,12 +10,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.explordf.service.ConnectionService;
 import com.explordf.service.ExploRDFService;
 
 import dto.ConnectionFormDto;
 
 @Controller
 public class ExploRDFController {
+	
+	@Autowired
+	ConnectionService connectionService;
 	
 	@Autowired
 	ExploRDFService exploRDFService;
@@ -43,6 +47,7 @@ public class ExploRDFController {
 	
 	@RequestMapping(value="/connect", method=RequestMethod.POST)
 	public String changeConnection(@ModelAttribute("connectionFormDto") ConnectionFormDto connectionFormDto) {
+//		connectionService.changeDaoImpl(connectionFormDto);
 		exploRDFService.changeDaoImpl(connectionFormDto);
 		return "index";
 	}
