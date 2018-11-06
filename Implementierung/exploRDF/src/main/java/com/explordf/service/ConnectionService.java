@@ -90,10 +90,13 @@ public class ConnectionService {
 	public void close() {
 		DefaultPropertiesPersister persister = new DefaultPropertiesPersister();
 		Properties props = new Properties();
-		props.setProperty("triplestore.server", "montesoryDB");
-		File f = new File("/explordf.properties");
+		props.setProperty("triplestore.name", "test1999Db");
+		File f = new File("src/main/resources/explordf.properties");
+		File f2 = new File("classpath:explordf.properties");
+		System.out.println("f2: " + f2.getAbsolutePath());
+		System.out.println("f: " + f.getAbsolutePath() + " " + f.canWrite());
 		try {
-			FileOutputStream out = new FileOutputStream(f);
+			FileOutputStream out = new FileOutputStream(f2);
 			persister.store(props, out, "db");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
