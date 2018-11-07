@@ -5,8 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.explordf.dto.ConnectionFormDto;
+import com.explordf.dto.ConnectionDto;
 import com.explordf.service.ConnectionService;
 import com.explordf.service.QueryService;
 
@@ -20,9 +21,14 @@ public class ConnectionController {
 	QueryService queryService;
 	
 	@RequestMapping(value="/connect", method=RequestMethod.POST)
-	public String changeConnection(@ModelAttribute("connectionFormDto") ConnectionFormDto connectionFormDto) {
-		connectionService.changeDaoImpl(connectionFormDto);
+	public String changeConnection(@ModelAttribute("connectionFormDto") ConnectionDto connectionDto) {
+		connectionService.changeDaoImpl(connectionDto);
 		queryService.setDao();
-		return "index";
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/getConnectionProps", method=RequestMethod.GET)
+	public @ResponseBody ConnectionDto getConnectionProps() {
+		return connectionService.getConnectionProps();
 	}
 }

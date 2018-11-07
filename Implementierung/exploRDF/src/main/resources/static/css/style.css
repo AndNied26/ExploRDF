@@ -141,11 +141,11 @@ h2, h3, h4 {
     padding-top: 60px;
 }
 
-input[type="radio"] {
+/* input[type="radio"] {
     -webkit-appearance: checkbox;
     -moz-appearance: checkbox;
     appearance: checkbox;
-  }
+  } */
 
 .input-group {
     max-width: 300px;
@@ -153,7 +153,7 @@ input[type="radio"] {
     display: grid;
     grid-template-columns: 1fr auto;    
 }  
-.radio-inline {
+.radio-search {
     max-width: 300px;
     padding: 0;
     padding-top: 10px;
@@ -163,12 +163,12 @@ input[type="radio"] {
     justify-content: space-between;
 }
 
-.radio-inline input {
+.radio-search input {
     margin-left: 0 !important;
     margin-top: 13px;
 }
 
-.radio-label {
+.radio-search {
     padding-left: 20px;
 }
 

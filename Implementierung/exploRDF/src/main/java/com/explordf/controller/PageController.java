@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.explordf.dto.ConnectionFormDto;
+import com.explordf.dto.ConnectionDto;
 
 @Controller
 public class PageController {
@@ -22,7 +22,7 @@ public class PageController {
 	
 	@RequestMapping(value="/connect", method=RequestMethod.GET)
 	public String connect(Model model) {
-		model.addAttribute("connectionFormDto", new ConnectionFormDto());
+		model.addAttribute("connectionDto", new ConnectionDto());
 		return "connect";
 	}
 	

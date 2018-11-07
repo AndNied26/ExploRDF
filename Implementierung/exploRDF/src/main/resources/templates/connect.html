@@ -13,43 +13,51 @@
 			<!-- Caption - begin -->
             <div class="caption">
                 <h3 id="captionHead">Connection</h3>
-                <div id="captionConnection">
-                    <p id="repoP">Repository: dummyRepo</p>
-                    <p id="dbP">Triple-Store: dummyServer</p>
-
-                </div>
-            </div>
+				<div th:replace="index :: captionConnection"></div>
+			</div>
             <!-- Caption - end -->
-            
+			
+			
             <div class="content">
-            	<form action="#" th:action="@{/connect}" th:object="${connectionFormDto}" method="post">
-    				<table>
-    					<tr>
-    						<td>Name: </td>
-    						<td><input type="text" th:field="*{tripleStoreName}" /></td>
-    					</tr>
-    					<tr>
-    						<td>Server: </td>
-    						<td><input type="text" th:field="*{tripleStoreServer}" /></td>
-    					</tr>
-    					<tr>
-    						<td>Repository: </td>
-    						<td><input type="text" th:field="*{tripleStoreRepo}" /></td>
-    					</tr>
-    					<tr>
-    						<td>User Name: </td>
-    						<td><input type="text" th:field="*{tripleStoreUserName}" /></td>
-    					</tr>
-    					<tr>
-    						<td>Password: </td>
-    						<td><input type="text" th:field="*{tripleStorePassword}" /></td>
-    					</tr>
-    					<tr>
-    						<td><input type="submit" value="Submit" /></td>
-    						<td><input type="reset" value="Reset" /></td>
-    					</tr>
-    				</table>
-    			</form>
+
+				<div id="connectionContainer" class="containerDiv">
+
+					<form class="form-group" action="#" th:action="@{/connect}" th:object="${connectionDto}" method="post">
+						
+						<select id="tripleStoreSelect" class="form-control" th:field="*{tripleStoreServer}">
+								<option value="rdf4jServer">RDF4J</option>
+								<option value="stardogServer">Stardog</option>
+								<option value="sparqlEndpoint">SPARQL Endpoint</option>
+							</select>
+						<table>
+							<tr>
+								<td>URL: </td>
+								<td><input type="text" th:field="*{tripleStoreUrl}" /></td>
+							</tr>
+							<!-- <tr>
+								<td>Server: </td>
+								<td><input type="text" th:field="*{tripleStoreServer}" th:errorclass="fieldError"/></td>
+							</tr> -->
+							<tr>
+								<td>Repository: </td>
+								<td><input type="text" th:field="*{tripleStoreRepo}" /></td>
+							</tr>
+							<tr>
+								<td>User Name: </td>
+								<td><input type="text" th:field="*{tripleStoreUserName}" /></td>
+							</tr>
+							<tr>
+								<td>Password: </td>
+								<td><input type="text" th:field="*{tripleStorePassword}" /></td>
+							</tr>
+							<tr>
+								<td><input type="submit" value="Submit" /></td>
+								<td><input type="reset" value="Reset" /></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				
             </div>
             
 		</div>

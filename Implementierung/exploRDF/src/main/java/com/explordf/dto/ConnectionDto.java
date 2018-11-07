@@ -3,13 +3,13 @@ package com.explordf.dto;
 import javax.validation.constraints.NotNull;
 
 
-public class ConnectionFormDto {
+public class ConnectionDto {
 
 	private String tripleStoreServer;
 	
 	
-//	@NotNull
-	private String tripleStoreName;
+	@NotNull
+	private String tripleStoreUrl;
 	
 	private String tripleStoreRepo;
 	
@@ -18,24 +18,24 @@ public class ConnectionFormDto {
 	private String tripleStorePassword;
 
 
-	public ConnectionFormDto() {
+	public ConnectionDto() {
 	}
 
-	public ConnectionFormDto(String tripleStoreName, String tripleStoreServer, String tripleStoreRepo, String tripleStoreUsername,
+	public ConnectionDto(String tripleStoreUrl, String tripleStoreServer, String tripleStoreRepo, String tripleStoreUsername,
 			String tripleStorePassword) {
-		this.tripleStoreName = tripleStoreName;
+		this.tripleStoreUrl = tripleStoreUrl;
 		this.tripleStoreServer = tripleStoreServer;
 		this.tripleStoreRepo = tripleStoreRepo;
 		this.tripleStoreUserName = tripleStoreUsername;
 		this.tripleStorePassword = tripleStorePassword;
 	}
 
-	public String getTripleStoreName() {
-		return tripleStoreName;
+	public String getTripleStoreUrl() {
+		return tripleStoreUrl;
 	}
 
-	public void setTripleStoreName(String name) {
-		this.tripleStoreName = name;
+	public void setTripleStoreUrl(String url) {
+		this.tripleStoreUrl = url;
 	}
 
 	public String getTripleStoreServer() {

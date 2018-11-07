@@ -186,6 +186,33 @@ $('#searchBackBtn').on('click', function () {
 
 /**
  ***************************************************************
+ * ---------------Functions concerning the caption.--------------
+ * -------------------------------------------------------------
+ * --------------------------START------------------------------
+ */
+var connection;
+
+$(document).ready(function() {
+  console.log("document ready for connection get")
+  d3.json("getConnectionProps").then(function(data){
+    connection = data;
+    $("#dbSpan").text(connection.tripleStoreUrl);
+    $("#repoSpan").text(connection.tripleStoreRepo);
+    console.log(data);
+  });
+  
+});
+
+
+/**
+   * --------------------------------------------------------------
+   * ----------------Functions concerning the caption---------------
+   * --------------------------END---------------------------------
+   * **************************************************************
+   */
+
+/**
+ ***************************************************************
  * ---------------Functions concerning the navbar.--------------
  * -------------------------------------------------------------
  * --------------------------START------------------------------

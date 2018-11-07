@@ -16,13 +16,17 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DefaultPropertiesPersister;
 
-import com.explordf.dto.ConnectionFormDto;
+import com.explordf.dto.ConnectionDto;
 
 @Service
 public class ConnectionService {
 
 	@Autowired
 	DaoServer daoServer;
+	
+	public ConnectionDto getConnectionProps() {
+		return daoServer.getConnectionProps();
+	}
 	
 //	@Autowired
 //	Environment env;
@@ -120,8 +124,8 @@ public class ConnectionService {
 //				connectionFormDto.getTripleStorePassword() : "";
 //	}
 	
-	public void changeDaoImpl(ConnectionFormDto connectionFormDto) {
-		daoServer.changeDaoImpl(connectionFormDto);
+	public void changeDaoImpl(ConnectionDto connectionDto) {
+		daoServer.changeDaoImpl(connectionDto);
 	}
 	
 	

@@ -13,6 +13,8 @@ import java.util.Properties;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -23,12 +25,14 @@ import org.springframework.util.DefaultPropertiesPersister;
 import org.springframework.util.ResourceUtils;
 
 import com.explordf.dao.ExploRDFDao;
-import com.explordf.dto.ConnectionFormDto;
+import com.explordf.dao.RDF4JDaoImpl;
+import com.explordf.dto.ConnectionDto;
 
 @Component
 @PropertySource("classpath:explordf.properties")
 public class DaoServer {
 
+	private static final Logger logger = LoggerFactory.getLogger(DaoServer.class);
 	
 	@Autowired
 	Environment env;
@@ -39,8 +43,8 @@ public class DaoServer {
 	@Value("${triplestore.server}")
 	private String tripleStoreServer;
 	
-	@Value("${triplestore.name}")
-	private String tripleStoreName;
+	@Value("${triplestore.url}")
+	private String tripleStoreUrl;
 	
 	@Value("${triplestore.repository}")
 	private String tripleStoreRepo;
@@ -57,13 +61,14 @@ public class DaoServer {
 	
 	@PostConstruct
 	public void initDaoCache() {
-		System.out.println("DaoServer post construct");
-		System.out.println("Autowired daoImpls: ");
+		logger.info("DaoServer post construct");
+		logger.info("Autowired daoImpls: ");
+		String s = "";
 		for(ExploRDFDao dao: daos) {
-			System.out.print(dao.getType() + ", ");
+			s += dao.getType() + ", ";
 			daoCache.put(dao.getType(), dao);
 		}
-		System.out.println();
+		logger.info(s.substring(0, s.length()-2));
 		
 		showConnProps();
 		
@@ -74,13 +79,13 @@ public class DaoServer {
 	}
 	
 	public ExploRDFDao getDao() {
-		System.out.println("DaoServer getDao(): " + daoCache.get(tripleStoreServer).getType());
+		logger.info("DaoServer getDao(): " + daoCache.get(tripleStoreServer).getType());
 		ExploRDFDao dao = daoCache.get(tripleStoreServer);
 		return dao;
 	}
 	
-	public void changeDaoImpl(ConnectionFormDto connectionFormDto) {
-		tripleStoreName = connectionFormDto.getTripleStoreName();
+	public void changeDaoImpl(ConnectionDto connectionFormDto) {
+		tripleStoreUrl = connectionFormDto.getTripleStoreUrl();
 		tripleStoreServer = connectionFormDto.getTripleStoreServer();
 		tripleStoreRepo = connectionFormDto.getTripleStoreRepo() != null ? 
 				connectionFormDto.getTripleStoreRepo() : "";
@@ -92,6 +97,14 @@ public class DaoServer {
 		showConnProps();
 	}
 
+	public ConnectionDto getConnectionProps() {
+		ConnectionDto connDto = new ConnectionDto();
+		connDto.setTripleStoreUrl(tripleStoreUrl);
+		connDto.setTripleStoreRepo(tripleStoreRepo);
+		return connDto;
+	}
+	
+	
 	private void saveConnProps() {
 		DefaultPropertiesPersister persister = new DefaultPropertiesPersister();
 		
@@ -99,7 +112,7 @@ public class DaoServer {
 		File f = new File("classpath:explordf.properties");
 		
 		props.setProperty("triplestore.server", tripleStoreServer);
-		props.setProperty("triplestore.name", tripleStoreName);
+		props.setProperty("triplestore.url", tripleStoreUrl);
 		props.setProperty("triplestore.repository", tripleStoreRepo != null ? 
 				tripleStoreRepo : "");
 		props.setProperty("triplestore.username", tripleStoreUserName != null ? 
@@ -118,12 +131,12 @@ public class DaoServer {
 	
 	
 	private void showConnProps() {
-		System.out.println("Connection properties:");
-		System.out.println("Server: " + tripleStoreServer + " Env: " + env.getProperty("triplestore.server"));
-		System.out.println("Name: " + tripleStoreName + " Env: " + env.getProperty("triplestore.name"));
-		System.out.println("Repo: " + tripleStoreRepo + " Env: " + env.getProperty("triplestore.repository"));
-		System.out.println("Username: " + tripleStoreUserName + " Env: " + env.getProperty("triplestore.username"));
-		System.out.println("Password: " + tripleStorePassword + " Env: " + env.getProperty("triplestore.password"));
+		logger.info("Connection properties:");
+		logger.info("Server: " + tripleStoreServer + " Env: " + env.getProperty("triplestore.server"));
+		logger.info("Name: " + tripleStoreUrl + " Env: " + env.getProperty("triplestore.url"));
+		logger.info("Repo: " + tripleStoreRepo + " Env: " + env.getProperty("triplestore.repository"));
+		logger.info("Username: " + tripleStoreUserName + " Env: " + env.getProperty("triplestore.username"));
+		logger.info("Password: " + tripleStorePassword + " Env: " + env.getProperty("triplestore.password"));
 		System.out.println();
 	}
 	
@@ -135,7 +148,7 @@ public class DaoServer {
 		
 		
 		props.setProperty("triplestore.server", tripleStoreServer);
-		props.setProperty("triplestore.name", tripleStoreName);
+		props.setProperty("triplestore.url", tripleStoreUrl);
 		props.setProperty("triplestore.repository", tripleStoreRepo != null ? 
 				tripleStoreRepo : "");
 		props.setProperty("triplestore.username", tripleStoreUserName != null ? 
