@@ -1,4 +1,4 @@
-package dto;
+package com.explordf.dto;
 
 import javax.validation.constraints.NotNull;
 

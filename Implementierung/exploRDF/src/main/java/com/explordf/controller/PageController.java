@@ -1,28 +1,14 @@
 package com.explordf.controller;
 
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.explordf.service.ConnectionService;
-import com.explordf.service.ExploRDFService;
-
-import dto.ConnectionFormDto;
+import com.explordf.dto.ConnectionFormDto;
 
 @Controller
-public class ExploRDFController {
-	
-	@Autowired
-	ConnectionService connectionService;
-	
-	@Autowired
-	ExploRDFService exploRDFService;
+public class PageController {
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String index() {
@@ -45,10 +31,4 @@ public class ExploRDFController {
 		return "help";
 	}
 	
-	@RequestMapping(value="/connect", method=RequestMethod.POST)
-	public String changeConnection(@ModelAttribute("connectionFormDto") ConnectionFormDto connectionFormDto) {
-//		connectionService.changeDaoImpl(connectionFormDto);
-		exploRDFService.changeDaoImpl(connectionFormDto);
-		return "index";
-	}
 }

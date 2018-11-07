@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
-import dto.PredicateDto;
-import dto.TripleDto;
+import com.explordf.dto.PredicateDto;
+import com.explordf.dto.TripleDto;
 
 
 /**
@@ -23,6 +23,8 @@ import dto.TripleDto;
 @Qualifier("sparqlEndpointRepo")
 public class SparqlEndpointDaoImpl implements ExploRDFDao {
 
+	private final String tripleStoreServer = "sparqlEndpoint";
+	
 	@Override
 	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
 		// TODO Auto-generated method stub
@@ -61,8 +63,7 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
-		return null;
+		return tripleStoreServer;
 	}
 
 }

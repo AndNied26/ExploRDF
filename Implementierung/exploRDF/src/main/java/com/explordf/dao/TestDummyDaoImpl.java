@@ -23,14 +23,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import dto.PredicateDto;
-import dto.TripleDto;
+import com.explordf.dto.PredicateDto;
+import com.explordf.dto.TripleDto;
 
 @org.springframework.stereotype.Repository
 @Qualifier("dummyRepo")
 public class TestDummyDaoImpl implements ExploRDFDao {
 
 	private static final Logger logger = LoggerFactory.getLogger(TestDummyDaoImpl.class);
+	
+	private final String tripleStoreServer = "testDummyServer";
 	
 	String rdf4jServer = "http://localhost:8080/rdf4j-server";
 	String repoName = "test";
@@ -144,8 +146,7 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
-		return null;
+		return tripleStoreServer;
 	}
 
 }

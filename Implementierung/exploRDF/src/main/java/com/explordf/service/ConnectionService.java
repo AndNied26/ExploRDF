@@ -8,108 +8,79 @@ import java.util.Properties;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DefaultPropertiesPersister;
 
-import dto.ConnectionFormDto;
+import com.explordf.dto.ConnectionFormDto;
 
-@Component
+@Service
 public class ConnectionService {
 
-	@Value("${triplestore.server}")
-	private String tripleStoreServer;
+	@Autowired
+	DaoServer daoServer;
 	
-	@Value("${triplestore.name}")
-	private String tripleStoreName;
+//	@Autowired
+//	Environment env;
+//	
+//	@Value("${triplestore.server}")
+//	private String tripleStoreServer;
+//	
+//	@Value("${triplestore.name}")
+//	private String tripleStoreName;
+//	
+//	@Value("${triplestore.repository}")
+//	private String tripleStoreRepo;
+//	
+//	@Value("${triplestore.username}")
+//	private String tripleStoreUserName;
+//	
+//	@Value("${triplestore.password}")
+//	private String tripleStorePassword;
+//	
+//	
+//	@PostConstruct
+//	private void init( ) {
+//		System.out.println("PostConstuct method in ConnectionService entered.");
+//		System.out.println("Connection properties:");
+//		System.out.println("Server: " + tripleStoreServer + " Env: " + env.getProperty("triplestore.server"));
+//		System.out.println("Name: " + tripleStoreName + " Env: " + env.getProperty("triplestore.name"));
+//		System.out.println("Repo: " + tripleStoreRepo + " Env: " + env.getProperty("triplestore.repository"));
+//		System.out.println("Username: " + tripleStoreUserName + " Env: " + env.getProperty("triplestore.username"));
+//		System.out.println("Password: " + tripleStorePassword + " Env: " + env.getProperty("triplestore.password"));
+//		System.out.println();
+//	}
+
 	
-	@Value("${triplestore.repository}")
-	private String tripleStoreRepo;
 	
-	@Value("${triplestore.username}")
-	private String tripleStoreUserName;
-	
-	@Value("${triplestore.password}")
-	private String tripleStorePassword;
-	
-	
-	@PostConstruct
-	private void init( ) {
-		System.out.println("PostConstuct method in ConnectionService entered.");
-		System.out.println("Connection properties:");
-		System.out.println("Server: " + tripleStoreServer);
-		System.out.println("Name: " + tripleStoreName);
-		System.out.println("Repo: " + tripleStoreRepo);
-		System.out.println("Username: " + tripleStoreUserName);
-		System.out.println("Password: " + tripleStorePassword);
-		System.out.println();
-	}
-
-	public String getTripleStoreServer() {
-		return tripleStoreServer;
-	}
-
-	public void setTripleStoreServer(String tripleStoreServer) {
-		this.tripleStoreServer = tripleStoreServer;
-	}
-
-	public String getTripleStoreName() {
-		return tripleStoreName;
-	}
-
-	public void setTripleStoreName(String tripleStoreName) {
-		this.tripleStoreName = tripleStoreName;
-	}
-
-	public String getTripleStoreRepo() {
-		return tripleStoreRepo;
-	}
-
-	public void setTripleStoreRepo(String tripleStoreRepo) {
-		this.tripleStoreRepo = tripleStoreRepo;
-	}
-
-	public String getTripleStoreUserName() {
-		return tripleStoreUserName;
-	}
-
-	public void setTripleStoreUserName(String tripleStoreUserName) {
-		this.tripleStoreUserName = tripleStoreUserName;
-	}
-
-	public String getTripleStorePassword() {
-		return tripleStorePassword;
-	}
-
-	public void setTripleStorePassword(String tripleStorePassword) {
-		this.tripleStorePassword = tripleStorePassword;
-	}
-	
-	@PreDestroy
-	public void close() {
-		DefaultPropertiesPersister persister = new DefaultPropertiesPersister();
-		Properties props = new Properties();
-		props.setProperty("triplestore.name", "test1999Db");
-		File f = new File("src/main/resources/explordf.properties");
-		File f2 = new File("classpath:explordf.properties");
-		System.out.println("f2: " + f2.getAbsolutePath());
-		System.out.println("f: " + f.getAbsolutePath() + " " + f.canWrite());
-		try {
-			FileOutputStream out = new FileOutputStream(f2);
-			persister.store(props, out, "db");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-}
+//	@PreDestroy
+//	public void close() {
+//		DefaultPropertiesPersister persister = new DefaultPropertiesPersister();
+//		Properties props = new Properties();
+//		props.setProperty("triplestore.name", "test1999Db");
+//		File f = new File("src/main/resources/explordf.properties");
+//		File f2 = new File("classpath:explordf.properties");
+//		System.out.println("f2: " + f2.getAbsolutePath());
+//		System.out.println("f: " + f.getAbsolutePath() + " " + f.canWrite());
+//		try {
+//			FileOutputStream out = new FileOutputStream(f2);
+//			persister.store(props, out, "db");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//}
 	
 //	@PreDestroy
 //	private void close() {
 //		DefaultPropertiesPersister persister = new DefaultPropertiesPersister();
 //		
 //		Properties props = new Properties();
-//		File f = new File("classpath*:explordf.properties");
+//		File f = new File("classpath:explordf.properties");
 //		
 //		props.setProperty("triplestore.server", tripleStoreServer);
 //		props.setProperty("triplestore.name", tripleStoreName);
@@ -129,26 +100,29 @@ public class ConnectionService {
 //		}
 //		System.out.println("PreDestroy method in ConnectionService entered.");
 //		System.out.println("Connection properties:");
-//		System.out.println("Server: " + tripleStoreServer);
-//		System.out.println("Name: " + tripleStoreName);
-//		System.out.println("Repo: " + tripleStoreRepo);
-//		System.out.println("Username: " + tripleStoreUserName);
-//		System.out.println("Password: " + tripleStorePassword);
+//		System.out.println("Server: " + tripleStoreServer + " Env: " + env.getProperty("triplestore.server"));
+//		System.out.println("Name: " + tripleStoreName + " Env: " + env.getProperty("triplestore.name"));
+//		System.out.println("Repo: " + tripleStoreRepo + " Env: " + env.getProperty("triplestore.repository"));
+//		System.out.println("Username: " + tripleStoreUserName + " Env: " + env.getProperty("triplestore.username"));
+//		System.out.println("Password: " + tripleStorePassword + " Env: " + env.getProperty("triplestore.password"));
 //		System.out.println();
 //		
 //	}
-
-	public void changeDaoImpl(ConnectionFormDto connectionFormDto) {
-		tripleStoreName = connectionFormDto.getTripleStoreName();
-		tripleStoreServer = connectionFormDto.getTripleStoreServer();
-		tripleStoreRepo = connectionFormDto.getTripleStoreRepo() != null ? 
-				connectionFormDto.getTripleStoreRepo() : "";
-		tripleStoreUserName = connectionFormDto.getTripleStoreUserName() != null ? 
-				connectionFormDto.getTripleStoreUserName() : "";
-		tripleStorePassword = connectionFormDto.getTripleStorePassword() != null ? 
-				connectionFormDto.getTripleStorePassword() : "";
-	}
+//
+//	public void changeDaoImpl(ConnectionFormDto connectionFormDto) {
+//		tripleStoreName = connectionFormDto.getTripleStoreName();
+//		tripleStoreServer = connectionFormDto.getTripleStoreServer();
+//		tripleStoreRepo = connectionFormDto.getTripleStoreRepo() != null ? 
+//				connectionFormDto.getTripleStoreRepo() : "";
+//		tripleStoreUserName = connectionFormDto.getTripleStoreUserName() != null ? 
+//				connectionFormDto.getTripleStoreUserName() : "";
+//		tripleStorePassword = connectionFormDto.getTripleStorePassword() != null ? 
+//				connectionFormDto.getTripleStorePassword() : "";
+//	}
 	
+	public void changeDaoImpl(ConnectionFormDto connectionFormDto) {
+		daoServer.changeDaoImpl(connectionFormDto);
+	}
 	
 	
 }

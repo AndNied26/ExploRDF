@@ -23,8 +23,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
 
-import dto.PredicateDto;
-import dto.TripleDto;
+import com.explordf.dto.PredicateDto;
+import com.explordf.dto.TripleDto;
 
 
 /**
@@ -39,6 +39,7 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 
 	private static final Logger logger = LoggerFactory.getLogger(RDF4JDaoImpl.class);
 	
+	private final String tripleStoreServer = "rdf4jServer";
 	
 	//TODO Hier muss HTTPRepository von rdf4j verwendet werden
 	
@@ -201,6 +202,6 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 
 	@Override
 	public String getType() {
-		return "rdf4jRepo";
+		return tripleStoreServer;
 	}
 }

@@ -37,21 +37,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.explordf.service.ExploRDFService;
-
-import dto.ConnectionFormDto;
-import dto.PredicateDto;
-import dto.TripleDto;
+import com.explordf.dto.ConnectionFormDto;
+import com.explordf.dto.PredicateDto;
+import com.explordf.dto.TripleDto;
+import com.explordf.service.QueryService;
 
 
 @RestController
-public class ExploRDFRestController {
+public class QueryRestController {
 
 	@Autowired
 	ResourceLoader loader;
 	
 	@Autowired
-	ExploRDFService exploRDFService;
+	QueryService queryService;
 	
 	@Value("classpath:static/persistent/predicates.txt")
 	Resource resourceFile;
@@ -118,12 +117,12 @@ public class ExploRDFRestController {
 		String term = url.split("/simpleSearch/")[1];
 		term = term.substring(0, term.length()-2);
 		System.out.println("term: " + term + ", broaderSearch: " + (broaderSearch == '1'));
-		return exploRDFService.simpleSearch(term, broaderSearch == '1');
+		return queryService.simpleSearch(term, broaderSearch == '1');
 	}
 	
 	@RequestMapping(value="/getPredicates", method=RequestMethod.GET)
 	public List<PredicateDto> getPredicates() {
-		return exploRDFService.getPredicates();
+		return queryService.getPredicates();
 	}
 	
 //	@RequestMapping(value="/getSubject", method = RequestMethod.POST)
@@ -136,7 +135,7 @@ public class ExploRDFRestController {
 	public List<TripleDto> getSubject(HttpServletRequest request) {
 		System.out.println("Entered Controller");
 		String subject = request.getRequestURI().split("/getSubject/")[1];
-		return exploRDFService.getSubject(subject);
+		return queryService.getSubject(subject);
 	}
 	
 }

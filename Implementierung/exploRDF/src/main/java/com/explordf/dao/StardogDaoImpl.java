@@ -9,14 +9,16 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
-import dto.PredicateDto;
-import dto.TripleDto;
+import com.explordf.dto.PredicateDto;
+import com.explordf.dto.TripleDto;
 
 @Repository
 @Lazy
 @Qualifier("stardogRepo")
 public class StardogDaoImpl implements ExploRDFDao {
 
+	private final String tripleStoreServer = "stardogServer";
+	
 	@Override
 	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
 		// TODO Auto-generated method stub
@@ -55,7 +57,7 @@ public class StardogDaoImpl implements ExploRDFDao {
 
 	@Override
 	public String getType() {
-		return "stardogRepo";
+		return tripleStoreServer;
 	}
 
 }

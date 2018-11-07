@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import dto.PredicateDto;
-import dto.TripleDto;
+import com.explordf.dto.PredicateDto;
+import com.explordf.dto.TripleDto;
 
 /**
  * Interface for a DAO (data access object).
