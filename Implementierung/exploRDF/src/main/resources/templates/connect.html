@@ -8,61 +8,118 @@
 
 	<div id="grid">
 		<div th:replace="index :: sidebar"></div>
-		
+
 		<div id="main" class="main">
 			<!-- Caption - begin -->
-            <div class="caption">
-                <h3 id="captionHead">Connection</h3>
+			<div class="caption">
+				<h3 id="captionHead">Connection</h3>
 				<div th:replace="index :: captionConnection"></div>
 			</div>
-            <!-- Caption - end -->
-			
-			
-            <div class="content">
+			<!-- Caption - end -->
 
-				<div id="connectionContainer" class="containerDiv">
 
-					<form class="form-group" action="#" th:action="@{/connect}" th:object="${connectionDto}" method="post">
-						
-						<select id="tripleStoreSelect" class="form-control" th:field="*{tripleStoreServer}">
-								<option value="rdf4jServer">RDF4J</option>
-								<option value="stardogServer">Stardog</option>
-								<option value="sparqlEndpoint">SPARQL Endpoint</option>
-							</select>
-						<table>
-							<tr>
-								<td>URL: </td>
-								<td><input type="text" th:field="*{tripleStoreUrl}" /></td>
-							</tr>
-							<!-- <tr>
-								<td>Server: </td>
-								<td><input type="text" th:field="*{tripleStoreServer}" th:errorclass="fieldError"/></td>
-							</tr> -->
-							<tr>
-								<td>Repository: </td>
-								<td><input type="text" th:field="*{tripleStoreRepo}" /></td>
-							</tr>
-							<tr>
-								<td>User Name: </td>
-								<td><input type="text" th:field="*{tripleStoreUserName}" /></td>
-							</tr>
-							<tr>
-								<td>Password: </td>
-								<td><input type="text" th:field="*{tripleStorePassword}" /></td>
-							</tr>
-							<tr>
-								<td><input type="submit" value="Submit" /></td>
-								<td><input type="reset" value="Reset" /></td>
-							</tr>
-						</table>
+			<div class="content">
+
+				<div id="connectDiv" class="connectionDiv">
+
+					<form class="form-horizontal">
+
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="tripleStoreServer">Server</label>
+							<div class="col-sm-4">
+								<select id="tripleStoreSelect" class="form-control">
+									<option value="rdf4jServer">RDF4J</option>
+									<option value="stardogServer">Stardog</option>
+									<option value="sparqlEndpoint">SPARQL Endpoint</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="tripleStoreUrl">URL</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="tripleStoreUrl"
+									placeholder="Enter Server-URL...">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="tripleStoreRepo">Repository</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="tripleStoreRepo"
+									placeholder="Enter Repository...">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="tripleStoreUserName">User
+								Name</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="tripleStoreUserName"
+									placeholder="Enter User Name...">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="tripleStorePassword">Password</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="tripleStorePassword"
+									placeholder="Enter Password...">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-default">Submit</button>
+							</div>
+						</div>
 					</form>
+
+					<!-- 					<form class="form-group" action="#" th:action="@{/connect}" th:object="${connectionDto}" method="post"> -->
+
+					<!-- 						<select id="tripleStoreSelect" class="form-control" th:field="*{tripleStoreServer}"> -->
+					<!-- 								<option value="rdf4jServer">RDF4J</option> -->
+					<!-- 								<option value="stardogServer">Stardog</option> -->
+					<!-- 								<option value="sparqlEndpoint">SPARQL Endpoint</option> -->
+					<!-- 							</select> -->
+					<!-- 						<table> -->
+					<!-- 							<tr> -->
+					<!-- 								<td>URL: </td> -->
+					<!-- 								<td><input type="text" th:field="*{tripleStoreUrl}" /></td> -->
+					<!-- 							</tr> -->
+					<!-- 							<tr>
+<!-- 								<td>Server: </td> -->
+					<!-- 								<td><input type="text" th:field="*{tripleStoreServer}" th:errorclass="fieldError"/></td> -->
+					<!-- 							</tr> -->
+					<!-- 							<tr> -->
+					<!-- 								<td>Repository: </td> -->
+					<!-- 								<td><input type="text" th:field="*{tripleStoreRepo}" /></td> -->
+					<!-- 							</tr> -->
+					<!-- 							<tr> -->
+					<!-- 								<td>User Name: </td> -->
+					<!-- 								<td><input type="text" th:field="*{tripleStoreUserName}" /></td> -->
+					<!-- 							</tr> -->
+					<!-- 							<tr> -->
+					<!-- 								<td>Password: </td> -->
+					<!-- 								<td><input type="text" th:field="*{tripleStorePassword}" /></td> -->
+					<!-- 							</tr> -->
+					<!-- 							<tr> -->
+					<!-- 								<td><input type="submit" value="Submit" /></td> -->
+					<!-- 								<td><input type="reset" value="Reset" /></td> -->
+					<!-- 							</tr> -->
+					<!-- 						</table> -->
+					<!-- 					</form> -->
 				</div>
-				
-            </div>
-            
+
+				<div id="connectSuccess" class="connectionDiv">
+					Successfully connected.
+					<button id="connectionSuccessBtn">OK</button>
+				</div>
+				<div id="connectFail" class="connectionDiv">
+					Connection failed.
+					<button id="connectionSuccessBtn">OK</button>
+				</div>
+			</div>
+
 		</div>
 	</div>
-	
+
 
 	<script src="https://d3js.org/d3.v5.js"></script>
 	<script src="js/explordf.js"></script>

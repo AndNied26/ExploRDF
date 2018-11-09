@@ -42,10 +42,8 @@ public class DaoServer {
 	
 	private ExploRDFDao currentDao;
 	
-//	@Value("${triplestore.server}")
-//	private String tripleStoreServer;
-	
-	private String tripleStoreServer = "sdfa";
+	@Value("${triplestore.server}")
+	private String tripleStoreServer;
 	
 	@Value("${triplestore.url}")
 	private String tripleStoreUrl;

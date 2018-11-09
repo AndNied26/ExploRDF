@@ -135,7 +135,7 @@ h2, h3, h4 {
     display: block;
 }
 
-/* ---------------------index mainDiv------------------------- */
+/* ---------------------index contentInnerDiv----------------- */
 #contentInnerDiv {
     display: grid;
     padding: 20% 20px 0 20px;
@@ -153,6 +153,22 @@ h2, h3, h4 {
 	padding-bottom: 20px;
 }
 
+/*----------------------connect content-------------------------*/
+.connectionDiv {
+	padding: 10% 10% 0 10%;
+}
+
+#connectDiv {
+/* 	display: none; */
+}
+
+#connectSuccess {
+	display: none;
+}
+
+#connectFail {
+	display: none;
+}
 
 /* -------------------------Search div------------------------- */
 #searchDiv {

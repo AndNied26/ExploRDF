@@ -42,6 +42,8 @@ public class QueryService {
 		exploRDFDao = daoServer.getDao();
 		if(exploRDFDao != null) {
 			System.out.println("QueryService new Dao: " + exploRDFDao.getType());
+		} else {
+			System.out.println("QueryService new Dao: is null");
 		}
 	}
 }
