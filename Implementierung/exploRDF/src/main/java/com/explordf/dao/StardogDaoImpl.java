@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
+import com.explordf.dto.ConnectionDto;
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
 
@@ -58,6 +59,12 @@ public class StardogDaoImpl implements ExploRDFDao {
 	@Override
 	public String getType() {
 		return tripleStoreServer;
+	}
+
+	@Override
+	public boolean getConnected(ConnectionDto connDto) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

@@ -40,6 +40,8 @@ public class QueryService {
 	
 	public void setDao() {
 		exploRDFDao = daoServer.getDao();
-		System.out.println("QueryService new Dao: " + exploRDFDao.getType());
+		if(exploRDFDao != null) {
+			System.out.println("QueryService new Dao: " + exploRDFDao.getType());
+		}
 	}
 }

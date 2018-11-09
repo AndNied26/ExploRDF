@@ -12,12 +12,12 @@ public class PageController {
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String index() {
-		return "index";
+		return "main";
 	}
 	
 	@RequestMapping(value="/query", method=RequestMethod.GET)
 	public String query() {
-		return "query";
+		return "index";
 	}
 	
 	@RequestMapping(value="/connect", method=RequestMethod.GET)

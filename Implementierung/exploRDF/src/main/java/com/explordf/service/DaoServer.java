@@ -40,8 +40,12 @@ public class DaoServer {
 	@Autowired
 	private List<ExploRDFDao> daos;
 	
-	@Value("${triplestore.server}")
-	private String tripleStoreServer;
+	private ExploRDFDao currentDao;
+	
+//	@Value("${triplestore.server}")
+//	private String tripleStoreServer;
+	
+	private String tripleStoreServer = "sdfa";
 	
 	@Value("${triplestore.url}")
 	private String tripleStoreUrl;
@@ -68,7 +72,9 @@ public class DaoServer {
 			s += dao.getType() + ", ";
 			daoCache.put(dao.getType(), dao);
 		}
-		logger.info(s.substring(0, s.length()-2));
+		logger.info(s.substring(0, s.length()-2));		
+		
+		setDao();
 		
 		showConnProps();
 		
@@ -78,30 +84,51 @@ public class DaoServer {
 		
 	}
 	
-	public ExploRDFDao getDao() {
-		logger.info("DaoServer getDao(): " + daoCache.get(tripleStoreServer).getType());
-		ExploRDFDao dao = daoCache.get(tripleStoreServer);
-		return dao;
+	private void setDao() {
+		currentDao = daoCache.get(tripleStoreServer);
 	}
 	
-	public void changeDaoImpl(ConnectionDto connectionFormDto) {
-		tripleStoreUrl = connectionFormDto.getTripleStoreUrl();
-		tripleStoreServer = connectionFormDto.getTripleStoreServer();
-		tripleStoreRepo = connectionFormDto.getTripleStoreRepo() != null ? 
-				connectionFormDto.getTripleStoreRepo() : "";
-		tripleStoreUserName = connectionFormDto.getTripleStoreUserName() != null ? 
-				connectionFormDto.getTripleStoreUserName() : "";
-		tripleStorePassword = connectionFormDto.getTripleStorePassword() != null ? 
-				connectionFormDto.getTripleStorePassword() : "";
-				
-		showConnProps();
+	public ExploRDFDao getDao() {
+		if(currentDao != null) {
+			logger.info("DaoServer getDao(): " + currentDao.getType());
+		} else {
+			logger.info("DaoServer getDao(): null");
+		}
+
+		return currentDao;
+	}
+	
+	public ConnectionDto setConnectionProps(ConnectionDto connDto) {
+		if( daoCache.get(tripleStoreServer) != null && currentDao.getConnected(connDto)) {
+			tripleStoreUrl = connDto.getTripleStoreUrl();
+			tripleStoreServer = connDto.getTripleStoreServer();
+			tripleStoreRepo = connDto.getTripleStoreRepo() != null ? 
+					connDto.getTripleStoreRepo() : "";
+			tripleStoreUserName = connDto.getTripleStoreUserName() != null ? 
+					connDto.getTripleStoreUserName() : "";
+			tripleStorePassword = connDto.getTripleStorePassword() != null ? 
+					connDto.getTripleStorePassword() : "";
+			setDao();
+			showConnProps();
+			
+			return getConnectionProps();
+		} else {
+			return null;
+		}
+	
+		
 	}
 
 	public ConnectionDto getConnectionProps() {
-		ConnectionDto connDto = new ConnectionDto();
-		connDto.setTripleStoreUrl(tripleStoreUrl);
-		connDto.setTripleStoreRepo(tripleStoreRepo);
-		return connDto;
+		if(currentDao != null) {
+			ConnectionDto connDto = new ConnectionDto();
+			connDto.setTripleStoreUrl(tripleStoreUrl);
+			connDto.setTripleStoreRepo(tripleStoreRepo);
+			return connDto;
+		} else {
+			return null;
+		}
+		
 	}
 	
 	

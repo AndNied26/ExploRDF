@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.explordf.dto.ConnectionDto;
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
 
@@ -61,5 +62,7 @@ public interface ExploRDFDao {
 	List<String> getAllPredicatesLists();
 
 	String getType();
+	
+	boolean getConnected(ConnectionDto connDto);
 	
 }

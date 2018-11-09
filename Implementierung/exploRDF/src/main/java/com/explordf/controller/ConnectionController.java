@@ -21,10 +21,12 @@ public class ConnectionController {
 	QueryService queryService;
 	
 	@RequestMapping(value="/connect", method=RequestMethod.POST)
-	public String changeConnection(@ModelAttribute("connectionFormDto") ConnectionDto connectionDto) {
-		connectionService.changeDaoImpl(connectionDto);
-		queryService.setDao();
-		return "redirect:/";
+	public @ResponseBody ConnectionDto setConnectionProps(@ModelAttribute("connectionFormDto") ConnectionDto connectionDto) {
+		ConnectionDto connDto = connectionService.setConnectionProps(connectionDto);
+		if(connDto != null) {
+			queryService.setDao();
+		}	
+		return connDto;
 	}
 	
 	@RequestMapping(value="/getConnectionProps", method=RequestMethod.GET)

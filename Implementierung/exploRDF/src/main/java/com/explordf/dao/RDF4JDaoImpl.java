@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
 
+import com.explordf.dto.ConnectionDto;
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
 
@@ -203,5 +204,11 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 	@Override
 	public String getType() {
 		return tripleStoreServer;
+	}
+
+	@Override
+	public boolean getConnected(ConnectionDto connDto) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

@@ -130,11 +130,29 @@ h2, h3, h4 {
 
 .containerDiv {
     padding-top: 10px;
-    /* text-align: center; */
     overflow: auto;
     margin: auto;
     display: block;
 }
+
+/* ---------------------index mainDiv------------------------- */
+#contentInnerDiv {
+    display: grid;
+    padding: 20% 20px 0 20px;
+    height: 100%;
+    grid-template-columns: 1fr 1fr 1fr; 
+}
+
+.contentGridDiv {
+	text-align: center;
+	align-content: center;
+	
+}
+
+.contentGridDiv h3 {
+	padding-bottom: 20px;
+}
+
 
 /* -------------------------Search div------------------------- */
 #searchDiv {
