@@ -64,7 +64,7 @@ public class StardogDaoImpl implements ExploRDFDao {
 	@Override
 	public boolean getConnected(ConnectionDto connDto) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }

@@ -138,7 +138,7 @@ h2, h3, h4 {
 /* ---------------------index contentInnerDiv----------------- */
 #contentInnerDiv {
     display: grid;
-    padding: 20% 20px 0 20px;
+    padding: 150px 20px 0 20px;
     height: 100%;
     grid-template-columns: 1fr 1fr 1fr; 
 }
@@ -168,6 +168,10 @@ h2, h3, h4 {
 
 #connectFail {
 	display: none;
+}
+
+.danger {
+	color: red;
 }
 
 /* -------------------------Search div------------------------- */

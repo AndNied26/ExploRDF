@@ -1,4 +1,67 @@
 /**
+ * ****************************************************************
+ * --------------Functions concerning triple store connections-----
+ * ---------------------------START--------------------------------
+ */
+
+$("#connectBtn").on("click", function(){
+	if($("#tripleStoreUrl").val() == ""){
+		$("#invalidURLMsg").html("Please enter a valid Triple Store URL.");
+		return;
+	}
+	var connForm = {};
+	
+	$("#connectForm :input").each(function(x,y){
+		connForm[y.id] = $(y).val();
+	});
+	console.log(connForm);
+	
+
+	
+	$.ajax({
+		url:'connect',
+		type:'POST',
+		xhrFields: {
+            withCredentials:true
+        },
+        contentType: 'application/json; charset=utf-8',
+		data:JSON.stringify(connForm),
+        success:function(data){
+        	console.log(data);
+        	$('#connectDiv').css('display', 'none');
+        	if(data != null && data.tripleStoreUrl != null) {
+        		getConnProps();
+        		
+        		$('#connectSuccess').css('display', 'block');
+        	}
+        	else {
+        		$('#connectFail').css('display', 'block');
+        		
+        		
+        		$('#connectFailSpan').html(connForm.tripleStoreUrl + ' ' + connForm.tripleStoreRepo);
+        	}
+        },
+        error:function() {
+            console.log("fail");
+        }
+	});
+
+});
+
+$("#connectionFailBtn").on("click", function(){
+	$('#connectFail').css('display', 'none');
+	$('#connectDiv').css('display', 'block');
+});
+
+/**
+   * --------------------------------------------------------------
+   * ------------Functions concerning triple store connections-----
+   * --------------------------END---------------------------------
+   * **************************************************************
+   */
+
+
+/**
  * ***************************************************************
  * ----------------Functions concerning the tables----------------
  * --------------------------START--------------------------------
@@ -190,18 +253,20 @@ $('#searchBackBtn').on('click', function () {
  * -------------------------------------------------------------
  * --------------------------START------------------------------
  */
-var connection;
-
 $(document).ready(function() {
-  console.log("document ready for connection get")
-  d3.json("getConnectionProps").then(function(data){
-    connection = data;
-    $("#dbSpan").text(connection.tripleStoreUrl);
-    $("#repoSpan").text(connection.tripleStoreRepo);
-    console.log(data);
-  });
-  
+  getConnProps();
 });
+
+//Get Connection properties
+function getConnProps() {
+	var connection;
+	d3.json("getConnectionProps").then(function(data){
+	    connection = data;
+	    $("#dbSpan").text(connection.tripleStoreUrl);
+	    $("#repoSpan").text(connection.tripleStoreRepo);
+	    console.log(data);
+	  });
+}
 
 
 /**

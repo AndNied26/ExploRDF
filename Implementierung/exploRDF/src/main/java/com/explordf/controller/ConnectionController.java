@@ -1,8 +1,10 @@
 package com.explordf.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,8 +22,9 @@ public class ConnectionController {
 	@Autowired
 	QueryService queryService;
 	
-	@RequestMapping(value="/connect", method=RequestMethod.POST)
-	public @ResponseBody ConnectionDto setConnectionProps(@ModelAttribute("connectionFormDto") ConnectionDto connectionDto) {
+	@RequestMapping(value="/connect", method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ConnectionDto setConnectionProps(@RequestBody ConnectionDto connectionDto) {
+		System.out.println(connectionDto.getTripleStoreServer());
 		ConnectionDto connDto = connectionService.setConnectionProps(connectionDto);
 		if(connDto != null) {
 			queryService.setDao();
