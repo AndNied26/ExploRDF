@@ -14,9 +14,7 @@ $("#connectBtn").on("click", function(){
 	$("#connectForm :input").each(function(x,y){
 		connForm[y.id] = $(y).val();
 	});
-	console.log(connForm);
 	
-
 	
 	$.ajax({
 		url:'connect',
@@ -263,8 +261,11 @@ function getConnProps() {
 	d3.json("getConnectionProps").then(function(data){
 	    connection = data;
 	    $("#dbSpan").text(connection.tripleStoreUrl);
-	    $("#repoSpan").text(connection.tripleStoreRepo);
-	    console.log(data);
+	    if(connection.tripleStoreRepo != "") {
+	    	$("#repoSpan").text(connection.tripleStoreRepo);
+	    } else {
+	    	$("#repoSpan").text("-");
+	    }
 	  });
 }
 

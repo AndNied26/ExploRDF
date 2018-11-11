@@ -42,11 +42,12 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 	
 	private final String tripleStoreServer = "rdf4jServer";
 	
-	//TODO Hier muss HTTPRepository von rdf4j verwendet werden
 	
 	String rdf4jServer = "http://localhost:8080/rdf4j-server";
 	String repoName = "test";
 	Repository repo;
+	
+	
 	
 	@PostConstruct
 	private void init() {

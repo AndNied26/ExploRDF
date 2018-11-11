@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.explordf.dto.ConnectionDto;
 import com.explordf.service.ConnectionService;
 import com.explordf.service.QueryService;
 
-@Controller
+@RestController
 public class ConnectionController {
 
 	@Autowired
@@ -23,7 +24,7 @@ public class ConnectionController {
 	QueryService queryService;
 	
 	@RequestMapping(value="/connect", method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ConnectionDto setConnectionProps(@RequestBody ConnectionDto connectionDto) {
+	public ConnectionDto setConnectionProps(@RequestBody ConnectionDto connectionDto) {
 		System.out.println(connectionDto.getTripleStoreServer());
 		ConnectionDto connDto = connectionService.setConnectionProps(connectionDto);
 		if(connDto != null) {
@@ -33,7 +34,7 @@ public class ConnectionController {
 	}
 	
 	@RequestMapping(value="/getConnectionProps", method=RequestMethod.GET)
-	public @ResponseBody ConnectionDto getConnectionProps() {
+	public ConnectionDto getConnectionProps() {
 		return connectionService.getConnectionProps();
 	}
 }

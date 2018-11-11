@@ -44,7 +44,7 @@ import com.explordf.service.QueryService;
 
 
 @RestController
-public class QueryRestController {
+public class QueryController {
 
 	@Autowired
 	ResourceLoader loader;
