@@ -73,7 +73,7 @@ public class DaoServer {
 		logger.info(s.substring(0, s.length()-2));		
 		
 		setDao();
-		
+		//TODO try to getConnected before setDao
 		showConnProps();
 		
 		saveConnProps();
@@ -97,7 +97,8 @@ public class DaoServer {
 	}
 	
 	public ConnectionDto setConnectionProps(ConnectionDto connDto) {
-		if( daoCache.get(tripleStoreServer) != null && currentDao.getConnected(connDto)) {
+		ExploRDFDao dao = daoCache.get(connDto.getTripleStoreServer());
+		if(dao != null && dao.getConnected(connDto)) {
 			tripleStoreUrl = connDto.getTripleStoreUrl();
 			tripleStoreServer = connDto.getTripleStoreServer();
 			tripleStoreRepo = connDto.getTripleStoreRepo() != null ? 
