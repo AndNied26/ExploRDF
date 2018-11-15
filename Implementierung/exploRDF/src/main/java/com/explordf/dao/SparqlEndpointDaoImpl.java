@@ -14,26 +14,34 @@ import javax.annotation.PreDestroy;
 
 import org.eclipse.rdf4j.repository.manager.RemoteRepositoryManager;
 import org.eclipse.rdf4j.repository.sparql.SPARQLRepository;
+import org.eclipse.rdf4j.repository.util.RDFLoader;
 import org.eclipse.rdf4j.rio.DatatypeHandler;
 import org.eclipse.rdf4j.rio.ParserConfig;
 import org.eclipse.rdf4j.rio.RDFFormat;
 import org.eclipse.rdf4j.rio.RDFHandler;
+import org.eclipse.rdf4j.rio.RDFHandlerException;
+import org.eclipse.rdf4j.rio.RDFParseException;
 import org.eclipse.rdf4j.rio.RDFParser;
 import org.eclipse.rdf4j.rio.Rio;
 import org.eclipse.rdf4j.rio.RioSetting;
 import org.eclipse.rdf4j.rio.helpers.BasicParserSettings;
 import org.eclipse.rdf4j.rio.helpers.NTriplesParserSettings;
 import org.eclipse.rdf4j.rio.helpers.RioSettingImpl;
+import org.eclipse.rdf4j.rio.helpers.StatementCollector;
 import org.eclipse.rdf4j.rio.helpers.TurtleParserSettings;
 import org.eclipse.rdf4j.rio.turtle.TurtleParser;
 import org.eclipse.rdf4j.RDF4JException;
 import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.model.Literal;
+import org.eclipse.rdf4j.model.Model;
+import org.eclipse.rdf4j.model.Namespace;
 import org.eclipse.rdf4j.model.Resource;
 import org.eclipse.rdf4j.model.Statement;
 import org.eclipse.rdf4j.model.URI;
 import org.eclipse.rdf4j.model.Value;
 import org.eclipse.rdf4j.model.ValueFactory;
+import org.eclipse.rdf4j.model.impl.LinkedHashModel;
+import org.eclipse.rdf4j.model.impl.SimpleValueFactory;
 import org.eclipse.rdf4j.model.util.LiteralUtilException;
 import org.eclipse.rdf4j.query.BindingSet;
 import org.eclipse.rdf4j.query.Query;
@@ -157,18 +165,103 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 		logger.info("Method getSubject() entered.");
 		List<TripleDto> resultDto = new LinkedList<>();
 
-		resultDto = getSubWithValueFactory(subject);
+		//resultDto = getSubWithValueFactory(subject);
 		 //resultDto = getSubWithTupleQuery(subject);
-		// resultDto = getSubTest(subject);
+		 resultDto = getSubTest(subject);
 
 		return resultDto;
 	}
 
-	public List<TripleDto> getSubTest(String subject) throws IOException {
+	public List<TripleDto> getSubTest(String subject) {
 		List<TripleDto> resultDto = new LinkedList<>();
 
-		URL url = new URL("https://dbpedia.org/sparql");
-		InputStream inputStream = url.openStream();
+		ValueFactory factory = repo.getValueFactory();
+
+		IRI subj = factory.createIRI(subject);
+		RDFParser parser = Rio.createParser(RDFFormat.NTRIPLES, factory);
+		
+		IRI resource = MyValueFactory.getInstance().createIRI(subject);
+		Model retrievedStatements = new LinkedHashModel();
+		RDFLoader rdfLoader = new RDFLoader(new ParserConfig(), MyValueFactory.getInstance());
+		StatementCollector statementCollector = new StatementCollector(retrievedStatements);
+		try {
+			rdfLoader.load(new URL(resource.stringValue()), null, null, statementCollector);
+		} catch (RDFParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RDFHandlerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for (Statement statement : retrievedStatements) {
+			System.out.println(statement.getSubject() + " " + statement.getPredicate() + " " + statement.getObject());
+		}
+
+//		try (RepositoryConnection con = repo.getConnection()) {
+////			con.setParserConfig(parser.getParserConfig());
+//
+////			ParserConfig config = con.getParserConfig();
+//			ParserConfig config = Rio.createParser(RDFFormat.NTRIPLES, factory).getParserConfig();
+//			config.addNonFatalError(NTriplesParserSettings.FAIL_ON_NTRIPLES_INVALID_LINES);
+//			config.addNonFatalError(TurtleParserSettings.CASE_INSENSITIVE_DIRECTIVES);
+//			config.addNonFatalError(BasicParserSettings.VERIFY_URI_SYNTAX);
+//			config.addNonFatalError(BasicParserSettings.VERIFY_DATATYPE_VALUES);
+//			config.addNonFatalError(BasicParserSettings.VERIFY_LANGUAGE_TAGS);
+//			config.addNonFatalError(BasicParserSettings.FAIL_ON_UNKNOWN_DATATYPES);
+//			config.addNonFatalError(BasicParserSettings.NORMALIZE_LANGUAGE_TAGS);
+//			config.addNonFatalError(BasicParserSettings.LANGUAGE_HANDLERS);
+//			config.addNonFatalError(BasicParserSettings.LARGE_LITERALS_HANDLING);
+//			config.addNonFatalError(BasicParserSettings.NAMESPACES);
+//			config.addNonFatalError(BasicParserSettings.NORMALIZE_DATATYPE_VALUES);
+//			config.addNonFatalError(BasicParserSettings.PRESERVE_BNODE_IDS);
+//			config.addNonFatalError(BasicParserSettings.SKOLEMIZE_ORIGIN);
+//			config.addNonFatalError(BasicParserSettings.VERIFY_RELATIVE_URIS);
+//			
+//
+//			config.set(BasicParserSettings.VERIFY_URI_SYNTAX, false);
+//			config.set(BasicParserSettings.VERIFY_LANGUAGE_TAGS, false);
+//			config.set(BasicParserSettings.VERIFY_DATATYPE_VALUES, false);
+//			config.set(BasicParserSettings.VERIFY_LANGUAGE_TAGS, false);
+//
+//			con.setParserConfig(config);
+//			
+//			Set<RioSetting<?>> set = con.getParserConfig().getNonFatalErrors();
+//			
+//			System.out.println("non fatal errors:");
+//			for (RioSetting<?> object : set) {
+//				System.out.println(object.getKey());
+//			}
+//			
+//			
+//			
+//			try (RepositoryResult<Namespace> statements = con.getNamespaces()) {
+//				
+//				System.out.println("getSubTest(): ");
+//				while (statements.hasNext()) {
+//
+//					Namespace st = statements.next();
+//					String s = st.getName();
+//					System.out.println(s);
+//					
+////					String s = "" + st.getSubject() + " " + st.getPredicate() + " " + st.getObject();
+////					System.out.println(s);
+////					resultDto.add(new TripleDto(st.getSubject().toString(),
+////							st.getPredicate().toString(), st.getObject().toString()));
+//				}
+//			}
+
+//		} 
+//		catch (RDF4JException e) {
+//			e.printStackTrace();
+//			
+//		}
 
 		return resultDto;
 	}
