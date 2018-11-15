@@ -138,6 +138,9 @@ function searchTerm() {
   d3.json("simpleSearch/" + term + "/" + broaderSearch).then(function (data) {
 	  console.log("simpleSearch/" + term + "/" + broaderSearch);
 	searchResults = data;
+	var count = data.length;
+	var res = count==1 ? 'Result':'Results';
+	$('#headingResult').text(count + ' ' + res + ' for "' + term + '"');
     drawSearchTable(searchResults);
     $("body").css("cursor", "default");
   });

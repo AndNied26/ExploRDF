@@ -71,10 +71,10 @@ public class DaoServer {
 			daoCache.put(dao.getType(), dao);
 		}
 		logger.info(s.substring(0, s.length()-2));		
-		
-		setDao();
-		//TODO try to getConnected before setDao
 		showConnProps();
+		setDao();
+		setConnectionProps(new ConnectionDto(tripleStoreUrl, tripleStoreServer,
+				tripleStoreRepo, tripleStoreUserName, tripleStorePassword));
 		
 		saveConnProps();
 		
@@ -94,6 +94,18 @@ public class DaoServer {
 		}
 
 		return currentDao;
+	}
+	
+	public ConnectionDto getConnectionProps() {
+		if(currentDao != null) {
+			ConnectionDto connDto = new ConnectionDto();
+			connDto.setTripleStoreUrl(tripleStoreUrl);
+			connDto.setTripleStoreRepo(tripleStoreRepo);
+			return connDto;
+		} else {
+			return null;
+		}
+		
 	}
 	
 	public ConnectionDto setConnectionProps(ConnectionDto connDto) {
@@ -117,42 +129,27 @@ public class DaoServer {
 	
 		
 	}
-
-	public ConnectionDto getConnectionProps() {
-		if(currentDao != null) {
-			ConnectionDto connDto = new ConnectionDto();
-			connDto.setTripleStoreUrl(tripleStoreUrl);
-			connDto.setTripleStoreRepo(tripleStoreRepo);
-			return connDto;
-		} else {
-			return null;
-		}
-		
-	}
-	
 	
 	private void saveConnProps() {
 		DefaultPropertiesPersister persister = new DefaultPropertiesPersister();
-		
+		String filePath = "classpath:explordf.properties";
 		Properties props = new Properties();
-		File f = new File("classpath:explordf.properties");
-		
+
 		props.setProperty("triplestore.server", tripleStoreServer);
 		props.setProperty("triplestore.url", tripleStoreUrl);
-		props.setProperty("triplestore.repository", tripleStoreRepo != null ? 
-				tripleStoreRepo : "");
-		props.setProperty("triplestore.username", tripleStoreUserName != null ? 
-				tripleStoreUserName : "");
-		props.setProperty("triplestore.password", tripleStorePassword != null ? 
-				tripleStorePassword : "");
-		
+		props.setProperty("triplestore.repository", tripleStoreRepo != null ? tripleStoreRepo : "");
+		props.setProperty("triplestore.username", tripleStoreUserName != null ? tripleStoreUserName : "");
+		props.setProperty("triplestore.password", tripleStorePassword != null ? tripleStorePassword : "");
+
 		try {
+			File f = ResourceUtils.getFile(filePath);
 			FileOutputStream out = new FileOutputStream(f);
 			persister.store(props, out, "db");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		showConnProps();
 	}
 	
 	
@@ -168,29 +165,7 @@ public class DaoServer {
 	
 	@PreDestroy
 	private void close() {
-		DefaultPropertiesPersister persister = new DefaultPropertiesPersister();
-		String filePath = "classpath:explordf.properties";
-		Properties props = new Properties();
-		
-		
-		props.setProperty("triplestore.server", tripleStoreServer);
-		props.setProperty("triplestore.url", tripleStoreUrl);
-		props.setProperty("triplestore.repository", tripleStoreRepo != null ? 
-				tripleStoreRepo : "");
-		props.setProperty("triplestore.username", tripleStoreUserName != null ? 
-				tripleStoreUserName : "");
-		props.setProperty("triplestore.password", tripleStorePassword != null ? 
-				tripleStorePassword : "");
-		
-		try {
-			File f = ResourceUtils.getFile(filePath);
-			FileOutputStream out = new FileOutputStream(f);
-			persister.store(props, out, "db");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		showConnProps();		
+		saveConnProps();
 	}
 	
 	

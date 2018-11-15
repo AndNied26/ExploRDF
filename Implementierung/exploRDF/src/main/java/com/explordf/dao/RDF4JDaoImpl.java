@@ -8,6 +8,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import org.eclipse.rdf4j.RDF4JException;
 import org.eclipse.rdf4j.model.Value;
 import org.eclipse.rdf4j.query.BindingSet;
 import org.eclipse.rdf4j.query.QueryLanguage;
@@ -17,7 +18,7 @@ import org.eclipse.rdf4j.query.TupleQueryResult;
 import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
 import org.eclipse.rdf4j.repository.http.HTTPRepository;
-
+import org.eclipse.rdf4j.repository.sparql.SPARQLRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -35,30 +36,22 @@ import com.explordf.dto.TripleDto;
  * proxy to a repository available on a remote RDF4J Server, accessible through HTTP.
  */
 @org.springframework.stereotype.Repository
-@Lazy
 public class RDF4JDaoImpl implements ExploRDFDao {
 
 	private static final Logger logger = LoggerFactory.getLogger(RDF4JDaoImpl.class);
 	
-	private final String tripleStoreServer = "rdf4jServer";
+	private final String tripleStoreServer = "RDF4J-Server";
 	
-	
+	//TODO: die unteren beiden weg
 	String rdf4jServer = "http://localhost:8080/rdf4j-server";
 	String repoName = "test";
-	Repository repo;
-	
-	
-	
-	@PostConstruct
-	private void init() {
-		repo = new HTTPRepository(rdf4jServer, repoName);
-		repo.initialize();
-		logger.info("Repository created.");
-	}
+	private Repository repo;
 	
 	@PreDestroy
-	private void destroy() {
-		repo.shutDown();
+	private void close() {
+		if (this.repo != null && this.repo.isInitialized()) {
+			this.repo.shutDown();
+		}
 	}
 	
 	
@@ -67,9 +60,8 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
 		double start = new Date().getTime();
 		logger.info("Method simpleSearch() in RDF4JDaoImpl entered.");
-		List<TripleDto> resultDto = new LinkedList<>();
 		
-//		repo.initialize();
+		List<TripleDto> resultDto = new LinkedList<>();
 		
 		try(RepositoryConnection con = repo.getConnection()){
 			
@@ -78,7 +70,7 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 			if(broaderSearch) {
 				queryString = "select ?s ?p ?o where {filter(regex(?o, \""+ term + "\", \"i\")).?s ?p ?o} order by ?s";
 			} else {
-				queryString = "SELECT ?s ?p ?o WHERE {?s ?p \"" + term + "\". ?s ?p ?o}";
+				queryString = "SELECT ?s ?p ?o WHERE {filter(?o = \"" + term + "\"). ?s ?p ?o}";
 			}		
 			
 			List<BindingSet> resultList;
@@ -97,9 +89,6 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 				TripleDto dto = new TripleDto(subject.toString(), predicate.toString(), object.toString());
 				resultDto.add(dto);
 			}
-			
-//		}finally {
-//			repo.shutDown();
 		}
 		double end = new Date().getTime();
 		System.out.println((end-start)/1000);
@@ -209,7 +198,44 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 
 	@Override
 	public boolean getConnected(ConnectionDto connDto) {
-		// TODO Auto-generated method stub
-		return true;
+		
+		logger.info("Method getConnected() in RDF4JDaoImpl entered.");
+
+		boolean connected = false;
+
+		System.out.println("server: " + connDto.getTripleStoreServer() + ", url: " + connDto.getTripleStoreUrl()
+		+ ", repo: " + connDto.getTripleStoreRepo() + ", username: " + connDto.getTripleStoreUserName()
+		+ ", password: " + connDto.getTripleStorePassword());
+		
+		if(connDto.getTripleStoreRepo() == "") {
+			return false;
+		}
+		Repository repo = new HTTPRepository(connDto.getTripleStoreUrl(), connDto.getTripleStoreRepo());
+		
+		if (connDto.getTripleStoreUserName() != "" && connDto.getTripleStorePassword() != "") {
+			((HTTPRepository) repo).setUsernameAndPassword(connDto.getTripleStoreUserName(),
+					connDto.getTripleStorePassword());
+		}
+		
+		repo.initialize();
+		try (RepositoryConnection conn = repo.getConnection()) {
+			String queryString = "SELECT * WHERE {?s ?p ?o} LIMIT 1";
+			TupleQuery tupleQuery = conn.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+			try (TupleQueryResult result = tupleQuery.evaluate()) {
+				System.out.println("TupleQueryResult");
+				connected = true;
+			}
+		} catch (RDF4JException e) {
+			logger.error("An RDF4JException occured while trying to connect to " 
+					+ connDto.getTripleStoreUrl() + ".");
+		}
+
+		if (connected) {
+			if (this.repo != null && this.repo.isInitialized()) {
+				this.repo.shutDown();
+			}
+			this.repo = repo;
+		}
+		return connected;
 	}
 }
