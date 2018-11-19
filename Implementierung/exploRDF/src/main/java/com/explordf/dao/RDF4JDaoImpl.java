@@ -31,7 +31,8 @@ import com.explordf.dto.TripleDto;
 
 /**
  * 
- * @author Andreas
+ * @author Andreas Niederquell
+ * 
  * HTTPRepository is, as the name implies, a Repository implementation that acts as a 
  * proxy to a repository available on a remote RDF4J Server, accessible through HTTP.
  */
@@ -70,7 +71,8 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 			if(broaderSearch) {
 				queryString = "select ?s ?p ?o where {filter(regex(?o, \""+ term + "\", \"i\")).?s ?p ?o} order by ?s";
 			} else {
-				queryString = "SELECT ?s ?p ?o WHERE {filter(?o = \"" + term + "\"). ?s ?p ?o}";
+//				queryString = "SELECT ?s ?p ?o WHERE {filter(?o = \"" + term + "\"). ?s ?p ?o}";
+				queryString = "SELECT ?s ?p ?o WHERE {?s ?p \"" + term + "\". ?s ?p ?o}";
 			}		
 			
 			List<BindingSet> resultList;

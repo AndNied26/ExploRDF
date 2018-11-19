@@ -1,18 +1,17 @@
 package com.explordf.dao;
 
-import org.eclipse.rdf4j.RDF4JException;
 import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.model.Literal;
-import org.eclipse.rdf4j.model.ValueFactory;
 import org.eclipse.rdf4j.model.impl.AbstractValueFactory;
-import org.eclipse.rdf4j.model.impl.SimpleLiteral;
 import org.eclipse.rdf4j.model.impl.SimpleValueFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MyValueFactory extends AbstractValueFactory {
 	
 	private static final MyValueFactory sharedInstance = new MyValueFactory();
 	
-//	ValueFactory factory = SimpleValueFactory.getInstance();
+	private static final Logger logger = LoggerFactory.getLogger(MyValueFactory.class);
 	
 	public static MyValueFactory getInstance() {
 		return sharedInstance;
@@ -24,13 +23,12 @@ public class MyValueFactory extends AbstractValueFactory {
 		try {
 			literal = SimpleValueFactory.getInstance().createLiteral(value, datatype);
 		} catch(IllegalArgumentException e) {
-			System.out.println("Error at creatLiteral: ");
-			System.out.println("Value: " + value + " Datatype: " + datatype);
+			logger.warn("Error at createLiteral(); Value: " + value 
+					+ ", Datatype: " + datatype);
 			literal = SimpleValueFactory.getInstance().createLiteral(value);
 		}
 		
 		return literal;
-//		return factory.createLiteral(value);
 	}
 	
 	/**

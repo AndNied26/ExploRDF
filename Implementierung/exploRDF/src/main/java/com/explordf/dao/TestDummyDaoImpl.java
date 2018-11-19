@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.eclipse.rdf4j.RDF4JException;
 import org.eclipse.rdf4j.model.Value;
 import org.eclipse.rdf4j.query.BindingSet;
 import org.eclipse.rdf4j.query.QueryLanguage;
@@ -27,6 +28,11 @@ import com.explordf.dto.ConnectionDto;
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
 
+/**
+ * 
+ * @author Andreas Niederquell
+ *
+ */
 @org.springframework.stereotype.Repository
 @Qualifier("dummyRepo")
 public class TestDummyDaoImpl implements ExploRDFDao {
@@ -40,7 +46,7 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 	
 	//rdf4j server
 //	RepositoryManager manager;
-	
+	Repository repo;
 	//stardog
 	RemoteRepositoryManager manager;
 	
@@ -152,8 +158,39 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 
 	@Override
 	public boolean getConnected(ConnectionDto connDto) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean connected = false;
+
+		System.out.println("server: " + connDto.getTripleStoreServer() + ", url: " + connDto.getTripleStoreUrl()
+				+ ", repo: " + connDto.getTripleStoreRepo() + ", username: " + connDto.getTripleStoreUserName()
+				+ ", password: " + connDto.getTripleStorePassword());
+//		Repository repo = new SPARQLRepository(connDto.getTripleStoreUrl());
+		
+		Repository repo = new MyRepository(connDto.getTripleStoreUrl());
+
+		if (connDto.getTripleStoreUserName() != "" && connDto.getTripleStorePassword() != "") {
+			((MyRepository) repo).setUsernameAndPassword(connDto.getTripleStoreUserName(),
+					connDto.getTripleStorePassword());
+		}
+
+		repo.initialize();
+		try (RepositoryConnection conn = repo.getConnection()) {
+			String queryString = "SELECT * WHERE {?s ?p ?o} LIMIT 1";
+			TupleQuery tupleQuery = conn.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+			try (TupleQueryResult result = tupleQuery.evaluate()) {
+				System.out.println("TupleQueryResult");
+				connected = true;
+			}
+		} catch (RDF4JException e) {
+			logger.error("An RDF4JException occured while trying to connect to " + connDto.getTripleStoreUrl() + ".");
+		}
+
+		if (connected) {
+			if (this.repo != null && this.repo.isInitialized()) {
+				this.repo.shutDown();
+			}
+			this.repo = repo;
+		}
+		return connected;
 	}
 
 }

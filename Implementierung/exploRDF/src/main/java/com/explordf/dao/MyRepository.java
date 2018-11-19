@@ -14,23 +14,23 @@ import org.eclipse.rdf4j.repository.sparql.SPARQLRepository;
 public class MyRepository extends SPARQLRepository {
 	
 
-	private boolean quadMode = false;
+//	private boolean quadMode = false;
 
 	/**
 	 * The HTTP client that takes care of the client-server communication.
 	 */
-	private volatile HttpClientSessionManager client;
+//	private volatile HttpClientSessionManager client;
 
 	/** dependent life cycle */
-	private volatile SharedHttpClientSessionManager dependentClient;
+//	private volatile SharedHttpClientSessionManager dependentClient;
 
 	private String username;
 
 	private String password;
 
-	private String queryEndpointUrl;
+	private final String queryEndpointUrl;
 
-	private String updateEndpointUrl;
+	private final String updateEndpointUrl;
 
 	private volatile Map<String, String> additionalHttpHeaders = Collections.emptyMap();
 
@@ -43,7 +43,7 @@ public class MyRepository extends SPARQLRepository {
 	
 	protected SPARQLProtocolSession createHTTPClient() {
 		// initialize HTTP client
-		SPARQLProtocolSession httpClient = getHttpClientSessionManager().createSPARQLProtocolSession(queryEndpointUrl, queryEndpointUrl);
+		SPARQLProtocolSession httpClient = getHttpClientSessionManager().createSPARQLProtocolSession(queryEndpointUrl, updateEndpointUrl);
 		httpClient.setValueFactory(MyValueFactory.getInstance());
 		httpClient.setPreferredTupleQueryResultFormat(TupleQueryResultFormat.SPARQL);
 		httpClient.setAdditionalHttpHeaders(additionalHttpHeaders);

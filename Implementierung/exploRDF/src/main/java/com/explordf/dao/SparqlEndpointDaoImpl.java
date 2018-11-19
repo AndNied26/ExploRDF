@@ -72,7 +72,9 @@ import com.explordf.dto.TripleDto;
 
 /**
  * 
- * @author Andreas Used to access any SPARQL-Endpoint.
+ * @author Andreas Niederquell
+ * 
+ *         Used to access any SPARQL-Endpoint.
  */
 @org.springframework.stereotype.Repository
 public class SparqlEndpointDaoImpl implements ExploRDFDao {
@@ -81,9 +83,10 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 
 	private final String tripleStoreServer = "SPARQL-Endpoint";
 
+	// muss dann weg
+	String endpoint = "http://localhost:5820/sachbegriffeDB/query";
+
 	private Repository repo;
-	
-	
 
 	@PreDestroy
 	private void close() {
@@ -99,67 +102,68 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 
 		List<TripleDto> resultDto = new LinkedList<>();
 
-		try (RepositoryConnection con = repo.getConnection()) {
+//		try (RepositoryConnection con = repo.getConnection()) {
+//
+//			ValueFactory factory = repo.getValueFactory();
+//
+//			String queryString;
+//
+//			String object = term;
+//
+//			if (broaderSearch) {
+//				System.out.println("broaderSearch = true");
+//				queryString = "select ?s ?p ?o where {filter(regex(?o, \"" + term + "\", \"i\")).?s ?p ?o} order by ?s";
+//			} else {
+//				System.out.println("broaderSearch = false");
+//				queryString = "SELECT ?s ?p ?o WHERE {filter(?o = \"" + term + "\"). ?s ?p ?o}";
+//			}
+//
+//			Literal obj = factory.createLiteral(object);
+//
+//			try (RepositoryResult<Statement> statements = con.getStatements(null, null, obj)) {
+//				while (statements.hasNext()) {
+//
+//					Statement st = statements.next();
+////					String s = "" + st.getSubject() + " " + st.getPredicate() + " " + st.getObject();
+////					System.out.println(s);
+//					resultDto.add(new TripleDto(st.getSubject().toString(), st.getPredicate().toString(),
+//							st.getObject().toString()));
+//				}
+//			}
+//
+//		} 
 
-			ValueFactory factory = repo.getValueFactory();
+		try (RepositoryConnection con = repo.getConnection()) {
 
 			String queryString;
 
-			String object = term;
-
 			if (broaderSearch) {
-
 				queryString = "select ?s ?p ?o where {filter(regex(?o, \"" + term + "\", \"i\")).?s ?p ?o} order by ?s";
 			} else {
 				queryString = "SELECT ?s ?p ?o WHERE {filter(?o = \"" + term + "\"). ?s ?p ?o}";
 			}
 
-			Literal obj = factory.createLiteral(object);
+			List<BindingSet> resultList;
+			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
 
-			try (RepositoryResult<Statement> statements = con.getStatements(null, null, obj)) {
-				while (statements.hasNext()) {
+			try (TupleQueryResult result = tupleQuery.evaluate()) {
+				resultList = QueryResults.asList(result);
+			}
 
-					Statement st = statements.next();
-//					String s = "" + st.getSubject() + " " + st.getPredicate() + " " + st.getObject();
-//					System.out.println(s);
-					resultDto.add(new TripleDto(st.getSubject().toString(), st.getPredicate().toString(),
-							st.getObject().toString()));
-				}
+			for (BindingSet bindingSet : resultList) {
+
+				Value subject = bindingSet.getValue("s");
+				Value predicate = bindingSet.getValue("p");
+				Value object = bindingSet.getValue("o");
+
+				TripleDto dto = new TripleDto(subject.toString(), predicate.toString(), object.toString());
+				resultDto.add(dto);
 			}
 
 		} catch (RDF4JException e) {
+			e.printStackTrace();
 			logger.error("Something´s rotten in the state of Denmark");
 		}
-
-//		try (RepositoryConnection con = repo.getConnection()) {
-//
-//			String queryString;
-//
-//			if (broaderSearch) {
-//			
-//				queryString = "select ?s ?p ?o where {filter(regex(?o, \"" + term + "\", \"i\")).?s ?p ?o} order by ?s";
-//			} else {
-//				queryString = "SELECT ?s ?p ?o WHERE {filter(?o = \"" + term + "\"). ?s ?p ?o}";
-//			}
-//
-//			List<BindingSet> resultList;
-//			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
-//
-//			try (TupleQueryResult result = tupleQuery.evaluate()) {
-//				resultList = QueryResults.asList(result);
-//			}
-//
-//			for (BindingSet bindingSet : resultList) {
-//
-//				Value subject = bindingSet.getValue("s");
-//				Value predicate = bindingSet.getValue("p");
-//				Value object = bindingSet.getValue("o");
-//
-//				TripleDto dto = new TripleDto(subject.toString(), predicate.toString(), object.toString());
-//				resultDto.add(dto);
-//			}
-//
-//		}
 		double end = new Date().getTime();
 		System.out.println((end - start) / 1000);
 
@@ -172,9 +176,9 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 		logger.info("Method getSubject() entered.");
 		List<TripleDto> resultDto = new LinkedList<>();
 
-		//resultDto = getSubWithValueFactory(subject);
-		 resultDto = getSubWithTupleQuery(subject);
-		 //resultDto = getSubTest(subject);
+		// resultDto = getSubWithValueFactory(subject);
+		resultDto = getSubWithTupleQuery(subject);
+		// resultDto = getSubTest(subject);
 
 		return resultDto;
 	}
@@ -186,14 +190,14 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 
 		IRI subj = factory.createIRI(subject);
 		RDFParser parser = Rio.createParser(RDFFormat.NTRIPLES, factory);
-		
+
 		IRI resource = MyValueFactory.getInstance().createIRI(subject);
 		Model retrievedStatements = new LinkedHashModel();
 		RDFLoader rdfLoader = new RDFLoader(new ParserConfig(), MyValueFactory.getInstance());
 		StatementCollector statementCollector = new StatementCollector(retrievedStatements);
 		try {
 			rdfLoader.load(new URL(resource.stringValue()), null, null, statementCollector);
-			
+
 		} catch (RDFParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -207,12 +211,12 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		int i = 0;
 		for (Statement st : retrievedStatements) {
 			System.out.println(st.getSubject() + " " + st.getPredicate() + " " + st.getObject());
-			resultDto.add(new TripleDto(st.getSubject().toString(),
-				st.getPredicate().toString(), st.getObject().toString()));
+			resultDto.add(
+					new TripleDto(st.getSubject().toString(), st.getPredicate().toString(), st.getObject().toString()));
 			i++;
 		}
 		System.out.println("Statements: " + i);
@@ -278,19 +282,16 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 
 		return resultDto;
 	}
-	
+
 	public List<TripleDto> getSubTest2(String subject) {
 		List<TripleDto> resultDto = new LinkedList<>();
 
 		ValueFactory factory = repo.getValueFactory();
-		
-		
+
 		try (RepositoryConnection con = repo.getConnection()) {
-			
-			
-			
+
 			Set<RioSetting<?>> set = con.getParserConfig().getNonFatalErrors();
-			
+
 			System.out.println("non fatal errors:");
 			for (RioSetting<?> object : set) {
 				System.out.println(object.getKey());
@@ -303,26 +304,19 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 					Statement st = statements.next();
 					String s = "" + st.getSubject() + " " + st.getPredicate() + " " + st.getObject();
 					System.out.println(s);
-					resultDto.add(new TripleDto(st.getSubject().toString(),
-							st.getPredicate().toString(), st.getObject().toString()));
+					resultDto.add(new TripleDto(st.getSubject().toString(), st.getPredicate().toString(),
+							st.getObject().toString()));
 				}
 			}
 
 		} catch (RDF4JException e) {
 			e.printStackTrace();
-			
+
 		}
-		
-		
-		
-		
-		
-		
 
 		IRI subj = factory.createIRI(subject);
 		RDFParser parser = Rio.createParser(RDFFormat.NTRIPLES, factory);
-		
-		
+
 		IRI resource = MyValueFactory.getInstance().createIRI(subject);
 		Model retrievedStatements = new LinkedHashModel();
 		RDFLoader rdfLoader = new RDFLoader(new ParserConfig(), MyValueFactory.getInstance());
@@ -342,17 +336,16 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		int i = 0;
 		for (Statement st : retrievedStatements) {
 			System.out.println(st.getSubject() + " " + st.getPredicate() + " " + st.getObject());
-			resultDto.add(new TripleDto(st.getSubject().toString(),
-				st.getPredicate().toString(), st.getObject().toString()));
+			resultDto.add(
+					new TripleDto(st.getSubject().toString(), st.getPredicate().toString(), st.getObject().toString()));
 			i++;
 		}
 		System.out.println("Statements: " + i);
 
-		
 //		try (TupleQueryResult result = tupleQuery.evaluate()) {
 //			
 //			while (result.hasNext()) {
@@ -361,9 +354,7 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 //						bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
 //			}
 //		}
-		
-		
-		
+
 		return resultDto;
 	}
 
@@ -373,59 +364,23 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 		ValueFactory factory = repo.getValueFactory();
 
 		IRI subj = factory.createIRI(subject);
-		RDFParser parser = Rio.createParser(RDFFormat.NTRIPLES, factory);
 
 		try (RepositoryConnection con = repo.getConnection()) {
-//			con.setParserConfig(parser.getParserConfig());
 
-//			ParserConfig config = con.getParserConfig();
-			ParserConfig config = Rio.createParser(RDFFormat.NTRIPLES, factory).getParserConfig();
-			config.addNonFatalError(NTriplesParserSettings.FAIL_ON_NTRIPLES_INVALID_LINES);
-			config.addNonFatalError(TurtleParserSettings.CASE_INSENSITIVE_DIRECTIVES);
-			config.addNonFatalError(BasicParserSettings.VERIFY_URI_SYNTAX);
-			config.addNonFatalError(BasicParserSettings.VERIFY_DATATYPE_VALUES);
-			config.addNonFatalError(BasicParserSettings.VERIFY_LANGUAGE_TAGS);
-			config.addNonFatalError(BasicParserSettings.FAIL_ON_UNKNOWN_DATATYPES);
-			config.addNonFatalError(BasicParserSettings.NORMALIZE_LANGUAGE_TAGS);
-			config.addNonFatalError(BasicParserSettings.LANGUAGE_HANDLERS);
-			config.addNonFatalError(BasicParserSettings.LARGE_LITERALS_HANDLING);
-			config.addNonFatalError(BasicParserSettings.NAMESPACES);
-			config.addNonFatalError(BasicParserSettings.NORMALIZE_DATATYPE_VALUES);
-			config.addNonFatalError(BasicParserSettings.PRESERVE_BNODE_IDS);
-			config.addNonFatalError(BasicParserSettings.SKOLEMIZE_ORIGIN);
-			config.addNonFatalError(BasicParserSettings.VERIFY_RELATIVE_URIS);
-			
-
-			config.set(BasicParserSettings.VERIFY_URI_SYNTAX, false);
-			config.set(BasicParserSettings.VERIFY_LANGUAGE_TAGS, false);
-			config.set(BasicParserSettings.VERIFY_DATATYPE_VALUES, false);
-			config.set(BasicParserSettings.VERIFY_LANGUAGE_TAGS, false);
-
-			con.setParserConfig(config);
-			
-			Set<RioSetting<?>> set = con.getParserConfig().getNonFatalErrors();
-			
-			System.out.println("non fatal errors:");
-			for (RioSetting<?> object : set) {
-				System.out.println(object.getKey());
-			}
-			
-			
-			
 			try (RepositoryResult<Statement> statements = con.getStatements(subj, null, null)) {
 				while (statements.hasNext()) {
 
 					Statement st = statements.next();
 					String s = "" + st.getSubject() + " " + st.getPredicate() + " " + st.getObject();
 					System.out.println(s);
-					resultDto.add(new TripleDto(st.getSubject().toString(),
-							st.getPredicate().toString(), st.getObject().toString()));
+					resultDto.add(new TripleDto(st.getSubject().toString(), st.getPredicate().toString(),
+							st.getObject().toString()));
 				}
 			}
 
 		} catch (RDF4JException e) {
 			e.printStackTrace();
-			
+
 		}
 
 		return resultDto;
@@ -445,16 +400,15 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 //			String queryString = "SELECT ( "+ subjt +" as ?s) ?p ?o WHERE { "
 //					+subjt+" ?p ?o }";
 
-			String queryString = "SELECT (" + subjt + " as ?s) ?p ?o WHERE { " + subjt + " ?p ?o.}";
+			String queryString = "SELECT (" + subjt + " as ?s) ?p ?o WHERE { " + subjt + " ?p ?o. "
+					+ "FILTER(!isLiteral(?o) || langMatches(lang(?o), \"EN\") || langMatches(lang(?o), \"\"))}";
 
 			System.out.println("getSubWithTupleQuery() Method: ");
 			List<BindingSet> resultList;
 			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
-			
-			
 
 			try (TupleQueryResult result = tupleQuery.evaluate()) {
-			
+
 				while (result.hasNext()) {
 					BindingSet bindingSet = result.next();
 					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
@@ -483,7 +437,39 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 
 	@Override
 	public List<PredicateDto> getPredicates() {
-		// TODO Auto-generated method stub
+		logger.info("Method getPredicates() entered.");
+		List<PredicateDto> resultDto = new LinkedList<>();
+
+		boolean gotAllPredicates = false;
+
+		int offset = 30000;
+		int limit = 1000;
+		while (!gotAllPredicates) {
+			int resultNum = 0;
+			try (RepositoryConnection con = repo.getConnection()) {
+
+//				String queryString = "select ?p where {?s ?p ?o} limit "+limit+" offset " + offset;
+				
+				String queryString = "";
+				
+				TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+				
+				try (TupleQueryResult result = tupleQuery.evaluate()) {
+					while (result.hasNext()) {
+						BindingSet bindingSet = result.next();
+						resultNum += 1;
+						resultDto.add(new PredicateDto(bindingSet.getValue("p").toString(), false, false));
+					}
+				}
+				
+			}
+			if (resultNum < limit) {
+				gotAllPredicates = true;
+			}
+			offset += resultNum;
+			System.out.println("Offset: " + offset);
+		}
+//		return resultDto;
 		return null;
 	}
 
@@ -521,7 +507,7 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 				+ ", repo: " + connDto.getTripleStoreRepo() + ", username: " + connDto.getTripleStoreUserName()
 				+ ", password: " + connDto.getTripleStorePassword());
 //		Repository repo = new SPARQLRepository(connDto.getTripleStoreUrl());
-		
+
 		Repository repo = new MyRepository(connDto.getTripleStoreUrl());
 
 		if (connDto.getTripleStoreUserName() != "" && connDto.getTripleStorePassword() != "") {
