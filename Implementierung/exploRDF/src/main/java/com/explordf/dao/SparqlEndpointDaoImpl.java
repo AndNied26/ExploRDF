@@ -138,7 +138,8 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 			String queryString;
 
 			if (broaderSearch) {
-				queryString = "select ?s ?p ?o where {filter(regex(?o, \"" + term + "\", \"i\")).?s ?p ?o} order by ?s";
+				queryString = "select ?s ?p ?o where {?s ?p ?o. ?o bif:contains \"'" + term + "'\".}";
+//				queryString = "select ?s ?p ?o where {filter(regex(?o, \"" + term + "\", \"i\")).?s ?p ?o} order by ?s";
 			} else {
 				queryString = "SELECT ?s ?p ?o WHERE {filter(?o = \"" + term + "\"). ?s ?p ?o}";
 			}
@@ -442,15 +443,15 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 
 		boolean gotAllPredicates = false;
 
-		int offset = 30000;
+		int offset = 0;
 		int limit = 1000;
 		while (!gotAllPredicates) {
 			int resultNum = 0;
 			try (RepositoryConnection con = repo.getConnection()) {
 
-//				String queryString = "select ?p where {?s ?p ?o} limit "+limit+" offset " + offset;
+				String queryString = "select distinct ?p where {?s ?p ?o} limit "+limit+" offset " + offset;
 				
-				String queryString = "";
+//				String queryString = "";
 				
 				TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
 				
@@ -469,8 +470,8 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 			offset += resultNum;
 			System.out.println("Offset: " + offset);
 		}
-//		return resultDto;
-		return null;
+		return resultDto;
+//		return null;
 	}
 
 	@Override

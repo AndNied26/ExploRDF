@@ -3,6 +3,7 @@ package com.explordf.dao;
 import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.model.Literal;
 import org.eclipse.rdf4j.model.impl.AbstractValueFactory;
+import org.eclipse.rdf4j.model.impl.SimpleIRI;
 import org.eclipse.rdf4j.model.impl.SimpleValueFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,18 @@ public class MyValueFactory extends AbstractValueFactory {
 		}
 		
 		return literal;
+	}
+	
+	@Override
+	public IRI createIRI(String iri) {
+		IRI iriVal;
+		try {
+			iriVal = SimpleValueFactory.getInstance().createIRI(iri);
+		} catch(IllegalArgumentException e) {
+			logger.warn("Error at createIRI(); IRI: " + iri);
+			iriVal = SimpleValueFactory.getInstance().createIRI("http://www.example.org/errorAtCreateIRI/" + iri);
+		}
+		return iriVal;
 	}
 	
 	/**
