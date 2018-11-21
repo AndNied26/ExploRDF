@@ -36,8 +36,15 @@ public class StardogDaoImpl implements ExploRDFDao {
 	
 	private Repository repo;
 	
+	
+	//muss dann weg
+	String stardogServer = "http://localhost:5820";
+	String username = "admin", password = "admin";
+	String db = "geograficumDB";
+	
 	@PreDestroy
 	private void close() {
+		logger.info("Method predestroy entered");
 		if (this.repo != null && this.repo.isInitialized()) {
 			this.repo.shutDown();
 		}
@@ -157,6 +164,13 @@ public class StardogDaoImpl implements ExploRDFDao {
 			this.repo = repo;
 		}
 		return connected;
+	}
+
+	@Override
+	public void shutDown() {
+		if (this.repo != null && this.repo.isInitialized()) {
+			this.repo.shutDown();
+		}
 	}
 
 }

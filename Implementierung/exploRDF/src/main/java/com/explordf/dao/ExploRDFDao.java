@@ -65,4 +65,6 @@ public interface ExploRDFDao {
 	
 	boolean getConnected(ConnectionDto connDto);
 	
+	void shutDown();
+	
 }

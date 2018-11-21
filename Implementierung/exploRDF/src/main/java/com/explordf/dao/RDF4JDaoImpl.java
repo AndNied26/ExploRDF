@@ -50,9 +50,8 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 	
 	@PreDestroy
 	private void close() {
-		if (this.repo != null && this.repo.isInitialized()) {
-			this.repo.shutDown();
-		}
+		logger.info("Method predestroy entered");
+		shutDown();
 	}
 	
 	
@@ -239,5 +238,14 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 			this.repo = repo;
 		}
 		return connected;
+	}
+
+
+
+	@Override
+	public void shutDown() {
+		if (this.repo != null && this.repo.isInitialized()) {
+			this.repo.shutDown();
+		}
 	}
 }

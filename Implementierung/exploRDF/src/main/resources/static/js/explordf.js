@@ -51,12 +51,47 @@ $("#connectionFailBtn").on("click", function(){
 	$('#connectDiv').css('display', 'block');
 });
 
+
+$(document).ready(function() {
+  getConnProps();
+  getSupportedServers();
+});
+
+//Get Connection properties
+function getConnProps() {
+	var connection;
+	d3.json("getConnectionProps").then(function(data){
+	    connection = data;
+	    $("#dbSpan").text(connection.tripleStoreUrl);
+	    if(connection.tripleStoreRepo != "") {
+	    	$("#repoSpan").text(connection.tripleStoreRepo);
+	    } else {
+	    	$("#repoSpan").text("-");
+	    }
+	  });
+}
+
+// Get all supported Servers as option 
+function getSupportedServers() {
+	var servers;
+	d3.json("getSupportedServers").then(function(data){
+		servers = data;
+		console.log(servers);
+		var select = d3.select('#tripleStoreServer');
+		var options = select.selectAll('option')
+			.data(servers).enter()
+			.append('option')
+			.text(function(d) {return d});		
+	});
+	
+}
+
 /**
-   * --------------------------------------------------------------
-   * ------------Functions concerning triple store connections-----
-   * --------------------------END---------------------------------
-   * **************************************************************
-   */
+ * --------------------------------------------------------------
+ * ------------Functions concerning triple store connections-----
+ * --------------------------END---------------------------------
+ * **************************************************************
+ */
 
 
 /**
@@ -248,37 +283,7 @@ $('#searchBackBtn').on('click', function () {
    */
 
 
-/**
- ***************************************************************
- * ---------------Functions concerning the caption.--------------
- * -------------------------------------------------------------
- * --------------------------START------------------------------
- */
-$(document).ready(function() {
-  getConnProps();
-});
 
-//Get Connection properties
-function getConnProps() {
-	var connection;
-	d3.json("getConnectionProps").then(function(data){
-	    connection = data;
-	    $("#dbSpan").text(connection.tripleStoreUrl);
-	    if(connection.tripleStoreRepo != "") {
-	    	$("#repoSpan").text(connection.tripleStoreRepo);
-	    } else {
-	    	$("#repoSpan").text("-");
-	    }
-	  });
-}
-
-
-/**
-   * --------------------------------------------------------------
-   * ----------------Functions concerning the caption---------------
-   * --------------------------END---------------------------------
-   * **************************************************************
-   */
 
 /**
  ***************************************************************

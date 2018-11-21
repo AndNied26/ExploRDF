@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -108,9 +109,18 @@ public class DaoServer {
 		
 	}
 	
+	public List<String> getSupportedServers() {
+		return new LinkedList<>(daoCache.keySet());
+	}
+	
 	public ConnectionDto setConnectionProps(ConnectionDto connDto) {
 		ExploRDFDao dao = daoCache.get(connDto.getTripleStoreServer());
 		if(dao != null && dao.getConnected(connDto)) {
+			
+			if(!tripleStoreServer.equals(connDto.getTripleStoreServer())) {
+				currentDao.shutDown();
+			}
+			
 			tripleStoreUrl = connDto.getTripleStoreUrl();
 			tripleStoreServer = connDto.getTripleStoreServer();
 			tripleStoreRepo = connDto.getTripleStoreRepo() != null ? 
@@ -167,6 +177,8 @@ public class DaoServer {
 	private void close() {
 		saveConnProps();
 	}
+
+	
 	
 	
 }

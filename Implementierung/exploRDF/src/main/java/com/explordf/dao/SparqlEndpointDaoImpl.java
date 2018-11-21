@@ -85,11 +85,13 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 
 	// muss dann weg
 	String endpoint = "http://localhost:5820/sachbegriffeDB/query";
+	String endpointDBPedia = "http://dbpedia.org/sparql";
 
 	private Repository repo;
 
 	@PreDestroy
 	private void close() {
+		logger.info("Method predestroy entered");
 		if (this.repo != null && this.repo.isInitialized()) {
 			this.repo.shutDown();
 		}
@@ -535,6 +537,14 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 			this.repo = repo;
 		}
 		return connected;
+	}
+
+	@Override
+	public void shutDown() {
+		if (this.repo != null && this.repo.isInitialized()) {
+			this.repo.shutDown();
+		}
+		
 	}
 
 }

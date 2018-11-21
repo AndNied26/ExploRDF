@@ -3,6 +3,7 @@ package com.explordf.service;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 import javax.annotation.PostConstruct;
@@ -30,6 +31,10 @@ public class ConnectionService {
 	
 	public ConnectionDto setConnectionProps(ConnectionDto connectionDto) {
 		return daoServer.setConnectionProps(connectionDto);
+	}
+
+	public List<String> getSupportedServers() {
+		return daoServer.getSupportedServers();
 	}
 	
 	
