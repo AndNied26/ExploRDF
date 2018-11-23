@@ -117,7 +117,7 @@ public class DaoServer {
 		ExploRDFDao dao = daoCache.get(connDto.getTripleStoreServer());
 		if(dao != null && dao.getConnected(connDto)) {
 			
-			if(!tripleStoreServer.equals(connDto.getTripleStoreServer())) {
+			if(currentDao != null && !tripleStoreServer.equals(connDto.getTripleStoreServer())) {
 				currentDao.shutDown();
 			}
 			
