@@ -1,4 +1,100 @@
 /**
+ * ****************************************************************
+ * --------------Functions concerning triple store connections-----
+ * ---------------------------START--------------------------------
+ */
+
+$("#connectBtn").on("click", function(){
+	if($("#tripleStoreUrl").val() == ""){
+		$("#invalidURLMsg").html("Please enter a valid Triple Store URL.");
+		return;
+	}
+	var connForm = {};
+	
+	$("#connectForm :input").each(function(x,y){
+		connForm[y.id] = $(y).val();
+	});
+	
+	
+	$.ajax({
+		url:'connect',
+		type:'POST',
+		xhrFields: {
+            withCredentials:true
+        },
+        contentType: 'application/json; charset=utf-8',
+		data:JSON.stringify(connForm),
+        success:function(data){
+        	console.log(data);
+        	$('#connectDiv').css('display', 'none');
+        	if(data != null && data.tripleStoreUrl != null) {
+        		getConnProps();
+        		
+        		$('#connectSuccess').css('display', 'block');
+        	}
+        	else {
+        		$('#connectFail').css('display', 'block');
+        		
+        		
+        		$('#connectFailSpan').html(connForm.tripleStoreUrl + ' ' + connForm.tripleStoreRepo);
+        	}
+        },
+        error:function() {
+            console.log("fail");
+        }
+	});
+
+});
+
+$("#connectionFailBtn").on("click", function(){
+	$('#connectFail').css('display', 'none');
+	$('#connectDiv').css('display', 'block');
+});
+
+
+$(document).ready(function() {
+  getConnProps();
+  getSupportedServers();
+});
+
+//Get Connection properties
+function getConnProps() {
+	var connection;
+	d3.json("getConnectionProps").then(function(data){
+	    connection = data;
+	    $("#dbSpan").text(connection.tripleStoreUrl);
+	    if(connection.tripleStoreRepo != "") {
+	    	$("#repoSpan").text(connection.tripleStoreRepo);
+	    } else {
+	    	$("#repoSpan").text("-");
+	    }
+	  });
+}
+
+// Get all supported Servers as option 
+function getSupportedServers() {
+	var servers;
+	d3.json("getSupportedServers").then(function(data){
+		servers = data;
+		console.log(servers);
+		var select = d3.select('#tripleStoreServer');
+		var options = select.selectAll('option')
+			.data(servers).enter()
+			.append('option')
+			.text(function(d) {return d});		
+	});
+	
+}
+
+/**
+ * --------------------------------------------------------------
+ * ------------Functions concerning triple store connections-----
+ * --------------------------END---------------------------------
+ * **************************************************************
+ */
+
+
+/**
  * ***************************************************************
  * ----------------Functions concerning the tables----------------
  * --------------------------START--------------------------------
@@ -77,6 +173,9 @@ function searchTerm() {
   d3.json("simpleSearch/" + term + "/" + broaderSearch).then(function (data) {
 	  console.log("simpleSearch/" + term + "/" + broaderSearch);
 	searchResults = data;
+	var count = data.length;
+	var res = count==1 ? 'Result':'Results';
+	$('#headingResult').text(count + ' ' + res + ' for "' + term + '"');
     drawSearchTable(searchResults);
     $("body").css("cursor", "default");
   });
@@ -182,6 +281,8 @@ $('#searchBackBtn').on('click', function () {
    * --------------------------END---------------------------------
    * **************************************************************
    */
+
+
 
 
 /**

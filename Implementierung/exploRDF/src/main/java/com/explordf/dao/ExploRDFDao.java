@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import dto.PredicateDto;
-import dto.TripleDto;
+import com.explordf.dto.ConnectionDto;
+import com.explordf.dto.PredicateDto;
+import com.explordf.dto.TripleDto;
 
 /**
  * Interface for a DAO (data access object).
@@ -59,5 +60,11 @@ public interface ExploRDFDao {
 	 * @return List with the names of the predicates lists.
 	 */
 	List<String> getAllPredicatesLists();
+
+	String getType();
+	
+	boolean getConnected(ConnectionDto connDto);
+	
+	void shutDown();
 	
 }

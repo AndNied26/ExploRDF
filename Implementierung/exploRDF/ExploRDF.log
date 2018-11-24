@@ -1,0 +1,270 @@
+2018-11-24 00:01:00.327  INFO 1616 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2018-11-24 00:01:00.331  INFO 1616 --- [RMI TCP Connection(2)-127.0.0.1] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@24313fcc: startup date [Fri Nov 23 23:52:21 CET 2018]; root of context hierarchy
+2018-11-24 00:01:00.335  INFO 1616 --- [RMI TCP Connection(2)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-24 00:01:00.337  INFO 1616 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Connection properties:
+2018-11-24 00:01:00.338  INFO 1616 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Server: testDummyServer Env: testDummyServer
+2018-11-24 00:01:00.338  INFO 1616 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Name: http://dbpedia.org/sparql Env: https://query.wikidata.org/sparql
+2018-11-24 00:01:00.339  INFO 1616 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Repo:  Env: 
+2018-11-24 00:01:00.339  INFO 1616 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Username:  Env: 
+2018-11-24 00:01:00.339  INFO 1616 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Password:  Env: 
+2018-11-24 00:01:00.339  INFO 1616 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.TestDummyDaoImpl        : Method predestroy entered
+2018-11-24 00:01:00.340  INFO 1616 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.StardogDaoImpl          : Method predestroy entered
+2018-11-24 00:01:00.340  INFO 1616 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.SparqlEndpointDaoImpl   : Method predestroy entered
+2018-11-24 00:01:00.341  INFO 1616 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.RDF4JDaoImpl            : Method predestroy entered
+2018-11-24 00:01:08.459  INFO 6796 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 6796 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
+2018-11-24 00:01:08.464  INFO 6796 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
+2018-11-24 00:01:08.522  INFO 6796 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@ba2f4ec: startup date [Sat Nov 24 00:01:08 CET 2018]; root of context hierarchy
+2018-11-24 00:01:09.414  INFO 6796 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-24 00:01:09.994  INFO 6796 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2018-11-24 00:01:10.021  INFO 6796 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-11-24 00:01:10.022  INFO 6796 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
+2018-11-24 00:01:10.027  INFO 6796 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
+2018-11-24 00:01:10.321  INFO 6796 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-11-24 00:01:10.322  INFO 6796 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1799 ms
+2018-11-24 00:01:10.447  INFO 6796 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-11-24 00:01:10.453  INFO 6796 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-11-24 00:01:10.454  INFO 6796 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-11-24 00:01:10.454  INFO 6796 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-11-24 00:01:10.454  INFO 6796 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-11-24 00:01:10.566  INFO 6796 --- [main] com.explordf.service.DaoServer           : DaoServer post construct
+2018-11-24 00:01:10.566  INFO 6796 --- [main] com.explordf.service.DaoServer           : Autowired daoImpls: 
+2018-11-24 00:01:10.567  INFO 6796 --- [main] com.explordf.service.DaoServer           : RDF4J-Server, SPARQL-Endpoint, Stardog-Server, testDummyServer
+2018-11-24 00:01:10.568  INFO 6796 --- [main] com.explordf.service.DaoServer           : Connection properties:
+2018-11-24 00:01:10.569  INFO 6796 --- [main] com.explordf.service.DaoServer           : Server: testDummyServer Env: testDummyServer
+2018-11-24 00:01:10.570  INFO 6796 --- [main] com.explordf.service.DaoServer           : Name: http://dbpedia.org/sparql Env: http://dbpedia.org/sparql
+2018-11-24 00:01:10.571  INFO 6796 --- [main] com.explordf.service.DaoServer           : Repo:  Env: 
+2018-11-24 00:01:10.572  INFO 6796 --- [main] com.explordf.service.DaoServer           : Username:  Env: 
+2018-11-24 00:01:10.573  INFO 6796 --- [main] com.explordf.service.DaoServer           : Password:  Env: 
+2018-11-24 00:01:10.574  INFO 6796 --- [main] com.explordf.dao.TestDummyDaoImpl        : Method getConnected() in TestDummyDaoImpl entered.
+2018-11-24 00:01:11.500  INFO 6796 --- [main] com.explordf.service.DaoServer           : Connection properties:
+2018-11-24 00:01:11.500  INFO 6796 --- [main] com.explordf.service.DaoServer           : Server: testDummyServer Env: testDummyServer
+2018-11-24 00:01:11.500  INFO 6796 --- [main] com.explordf.service.DaoServer           : Name: http://dbpedia.org/sparql Env: http://dbpedia.org/sparql
+2018-11-24 00:01:11.500  INFO 6796 --- [main] com.explordf.service.DaoServer           : Repo:  Env: 
+2018-11-24 00:01:11.501  INFO 6796 --- [main] com.explordf.service.DaoServer           : Username:  Env: 
+2018-11-24 00:01:11.501  INFO 6796 --- [main] com.explordf.service.DaoServer           : Password:  Env: 
+2018-11-24 00:01:11.502  INFO 6796 --- [main] com.explordf.service.DaoServer           : Connection properties:
+2018-11-24 00:01:11.502  INFO 6796 --- [main] com.explordf.service.DaoServer           : Server: testDummyServer Env: testDummyServer
+2018-11-24 00:01:11.502  INFO 6796 --- [main] com.explordf.service.DaoServer           : Name: http://dbpedia.org/sparql Env: http://dbpedia.org/sparql
+2018-11-24 00:01:11.502  INFO 6796 --- [main] com.explordf.service.DaoServer           : Repo:  Env: 
+2018-11-24 00:01:11.502  INFO 6796 --- [main] com.explordf.service.DaoServer           : Username:  Env: 
+2018-11-24 00:01:11.502  INFO 6796 --- [main] com.explordf.service.DaoServer           : Password:  Env: 
+2018-11-24 00:01:11.503  INFO 6796 --- [main] com.explordf.service.DaoServer           : Connection properties:
+2018-11-24 00:01:11.503  INFO 6796 --- [main] com.explordf.service.DaoServer           : Server: testDummyServer Env: testDummyServer
+2018-11-24 00:01:11.503  INFO 6796 --- [main] com.explordf.service.DaoServer           : Name: http://dbpedia.org/sparql Env: http://dbpedia.org/sparql
+2018-11-24 00:01:11.503  INFO 6796 --- [main] com.explordf.service.DaoServer           : Repo:  Env: 
+2018-11-24 00:01:11.503  INFO 6796 --- [main] com.explordf.service.DaoServer           : Username:  Env: 
+2018-11-24 00:01:11.503  INFO 6796 --- [main] com.explordf.service.DaoServer           : Password:  Env: 
+2018-11-24 00:01:11.507  INFO 6796 --- [main] com.explordf.service.DaoServer           : DaoServer getDao(): testDummyServer
+2018-11-24 00:01:11.596  INFO 6796 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-24 00:01:11.770  INFO 6796 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@ba2f4ec: startup date [Sat Nov 24 00:01:08 CET 2018]; root of context hierarchy
+2018-11-24 00:01:11.827  INFO 6796 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getSupportedServers],methods=[GET]}" onto public java.util.List<java.lang.String> com.explordf.controller.ConnectionController.getSupportedServers()
+2018-11-24 00:01:11.829  INFO 6796 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/connect],methods=[POST],consumes=[application/json]}" onto public com.explordf.dto.ConnectionDto com.explordf.controller.ConnectionController.setConnectionProps(com.explordf.dto.ConnectionDto)
+2018-11-24 00:01:11.829  INFO 6796 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getConnectionProps],methods=[GET]}" onto public com.explordf.dto.ConnectionDto com.explordf.controller.ConnectionController.getConnectionProps()
+2018-11-24 00:01:11.830  INFO 6796 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.index()
+2018-11-24 00:01:11.830  INFO 6796 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/connect],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.connect(org.springframework.ui.Model)
+2018-11-24 00:01:11.830  INFO 6796 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/query],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.query()
+2018-11-24 00:01:11.831  INFO 6796 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/help],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.help()
+2018-11-24 00:01:11.831  INFO 6796 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getSubject/**],methods=[GET]}" onto public java.util.List<com.explordf.dto.TripleDto> com.explordf.controller.QueryController.getSubject(javax.servlet.http.HttpServletRequest)
+2018-11-24 00:01:11.832  INFO 6796 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getPredicates],methods=[GET]}" onto public java.util.List<com.explordf.dto.PredicateDto> com.explordf.controller.QueryController.getPredicates()
+2018-11-24 00:01:11.832  INFO 6796 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/writePredicates],methods=[POST],consumes=[text/plain]}" onto public void com.explordf.controller.QueryController.writePredicates(java.lang.String)
+2018-11-24 00:01:11.832  INFO 6796 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/simpleSearch/**/{broaderSearch}],methods=[GET]}" onto public java.util.List<com.explordf.dto.TripleDto> com.explordf.controller.QueryController.simpleSearch(javax.servlet.http.HttpServletRequest,char)
+2018-11-24 00:01:11.835  INFO 6796 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-11-24 00:01:11.835  INFO 6796 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-11-24 00:01:11.862  INFO 6796 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-24 00:01:11.862  INFO 6796 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-24 00:01:11.959  INFO 6796 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2018-11-24 00:01:12.243  INFO 6796 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-24 00:01:12.297  INFO 6796 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2018-11-24 00:01:12.301  INFO 6796 --- [main] com.explordf.ExploRdfApplication         : Started ExploRdfApplication in 4.285 seconds (JVM running for 6.045)
+2018-11-24 00:01:25.093  INFO 6796 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2018-11-24 00:01:25.094  INFO 6796 --- [RMI TCP Connection(2)-127.0.0.1] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@ba2f4ec: startup date [Sat Nov 24 00:01:08 CET 2018]; root of context hierarchy
+2018-11-24 00:01:25.097  INFO 6796 --- [RMI TCP Connection(2)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-24 00:01:25.098  INFO 6796 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Connection properties:
+2018-11-24 00:01:25.098  INFO 6796 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Server: testDummyServer Env: testDummyServer
+2018-11-24 00:01:25.099  INFO 6796 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Name: http://dbpedia.org/sparql Env: http://dbpedia.org/sparql
+2018-11-24 00:01:25.099  INFO 6796 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Repo:  Env: 
+2018-11-24 00:01:25.099  INFO 6796 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Username:  Env: 
+2018-11-24 00:01:25.099  INFO 6796 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Password:  Env: 
+2018-11-24 00:01:25.099  INFO 6796 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.TestDummyDaoImpl        : Method predestroy entered
+2018-11-24 00:01:25.101  INFO 6796 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.StardogDaoImpl          : Method predestroy entered
+2018-11-24 00:01:25.101  INFO 6796 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.SparqlEndpointDaoImpl   : Method predestroy entered
+2018-11-24 00:01:25.101  INFO 6796 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.RDF4JDaoImpl            : Method predestroy entered
+2018-11-24 00:01:31.148  INFO 8308 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 8308 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
+2018-11-24 00:01:31.152  INFO 8308 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
+2018-11-24 00:01:31.213  INFO 8308 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@d35dea7: startup date [Sat Nov 24 00:01:31 CET 2018]; root of context hierarchy
+2018-11-24 00:01:32.189  INFO 8308 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-24 00:01:32.754  INFO 8308 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2018-11-24 00:01:32.782  INFO 8308 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-11-24 00:01:32.782  INFO 8308 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
+2018-11-24 00:01:32.788  INFO 8308 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
+2018-11-24 00:01:33.081  INFO 8308 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-11-24 00:01:33.081  INFO 8308 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1868 ms
+2018-11-24 00:01:33.191  INFO 8308 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-11-24 00:01:33.197  INFO 8308 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-11-24 00:01:33.198  INFO 8308 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-11-24 00:01:33.198  INFO 8308 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-11-24 00:01:33.199  INFO 8308 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-11-24 00:01:33.287  INFO 8308 --- [main] com.explordf.service.DaoServer           : DaoServer post construct
+2018-11-24 00:01:33.288  INFO 8308 --- [main] com.explordf.service.DaoServer           : Autowired daoImpls: 
+2018-11-24 00:01:33.288  INFO 8308 --- [main] com.explordf.service.DaoServer           : RDF4J-Server, SPARQL-Endpoint, Stardog-Server, testDummyServer
+2018-11-24 00:01:33.288  INFO 8308 --- [main] com.explordf.service.DaoServer           : Connection properties:
+2018-11-24 00:01:33.289  INFO 8308 --- [main] com.explordf.service.DaoServer           : Server: testDummyServer Env: testDummyServer
+2018-11-24 00:01:33.289  INFO 8308 --- [main] com.explordf.service.DaoServer           : Name: http://dbpedia.org/sparql Env: http://dbpedia.org/sparql
+2018-11-24 00:01:33.289  INFO 8308 --- [main] com.explordf.service.DaoServer           : Repo:  Env: 
+2018-11-24 00:01:33.290  INFO 8308 --- [main] com.explordf.service.DaoServer           : Username:  Env: 
+2018-11-24 00:01:33.290  INFO 8308 --- [main] com.explordf.service.DaoServer           : Password:  Env: 
+2018-11-24 00:01:33.291  INFO 8308 --- [main] com.explordf.dao.TestDummyDaoImpl        : Method getConnected() in TestDummyDaoImpl entered.
+2018-11-24 00:01:34.261  INFO 8308 --- [main] com.explordf.service.DaoServer           : Connection properties:
+2018-11-24 00:01:34.262  INFO 8308 --- [main] com.explordf.service.DaoServer           : Server: testDummyServer Env: testDummyServer
+2018-11-24 00:01:34.263  INFO 8308 --- [main] com.explordf.service.DaoServer           : Name: http://dbpedia.org/sparql Env: http://dbpedia.org/sparql
+2018-11-24 00:01:34.264  INFO 8308 --- [main] com.explordf.service.DaoServer           : Repo:  Env: 
+2018-11-24 00:01:34.265  INFO 8308 --- [main] com.explordf.service.DaoServer           : Username:  Env: 
+2018-11-24 00:01:34.265  INFO 8308 --- [main] com.explordf.service.DaoServer           : Password:  Env: 
+2018-11-24 00:01:34.267  INFO 8308 --- [main] com.explordf.service.DaoServer           : Connection properties:
+2018-11-24 00:01:34.267  INFO 8308 --- [main] com.explordf.service.DaoServer           : Server: testDummyServer Env: testDummyServer
+2018-11-24 00:01:34.268  INFO 8308 --- [main] com.explordf.service.DaoServer           : Name: http://dbpedia.org/sparql Env: http://dbpedia.org/sparql
+2018-11-24 00:01:34.268  INFO 8308 --- [main] com.explordf.service.DaoServer           : Repo:  Env: 
+2018-11-24 00:01:34.268  INFO 8308 --- [main] com.explordf.service.DaoServer           : Username:  Env: 
+2018-11-24 00:01:34.268  INFO 8308 --- [main] com.explordf.service.DaoServer           : Password:  Env: 
+2018-11-24 00:01:34.269  INFO 8308 --- [main] com.explordf.service.DaoServer           : Connection properties:
+2018-11-24 00:01:34.269  INFO 8308 --- [main] com.explordf.service.DaoServer           : Server: testDummyServer Env: testDummyServer
+2018-11-24 00:01:34.270  INFO 8308 --- [main] com.explordf.service.DaoServer           : Name: http://dbpedia.org/sparql Env: http://dbpedia.org/sparql
+2018-11-24 00:01:34.270  INFO 8308 --- [main] com.explordf.service.DaoServer           : Repo:  Env: 
+2018-11-24 00:01:34.270  INFO 8308 --- [main] com.explordf.service.DaoServer           : Username:  Env: 
+2018-11-24 00:01:34.270  INFO 8308 --- [main] com.explordf.service.DaoServer           : Password:  Env: 
+2018-11-24 00:01:34.276  INFO 8308 --- [main] com.explordf.service.DaoServer           : DaoServer getDao(): testDummyServer
+2018-11-24 00:01:34.433  INFO 8308 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-24 00:01:34.731  INFO 8308 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@d35dea7: startup date [Sat Nov 24 00:01:31 CET 2018]; root of context hierarchy
+2018-11-24 00:01:34.806  INFO 8308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/connect],methods=[POST],consumes=[application/json]}" onto public com.explordf.dto.ConnectionDto com.explordf.controller.ConnectionController.setConnectionProps(com.explordf.dto.ConnectionDto)
+2018-11-24 00:01:34.807  INFO 8308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getSupportedServers],methods=[GET]}" onto public java.util.List<java.lang.String> com.explordf.controller.ConnectionController.getSupportedServers()
+2018-11-24 00:01:34.808  INFO 8308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getConnectionProps],methods=[GET]}" onto public com.explordf.dto.ConnectionDto com.explordf.controller.ConnectionController.getConnectionProps()
+2018-11-24 00:01:34.809  INFO 8308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.index()
+2018-11-24 00:01:34.810  INFO 8308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/connect],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.connect(org.springframework.ui.Model)
+2018-11-24 00:01:34.810  INFO 8308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/query],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.query()
+2018-11-24 00:01:34.811  INFO 8308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/help],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.help()
+2018-11-24 00:01:34.813  INFO 8308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getSubject/**],methods=[GET]}" onto public java.util.List<com.explordf.dto.TripleDto> com.explordf.controller.QueryController.getSubject(javax.servlet.http.HttpServletRequest)
+2018-11-24 00:01:34.813  INFO 8308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/writePredicates],methods=[POST],consumes=[text/plain]}" onto public void com.explordf.controller.QueryController.writePredicates(java.lang.String)
+2018-11-24 00:01:34.814  INFO 8308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/simpleSearch/**/{broaderSearch}],methods=[GET]}" onto public java.util.List<com.explordf.dto.TripleDto> com.explordf.controller.QueryController.simpleSearch(javax.servlet.http.HttpServletRequest,char)
+2018-11-24 00:01:34.814  INFO 8308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getPredicates],methods=[GET]}" onto public java.util.List<com.explordf.dto.PredicateDto> com.explordf.controller.QueryController.getPredicates()
+2018-11-24 00:01:34.818  INFO 8308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-11-24 00:01:34.818  INFO 8308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-11-24 00:01:34.858  INFO 8308 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-24 00:01:34.858  INFO 8308 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-24 00:01:35.030  INFO 8308 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2018-11-24 00:01:35.456  INFO 8308 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-24 00:01:35.510  INFO 8308 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2018-11-24 00:01:35.515  INFO 8308 --- [main] com.explordf.ExploRdfApplication         : Started ExploRdfApplication in 4.909 seconds (JVM running for 6.063)
+2018-11-24 00:01:42.563  INFO 8308 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-11-24 00:01:42.564  INFO 8308 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-11-24 00:01:42.587  INFO 8308 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 23 ms
+2018-11-24 00:01:48.939  INFO 8308 --- [http-nio-8081-exec-6] com.explordf.dao.TestDummyDaoImpl        : Method simpleSearch() in TestDummyDaoImpl entered.
+2018-11-24 00:01:48.940  INFO 8308 --- [http-nio-8081-exec-6] com.explordf.dao.TestDummyDaoImpl        : Method simpleSearchWithStatement() in TestDummyDaoImpl entered.
+2018-11-24 00:02:13.518  INFO 8308 --- [http-nio-8081-exec-7] com.explordf.dao.TestDummyDaoImpl        : Method simpleSearch() in TestDummyDaoImpl entered.
+2018-11-24 00:02:13.518  INFO 8308 --- [http-nio-8081-exec-7] com.explordf.dao.TestDummyDaoImpl        : Method simpleSearchWithStatement() in TestDummyDaoImpl entered.
+2018-11-24 00:02:16.895  INFO 8308 --- [http-nio-8081-exec-8] com.explordf.dao.TestDummyDaoImpl        : Method simpleSearch() in TestDummyDaoImpl entered.
+2018-11-24 00:02:16.895  INFO 8308 --- [http-nio-8081-exec-8] com.explordf.dao.TestDummyDaoImpl        : Method simpleSearchWithStatement() in TestDummyDaoImpl entered.
+2018-11-24 00:02:51.381  INFO 8308 --- [http-nio-8081-exec-10] com.explordf.dao.TestDummyDaoImpl        : Method getSubject() entered.
+2018-11-24 00:02:51.524  WARN 8308 --- [rdf4j-sesameclientimpl-4] com.explordf.dao.MyValueFactory          : Error at createLiteral(); Value: English, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2018-11-24 00:02:51.524  WARN 8308 --- [rdf4j-sesameclientimpl-4] com.explordf.dao.MyValueFactory          : Error at createLiteral(); Value: First edition, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2018-11-24 00:02:51.524  WARN 8308 --- [rdf4j-sesameclientimpl-4] com.explordf.dao.MyValueFactory          : Error at createLiteral(); Value: Drama, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2018-11-24 00:02:52.857  INFO 8308 --- [http-nio-8081-exec-1] com.explordf.dao.TestDummyDaoImpl        : Method getPredicates() entered.
+2018-11-24 00:26:15.427  INFO 8308 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2018-11-24 00:26:15.435  INFO 8308 --- [RMI TCP Connection(2)-127.0.0.1] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@d35dea7: startup date [Sat Nov 24 00:01:31 CET 2018]; root of context hierarchy
+2018-11-24 00:26:15.436  INFO 8308 --- [RMI TCP Connection(2)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-24 00:26:15.436  INFO 8308 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Connection properties:
+2018-11-24 00:26:15.436  INFO 8308 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Server: testDummyServer Env: testDummyServer
+2018-11-24 00:26:15.436  INFO 8308 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Name: http://dbpedia.org/sparql Env: http://dbpedia.org/sparql
+2018-11-24 00:26:15.436  INFO 8308 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Repo:  Env: 
+2018-11-24 00:26:15.436  INFO 8308 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Username:  Env: 
+2018-11-24 00:26:15.436  INFO 8308 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Password:  Env: 
+2018-11-24 00:26:15.436  INFO 8308 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.TestDummyDaoImpl        : Method predestroy entered
+2018-11-24 00:26:15.436  INFO 8308 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.StardogDaoImpl          : Method predestroy entered
+2018-11-24 00:26:15.436  INFO 8308 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.SparqlEndpointDaoImpl   : Method predestroy entered
+2018-11-24 00:26:15.436  INFO 8308 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.RDF4JDaoImpl            : Method predestroy entered
+2018-11-24 00:26:24.114  INFO 9060 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 9060 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
+2018-11-24 00:26:24.130  INFO 9060 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
+2018-11-24 00:26:24.177  INFO 9060 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@662ac478: startup date [Sat Nov 24 00:26:24 CET 2018]; root of context hierarchy
+2018-11-24 00:26:25.083  INFO 9060 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-24 00:26:25.487  INFO 9060 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2018-11-24 00:26:25.502  INFO 9060 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-11-24 00:26:25.502  INFO 9060 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
+2018-11-24 00:26:25.502  INFO 9060 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
+2018-11-24 00:26:25.705  INFO 9060 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-11-24 00:26:25.705  INFO 9060 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1528 ms
+2018-11-24 00:26:25.799  INFO 9060 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-11-24 00:26:25.799  INFO 9060 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-11-24 00:26:25.799  INFO 9060 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-11-24 00:26:25.799  INFO 9060 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-11-24 00:26:25.799  INFO 9060 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-11-24 00:26:25.877  INFO 9060 --- [main] com.explordf.service.DaoServer           : DaoServer post construct
+2018-11-24 00:26:25.877  INFO 9060 --- [main] com.explordf.service.DaoServer           : Autowired daoImpls: 
+2018-11-24 00:26:25.877  INFO 9060 --- [main] com.explordf.service.DaoServer           : RDF4J-Server, SPARQL-Endpoint, Stardog-Server, testDummyServer
+2018-11-24 00:26:25.877  INFO 9060 --- [main] com.explordf.service.DaoServer           : Connection properties:
+2018-11-24 00:26:25.877  INFO 9060 --- [main] com.explordf.service.DaoServer           : Server: testDummyServer Env: testDummyServer
+2018-11-24 00:26:25.877  INFO 9060 --- [main] com.explordf.service.DaoServer           : Name: http://dbpedia.org/sparql Env: http://dbpedia.org/sparql
+2018-11-24 00:26:25.877  INFO 9060 --- [main] com.explordf.service.DaoServer           : Repo:  Env: 
+2018-11-24 00:26:25.877  INFO 9060 --- [main] com.explordf.service.DaoServer           : Username:  Env: 
+2018-11-24 00:26:25.877  INFO 9060 --- [main] com.explordf.service.DaoServer           : Password:  Env: 
+2018-11-24 00:26:25.877  INFO 9060 --- [main] com.explordf.dao.TestDummyDaoImpl        : Method getConnected() in TestDummyDaoImpl entered.
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Connection properties:
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Server: testDummyServer Env: testDummyServer
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Name: http://dbpedia.org/sparql Env: http://dbpedia.org/sparql
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Repo:  Env: 
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Username:  Env: 
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Password:  Env: 
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Connection properties:
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Server: testDummyServer Env: testDummyServer
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Name: http://dbpedia.org/sparql Env: http://dbpedia.org/sparql
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Repo:  Env: 
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Username:  Env: 
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Password:  Env: 
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Connection properties:
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Server: testDummyServer Env: testDummyServer
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Name: http://dbpedia.org/sparql Env: http://dbpedia.org/sparql
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Repo:  Env: 
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Username:  Env: 
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : Password:  Env: 
+2018-11-24 00:26:26.642  INFO 9060 --- [main] com.explordf.service.DaoServer           : DaoServer getDao(): testDummyServer
+2018-11-24 00:26:26.752  INFO 9060 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-24 00:26:26.986  INFO 9060 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@662ac478: startup date [Sat Nov 24 00:26:24 CET 2018]; root of context hierarchy
+2018-11-24 00:26:27.139  INFO 9060 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getSupportedServers],methods=[GET]}" onto public java.util.List<java.lang.String> com.explordf.controller.ConnectionController.getSupportedServers()
+2018-11-24 00:26:27.154  INFO 9060 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getConnectionProps],methods=[GET]}" onto public com.explordf.dto.ConnectionDto com.explordf.controller.ConnectionController.getConnectionProps()
+2018-11-24 00:26:27.154  INFO 9060 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/connect],methods=[POST],consumes=[application/json]}" onto public com.explordf.dto.ConnectionDto com.explordf.controller.ConnectionController.setConnectionProps(com.explordf.dto.ConnectionDto)
+2018-11-24 00:26:27.154  INFO 9060 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.index()
+2018-11-24 00:26:27.154  INFO 9060 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/connect],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.connect(org.springframework.ui.Model)
+2018-11-24 00:26:27.154  INFO 9060 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/query],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.query()
+2018-11-24 00:26:27.154  INFO 9060 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/help],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.help()
+2018-11-24 00:26:27.170  INFO 9060 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getSubject/**],methods=[GET]}" onto public java.util.List<com.explordf.dto.TripleDto> com.explordf.controller.QueryController.getSubject(javax.servlet.http.HttpServletRequest)
+2018-11-24 00:26:27.170  INFO 9060 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/writePredicates],methods=[POST],consumes=[text/plain]}" onto public void com.explordf.controller.QueryController.writePredicates(java.lang.String)
+2018-11-24 00:26:27.170  INFO 9060 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getPredicates],methods=[GET]}" onto public java.util.List<com.explordf.dto.PredicateDto> com.explordf.controller.QueryController.getPredicates()
+2018-11-24 00:26:27.170  INFO 9060 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/simpleSearch/**/{broaderSearch}],methods=[GET]}" onto public java.util.List<com.explordf.dto.TripleDto> com.explordf.controller.QueryController.simpleSearch(javax.servlet.http.HttpServletRequest,char)
+2018-11-24 00:26:27.186  INFO 9060 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-11-24 00:26:27.186  INFO 9060 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-11-24 00:26:27.279  INFO 9060 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-24 00:26:27.279  INFO 9060 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-24 00:26:27.670  INFO 9060 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2018-11-24 00:26:28.698  INFO 9060 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-24 00:26:28.811  INFO 9060 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2018-11-24 00:26:28.827  INFO 9060 --- [main] com.explordf.ExploRdfApplication         : Started ExploRdfApplication in 5.19 seconds (JVM running for 7.06)
+2018-11-24 00:26:36.654  INFO 9060 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-11-24 00:26:36.654  INFO 9060 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-11-24 00:26:36.672  INFO 9060 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 17 ms
+2018-11-24 00:26:41.600  INFO 9060 --- [http-nio-8081-exec-7] com.explordf.dao.TestDummyDaoImpl        : Method simpleSearch() in TestDummyDaoImpl entered.
+2018-11-24 00:26:41.600  INFO 9060 --- [http-nio-8081-exec-7] com.explordf.dao.TestDummyDaoImpl        : Method simpleSearchWithStatement() in TestDummyDaoImpl entered.
+2018-11-24 00:26:48.741  INFO 9060 --- [http-nio-8081-exec-8] com.explordf.dao.TestDummyDaoImpl        : Method getSubject() entered.
+2018-11-24 00:26:48.951  WARN 9060 --- [rdf4j-sesameclientimpl-2] com.explordf.dao.MyValueFactory          : Error at createLiteral(); Value: English, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2018-11-24 00:26:48.951  WARN 9060 --- [rdf4j-sesameclientimpl-2] com.explordf.dao.MyValueFactory          : Error at createLiteral(); Value: First edition, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2018-11-24 00:26:48.951  WARN 9060 --- [rdf4j-sesameclientimpl-2] com.explordf.dao.MyValueFactory          : Error at createLiteral(); Value: Drama, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2018-11-24 00:30:40.453  INFO 9060 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2018-11-24 00:30:40.466  INFO 9060 --- [RMI TCP Connection(2)-127.0.0.1] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@662ac478: startup date [Sat Nov 24 00:26:24 CET 2018]; root of context hierarchy
+2018-11-24 00:30:40.468  INFO 9060 --- [RMI TCP Connection(2)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-24 00:30:40.468  INFO 9060 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Connection properties:
+2018-11-24 00:30:40.468  INFO 9060 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Server: testDummyServer Env: testDummyServer
+2018-11-24 00:30:40.468  INFO 9060 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Name: http://dbpedia.org/sparql Env: http://dbpedia.org/sparql
+2018-11-24 00:30:40.468  INFO 9060 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Repo:  Env: 
+2018-11-24 00:30:40.468  INFO 9060 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Username:  Env: 
+2018-11-24 00:30:40.468  INFO 9060 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.service.DaoServer           : Password:  Env: 
+2018-11-24 00:30:40.468  INFO 9060 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.TestDummyDaoImpl        : Method predestroy entered
+2018-11-24 00:30:40.468  INFO 9060 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.StardogDaoImpl          : Method predestroy entered
+2018-11-24 00:30:40.468  INFO 9060 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.SparqlEndpointDaoImpl   : Method predestroy entered
+2018-11-24 00:30:40.468  INFO 9060 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.RDF4JDaoImpl            : Method predestroy entered

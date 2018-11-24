@@ -130,10 +130,48 @@ h2, h3, h4 {
 
 .containerDiv {
     padding-top: 10px;
-    /* text-align: center; */
     overflow: auto;
     margin: auto;
     display: block;
+}
+
+/* ---------------------index contentInnerDiv----------------- */
+#contentInnerDiv {
+    display: grid;
+    padding: 150px 20px 0 20px;
+    height: 100%;
+    grid-template-columns: 1fr 1fr 1fr; 
+}
+
+.contentGridDiv {
+	text-align: center;
+	align-content: center;
+	
+}
+
+.contentGridDiv h3 {
+	padding-bottom: 20px;
+}
+
+/*----------------------connect content-------------------------*/
+.connectionDiv {
+	padding: 10% 10% 0 10%;
+}
+
+#connectDiv {
+/* 	display: none; */
+}
+
+#connectSuccess {
+	display: none;
+}
+
+#connectFail {
+	display: none;
+}
+
+.danger {
+	color: red;
 }
 
 /* -------------------------Search div------------------------- */
@@ -141,11 +179,11 @@ h2, h3, h4 {
     padding-top: 60px;
 }
 
-input[type="radio"] {
+/* input[type="radio"] {
     -webkit-appearance: checkbox;
     -moz-appearance: checkbox;
     appearance: checkbox;
-  }
+  } */
 
 .input-group {
     max-width: 300px;
@@ -153,7 +191,7 @@ input[type="radio"] {
     display: grid;
     grid-template-columns: 1fr auto;    
 }  
-.radio-inline {
+.radio-search {
     max-width: 300px;
     padding: 0;
     padding-top: 10px;
@@ -163,12 +201,12 @@ input[type="radio"] {
     justify-content: space-between;
 }
 
-.radio-inline input {
+.radio-search input {
     margin-left: 0 !important;
     margin-top: 13px;
 }
 
-.radio-label {
+.radio-search {
     padding-left: 20px;
 }
 

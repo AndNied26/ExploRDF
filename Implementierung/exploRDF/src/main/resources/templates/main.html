@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ExploRDF</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+
+    <div id="grid">
+
+        <div th:fragment="sidebar" id="sidebar" class="sidebar">
+            <div id="mainSidebar" class="mainSidebar">
+                <ul>
+                    <li id="navLogo"><a href="/">ExploRDF</a></li>
+                    <li id="navConnect"><a href="connect">Connect</a></li>
+                    <li id="navQuery"><a href="query">Query</a></li>
+                    <li id="navHelp"><a href="help">Help</a></li>
+                </ul>
+            </div>
+            <div id="sidebarToggle" class="sidebarToggle">
+                <button id="toggleButton" type="button" class="btn btn-default btn-sm closebtn">
+                    <span id="buttonSymbol" class="glyphicon glyphicon-chevron-left"></span>
+                </button>
+            </div>
+        </div>
+
+        <!------------------------------------------------------------->
+
+        <!-- Main content - begin -->
+        <div id="main" class="main">
+            <!-- Caption - begin -->
+            <div class="caption">
+                <h3 id="captionHead">Welcome</h3>
+                <div th:fragment="captionConnection" id="captionConnection">
+                    <p>Triple-Store: <span id="dbSpan">no server</span></p>
+                    <p>Repository: <span id="repoSpan">-</span></p>                    
+                </div>
+            </div>
+            <!-- Caption - end -->
+
+            <!-- Content - begin -->
+            <div class="content">
+            
+            	<div id="contentInnerDiv">
+                    <div id="contentInnerDivQuery" class="contentGridDiv">
+                        <a href="query"><h3>Query</h3></a>
+                        <p>Search for a term in the connected Triple Store</p>
+                    </div>
+                    <div id="contentInnerDivConnect" class="contentGridDiv">
+                        <a href="connect"><h3>Connect</h3></a>
+                        <p>Connect to Triple Store</p>
+                    </div>
+                    <div id="contentInnerDivHelp" class="contentGridDiv">
+                        <a href="help"><h3>Help</h3></a>
+                        <p>How to</p>
+                    </div>
+            	</div>
+
+            </div>
+
+
+
+            <!-- Container for exploring the graph -->
+            <div id="exploreDiv" class="containerDiv">asd</div>
+
+
+        </div>
+
+        <!-- Help - begin -->
+        <div class="help"></div>
+        <!-- Help - end -->
+
+    </div>
+
+
+
+
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="js/explordf.js"></script>
+</body>
+
+</html>

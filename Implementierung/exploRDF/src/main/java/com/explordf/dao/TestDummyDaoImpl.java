@@ -5,8 +5,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
+import org.eclipse.rdf4j.RDF4JException;
+import org.eclipse.rdf4j.model.IRI;
+import org.eclipse.rdf4j.model.Literal;
+import org.eclipse.rdf4j.model.Statement;
 import org.eclipse.rdf4j.model.Value;
+import org.eclipse.rdf4j.model.ValueFactory;
 import org.eclipse.rdf4j.query.BindingSet;
 import org.eclipse.rdf4j.query.QueryLanguage;
 import org.eclipse.rdf4j.query.QueryResults;
@@ -14,6 +20,7 @@ import org.eclipse.rdf4j.query.TupleQuery;
 import org.eclipse.rdf4j.query.TupleQueryResult;
 import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
+import org.eclipse.rdf4j.repository.RepositoryResult;
 import org.eclipse.rdf4j.repository.http.HTTPRepository;
 import org.eclipse.rdf4j.repository.manager.RemoteRepositoryManager;
 import org.eclipse.rdf4j.repository.manager.RepositoryManager;
@@ -23,111 +30,277 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import dto.PredicateDto;
-import dto.TripleDto;
+import com.explordf.dto.ConnectionDto;
+import com.explordf.dto.PredicateDto;
+import com.explordf.dto.TripleDto;
 
+/**
+ * 
+ * @author Andreas Niederquell
+ *
+ */
 @org.springframework.stereotype.Repository
-@Qualifier("dummyRepo")
 public class TestDummyDaoImpl implements ExploRDFDao {
 
 	private static final Logger logger = LoggerFactory.getLogger(TestDummyDaoImpl.class);
 	
-	String rdf4jServer = "http://localhost:8080/rdf4j-server";
-	String repoName = "test";
-	
-	//rdf4j server
-//	RepositoryManager manager;
-	
-	//stardog
-	RemoteRepositoryManager manager;
+	private final String tripleStoreServer = "testDummyServer";
 	
 	
-	String stardogServer = "http://localhost:5820";
-	String username = "admin", password = "admin";
-	String db = "geograficumDB";
+	Repository repo;
 	
-	@PostConstruct
-	private void init() {
-		// redf4j server
-		//manager = RepositoryProvider.getRepositoryManager(rdf4jServer);
-		
-		// stardog server
-		manager = new RemoteRepositoryManager("http://localhost:5820/sachbegriffeDB/query");
-		manager.setUsernameAndPassword(username, password);
-
-		logger.info("TestDummy Repository created.");
+	@PreDestroy
+	private void close() {
+		logger.info("Method predestroy entered");
+		if (this.repo != null && this.repo.isInitialized()) {
+			this.repo.shutDown();
+		}
 	}
 	
 	@Override
 	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
-		double start = new Date().getTime();
-		System.out.println(start);
-		
-		// rdf4j server
-//		Repository repo = manager.getRepository(repoName);
-		
-		//stardog server
-		Repository repo = new SPARQLRepository("http://localhost:5820/sachbegriffeDB/query");
-		((SPARQLRepository) repo).setUsernameAndPassword(username, password);
-		repo.initialize();
 		
 		logger.info("Method simpleSearch() in TestDummyDaoImpl entered.");
-		List<TripleDto> resultDto = new LinkedList<>();
+//		List<TripleDto> resultDto = simpleSearchWithTupleQuery(term, broaderSearch);
+		List<TripleDto> resultDto = simpleSearchWithStatement(term, broaderSearch);
 		
-//		repo.initialize();
+		return resultDto;
+	}
+	
+	private List<TripleDto> simpleSearchWithTupleQuery(String term, boolean broaderSearch) {
+		double start = new Date().getTime();
+		
+		logger.info("Method simpleSearchWithTupleQuery() in TestDummyDaoImpl entered.");
+		List<TripleDto> resultDto = new LinkedList<>();
 		
 		try(RepositoryConnection con = repo.getConnection()){
 			
 			String queryString;
 			
 			if(broaderSearch) {
-				queryString = "select ?s ?p ?o where {filter(regex(?o, \""+ term + "\", \"i\")).?s ?p ?o} order by ?s";
+				queryString = "select ?s ?p ?o where {filter(regex(?o, \""+ term 
+						+ "\", \"i\")).?s ?p ?o} order by ?s";
 			} else {
-				queryString = "SELECT ?s ?p ?o WHERE {?s ?p \"" + term + "\". ?s ?p ?o}";
+				queryString = "select ?s ?p ?o where {filter(?o = \"" 
+						+ term +"\"). {SELECT ?s ?p ?o WHERE {?s ?p \"" 
+						+ term + "\". ?s ?p ?o}}}";
 			}		
 			
-			List<BindingSet> resultList;
 			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
 			
 			try(TupleQueryResult result = tupleQuery.evaluate()){
-				resultList = QueryResults.asList(result);
-			}
-			
-			for (BindingSet bindingSet : resultList) {
-				
-				Value subject = bindingSet.getValue("s");
-				Value predicate = bindingSet.getValue("p");
-				Value object = bindingSet.getValue("o");
-				
-				TripleDto dto = new TripleDto(subject.toString(), predicate.toString(), object.toString());
-				resultDto.add(dto);
+				while (result.hasNext()) {
+					BindingSet bindingSet = result.next();
+					resultDto.add(new TripleDto(
+							bindingSet.getValue("s").toString(), 
+							bindingSet.getValue("p").toString(), 
+							bindingSet.getValue("o").toString()));
+				}
 			}
 			
 			
-		}finally {
-			repo.shutDown();
 		}
+		
 		double end = new Date().getTime();
 		System.out.println((end-start)/1000);
+		return resultDto;
+	}
+	
+	private List<TripleDto> simpleSearchWithStatement(String term, boolean broaderSearch) {
+		double start = new Date().getTime();
+		
+		logger.info("Method simpleSearchWithStatement() in TestDummyDaoImpl entered.");
+		List<TripleDto> resultDto = new LinkedList<>();
+		
+		ValueFactory factory = repo.getValueFactory();
+		
+		Literal obj = factory.createLiteral(term);
+		
+		// For dbpedia we need to query only the dbpedia graph not the default graph !!!!!!
+		IRI context = factory.createIRI("http://dbpedia.org");
+		
+		try(RepositoryConnection con = repo.getConnection()){
+			
+			
+			try(RepositoryResult<Statement> result = con.getStatements(null, null, obj, context)){
+				while (result.hasNext()) {
+					Statement st = result.next();
+					resultDto.add(new TripleDto(st.getSubject().toString(), st.getPredicate().toString(),
+							st.getObject().toString()));
+				}
+			}
+			
+			
+		}
+		
+		double end = new Date().getTime();
+		System.out.println((end-start)/1000);
+		return resultDto;
+	}
+	
+	@Override
+	public List<TripleDto> getSubject(String subject) {
+
+		logger.info("Method getSubject() entered.");
+		List<TripleDto> resultDto = getSubjectWithTupleQuery(subject);
+//		List<TripleDto> resultDto = getSubjectWithStatement(subject);
+		return resultDto;
+	}
+	
+	private List<TripleDto> getSubjectWithTupleQuery(String subject){
+		double start = new Date().getTime();
+		List<TripleDto> resultDto = new LinkedList<>();
+		
+		try(RepositoryConnection con = repo.getConnection()) {
+			String queryString = "SELECT (<" + subject + "> as ?s) ?p ?o WHERE {<" + subject + "> ?p ?o. "
+					+ "FILTER(!isLiteral(?o) || langMatches(lang(?o), \"EN\") || langMatches(lang(?o), \"\"))}";
+			
+			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+
+			try (TupleQueryResult result = tupleQuery.evaluate()) {
+
+				while (result.hasNext()) {
+					BindingSet bindingSet = result.next();
+					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
+							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
+				}
+			}
+		
+		}
+		
+		double end = new Date().getTime();
+		System.out.println("Query time: " + (end-start)/1000);
+		return resultDto;
+	}
+	
+	private List<TripleDto> getSubjectWithStatement(String subject) {
+		double start = new Date().getTime();
+		List<TripleDto> resultDto = new LinkedList<>();
+		
+		try(RepositoryConnection con = repo.getConnection()) {
+			String queryString = "SELECT (<" + subject + "> as ?s) ?p ?o WHERE {<" + subject + "> ?p ?o. "
+					+ "FILTER(!isLiteral(?o) || langMatches(lang(?o), \"EN\") || langMatches(lang(?o), \"\"))}";
+			
+			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+
+			try (TupleQueryResult result = tupleQuery.evaluate()) {
+
+				while (result.hasNext()) {
+					BindingSet bindingSet = result.next();
+					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
+							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
+				}
+			}
+		
+		}
+		
+		double end = new Date().getTime();
+		System.out.println("Query time: " + (end-start)/1000);
 		return resultDto;
 	}
 
 	@Override
 	public List<PredicateDto> getPredicates() {
-		// TODO Auto-generated method stub
-		return null;
+		logger.info("Method getPredicates() entered.");
+		List<PredicateDto> resultDto = getPredicatesWithTupleQuery();
+
+		return resultDto;
+		
+	}
+	
+	private List<PredicateDto> getPredicatesWithTupleQuery() {
+		double start = new Date().getTime();
+		List<PredicateDto> resultDto = new LinkedList<>();
+
+		boolean gotAllPredicates = false;
+
+		// DBPedia 438336000 triple geht noch
+//		int offset = 438336000;
+		int offset = 990336000;
+		int limit = 500;
+//		while (!gotAllPredicates) {
+			int resultNum = 0;
+			try (RepositoryConnection con = repo.getConnection()) {
+
+				String queryString = "select ?p where {?s ?p ?o} limit "+limit+" offset " + offset;
+				System.out.println(queryString);
+				
+				
+				TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+				
+				try (TupleQueryResult result = tupleQuery.evaluate()) {
+					while (result.hasNext()) {
+						BindingSet bindingSet = result.next();
+						resultNum += 1;
+						resultDto.add(new PredicateDto(bindingSet.getValue("p").toString(), false, false));
+						System.out.println(resultNum + " " + bindingSet.getValue("p").toString());
+					}
+				}
+				
+			}
+			System.out.println("resultNum : " + resultNum);
+			if (resultNum < limit) {
+				gotAllPredicates = true;
+			}
+			offset += resultNum;
+			double meanTime = new Date().getTime();
+			System.out.println("Offset: " + offset + " Mean time : " + (meanTime-start)/1000);
+//		}
+		double end = new Date().getTime();
+		System.out.println("Query time: " + (end-start)/1000);
+		return resultDto;
 	}
 
-	@Override
-	public List<TripleDto> getSubject(String subject) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	private List<PredicateDto> getPredicatesWithStatement() {
+		double start = new Date().getTime();
+		List<PredicateDto> resultDto = new LinkedList<>();
 
+		boolean gotAllPredicates = false;
+		
+		ValueFactory factory = repo.getValueFactory();
+
+		// DBPedia 438336000 triple geht noch
+//		int offset = 438336000;
+		int offset = 990336000;
+		int limit = 500;
+//		while (!gotAllPredicates) {
+			int resultNum = 0;
+			try (RepositoryConnection con = repo.getConnection()) {
+
+				String queryString = "select ?p where {?s ?p ?o} limit "+limit+" offset " + offset;
+				System.out.println(queryString);
+				
+				
+				TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+				
+				try (TupleQueryResult result = tupleQuery.evaluate()) {
+					while (result.hasNext()) {
+						BindingSet bindingSet = result.next();
+						resultNum += 1;
+						resultDto.add(new PredicateDto(bindingSet.getValue("p").toString(), false, false));
+						System.out.println(resultNum + " " + bindingSet.getValue("p").toString());
+					}
+				}
+				
+			}
+			System.out.println("resultNum : " + resultNum);
+			if (resultNum < limit) {
+				gotAllPredicates = true;
+			}
+			offset += resultNum;
+			double meanTime = new Date().getTime();
+			System.out.println("Offset: " + offset + " Mean time : " + (meanTime-start)/1000);
+//		}
+		double end = new Date().getTime();
+		System.out.println("Query time: " + (end-start)/1000);
+		return resultDto;
+	}
+	
+	
 	@Override
 	public List<PredicateDto> getPredicatesList(String listName) {
 		// TODO Auto-generated method stub
-		return null;
+				return null;
 	}
 
 	@Override
@@ -140,6 +313,58 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 	public List<String> getAllPredicatesLists() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public String getType() {
+		return tripleStoreServer;
+	}
+
+	@Override
+	public boolean getConnected(ConnectionDto connDto) {
+		
+		logger.info("Method getConnected() in TestDummyDaoImpl entered.");
+		
+		boolean connected = false;
+
+		System.out.println("server: " + connDto.getTripleStoreServer() + ", url: " + connDto.getTripleStoreUrl()
+				+ ", repo: " + connDto.getTripleStoreRepo() + ", username: " + connDto.getTripleStoreUserName()
+				+ ", password: " + connDto.getTripleStorePassword());
+		
+		Repository repo = new MyRepository(connDto.getTripleStoreUrl());
+
+		if (connDto.getTripleStoreUserName() != "" && connDto.getTripleStorePassword() != "") {
+			((MyRepository) repo).setUsernameAndPassword(connDto.getTripleStoreUserName(),
+					connDto.getTripleStorePassword());
+		}
+
+		repo.initialize();
+		try (RepositoryConnection conn = repo.getConnection()) {
+			String queryString = "SELECT * WHERE {?s ?p ?o} LIMIT 1";
+			TupleQuery tupleQuery = conn.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+			try (TupleQueryResult result = tupleQuery.evaluate()) {
+				System.out.println("TupleQueryResult");
+				connected = true;
+			}
+		} catch (RDF4JException e) {
+			logger.error("An RDF4JException occured while trying to connect to " + connDto.getTripleStoreUrl() + ".");
+		}
+
+		if (connected) {
+			if (this.repo != null && this.repo.isInitialized()) {
+				this.repo.shutDown();
+			}
+			this.repo = repo;
+		}
+		return connected;
+	}
+
+	@Override
+	public void shutDown() {
+		logger.info("Shut down the repo");
+		if (this.repo != null && this.repo.isInitialized()) {
+			this.repo.shutDown();
+		}
 	}
 
 }

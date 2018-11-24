@@ -1,4 +1,4 @@
-package dto;
+package com.explordf.dto;
 
 public class PredicateDto {
 
