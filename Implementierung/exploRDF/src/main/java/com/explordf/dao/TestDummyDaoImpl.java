@@ -61,8 +61,8 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
 		
 		logger.info("Method simpleSearch() in TestDummyDaoImpl entered.");
-//		List<TripleDto> resultDto = simpleSearchWithTupleQuery(term, broaderSearch);
-		List<TripleDto> resultDto = simpleSearchWithStatement(term, broaderSearch);
+		List<TripleDto> resultDto = simpleSearchWithTupleQuery(term, broaderSearch);
+//		List<TripleDto> resultDto = simpleSearchWithStatement(term, broaderSearch);
 		
 		return resultDto;
 	}
@@ -76,12 +76,13 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 		try(RepositoryConnection con = repo.getConnection()){
 			
 			String queryString;
+			String graph = "from <http://dbpedia.org>";
 			
 			if(broaderSearch) {
-				queryString = "select ?s ?p ?o where {filter(regex(?o, \""+ term 
+				queryString = "select ?s ?p ?o "+graph+" where {filter(regex(?o, \""+ term 
 						+ "\", \"i\")).?s ?p ?o} order by ?s";
 			} else {
-				queryString = "select ?s ?p ?o where {filter(?o = \"" 
+				queryString = "select ?s ?p ?o "+graph+" where {filter(?o = \"" 
 						+ term +"\"). {SELECT ?s ?p ?o WHERE {?s ?p \"" 
 						+ term + "\". ?s ?p ?o}}}";
 			}		
@@ -213,16 +214,17 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 		List<PredicateDto> resultDto = new LinkedList<>();
 
 		boolean gotAllPredicates = false;
+		String graph = "from <http://dbpedia.org>";
 
 		// DBPedia 438336000 triple geht noch
-//		int offset = 438336000;
-		int offset = 990336000;
-		int limit = 500;
-//		while (!gotAllPredicates) {
+//		int offset = 438300000;
+		int offset = 0;
+		int limit = 10000;
+		while (!gotAllPredicates) {
 			int resultNum = 0;
 			try (RepositoryConnection con = repo.getConnection()) {
 
-				String queryString = "select ?p where {?s ?p ?o} limit "+limit+" offset " + offset;
+				String queryString = "select distinct ?p where {select ?p "+graph+" where {?s ?p ?o} limit "+limit+" offset " + offset + "}";
 				System.out.println(queryString);
 				
 				
@@ -239,13 +241,13 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 				
 			}
 			System.out.println("resultNum : " + resultNum);
-			if (resultNum < limit) {
+			if (resultNum == 0) {
 				gotAllPredicates = true;
 			}
-			offset += resultNum;
+			offset += limit;
 			double meanTime = new Date().getTime();
 			System.out.println("Offset: " + offset + " Mean time : " + (meanTime-start)/1000);
-//		}
+		}
 		double end = new Date().getTime();
 		System.out.println("Query time: " + (end-start)/1000);
 		return resultDto;
