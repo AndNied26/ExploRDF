@@ -52,6 +52,9 @@ public class DaoServer {
 	@Value("${triplestore.repository}")
 	private String tripleStoreRepo;
 	
+	@Value("${triplestore.graph}")
+	private String tripleStoreGraph;
+	
 	@Value("${triplestore.username}")
 	private String tripleStoreUserName;
 	
@@ -75,7 +78,7 @@ public class DaoServer {
 		showConnProps();
 		setDao();
 		setConnectionProps(new ConnectionDto(tripleStoreUrl, tripleStoreServer,
-				tripleStoreRepo, tripleStoreUserName, tripleStorePassword));
+				tripleStoreRepo, tripleStoreGraph, tripleStoreUserName, tripleStorePassword));
 		
 		saveConnProps();
 		
@@ -125,6 +128,8 @@ public class DaoServer {
 			tripleStoreServer = connDto.getTripleStoreServer();
 			tripleStoreRepo = connDto.getTripleStoreRepo() != null ? 
 					connDto.getTripleStoreRepo() : "";
+			tripleStoreGraph = connDto.getTripleStoreGraph() != null ? 
+							connDto.getTripleStoreGraph() : "";
 			tripleStoreUserName = connDto.getTripleStoreUserName() != null ? 
 					connDto.getTripleStoreUserName() : "";
 			tripleStorePassword = connDto.getTripleStorePassword() != null ? 
@@ -148,6 +153,7 @@ public class DaoServer {
 		props.setProperty("triplestore.server", tripleStoreServer);
 		props.setProperty("triplestore.url", tripleStoreUrl);
 		props.setProperty("triplestore.repository", tripleStoreRepo != null ? tripleStoreRepo : "");
+		props.setProperty("triplestore.graph", tripleStoreGraph != null ? tripleStoreGraph : "");
 		props.setProperty("triplestore.username", tripleStoreUserName != null ? tripleStoreUserName : "");
 		props.setProperty("triplestore.password", tripleStorePassword != null ? tripleStorePassword : "");
 
@@ -168,6 +174,7 @@ public class DaoServer {
 		logger.info("Server: " + tripleStoreServer + " Env: " + env.getProperty("triplestore.server"));
 		logger.info("Name: " + tripleStoreUrl + " Env: " + env.getProperty("triplestore.url"));
 		logger.info("Repo: " + tripleStoreRepo + " Env: " + env.getProperty("triplestore.repository"));
+		logger.info("Graph: " + tripleStoreGraph + " Env: " + env.getProperty("triplestore.graph"));
 		logger.info("Username: " + tripleStoreUserName + " Env: " + env.getProperty("triplestore.username"));
 		logger.info("Password: " + tripleStorePassword + " Env: " + env.getProperty("triplestore.password"));
 		System.out.println();

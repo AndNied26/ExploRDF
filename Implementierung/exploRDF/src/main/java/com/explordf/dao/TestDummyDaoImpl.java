@@ -46,6 +46,7 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 	
 	private final String tripleStoreServer = "testDummyServer";
 	
+	private String tripleStoreGraph;
 	
 	Repository repo;
 	
@@ -76,13 +77,13 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 		try(RepositoryConnection con = repo.getConnection()){
 			
 			String queryString;
-			String graph = "from <http://dbpedia.org>";
+//			String graph = "from <http://dbpedia.org>";
 			
 			if(broaderSearch) {
-				queryString = "select ?s ?p ?o "+graph+" where {filter(regex(?o, \""+ term 
+				queryString = "select ?s ?p ?o "+this.tripleStoreGraph+" where {filter(regex(?o, \""+ term 
 						+ "\", \"i\")).?s ?p ?o} order by ?s";
 			} else {
-				queryString = "select ?s ?p ?o "+graph+" where {filter(?o = \"" 
+				queryString = "select ?s ?p ?o "+this.tripleStoreGraph+" where {filter(?o = \"" 
 						+ term +"\"). {SELECT ?s ?p ?o WHERE {?s ?p \"" 
 						+ term + "\". ?s ?p ?o}}}";
 			}		
@@ -153,7 +154,7 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 		List<TripleDto> resultDto = new LinkedList<>();
 		
 		try(RepositoryConnection con = repo.getConnection()) {
-			String queryString = "SELECT (<" + subject + "> as ?s) ?p ?o WHERE {<" + subject + "> ?p ?o. "
+			String queryString = "SELECT (<" + subject + "> as ?s) ?p ?o " + this.tripleStoreGraph + " WHERE {<" + subject + "> ?p ?o. "
 					+ "FILTER(!isLiteral(?o) || langMatches(lang(?o), \"EN\") || langMatches(lang(?o), \"\"))}";
 			
 			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
@@ -232,7 +233,7 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 //			List<BindingSet> bindingSetResult = new LinkedList<>();
 			try (RepositoryConnection con = repo.getConnection()) {
 
-				String queryString = "select distinct ?p where {select ?p "+graph+" where {?s ?p ?o} limit "+limit+" offset " + offset + "}";
+				String queryString = "select distinct ?p where {select ?p "+this.tripleStoreGraph+" where {?s ?p ?o} limit "+limit+" offset " + offset + "}";
 				System.out.println(queryString);
 				
 				
@@ -362,10 +363,14 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 		boolean connected = false;
 
 		System.out.println("server: " + connDto.getTripleStoreServer() + ", url: " + connDto.getTripleStoreUrl()
-				+ ", repo: " + connDto.getTripleStoreRepo() + ", username: " + connDto.getTripleStoreUserName()
+				+ ", repo: " + connDto.getTripleStoreRepo() + ", graph: " + connDto.getTripleStoreGraph() 
+				+ ", username: " + connDto.getTripleStoreUserName()
 				+ ", password: " + connDto.getTripleStorePassword());
 		
 		Repository repo = new MyRepository(connDto.getTripleStoreUrl());
+		
+		this.tripleStoreGraph = connDto.getTripleStoreGraph() != null 
+				? "from <" + connDto.getTripleStoreGraph() + ">" : "";
 
 		if (connDto.getTripleStoreUserName() != "" && connDto.getTripleStorePassword() != "") {
 			((MyRepository) repo).setUsernameAndPassword(connDto.getTripleStoreUserName(),
