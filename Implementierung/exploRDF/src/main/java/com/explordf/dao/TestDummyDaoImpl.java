@@ -218,10 +218,18 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 
 		// DBPedia 438336000 triple geht noch
 //		int offset = 438300000;
+		//maximum results in dbpedia 10000
+		int maxDbPediaResultNum = 9900;
+		int maxLimit = 100000000;
 		int offset = 0;
-		int limit = 10000;
+		int limit = 10000000;
+		
+		List<String> predicatesAsString = new LinkedList<>();
+		
 		while (!gotAllPredicates) {
 			int resultNum = 0;
+			List<String> queryResult = new LinkedList<>();
+//			List<BindingSet> bindingSetResult = new LinkedList<>();
 			try (RepositoryConnection con = repo.getConnection()) {
 
 				String queryString = "select distinct ?p where {select ?p "+graph+" where {?s ?p ?o} limit "+limit+" offset " + offset + "}";
@@ -234,8 +242,10 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 					while (result.hasNext()) {
 						BindingSet bindingSet = result.next();
 						resultNum += 1;
-						resultDto.add(new PredicateDto(bindingSet.getValue("p").toString(), false, false));
-						System.out.println(resultNum + " " + bindingSet.getValue("p").toString());
+						queryResult.add(bindingSet.getValue("p").toString());
+//						bindingSetResult.add(bindingSet);
+//						resultDto.add(new PredicateDto(bindingSet.getValue("p").toString(), false, false));
+//						System.out.println(resultNum + " " + bindingSet.getValue("p").toString());
 					}
 				}
 				
@@ -244,12 +254,34 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 			if (resultNum == 0) {
 				gotAllPredicates = true;
 			}
-			offset += limit;
+			if(resultNum > maxDbPediaResultNum) {
+				limit = maxDbPediaResultNum;
+			} else {
+				for (String qResult: queryResult) {
+					if(!predicatesAsString.contains(qResult)) {
+						predicatesAsString.add(qResult);
+					}
+				}
+//				for (BindingSet bindingSet : bindingSetResult) {
+//					
+//					resultDto.add(new PredicateDto(bindingSet.getValue("p").toString(), false, false));
+//				}
+				offset += limit;
+				
+				limit = limit * 2 > maxLimit ? maxLimit : limit * 2;
+			}
+			
 			double meanTime = new Date().getTime();
 			System.out.println("Offset: " + offset + " Mean time : " + (meanTime-start)/1000);
 		}
 		double end = new Date().getTime();
 		System.out.println("Query time: " + (end-start)/1000);
+		
+		System.out.println("Predicates number: " + predicatesAsString.size());
+		for (String string : predicatesAsString) {
+			resultDto.add(new PredicateDto(string, false, false));
+		}
+		
 		return resultDto;
 	}
 
