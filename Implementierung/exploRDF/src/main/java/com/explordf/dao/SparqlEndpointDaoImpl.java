@@ -86,6 +86,7 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 	// muss dann weg
 	String endpoint = "http://localhost:5820/sachbegriffeDB/query";
 	String endpointDBPedia = "http://dbpedia.org/sparql";
+	String endpointRdf4j = "http://localhost:8080/rdf4j-server/repositories/test";
 
 	private Repository repo;
 

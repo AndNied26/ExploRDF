@@ -83,10 +83,15 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 				queryString = "select ?s ?p ?o "+this.tripleStoreGraph+" where {filter(regex(?o, \""+ term 
 						+ "\", \"i\")).?s ?p ?o} order by ?s";
 			} else {
-				queryString = "select ?s ?p ?o "+this.tripleStoreGraph+" where {filter(?o = \"" 
-						+ term +"\"). {SELECT ?s ?p ?o WHERE {?s ?p \"" 
-						+ term + "\". ?s ?p ?o}}}";
+//				queryString = "select ?s ?p ?o "+this.tripleStoreGraph+" where {filter(?o = \"" 
+//						+ term +"\"). {SELECT ?s ?p ?o WHERE {?s ?p \"" 
+//						+ term + "\". ?s ?p ?o}}}";
+				queryString = "SELECT ?s ?p ?o "+this.tripleStoreGraph+" WHERE {filter(?o = \"" + term + "\"). ?s ?p ?o}";
 			}		
+			
+			System.out.println();
+			System.out.println(queryString);
+			System.out.println();
 			
 			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
 			
@@ -369,7 +374,7 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 		
 		Repository repo = new MyRepository(connDto.getTripleStoreUrl());
 		
-		this.tripleStoreGraph = connDto.getTripleStoreGraph() != null 
+		this.tripleStoreGraph = connDto.getTripleStoreGraph() != "" 
 				? "from <" + connDto.getTripleStoreGraph() + ">" : "";
 
 		if (connDto.getTripleStoreUserName() != "" && connDto.getTripleStorePassword() != "") {
