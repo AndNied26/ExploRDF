@@ -78,8 +78,8 @@ import com.explordf.dto.TripleDto;
  * 
  *         Used to access any SPARQL-Endpoint.
  */
-@org.springframework.stereotype.Repository
-public class SparqlEndpointDaoImpl implements ExploRDFDao {
+//@org.springframework.stereotype.Repository
+public class SparqlEndpointDaoImpl {
 
 	private static final Logger logger = LoggerFactory.getLogger(SparqlEndpointDaoImpl.class);
 
@@ -100,7 +100,7 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 		}
 	}
 
-	@Override
+	
 	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
 		double start = new Date().getTime();
 		logger.info("Method simpleSearch() in SparqlEndpointDaoImpl entered.");
@@ -177,7 +177,7 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 
 	}
 
-	@Override
+	
 	public List<TripleDto> getSubject(String subject) {
 		logger.info("Method getSubject() entered.");
 		List<TripleDto> resultDto = new LinkedList<>();
@@ -441,7 +441,7 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 		return resultDto;
 	}
 
-	@Override
+	
 	public List<PredicateDto> getPredicates() {
 		logger.info("Method getPredicates() entered.");
 		List<PredicateDto> resultDto = new LinkedList<>();
@@ -479,30 +479,30 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 //		return null;
 	}
 
-	@Override
+	
 	public List<PredicateDto> getPredicatesList(String listName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public String savePredicatesList(List<PredicateDto> predicateDtoList, String listName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public List<String> getAllPredicatesLists() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public String getType() {
 		return tripleStoreServer;
 	}
 
-	@Override
+	
 	public boolean getConnected(ConnectionDto connDto) {
 
 		logger.info("Method getConnected() in SparqlEndpointDaoImpl entered.");
@@ -542,7 +542,7 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 		return connected;
 	}
 
-	@Override
+	
 	public void shutDown() {
 		if (this.repo != null && this.repo.isInitialized()) {
 			this.repo.shutDown();

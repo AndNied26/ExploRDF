@@ -36,8 +36,8 @@ import com.explordf.dto.TripleDto;
  * HTTPRepository is, as the name implies, a Repository implementation that acts as a 
  * proxy to a repository available on a remote RDF4J Server, accessible through HTTP.
  */
-@org.springframework.stereotype.Repository
-public class RDF4JDaoImpl implements ExploRDFDao {
+//@org.springframework.stereotype.Repository
+public class RDF4JDaoImpl {
 
 	private static final Logger logger = LoggerFactory.getLogger(RDF4JDaoImpl.class);
 	
@@ -56,7 +56,7 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 	
 	
 	
-	@Override
+	
 	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
 		double start = new Date().getTime();
 		logger.info("Method simpleSearch() in RDF4JDaoImpl entered.");
@@ -131,7 +131,7 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 
 
 
-	@Override
+	
 	public List<TripleDto> getSubject(String subject) {
 		logger.info("Method getSubject() entered.");
 		List<TripleDto> resultDto = new LinkedList<>();
@@ -174,30 +174,30 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 		return resultDto;
 	}
 
-	@Override
+	
 	public List<PredicateDto> getPredicatesList(String listName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public String savePredicatesList(List<PredicateDto> predicateDtoList, String listName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public List<String> getAllPredicatesLists() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public String getType() {
 		return tripleStoreServer;
 	}
 
-	@Override
+	
 	public boolean getConnected(ConnectionDto connDto) {
 		
 		logger.info("Method getConnected() in RDF4JDaoImpl entered.");
@@ -242,7 +242,7 @@ public class RDF4JDaoImpl implements ExploRDFDao {
 
 
 
-	@Override
+	
 	public void shutDown() {
 		if (this.repo != null && this.repo.isInitialized()) {
 			this.repo.shutDown();

@@ -40,8 +40,8 @@ import com.explordf.dto.TripleDto;
  * @author Andreas Niederquell
  *
  */
-@org.springframework.stereotype.Repository
-public class TestDummyDaoImpl implements ExploRDFDao {
+//@org.springframework.stereotype.Repository
+public class TestDummyDaoImpl {
 
 	private static final Logger logger = LoggerFactory.getLogger(TestDummyDaoImpl.class);
 	
@@ -59,7 +59,7 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 		}
 	}
 	
-	@Override
+	
 	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
 		
 		logger.info("Method simpleSearch() in TestDummyDaoImpl entered.");
@@ -146,7 +146,6 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 		return resultDto;
 	}
 	
-	@Override
 	public List<TripleDto> getSubject(String subject) {
 
 		logger.info("Method getSubject() entered.");
@@ -207,7 +206,6 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 		return resultDto;
 	}
 
-	@Override
 	public List<PredicateDto> getPredicates() {
 		logger.info("Method getPredicates() entered.");
 		List<PredicateDto> resultDto = getPredicatesWithTupleQuery();
@@ -338,30 +336,30 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 	}
 	
 	
-	@Override
+
 	public List<PredicateDto> getPredicatesList(String listName) {
 		// TODO Auto-generated method stub
 				return null;
 	}
 
-	@Override
+	
 	public String savePredicatesList(List<PredicateDto> predicateDtoList, String listName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public List<String> getAllPredicatesLists() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public String getType() {
 		return tripleStoreServer;
 	}
 
-	@Override
+	
 	public boolean getConnected(ConnectionDto connDto) {
 		boolean connected = false;
 		logger.info("Method getConnected() in TestDummyDaoImpl entered.");
@@ -423,7 +421,7 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 		return connected;
 	}
 
-	@Override
+
 	public void shutDown() {
 		logger.info("Shut down the repo");
 		if (this.repo != null && this.repo.isInitialized()) {

@@ -14,13 +14,7 @@ import com.explordf.dto.TripleDto;
 public class QueryService {
 	
 	@Autowired
-	DaoServer daoServer;
 	ExploRDFDao exploRDFDao;
-	
-	@PostConstruct
-	private void init() {
-		setDao();
-	}
 	
 	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
 		return exploRDFDao.simpleSearch(term, broaderSearch);
@@ -37,13 +31,4 @@ public class QueryService {
 		return exploRDFDao.getSubject(subject);
 	}
 	
-	
-	public void setDao() {
-		exploRDFDao = daoServer.getDao();
-		if(exploRDFDao != null) {
-			System.out.println("QueryService new Dao: " + exploRDFDao.getType());
-		} else {
-			System.out.println("QueryService new Dao: is null");
-		}
-	}
 }

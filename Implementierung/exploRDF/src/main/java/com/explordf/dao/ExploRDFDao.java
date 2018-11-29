@@ -61,10 +61,10 @@ public interface ExploRDFDao {
 	 */
 	List<String> getAllPredicatesLists();
 
-	String getType();
+	ConnectionDto getConnectionProps();
 	
-	boolean getConnected(ConnectionDto connDto);
+	ConnectionDto setConnectionProps(ConnectionDto connDto);
 	
-	void shutDown();
+	List<String> getSupportedServers();
 	
 }

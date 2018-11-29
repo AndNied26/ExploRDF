@@ -1,5 +1,9 @@
 package com.explordf.dao.impl;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.eclipse.rdf4j.RDF4JException;
 import org.eclipse.rdf4j.query.QueryLanguage;
 import org.eclipse.rdf4j.query.TupleQuery;
@@ -18,10 +22,26 @@ public class RepositoryServer {
 	
 	private static final Logger logger = LoggerFactory.getLogger(RepositoryServer.class);
 	
-	
+	private final static List<String> supportedServers = new LinkedList<String>(
+			Arrays.asList("RDF4J-Server", "Stardog-Server", "SPARQL-Endpoint"));
 	
 	private RepositoryServer() {
 		
+	}
+	
+	
+	public static Repository getRepository(ConnectionDto connDto) {
+		switch (connDto.getTripleStoreServer()) {
+		case "RDF4J-Server":
+			return getHTTPRepository(connDto);
+			
+		case "Stardog-Server":
+			return getStardogRepository(connDto);
+		case "SPARQL-Endpoint":
+			return getMyRepository(connDto);
+		default:
+			return null;
+		}
 	}
 	
 	/**
@@ -74,14 +94,18 @@ public class RepositoryServer {
 		+ ", username: " + connDto.getTripleStoreUserName()
 		+ ", password: " + connDto.getTripleStorePassword());
 		
-		String graph = connDto.getTripleStoreGraph() != "" 
+		
+		String graph = !connDto.getTripleStoreGraph().isEmpty() 
 				? "from <" + connDto.getTripleStoreGraph() + ">" : "";
 		
 		repo.initialize();
 		
 		try (RepositoryConnection conn = repo.getConnection()) {
-			String queryString = "SELECT * " + graph + " WHERE {?s ?p ?o} LIMIT 1";
+			String queryString = "SELECT * " + graph  + " WHERE {?s ?p ?o} LIMIT 1";
 			TupleQuery tupleQuery = conn.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+			
+			System.out.println(queryString);
+			
 			try (TupleQueryResult result = tupleQuery.evaluate()) {
 				System.out.println("TupleQueryResult");
 				connected = true;
@@ -90,8 +114,13 @@ public class RepositoryServer {
 			logger.warn("Could not connect to Endpoint: " + connDto.getTripleStoreUrl() 
 				+ ", Repository: " + connDto.getTripleStoreRepo()
 				+ ", Graph: " + connDto.getTripleStoreGraph() + ".");
+			e.printStackTrace();
 		}
 		
 		return connected ? repo : null;
+	}
+	
+	public static List<String> getSupportedServers() {
+		return supportedServers;
 	}
 }

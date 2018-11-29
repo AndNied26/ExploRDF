@@ -27,8 +27,8 @@ import com.explordf.dto.ConnectionDto;
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
 
-@org.springframework.stereotype.Repository
-public class StardogDaoImpl implements ExploRDFDao {
+//@org.springframework.stereotype.Repository
+public class StardogDaoImpl  {
 
 	private static final Logger logger = LoggerFactory.getLogger(StardogDaoImpl.class);
 	
@@ -50,7 +50,6 @@ public class StardogDaoImpl implements ExploRDFDao {
 		}
 	}
 	
-	@Override
 	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
 		double start = new Date().getTime();
 		logger.info("Method simpleSearch() in StardogDaoImpl entered.");
@@ -89,42 +88,35 @@ public class StardogDaoImpl implements ExploRDFDao {
 		return resultDto;
 	}
 
-	@Override
 	public List<TripleDto> getSubject(String subject) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public List<PredicateDto> getPredicates() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public List<PredicateDto> getPredicatesList(String listName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public String savePredicatesList(List<PredicateDto> predicateDtoList, String listName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public List<String> getAllPredicatesLists() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public String getType() {
 		return tripleStoreServer;
 	}
 
-	@Override
 	public boolean getConnected(ConnectionDto connDto) {
 
 		logger.info("Method getConnected() in StardogDaoImpl entered.");
@@ -166,7 +158,6 @@ public class StardogDaoImpl implements ExploRDFDao {
 		return connected;
 	}
 
-	@Override
 	public void shutDown() {
 		if (this.repo != null && this.repo.isInitialized()) {
 			this.repo.shutDown();
