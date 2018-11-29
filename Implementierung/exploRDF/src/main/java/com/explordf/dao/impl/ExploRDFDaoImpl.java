@@ -69,7 +69,8 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	private String tripleStorePassword;
 	
 	
-	Repository repo;
+	private Repository repo;
+	private String queryGraph;
 	
 	@PostConstruct
 	private void init() {
@@ -88,22 +89,19 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	
 		List<TripleDto> resultDto = new LinkedList<>();
 		
-		String tripleStoreGraph = this.tripleStoreGraph != "" 
-				? "from <" + this.tripleStoreGraph + ">" : "";
-		
 		try(RepositoryConnection con = repo.getConnection()){
 			
 			String queryString;
-//			String graph = "from <http://dbpedia.org>";
 			
 			if(broaderSearch) {
-				queryString = "select ?s ?p ?o "+tripleStoreGraph+" where {filter(regex(?o, \""+ term 
+				queryString = "select ?s ?p ?o "+ queryGraph +" where {filter(regex(?o, \""+ term 
 						+ "\", \"i\")).?s ?p ?o} order by ?s";
 			} else {
 //				queryString = "select ?s ?p ?o "+this.tripleStoreGraph+" where {filter(?o = \"" 
 //						+ term +"\"). {SELECT ?s ?p ?o WHERE {?s ?p \"" 
 //						+ term + "\". ?s ?p ?o}}}";
-				queryString = "SELECT ?s ?p ?o "+tripleStoreGraph+" WHERE {filter(?o = \"" + term + "\"). ?s ?p ?o}";
+//				queryString = "SELECT ?s ?p ?o "+ queryGraph +" WHERE {filter(?o = \"" + term + "\"). ?s ?p ?o}";
+				queryString = "SELECT ?s ?p ?o " + queryGraph +" WHERE {?s ?p \"" + term + "\". ?s ?p ?o}";
 			}		
 			
 			System.out.println();
@@ -132,14 +130,106 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 
 	@Override
 	public List<TripleDto> getSubject(String subject) {
-		// TODO Auto-generated method stub
-		return null;
+		double start = new Date().getTime();
+		List<TripleDto> resultDto = new LinkedList<>();
+		
+		try(RepositoryConnection con = repo.getConnection()) {
+			String queryString = "SELECT (<" + subject + "> as ?s) ?p ?o " + queryGraph + " WHERE {<" + subject + "> ?p ?o. "
+					+ "FILTER(!isLiteral(?o) || langMatches(lang(?o), \"EN\") || langMatches(lang(?o), \"DE\") || langMatches(lang(?o), \"\"))}";
+			
+			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+
+			try (TupleQueryResult result = tupleQuery.evaluate()) {
+
+				while (result.hasNext()) {
+					BindingSet bindingSet = result.next();
+					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
+							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
+				}
+			}
+		
+		}
+		
+		double end = new Date().getTime();
+		System.out.println("Query time: " + (end-start)/1000);
+		return resultDto;
 	}
 
 	@Override
 	public List<PredicateDto> getPredicates() {
-		// TODO Auto-generated method stub
-		return null;
+		logger.info("Method getPredicates() entered.");
+		double start = new Date().getTime();
+		List<PredicateDto> resultDto = new LinkedList<>();
+
+		boolean gotAllPredicates = false;
+
+		// DBPedia 438336000 triple geht noch
+//		int offset = 438300000;
+		//maximum results in dbpedia 10000
+		int maxDbPediaResultNum = 9900;
+		int maxLimit = 100000000;
+		int offset = 0;
+		int limit = 10000000;
+		
+		List<String> predicatesAsString = new LinkedList<>();
+		
+		while (!gotAllPredicates) {
+			int resultNum = 0;
+			List<String> queryResult = new LinkedList<>();
+//			List<BindingSet> bindingSetResult = new LinkedList<>();
+			try (RepositoryConnection con = repo.getConnection()) {
+
+				String queryString = "select distinct ?p where {select ?p "+queryGraph+" where {?s ?p ?o} limit "+limit+" offset " + offset + "}";
+				System.out.println(queryString);
+				
+				
+				TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+				
+				try (TupleQueryResult result = tupleQuery.evaluate()) {
+					while (result.hasNext()) {
+						BindingSet bindingSet = result.next();
+						resultNum += 1;
+						queryResult.add(bindingSet.getValue("p").toString());
+//						bindingSetResult.add(bindingSet);
+//						resultDto.add(new PredicateDto(bindingSet.getValue("p").toString(), false, false));
+//						System.out.println(resultNum + " " + bindingSet.getValue("p").toString());
+					}
+				}
+				
+			}
+			System.out.println("resultNum : " + resultNum);
+			if (resultNum == 0) {
+				gotAllPredicates = true;
+			}
+			if(resultNum > maxDbPediaResultNum) {
+				limit = maxDbPediaResultNum;
+			} else {
+				for (String qResult: queryResult) {
+					if(!predicatesAsString.contains(qResult)) {
+						predicatesAsString.add(qResult);
+					}
+				}
+//				for (BindingSet bindingSet : bindingSetResult) {
+//					
+//					resultDto.add(new PredicateDto(bindingSet.getValue("p").toString(), false, false));
+//				}
+				offset += limit;
+				
+				limit = limit * 2 > maxLimit ? maxLimit : limit * 2;
+			}
+			
+			double meanTime = new Date().getTime();
+			System.out.println("Offset: " + offset + " Mean time : " + (meanTime-start)/1000);
+		}
+		double end = new Date().getTime();
+		System.out.println("Query time: " + (end-start)/1000);
+		
+		System.out.println("Predicates number: " + predicatesAsString.size());
+		for (String string : predicatesAsString) {
+			resultDto.add(new PredicateDto(string, false, false));
+		}
+		
+		return resultDto;
 	}
 
 	@Override
@@ -169,6 +259,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			return connDto;
 		} else {
 			return null;
+			
 		}
 	}
 
@@ -191,7 +282,10 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			tripleStorePassword = connDto.getTripleStorePassword() != null ? 
 					connDto.getTripleStorePassword() : "";
 			
-			saveConnProps();		
+			saveConnProps();
+			
+			queryGraph = !connDto.getTripleStoreGraph().isEmpty() 
+					? "from <" + connDto.getTripleStoreGraph() + ">" : "";
 					
 			return getConnectionProps();
 		} else {
@@ -229,7 +323,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	}
 	
 	private void shutDown() {
-		logger.info("Shut down the repo");
+		logger.info("Shut down");
 		if (this.repo != null && this.repo.isInitialized()) {
 			logger.info("Shut down the repo");
 			this.repo.shutDown();

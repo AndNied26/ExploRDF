@@ -33,8 +33,7 @@ public class RepositoryServer {
 	public static Repository getRepository(ConnectionDto connDto) {
 		switch (connDto.getTripleStoreServer()) {
 		case "RDF4J-Server":
-			return getHTTPRepository(connDto);
-			
+			return getHTTPRepository(connDto);	
 		case "Stardog-Server":
 			return getStardogRepository(connDto);
 		case "SPARQL-Endpoint":
@@ -50,7 +49,7 @@ public class RepositoryServer {
 	 * @param connDto All needed properties for the connection to the SPARQL-Endpoint.
 	 * @return Initialized instance of MyRepository or null if connection failed. 
 	 */
-	public static Repository getMyRepository(ConnectionDto connDto) {
+	private static Repository getMyRepository(ConnectionDto connDto) {
 		logger.info("Method getMyRepository() entered.");
 		Repository repo = new MyRepository(connDto.getTripleStoreUrl());
 		
@@ -63,7 +62,7 @@ public class RepositoryServer {
 		return getConnectedRepository(repo, connDto);
 	}
 	
-	public static Repository getHTTPRepository(ConnectionDto connDto) {
+	private static Repository getHTTPRepository(ConnectionDto connDto) {
 		logger.info("Method getHTTPRepository() entered.");
 		
 		Repository repo = new HTTPRepository(connDto.getTripleStoreUrl(), connDto.getTripleStoreRepo());
@@ -76,7 +75,7 @@ public class RepositoryServer {
 		return getConnectedRepository(repo, connDto);
 	}
 	
-	public static Repository getStardogRepository(ConnectionDto connDto) {
+	private static Repository getStardogRepository(ConnectionDto connDto) {
 		logger.info("Method getStardogRepository() entered.");
 		
 		Repository repo = new StardogRepository(ConnectionConfiguration

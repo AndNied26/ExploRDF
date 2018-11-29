@@ -364,16 +364,16 @@ public class TestDummyDaoImpl {
 		boolean connected = false;
 		logger.info("Method getConnected() in TestDummyDaoImpl entered.");
 		
-		this.tripleStoreGraph = connDto.getTripleStoreGraph() != "" 
-				? "from <" + connDto.getTripleStoreGraph() + ">" : "";
-		
-		Repository repo = RepositoryServer.getMyRepository(connDto);
-		if(repo != null) {
-			connected = true;
-			shutDown();
-			this.repo = repo;
-			
-		}
+//		this.tripleStoreGraph = connDto.getTripleStoreGraph() != "" 
+//				? "from <" + connDto.getTripleStoreGraph() + ">" : "";
+//		
+//		Repository repo = RepositoryServer.getMyRepository(connDto);
+//		if(repo != null) {
+//			connected = true;
+//			shutDown();
+//			this.repo = repo;
+//			
+//		}
 		
 		return connected;
 	}
