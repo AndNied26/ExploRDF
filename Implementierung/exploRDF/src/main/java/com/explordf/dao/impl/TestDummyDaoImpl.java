@@ -1,4 +1,4 @@
-package com.explordf.dao;
+package com.explordf.dao.impl;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -30,6 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.explordf.dao.ExploRDFDao;
 import com.explordf.dto.ConnectionDto;
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
@@ -362,6 +363,25 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 
 	@Override
 	public boolean getConnected(ConnectionDto connDto) {
+		boolean connected = false;
+		logger.info("Method getConnected() in TestDummyDaoImpl entered.");
+		
+		this.tripleStoreGraph = connDto.getTripleStoreGraph() != "" 
+				? "from <" + connDto.getTripleStoreGraph() + ">" : "";
+		
+		Repository repo = RepositoryServer.getMyRepository(connDto);
+		if(repo != null) {
+			connected = true;
+			shutDown();
+			this.repo = repo;
+			
+		}
+		
+		return connected;
+	}
+	
+//	@Override
+	public boolean getConnected2(ConnectionDto connDto) {
 		
 		logger.info("Method getConnected() in TestDummyDaoImpl entered.");
 		
@@ -391,7 +411,7 @@ public class TestDummyDaoImpl implements ExploRDFDao {
 				connected = true;
 			}
 		} catch (RDF4JException e) {
-			logger.error("An RDF4JException occured while trying to connect to " + connDto.getTripleStoreUrl() + ".");
+			logger.warn("Could not connect to Endpoint: " + connDto.getTripleStoreUrl() + " Graph: " + this.tripleStoreGraph + ".");
 		}
 
 		if (connected) {

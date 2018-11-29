@@ -1,4 +1,4 @@
-package com.explordf.dao;
+package com.explordf.dao.impl;
 
 import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.model.Literal;

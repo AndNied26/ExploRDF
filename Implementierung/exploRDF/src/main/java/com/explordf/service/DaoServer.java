@@ -76,7 +76,7 @@ public class DaoServer {
 		}
 		logger.info(s.substring(0, s.length()-2));		
 		showConnProps();
-		setDao();
+		//setDao();
 		setConnectionProps(new ConnectionDto(tripleStoreUrl, tripleStoreServer,
 				tripleStoreRepo, tripleStoreGraph, tripleStoreUserName, tripleStorePassword));
 		

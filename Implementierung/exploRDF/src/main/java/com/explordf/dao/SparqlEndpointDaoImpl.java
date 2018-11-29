@@ -66,6 +66,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
 
+import com.explordf.dao.impl.MyRepository;
+import com.explordf.dao.impl.MyValueFactory;
 import com.explordf.dto.ConnectionDto;
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
@@ -85,7 +87,7 @@ public class SparqlEndpointDaoImpl implements ExploRDFDao {
 
 	// muss dann weg
 	String endpoint = "http://localhost:5820/sachbegriffeDB/query";
-	String endpointDBPedia = "http://dbpedia.org/sparql";
+	String endpointDBPedia = "http://dbpedia.org/sparql"; // graph: http://dbpedia.org
 	String endpointRdf4j = "http://localhost:8080/rdf4j-server/repositories/test";
 
 	private Repository repo;
