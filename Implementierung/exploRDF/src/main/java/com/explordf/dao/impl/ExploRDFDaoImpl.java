@@ -101,7 +101,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 //						+ term +"\"). {SELECT ?s ?p ?o WHERE {?s ?p \"" 
 //						+ term + "\". ?s ?p ?o}}}";
 //				queryString = "SELECT ?s ?p ?o "+ queryGraph +" WHERE {filter(?o = \"" + term + "\"). ?s ?p ?o}";
-				queryString = "SELECT ?s ?p ?o " + queryGraph +" WHERE {?s ?p \"" + term + "\". ?s ?p ?o}";
+				queryString = "SELECT ?s ?p ?o WHERE {FILTER(?o = \"" + term + "\"). {SELECT ?s ?p ?o " + queryGraph +" WHERE {?s ?p \"" + term + "\". ?s ?p ?o}}}";
 			}		
 			
 			System.out.println();
