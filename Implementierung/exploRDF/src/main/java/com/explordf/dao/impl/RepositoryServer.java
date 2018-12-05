@@ -102,7 +102,6 @@ public class RepositoryServer {
 		try (RepositoryConnection conn = repo.getConnection()) {
 			String queryString = "SELECT * " + graph  + " WHERE {?s ?p ?o} LIMIT 1";
 			TupleQuery tupleQuery = conn.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
-			
 			System.out.println(queryString);
 			
 			try (TupleQueryResult result = tupleQuery.evaluate()) {

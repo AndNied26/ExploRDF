@@ -1,5 +1,7 @@
 package com.explordf.dao;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -44,16 +46,19 @@ public interface ExploRDFDao {
 	 * which predicates to visualize.
 	 * @param listName Name of the saved predicates list.
 	 * @return List of all predicates in the requested predicate list.
+	 * @throws FileNotFoundException 
+	 * @throws IOException 
 	 */
-	List<PredicateDto> getPredicatesList(String listName);
+	List<PredicateDto> getPredicatesList(String listName) throws FileNotFoundException, IOException;
 	
 	/**
 	 * Save a customized list of predicates that defines which predicates to visualize.
 	 * @param predicateDtoList List with the chosen predicates.
 	 * @param listName Name of the list.
 	 * @return Name of this list only if the predicate list was successfully saved.
+	 * @throws IOException 
 	 */
-	String savePredicatesList(List<PredicateDto> predicateDtoList, String listName);
+	String savePredicatesList(List<PredicateDto> predicateDtoList, String listName) throws IOException;
 	
 	/**
 	 * Get a list with the names of all existing customized predicates lists.
