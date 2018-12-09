@@ -327,7 +327,7 @@ table#predicatesTable th {
 }
 
 /* Content footer*/
-#contentFooter {
+.contentFooter {
     grid-area: contentFooter;
     display: grid;
     grid-template-columns: 1fr auto;
@@ -335,16 +335,25 @@ table#predicatesTable th {
     text-align: left;
     margin: auto;
     width: 85%;
-    padding: 0;
+    padding: 10px 0 0 0;
 }
 
 #contentFooterFormDiv {
     grid-area: contentFooterFormDiv;
     align-self: center;
+    display: grid;
+    justify-content: right;
 }
 
 #contentFooterInput {
     margin: 0;
+    padding-right: 20px;
+}
+
+#visualizationTypeGroup {
+	min-width:200px;
+	border-left-width: 2px;
+	border-left-color: darkgrey;
 }
 
 #exploreBtn {
@@ -364,7 +373,11 @@ table#predicatesTable th {
 #predicatesDiv {
     display: grid;
     grid-template-rows: auto auto auto;
-    grid-template-areas: "contentHeader" "savePredicatesDiv" "predicatesTableDiv";
+    grid-template-areas: "contentHeader" "predicatesTableDiv" "savePredicatesDiv" ;
+}
+
+#loadNewPredicatesBtnDiv {
+	margin: 0;
 }
 
 #savePredicatesDiv {
@@ -372,10 +385,13 @@ table#predicatesTable th {
     margin: auto;
     width: 85%;
     padding: 10px 0 10px 0;
+    display: grid;
+    justify-content: right;
 }
 
 #predicatesInputDiv {
     margin: 0;
+    min-width: 200px;
 }
 
 

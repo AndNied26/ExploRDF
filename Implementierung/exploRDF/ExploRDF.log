@@ -1,277 +1,543 @@
-2018-12-05 11:49:33.949  INFO 12068 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 12068 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
-2018-12-05 11:49:33.963  INFO 12068 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
-2018-12-05 11:49:33.997  INFO 12068 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6ad82709: startup date [Wed Dec 05 11:49:33 CET 2018]; root of context hierarchy
-2018-12-05 11:49:34.779  INFO 12068 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2018-12-05 11:49:35.176  INFO 12068 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2018-12-05 11:49:35.197  INFO 12068 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2018-12-05 11:49:35.197  INFO 12068 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
-2018-12-05 11:49:35.201  INFO 12068 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
-2018-12-05 11:49:35.407  INFO 12068 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2018-12-05 11:49:35.407  INFO 12068 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1410 ms
-2018-12-05 11:49:35.493  INFO 12068 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
-2018-12-05 11:49:35.499  INFO 12068 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
-2018-12-05 11:49:35.500  INFO 12068 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2018-12-05 11:49:35.500  INFO 12068 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
-2018-12-05 11:49:35.501  INFO 12068 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2018-12-05 11:49:35.561  INFO 12068 --- [main] com.explordf.dao.ExploRDFDao             : PostConstruct init()
-2018-12-05 11:49:35.562  INFO 12068 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
-2018-12-05 11:49:35.562  INFO 12068 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
-2018-12-05 11:49:35.562  INFO 12068 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
-2018-12-05 11:49:35.562  INFO 12068 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
-2018-12-05 11:49:35.563  INFO 12068 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
-2018-12-05 11:49:35.563  INFO 12068 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
-2018-12-05 11:49:35.563  INFO 12068 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
-2018-12-05 11:49:35.563  INFO 12068 --- [main] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
-2018-12-05 11:49:35.564  INFO 12068 --- [main] com.explordf.dao.impl.RepositoryServer   : Method getHTTPRepository() entered.
-2018-12-05 11:49:38.212  WARN 12068 --- [main] com.explordf.dao.impl.RepositoryServer   : Could not connect to Endpoint: http://localhost:8080/rdf4j-server, Repository: test, Graph: .
-2018-12-05 11:49:38.301  INFO 12068 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2018-12-05 11:49:38.474  INFO 12068 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6ad82709: startup date [Wed Dec 05 11:49:33 CET 2018]; root of context hierarchy
-2018-12-05 11:49:38.523  INFO 12068 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/connect],methods=[POST],consumes=[application/json]}" onto public com.explordf.dto.ConnectionDto com.explordf.controller.ConnectionController.setConnectionProps(com.explordf.dto.ConnectionDto)
-2018-12-05 11:49:38.524  INFO 12068 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getSupportedServers],methods=[GET]}" onto public java.util.List<java.lang.String> com.explordf.controller.ConnectionController.getSupportedServers()
-2018-12-05 11:49:38.524  INFO 12068 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getConnectionProps],methods=[GET]}" onto public com.explordf.dto.ConnectionDto com.explordf.controller.ConnectionController.getConnectionProps()
-2018-12-05 11:49:38.525  INFO 12068 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.index()
-2018-12-05 11:49:38.525  INFO 12068 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/connect],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.connect(org.springframework.ui.Model)
-2018-12-05 11:49:38.525  INFO 12068 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/query],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.query()
-2018-12-05 11:49:38.526  INFO 12068 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/help],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.help()
-2018-12-05 11:49:38.527  INFO 12068 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/writePredicates],methods=[POST],consumes=[text/plain]}" onto public void com.explordf.controller.QueryController.writePredicates(java.lang.String)
-2018-12-05 11:49:38.528  INFO 12068 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getSubject/**],methods=[GET]}" onto public java.util.List<com.explordf.dto.TripleDto> com.explordf.controller.QueryController.getSubject(javax.servlet.http.HttpServletRequest)
-2018-12-05 11:49:38.528  INFO 12068 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getPredicates],methods=[GET]}" onto public java.util.List<com.explordf.dto.PredicateDto> com.explordf.controller.QueryController.getPredicates()
-2018-12-05 11:49:38.528  INFO 12068 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/simpleSearch/**/{broaderSearch}],methods=[GET]}" onto public java.util.List<com.explordf.dto.TripleDto> com.explordf.controller.QueryController.simpleSearch(javax.servlet.http.HttpServletRequest,char)
-2018-12-05 11:49:38.532  INFO 12068 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2018-12-05 11:49:38.533  INFO 12068 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
-2018-12-05 11:49:38.578  INFO 12068 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2018-12-05 11:49:38.578  INFO 12068 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2018-12-05 11:49:38.681  INFO 12068 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2018-12-05 11:49:38.973  INFO 12068 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
-2018-12-05 11:49:39.015  INFO 12068 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
-2018-12-05 11:49:39.019  INFO 12068 --- [main] com.explordf.ExploRdfApplication         : Started ExploRdfApplication in 5.433 seconds (JVM running for 6.794)
-2018-12-05 11:50:30.587  INFO 12068 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2018-12-05 11:50:30.587  INFO 12068 --- [RMI TCP Connection(2)-127.0.0.1] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6ad82709: startup date [Wed Dec 05 11:49:33 CET 2018]; root of context hierarchy
-2018-12-05 11:50:30.591  INFO 12068 --- [RMI TCP Connection(2)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
-2018-12-05 11:50:30.593  INFO 12068 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Method predestroy entered
-2018-12-05 11:50:30.594  INFO 12068 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Shut down
-2018-12-05 11:50:37.140  INFO 11568 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 11568 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
-2018-12-05 11:50:37.144  INFO 11568 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
-2018-12-05 11:50:37.184  INFO 11568 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@279fedbd: startup date [Wed Dec 05 11:50:37 CET 2018]; root of context hierarchy
-2018-12-05 11:50:37.947  INFO 11568 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2018-12-05 11:50:38.385  INFO 11568 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2018-12-05 11:50:38.405  INFO 11568 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2018-12-05 11:50:38.406  INFO 11568 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
-2018-12-05 11:50:38.410  INFO 11568 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
-2018-12-05 11:50:38.640  INFO 11568 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2018-12-05 11:50:38.640  INFO 11568 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1456 ms
-2018-12-05 11:50:38.740  INFO 11568 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
-2018-12-05 11:50:38.748  INFO 11568 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
-2018-12-05 11:50:38.748  INFO 11568 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2018-12-05 11:50:38.749  INFO 11568 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
-2018-12-05 11:50:38.749  INFO 11568 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2018-12-05 11:50:38.824  INFO 11568 --- [main] com.explordf.dao.ExploRDFDao             : PostConstruct init()
-2018-12-05 11:50:38.824  INFO 11568 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
-2018-12-05 11:50:38.825  INFO 11568 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
-2018-12-05 11:50:38.825  INFO 11568 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
-2018-12-05 11:50:38.825  INFO 11568 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
-2018-12-05 11:50:38.825  INFO 11568 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
-2018-12-05 11:50:38.825  INFO 11568 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
-2018-12-05 11:50:38.826  INFO 11568 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
-2018-12-05 11:50:38.826  INFO 11568 --- [main] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
-2018-12-05 11:50:38.827  INFO 11568 --- [main] com.explordf.dao.impl.RepositoryServer   : Method getHTTPRepository() entered.
-2018-12-05 11:52:18.568  INFO 11860 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 11860 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
-2018-12-05 11:52:18.570  INFO 11860 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
-2018-12-05 11:52:18.609  INFO 11860 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2aceadd4: startup date [Wed Dec 05 11:52:18 CET 2018]; root of context hierarchy
-2018-12-05 11:52:19.185  INFO 11860 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2018-12-05 11:52:19.541  INFO 11860 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2018-12-05 11:52:19.560  INFO 11860 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2018-12-05 11:52:19.560  INFO 11860 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
-2018-12-05 11:52:19.564  INFO 11860 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
-2018-12-05 11:52:19.756  INFO 11860 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2018-12-05 11:52:19.756  INFO 11860 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1147 ms
-2018-12-05 11:52:19.833  INFO 11860 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
-2018-12-05 11:52:19.838  INFO 11860 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
-2018-12-05 11:52:19.838  INFO 11860 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2018-12-05 11:52:19.838  INFO 11860 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
-2018-12-05 11:52:19.839  INFO 11860 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2018-12-05 11:52:19.897  INFO 11860 --- [main] com.explordf.dao.ExploRDFDao             : PostConstruct init()
-2018-12-05 11:52:19.898  INFO 11860 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
-2018-12-05 11:52:19.898  INFO 11860 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
-2018-12-05 11:52:19.898  INFO 11860 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
-2018-12-05 11:52:19.898  INFO 11860 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
-2018-12-05 11:52:19.898  INFO 11860 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
-2018-12-05 11:52:19.899  INFO 11860 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
-2018-12-05 11:52:19.899  INFO 11860 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
-2018-12-05 11:52:19.899  INFO 11860 --- [main] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
-2018-12-05 11:52:19.900  INFO 11860 --- [main] com.explordf.dao.impl.RepositoryServer   : Method getHTTPRepository() entered.
-2018-12-05 11:55:52.266  INFO 7480 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 7480 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
-2018-12-05 11:55:52.269  INFO 7480 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
-2018-12-05 11:55:52.307  INFO 7480 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@45c7e403: startup date [Wed Dec 05 11:55:52 CET 2018]; root of context hierarchy
-2018-12-05 11:55:52.876  INFO 7480 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2018-12-05 11:55:53.234  INFO 7480 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2018-12-05 11:55:53.253  INFO 7480 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2018-12-05 11:55:53.254  INFO 7480 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
-2018-12-05 11:55:53.258  INFO 7480 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
-2018-12-05 11:55:53.453  INFO 7480 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2018-12-05 11:55:53.454  INFO 7480 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1147 ms
-2018-12-05 11:55:53.529  INFO 7480 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
-2018-12-05 11:55:53.534  INFO 7480 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
-2018-12-05 11:55:53.534  INFO 7480 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2018-12-05 11:55:53.534  INFO 7480 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
-2018-12-05 11:55:53.534  INFO 7480 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2018-12-05 11:55:53.594  INFO 7480 --- [main] com.explordf.dao.ExploRDFDao             : PostConstruct init()
-2018-12-05 11:55:53.595  INFO 7480 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
-2018-12-05 11:55:53.595  INFO 7480 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
-2018-12-05 11:55:53.595  INFO 7480 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
-2018-12-05 11:55:53.595  INFO 7480 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
-2018-12-05 11:55:53.595  INFO 7480 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
-2018-12-05 11:55:53.596  INFO 7480 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
-2018-12-05 11:55:53.596  INFO 7480 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
-2018-12-05 11:55:53.596  INFO 7480 --- [main] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
-2018-12-05 11:55:53.597  INFO 7480 --- [main] com.explordf.dao.impl.RepositoryServer   : Method getHTTPRepository() entered.
-2018-12-05 11:56:40.401  INFO 5332 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 5332 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
-2018-12-05 11:56:40.404  INFO 5332 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
-2018-12-05 11:56:40.446  INFO 5332 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@55b0dcab: startup date [Wed Dec 05 11:56:40 CET 2018]; root of context hierarchy
-2018-12-05 11:56:41.021  INFO 5332 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2018-12-05 11:56:41.402  INFO 5332 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2018-12-05 11:56:41.421  INFO 5332 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2018-12-05 11:56:41.422  INFO 5332 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
-2018-12-05 11:56:41.426  INFO 5332 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
-2018-12-05 11:56:41.619  INFO 5332 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2018-12-05 11:56:41.620  INFO 5332 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1174 ms
-2018-12-05 11:56:41.693  INFO 5332 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
-2018-12-05 11:56:41.697  INFO 5332 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
-2018-12-05 11:56:41.698  INFO 5332 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2018-12-05 11:56:41.698  INFO 5332 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
-2018-12-05 11:56:41.698  INFO 5332 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2018-12-05 11:56:41.751  INFO 5332 --- [main] com.explordf.dao.ExploRDFDao             : PostConstruct init()
-2018-12-05 11:56:41.751  INFO 5332 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
-2018-12-05 11:56:41.752  INFO 5332 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
-2018-12-05 11:56:41.752  INFO 5332 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
-2018-12-05 11:56:41.752  INFO 5332 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
-2018-12-05 11:56:41.752  INFO 5332 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
-2018-12-05 11:56:41.752  INFO 5332 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
-2018-12-05 11:56:41.752  INFO 5332 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
-2018-12-05 11:56:41.753  INFO 5332 --- [main] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
-2018-12-05 11:56:41.753  INFO 5332 --- [main] com.explordf.dao.impl.RepositoryServer   : Method getHTTPRepository() entered.
-2018-12-05 11:59:28.281  INFO 5108 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 5108 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
-2018-12-05 11:59:28.284  INFO 5108 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
-2018-12-05 11:59:28.320  INFO 5108 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@37ceb1df: startup date [Wed Dec 05 11:59:28 CET 2018]; root of context hierarchy
-2018-12-05 11:59:28.900  INFO 5108 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2018-12-05 11:59:29.262  INFO 5108 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2018-12-05 11:59:29.281  INFO 5108 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2018-12-05 11:59:29.281  INFO 5108 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
-2018-12-05 11:59:29.285  INFO 5108 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
-2018-12-05 11:59:29.479  INFO 5108 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2018-12-05 11:59:29.479  INFO 5108 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1159 ms
-2018-12-05 11:59:29.564  INFO 5108 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
-2018-12-05 11:59:29.569  INFO 5108 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
-2018-12-05 11:59:29.570  INFO 5108 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2018-12-05 11:59:29.570  INFO 5108 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
-2018-12-05 11:59:29.570  INFO 5108 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2018-12-05 11:59:29.622  INFO 5108 --- [main] com.explordf.dao.ExploRDFDao             : PostConstruct init()
-2018-12-05 11:59:29.623  INFO 5108 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
-2018-12-05 11:59:29.623  INFO 5108 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
-2018-12-05 11:59:29.623  INFO 5108 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
-2018-12-05 11:59:29.623  INFO 5108 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
-2018-12-05 11:59:29.623  INFO 5108 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
-2018-12-05 11:59:29.623  INFO 5108 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
-2018-12-05 11:59:29.624  INFO 5108 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
-2018-12-05 11:59:29.624  INFO 5108 --- [main] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
-2018-12-05 11:59:29.624  INFO 5108 --- [main] com.explordf.dao.impl.RepositoryServer   : Method getHTTPRepository() entered.
-2018-12-05 12:00:34.876  INFO 9492 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 9492 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
-2018-12-05 12:00:34.879  INFO 9492 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
-2018-12-05 12:00:34.920  INFO 9492 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@37ceb1df: startup date [Wed Dec 05 12:00:34 CET 2018]; root of context hierarchy
-2018-12-05 12:00:35.538  INFO 9492 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2018-12-05 12:00:35.906  INFO 9492 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2018-12-05 12:00:35.925  INFO 9492 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2018-12-05 12:00:35.926  INFO 9492 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
-2018-12-05 12:00:35.930  INFO 9492 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
-2018-12-05 12:00:36.118  INFO 9492 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2018-12-05 12:00:36.119  INFO 9492 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1199 ms
-2018-12-05 12:00:36.195  INFO 9492 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
-2018-12-05 12:00:36.200  INFO 9492 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
-2018-12-05 12:00:36.200  INFO 9492 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2018-12-05 12:00:36.200  INFO 9492 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
-2018-12-05 12:00:36.200  INFO 9492 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2018-12-05 12:00:36.257  INFO 9492 --- [main] com.explordf.dao.ExploRDFDao             : PostConstruct init()
-2018-12-05 12:00:36.257  INFO 9492 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
-2018-12-05 12:00:36.257  INFO 9492 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
-2018-12-05 12:00:36.257  INFO 9492 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
-2018-12-05 12:00:36.257  INFO 9492 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
-2018-12-05 12:00:36.258  INFO 9492 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
-2018-12-05 12:00:36.258  INFO 9492 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
-2018-12-05 12:00:36.258  INFO 9492 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
-2018-12-05 12:00:36.258  INFO 9492 --- [main] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
-2018-12-05 12:00:36.259  INFO 9492 --- [main] com.explordf.dao.impl.RepositoryServer   : Method getHTTPRepository() entered.
-2018-12-05 12:02:47.576  INFO 12088 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 12088 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
-2018-12-05 12:02:47.579  INFO 12088 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
-2018-12-05 12:02:47.619  INFO 12088 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@4e08711f: startup date [Wed Dec 05 12:02:47 CET 2018]; root of context hierarchy
-2018-12-05 12:02:48.248  INFO 12088 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2018-12-05 12:02:48.647  INFO 12088 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2018-12-05 12:02:48.668  INFO 12088 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2018-12-05 12:02:48.668  INFO 12088 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
-2018-12-05 12:02:48.672  INFO 12088 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
-2018-12-05 12:02:48.871  INFO 12088 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2018-12-05 12:02:48.871  INFO 12088 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1252 ms
-2018-12-05 12:02:48.953  INFO 12088 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
-2018-12-05 12:02:48.958  INFO 12088 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
-2018-12-05 12:02:48.959  INFO 12088 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2018-12-05 12:02:48.959  INFO 12088 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
-2018-12-05 12:02:48.959  INFO 12088 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2018-12-05 12:02:49.021  INFO 12088 --- [main] com.explordf.dao.ExploRDFDao             : PostConstruct init()
-2018-12-05 12:02:49.021  INFO 12088 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
-2018-12-05 12:02:49.022  INFO 12088 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
-2018-12-05 12:02:49.022  INFO 12088 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
-2018-12-05 12:02:49.022  INFO 12088 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
-2018-12-05 12:02:49.022  INFO 12088 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
-2018-12-05 12:02:49.022  INFO 12088 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
-2018-12-05 12:02:49.023  INFO 12088 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
-2018-12-05 12:02:49.023  INFO 12088 --- [main] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
-2018-12-05 12:02:49.023  INFO 12088 --- [main] com.explordf.dao.impl.RepositoryServer   : Method getHTTPRepository() entered.
-2018-12-05 12:06:27.273  INFO 11092 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 11092 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
-2018-12-05 12:06:27.276  INFO 11092 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
-2018-12-05 12:06:27.318  INFO 11092 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@710f4dc7: startup date [Wed Dec 05 12:06:27 CET 2018]; root of context hierarchy
-2018-12-05 12:06:27.943  INFO 11092 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2018-12-05 12:06:28.362  INFO 11092 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2018-12-05 12:06:28.382  INFO 11092 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2018-12-05 12:06:28.382  INFO 11092 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
-2018-12-05 12:06:28.387  INFO 11092 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
-2018-12-05 12:06:28.593  INFO 11092 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2018-12-05 12:06:28.593  INFO 11092 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1275 ms
-2018-12-05 12:06:28.684  INFO 11092 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
-2018-12-05 12:06:28.691  INFO 11092 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
-2018-12-05 12:06:28.691  INFO 11092 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2018-12-05 12:06:28.692  INFO 11092 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
-2018-12-05 12:06:28.692  INFO 11092 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2018-12-05 12:06:28.757  INFO 11092 --- [main] com.explordf.dao.ExploRDFDao             : PostConstruct init()
-2018-12-05 12:06:28.757  INFO 11092 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
-2018-12-05 12:06:28.758  INFO 11092 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
-2018-12-05 12:06:28.758  INFO 11092 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
-2018-12-05 12:06:28.759  INFO 11092 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
-2018-12-05 12:06:28.759  INFO 11092 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
-2018-12-05 12:06:28.760  INFO 11092 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
-2018-12-05 12:06:28.760  INFO 11092 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
-2018-12-05 12:06:28.761  INFO 11092 --- [main] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
-2018-12-05 12:06:28.762  INFO 11092 --- [main] com.explordf.dao.impl.RepositoryServer   : Method getHTTPRepository() entered.
-2018-12-05 12:09:04.176  INFO 4360 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 4360 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
-2018-12-05 12:09:04.180  INFO 4360 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
-2018-12-05 12:09:04.219  INFO 4360 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2925bf5b: startup date [Wed Dec 05 12:09:04 CET 2018]; root of context hierarchy
-2018-12-05 12:09:04.801  INFO 4360 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2018-12-05 12:09:05.160  INFO 4360 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2018-12-05 12:09:05.181  INFO 4360 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2018-12-05 12:09:05.181  INFO 4360 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
-2018-12-05 12:09:05.185  INFO 4360 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
-2018-12-05 12:09:05.376  INFO 4360 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2018-12-05 12:09:05.377  INFO 4360 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1158 ms
-2018-12-05 12:09:05.450  INFO 4360 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
-2018-12-05 12:09:05.455  INFO 4360 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
-2018-12-05 12:09:05.455  INFO 4360 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2018-12-05 12:09:05.456  INFO 4360 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
-2018-12-05 12:09:05.456  INFO 4360 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2018-12-05 12:09:05.514  INFO 4360 --- [main] com.explordf.dao.ExploRDFDao             : PostConstruct init()
-2018-12-05 12:09:05.515  INFO 4360 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
-2018-12-05 12:09:05.515  INFO 4360 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
-2018-12-05 12:09:05.515  INFO 4360 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
-2018-12-05 12:09:05.515  INFO 4360 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
-2018-12-05 12:09:05.515  INFO 4360 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
-2018-12-05 12:09:05.516  INFO 4360 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
-2018-12-05 12:09:05.516  INFO 4360 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
-2018-12-05 12:09:05.516  INFO 4360 --- [main] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
-2018-12-05 12:09:05.517  INFO 4360 --- [main] com.explordf.dao.impl.RepositoryServer   : Method getHTTPRepository() entered.
+2018-12-09 16:24:54.693  INFO 12272 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 12272 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
+2018-12-09 16:24:54.701  INFO 12272 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
+2018-12-09 16:24:54.744  INFO 12272 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@ba2f4ec: startup date [Sun Dec 09 16:24:54 CET 2018]; root of context hierarchy
+2018-12-09 16:24:55.414  INFO 12272 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-12-09 16:24:55.808  INFO 12272 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2018-12-09 16:24:55.829  INFO 12272 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-12-09 16:24:55.829  INFO 12272 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
+2018-12-09 16:24:55.833  INFO 12272 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
+2018-12-09 16:24:56.416  INFO 12272 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-12-09 16:24:56.417  INFO 12272 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1672 ms
+2018-12-09 16:24:56.671  INFO 12272 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-12-09 16:24:56.691  INFO 12272 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-12-09 16:24:56.693  INFO 12272 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-12-09 16:24:56.695  INFO 12272 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-12-09 16:24:56.696  INFO 12272 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-12-09 16:24:56.862  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : PostConstruct init()
+2018-12-09 16:24:56.863  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
+2018-12-09 16:24:56.864  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
+2018-12-09 16:24:56.864  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
+2018-12-09 16:24:56.865  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
+2018-12-09 16:24:56.865  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
+2018-12-09 16:24:56.866  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
+2018-12-09 16:24:56.866  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
+2018-12-09 16:24:56.867  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
+2018-12-09 16:24:56.868  INFO 12272 --- [main] com.explordf.dao.impl.RepositoryServer   : Method getHTTPRepository() entered.
+2018-12-09 16:25:02.245  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : Shut down
+2018-12-09 16:25:02.248  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
+2018-12-09 16:25:02.249  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
+2018-12-09 16:25:02.249  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
+2018-12-09 16:25:02.250  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
+2018-12-09 16:25:02.250  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
+2018-12-09 16:25:02.251  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
+2018-12-09 16:25:02.252  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
+2018-12-09 16:25:02.318  INFO 12272 --- [main] com.explordf.dao.ExploRDFDao             : predicate folder already exists.
+2018-12-09 16:25:02.588  INFO 12272 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-12-09 16:25:03.105  INFO 12272 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@ba2f4ec: startup date [Sun Dec 09 16:24:54 CET 2018]; root of context hierarchy
+2018-12-09 16:25:03.230  INFO 12272 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getConnectionProps],methods=[GET]}" onto public com.explordf.dto.ConnectionDto com.explordf.controller.ConnectionController.getConnectionProps()
+2018-12-09 16:25:03.235  INFO 12272 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/connect],methods=[POST],consumes=[application/json]}" onto public com.explordf.dto.ConnectionDto com.explordf.controller.ConnectionController.setConnectionProps(com.explordf.dto.ConnectionDto)
+2018-12-09 16:25:03.236  INFO 12272 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getSupportedServers],methods=[GET]}" onto public java.util.List<java.lang.String> com.explordf.controller.ConnectionController.getSupportedServers()
+2018-12-09 16:25:03.238  INFO 12272 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.index()
+2018-12-09 16:25:03.238  INFO 12272 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/connect],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.connect(org.springframework.ui.Model)
+2018-12-09 16:25:03.239  INFO 12272 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/query],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.query()
+2018-12-09 16:25:03.240  INFO 12272 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/help],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.help()
+2018-12-09 16:25:03.243  INFO 12272 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getSubject/**],methods=[GET]}" onto public java.util.List<com.explordf.dto.TripleDto> com.explordf.controller.QueryController.getSubject(javax.servlet.http.HttpServletRequest)
+2018-12-09 16:25:03.245  INFO 12272 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/savePredicatesList/{listName}],methods=[POST],consumes=[application/json]}" onto public java.lang.String com.explordf.controller.QueryController.savePredicatesList(java.util.List<com.explordf.dto.PredicateDto>,java.lang.String)
+2018-12-09 16:25:03.246  INFO 12272 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getAllPredicatesLists],methods=[GET]}" onto public java.util.List<java.lang.String> com.explordf.controller.QueryController.getAllPredicatesLists()
+2018-12-09 16:25:03.247  INFO 12272 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getPredicates/{listName}],methods=[GET]}" onto public java.util.List<com.explordf.dto.PredicateDto> com.explordf.controller.QueryController.getPredicatesList(java.lang.String)
+2018-12-09 16:25:03.248  INFO 12272 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/simpleSearch/**/{broaderSearch}],methods=[GET]}" onto public java.util.List<com.explordf.dto.TripleDto> com.explordf.controller.QueryController.simpleSearch(javax.servlet.http.HttpServletRequest,char)
+2018-12-09 16:25:03.249  INFO 12272 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getPredicates],methods=[GET]}" onto public java.util.List<com.explordf.dto.PredicateDto> com.explordf.controller.QueryController.getPredicates()
+2018-12-09 16:25:03.257  INFO 12272 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-12-09 16:25:03.258  INFO 12272 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-12-09 16:25:03.355  INFO 12272 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-12-09 16:25:03.356  INFO 12272 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-12-09 16:25:03.667  INFO 12272 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2018-12-09 16:25:04.441  INFO 12272 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-12-09 16:25:04.566  INFO 12272 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2018-12-09 16:25:04.577  INFO 12272 --- [main] com.explordf.ExploRdfApplication         : Started ExploRdfApplication in 10.227 seconds (JVM running for 11.928)
+2018-12-09 16:25:12.940  INFO 12272 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-12-09 16:25:12.940  INFO 12272 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-12-09 16:25:12.990  INFO 12272 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 49 ms
+2018-12-09 16:25:16.477  INFO 12272 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 16:25:18.221  INFO 12272 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 16:25:20.286  INFO 12272 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 16:59:35.865  INFO 12272 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2018-12-09 16:59:35.878  INFO 12272 --- [RMI TCP Connection(2)-127.0.0.1] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@ba2f4ec: startup date [Sun Dec 09 16:24:54 CET 2018]; root of context hierarchy
+2018-12-09 16:59:35.880  INFO 12272 --- [RMI TCP Connection(2)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-12-09 16:59:35.880  INFO 12272 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Method predestroy entered
+2018-12-09 16:59:35.880  INFO 12272 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Shut down
+2018-12-09 16:59:35.880  INFO 12272 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Shut down the repo
+2018-12-09 19:05:47.287  INFO 7732 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 7732 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
+2018-12-09 19:05:47.303  INFO 7732 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
+2018-12-09 19:05:47.334  INFO 7732 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2cd76f31: startup date [Sun Dec 09 19:05:47 CET 2018]; root of context hierarchy
+2018-12-09 19:05:47.891  INFO 7732 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-12-09 19:05:48.245  INFO 7732 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2018-12-09 19:05:48.264  INFO 7732 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-12-09 19:05:48.264  INFO 7732 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
+2018-12-09 19:05:48.264  INFO 7732 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
+2018-12-09 19:05:48.461  INFO 7732 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-12-09 19:05:48.461  INFO 7732 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1127 ms
+2018-12-09 19:05:48.523  INFO 7732 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-12-09 19:05:48.539  INFO 7732 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-12-09 19:05:48.539  INFO 7732 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-12-09 19:05:48.539  INFO 7732 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-12-09 19:05:48.539  INFO 7732 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-12-09 19:05:48.592  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : PostConstruct init()
+2018-12-09 19:05:48.592  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
+2018-12-09 19:05:48.592  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
+2018-12-09 19:05:48.592  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
+2018-12-09 19:05:48.592  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
+2018-12-09 19:05:48.592  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
+2018-12-09 19:05:48.592  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
+2018-12-09 19:05:48.592  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
+2018-12-09 19:05:48.592  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
+2018-12-09 19:05:48.592  INFO 7732 --- [main] com.explordf.dao.impl.RepositoryServer   : Method getHTTPRepository() entered.
+2018-12-09 19:05:49.439  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : Shut down
+2018-12-09 19:05:49.439  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
+2018-12-09 19:05:49.439  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
+2018-12-09 19:05:49.439  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
+2018-12-09 19:05:49.439  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
+2018-12-09 19:05:49.439  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
+2018-12-09 19:05:49.439  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
+2018-12-09 19:05:49.439  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
+2018-12-09 19:05:49.439  INFO 7732 --- [main] com.explordf.dao.ExploRDFDao             : predicate folder already exists.
+2018-12-09 19:05:49.510  INFO 7732 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-12-09 19:05:49.679  INFO 7732 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2cd76f31: startup date [Sun Dec 09 19:05:47 CET 2018]; root of context hierarchy
+2018-12-09 19:05:49.726  INFO 7732 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getConnectionProps],methods=[GET]}" onto public com.explordf.dto.ConnectionDto com.explordf.controller.ConnectionController.getConnectionProps()
+2018-12-09 19:05:49.726  INFO 7732 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/connect],methods=[POST],consumes=[application/json]}" onto public com.explordf.dto.ConnectionDto com.explordf.controller.ConnectionController.setConnectionProps(com.explordf.dto.ConnectionDto)
+2018-12-09 19:05:49.726  INFO 7732 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getSupportedServers],methods=[GET]}" onto public java.util.List<java.lang.String> com.explordf.controller.ConnectionController.getSupportedServers()
+2018-12-09 19:05:49.726  INFO 7732 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.index()
+2018-12-09 19:05:49.726  INFO 7732 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/connect],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.connect(org.springframework.ui.Model)
+2018-12-09 19:05:49.726  INFO 7732 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/query],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.query()
+2018-12-09 19:05:49.726  INFO 7732 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/help],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.help()
+2018-12-09 19:05:49.726  INFO 7732 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getSubject/**],methods=[GET]}" onto public java.util.List<com.explordf.dto.TripleDto> com.explordf.controller.QueryController.getSubject(javax.servlet.http.HttpServletRequest)
+2018-12-09 19:05:49.726  INFO 7732 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/simpleSearch/**/{broaderSearch}],methods=[GET]}" onto public java.util.List<com.explordf.dto.TripleDto> com.explordf.controller.QueryController.simpleSearch(javax.servlet.http.HttpServletRequest,char)
+2018-12-09 19:05:49.726  INFO 7732 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getPredicates],methods=[GET]}" onto public java.util.List<com.explordf.dto.PredicateDto> com.explordf.controller.QueryController.getPredicates()
+2018-12-09 19:05:49.726  INFO 7732 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getPredicates/{listName}],methods=[GET]}" onto public java.util.List<com.explordf.dto.PredicateDto> com.explordf.controller.QueryController.getPredicatesList(java.lang.String)
+2018-12-09 19:05:49.726  INFO 7732 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/savePredicatesList/{listName}],methods=[POST],consumes=[application/json]}" onto public java.lang.String com.explordf.controller.QueryController.savePredicatesList(java.util.List<com.explordf.dto.PredicateDto>,java.lang.String)
+2018-12-09 19:05:49.742  INFO 7732 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getAllPredicatesLists],methods=[GET]}" onto public java.util.List<java.lang.String> com.explordf.controller.QueryController.getAllPredicatesLists()
+2018-12-09 19:05:49.742  INFO 7732 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-12-09 19:05:49.742  INFO 7732 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-12-09 19:05:49.764  INFO 7732 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-12-09 19:05:49.764  INFO 7732 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-12-09 19:05:49.849  INFO 7732 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2018-12-09 19:05:50.096  INFO 7732 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-12-09 19:05:50.127  INFO 7732 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2018-12-09 19:05:50.143  INFO 7732 --- [main] com.explordf.ExploRdfApplication         : Started ExploRdfApplication in 3.155 seconds (JVM running for 4.285)
+2018-12-09 19:06:10.079  INFO 7732 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-12-09 19:06:10.079  INFO 7732 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-12-09 19:06:10.097  INFO 7732 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 17 ms
+2018-12-09 19:06:13.783  INFO 7732 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 19:06:15.596  INFO 7732 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 19:06:17.973  INFO 7732 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 19:11:30.448  INFO 7732 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 19:11:32.412  INFO 7732 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 19:11:34.317  INFO 7732 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 19:12:47.086  INFO 7732 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 19:12:48.242  INFO 7732 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 19:12:49.546  INFO 7732 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 19:13:38.269  INFO 7732 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 19:13:39.874  INFO 7732 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 19:13:41.341  INFO 7732 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : Method getPredicates() entered.
+2018-12-09 19:14:36.154  INFO 7732 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 19:14:39.603  INFO 7732 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 19:15:37.505  INFO 7732 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 19:15:39.480  INFO 7732 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 19:15:42.420  INFO 7732 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 19:19:56.295  INFO 7732 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 19:19:57.799  INFO 7732 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 19:20:02.014  INFO 7732 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 19:30:04.961  INFO 7732 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 19:30:06.168  INFO 7732 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 19:30:07.842  INFO 7732 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 19:32:45.387  INFO 7732 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 19:32:46.775  INFO 7732 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 19:32:47.972  INFO 7732 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 19:34:05.073  INFO 7732 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 19:34:06.948  INFO 7732 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 19:34:08.699  INFO 7732 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 19:34:49.250  INFO 7732 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 19:34:50.426  INFO 7732 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 19:34:51.526  INFO 7732 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 19:36:23.992  INFO 7732 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 19:36:26.230  INFO 7732 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 19:36:27.572  INFO 7732 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 19:38:54.546  INFO 7732 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 19:38:57.128  INFO 7732 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 19:38:59.592  INFO 7732 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 19:39:34.595  INFO 7732 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 19:39:38.862  INFO 7732 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 19:39:45.276  INFO 7732 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 19:56:14.561  INFO 7732 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 19:56:16.112  INFO 7732 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 19:56:21.374  INFO 7732 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 19:57:56.012  INFO 7732 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 19:57:57.498  INFO 7732 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 19:57:59.090  INFO 7732 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 19:58:27.135  INFO 7732 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 19:58:32.452  INFO 7732 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 20:02:02.212  INFO 7732 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2018-12-09 20:02:02.213  INFO 7732 --- [RMI TCP Connection(2)-127.0.0.1] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2cd76f31: startup date [Sun Dec 09 19:05:47 CET 2018]; root of context hierarchy
+2018-12-09 20:02:02.214  INFO 7732 --- [RMI TCP Connection(2)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-12-09 20:02:02.214  INFO 7732 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Method predestroy entered
+2018-12-09 20:02:02.214  INFO 7732 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Shut down
+2018-12-09 20:02:02.214  INFO 7732 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Shut down the repo
+2018-12-09 20:02:08.233  INFO 7152 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 7152 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
+2018-12-09 20:02:08.248  INFO 7152 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
+2018-12-09 20:02:08.276  INFO 7152 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@23348b5d: startup date [Sun Dec 09 20:02:08 CET 2018]; root of context hierarchy
+2018-12-09 20:02:08.840  INFO 7152 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-12-09 20:02:09.178  INFO 7152 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2018-12-09 20:02:09.210  INFO 7152 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-12-09 20:02:09.211  INFO 7152 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
+2018-12-09 20:02:09.212  INFO 7152 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
+2018-12-09 20:02:09.394  INFO 7152 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-12-09 20:02:09.394  INFO 7152 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1118 ms
+2018-12-09 20:02:09.479  INFO 7152 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-12-09 20:02:09.479  INFO 7152 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-12-09 20:02:09.479  INFO 7152 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-12-09 20:02:09.479  INFO 7152 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-12-09 20:02:09.479  INFO 7152 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-12-09 20:02:09.526  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : PostConstruct init()
+2018-12-09 20:02:09.526  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
+2018-12-09 20:02:09.526  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
+2018-12-09 20:02:09.526  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
+2018-12-09 20:02:09.526  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
+2018-12-09 20:02:09.526  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
+2018-12-09 20:02:09.526  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
+2018-12-09 20:02:09.526  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
+2018-12-09 20:02:09.526  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
+2018-12-09 20:02:09.526  INFO 7152 --- [main] com.explordf.dao.impl.RepositoryServer   : Method getHTTPRepository() entered.
+2018-12-09 20:02:10.391  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : Shut down
+2018-12-09 20:02:10.391  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
+2018-12-09 20:02:10.391  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
+2018-12-09 20:02:10.391  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
+2018-12-09 20:02:10.391  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
+2018-12-09 20:02:10.391  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
+2018-12-09 20:02:10.391  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
+2018-12-09 20:02:10.391  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
+2018-12-09 20:02:10.394  INFO 7152 --- [main] com.explordf.dao.ExploRDFDao             : predicate folder already exists.
+2018-12-09 20:02:10.472  INFO 7152 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-12-09 20:02:10.641  INFO 7152 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@23348b5d: startup date [Sun Dec 09 20:02:08 CET 2018]; root of context hierarchy
+2018-12-09 20:02:10.695  INFO 7152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getSupportedServers],methods=[GET]}" onto public java.util.List<java.lang.String> com.explordf.controller.ConnectionController.getSupportedServers()
+2018-12-09 20:02:10.695  INFO 7152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getConnectionProps],methods=[GET]}" onto public com.explordf.dto.ConnectionDto com.explordf.controller.ConnectionController.getConnectionProps()
+2018-12-09 20:02:10.695  INFO 7152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/connect],methods=[POST],consumes=[application/json]}" onto public com.explordf.dto.ConnectionDto com.explordf.controller.ConnectionController.setConnectionProps(com.explordf.dto.ConnectionDto)
+2018-12-09 20:02:10.695  INFO 7152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.index()
+2018-12-09 20:02:10.695  INFO 7152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/connect],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.connect(org.springframework.ui.Model)
+2018-12-09 20:02:10.695  INFO 7152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/query],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.query()
+2018-12-09 20:02:10.695  INFO 7152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/help],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.help()
+2018-12-09 20:02:10.695  INFO 7152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getSubject/**],methods=[GET]}" onto public java.util.List<com.explordf.dto.TripleDto> com.explordf.controller.QueryController.getSubject(javax.servlet.http.HttpServletRequest)
+2018-12-09 20:02:10.695  INFO 7152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getPredicates/{listName}],methods=[GET]}" onto public java.util.List<com.explordf.dto.PredicateDto> com.explordf.controller.QueryController.getPredicatesList(java.lang.String)
+2018-12-09 20:02:10.695  INFO 7152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/savePredicatesList/{listName}],methods=[POST]}" onto public java.lang.String com.explordf.controller.QueryController.savePredicatesList(java.util.List<com.explordf.dto.PredicateDto>,java.lang.String)
+2018-12-09 20:02:10.695  INFO 7152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getAllPredicatesLists],methods=[GET]}" onto public java.util.List<java.lang.String> com.explordf.controller.QueryController.getAllPredicatesLists()
+2018-12-09 20:02:10.695  INFO 7152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getPredicates],methods=[GET]}" onto public java.util.List<com.explordf.dto.PredicateDto> com.explordf.controller.QueryController.getPredicates()
+2018-12-09 20:02:10.695  INFO 7152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/simpleSearch/**/{broaderSearch}],methods=[GET]}" onto public java.util.List<com.explordf.dto.TripleDto> com.explordf.controller.QueryController.simpleSearch(javax.servlet.http.HttpServletRequest,char)
+2018-12-09 20:02:10.695  INFO 7152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-12-09 20:02:10.695  INFO 7152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-12-09 20:02:10.726  INFO 7152 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-12-09 20:02:10.726  INFO 7152 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-12-09 20:02:10.826  INFO 7152 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2018-12-09 20:02:11.074  INFO 7152 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-12-09 20:02:11.111  INFO 7152 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2018-12-09 20:02:11.111  INFO 7152 --- [main] com.explordf.ExploRdfApplication         : Started ExploRdfApplication in 3.158 seconds (JVM running for 4.382)
+2018-12-09 20:02:23.283  INFO 7152 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-12-09 20:02:23.283  INFO 7152 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-12-09 20:02:23.306  INFO 7152 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 18 ms
+2018-12-09 20:03:19.436  INFO 7152 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 20:03:20.557  INFO 7152 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 20:03:22.611  INFO 7152 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 20:06:09.310  INFO 7152 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 20:06:10.729  INFO 7152 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 20:06:12.705  INFO 7152 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 20:07:12.471  INFO 7152 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 20:07:13.640  INFO 7152 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 20:07:14.978  INFO 7152 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 20:08:54.247  INFO 7152 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 20:09:40.848  INFO 7152 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 20:09:42.004  INFO 7152 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 20:09:43.571  INFO 7152 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 20:09:45.261  WARN 7152 --- [http-nio-8081-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unrecognized token 'undefined': was expecting ('true', 'false' or 'null'); nested exception is com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'undefined': was expecting ('true', 'false' or 'null')
+ at [Source: (PushbackInputStream); line: 1, column: 11]]
+2018-12-09 20:10:31.908  INFO 7152 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2018-12-09 20:10:31.917  INFO 7152 --- [RMI TCP Connection(2)-127.0.0.1] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@23348b5d: startup date [Sun Dec 09 20:02:08 CET 2018]; root of context hierarchy
+2018-12-09 20:10:31.918  INFO 7152 --- [RMI TCP Connection(2)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-12-09 20:10:31.918  INFO 7152 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Method predestroy entered
+2018-12-09 20:10:31.918  INFO 7152 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Shut down
+2018-12-09 20:10:31.918  INFO 7152 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Shut down the repo
+2018-12-09 20:10:44.102  INFO 4848 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 4848 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
+2018-12-09 20:10:44.118  INFO 4848 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
+2018-12-09 20:10:44.149  INFO 4848 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2925bf5b: startup date [Sun Dec 09 20:10:44 CET 2018]; root of context hierarchy
+2018-12-09 20:10:44.749  INFO 4848 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-12-09 20:10:45.104  INFO 4848 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2018-12-09 20:10:45.126  INFO 4848 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-12-09 20:10:45.126  INFO 4848 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
+2018-12-09 20:10:45.126  INFO 4848 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
+2018-12-09 20:10:45.304  INFO 4848 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-12-09 20:10:45.319  INFO 4848 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1170 ms
+2018-12-09 20:10:45.388  INFO 4848 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-12-09 20:10:45.388  INFO 4848 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-12-09 20:10:45.388  INFO 4848 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-12-09 20:10:45.388  INFO 4848 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-12-09 20:10:45.388  INFO 4848 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-12-09 20:10:45.435  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : PostConstruct init()
+2018-12-09 20:10:45.435  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
+2018-12-09 20:10:45.451  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
+2018-12-09 20:10:45.451  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
+2018-12-09 20:10:45.451  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
+2018-12-09 20:10:45.451  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
+2018-12-09 20:10:45.451  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
+2018-12-09 20:10:45.451  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
+2018-12-09 20:10:45.451  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
+2018-12-09 20:10:45.451  INFO 4848 --- [main] com.explordf.dao.impl.RepositoryServer   : Method getHTTPRepository() entered.
+2018-12-09 20:10:46.290  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : Shut down
+2018-12-09 20:10:46.290  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : Connection properties:
+2018-12-09 20:10:46.290  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
+2018-12-09 20:10:46.290  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
+2018-12-09 20:10:46.290  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
+2018-12-09 20:10:46.290  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
+2018-12-09 20:10:46.290  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : Username:  Env: 
+2018-12-09 20:10:46.290  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : Password:  Env: 
+2018-12-09 20:10:46.290  INFO 4848 --- [main] com.explordf.dao.ExploRDFDao             : predicate folder already exists.
+2018-12-09 20:10:46.368  INFO 4848 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-12-09 20:10:46.538  INFO 4848 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2925bf5b: startup date [Sun Dec 09 20:10:44 CET 2018]; root of context hierarchy
+2018-12-09 20:10:46.591  INFO 4848 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getSupportedServers],methods=[GET]}" onto public java.util.List<java.lang.String> com.explordf.controller.ConnectionController.getSupportedServers()
+2018-12-09 20:10:46.591  INFO 4848 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/connect],methods=[POST],consumes=[application/json]}" onto public com.explordf.dto.ConnectionDto com.explordf.controller.ConnectionController.setConnectionProps(com.explordf.dto.ConnectionDto)
+2018-12-09 20:10:46.591  INFO 4848 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getConnectionProps],methods=[GET]}" onto public com.explordf.dto.ConnectionDto com.explordf.controller.ConnectionController.getConnectionProps()
+2018-12-09 20:10:46.591  INFO 4848 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.index()
+2018-12-09 20:10:46.591  INFO 4848 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/connect],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.connect(org.springframework.ui.Model)
+2018-12-09 20:10:46.591  INFO 4848 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/query],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.query()
+2018-12-09 20:10:46.591  INFO 4848 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/help],methods=[GET]}" onto public java.lang.String com.explordf.controller.PageController.help()
+2018-12-09 20:10:46.591  INFO 4848 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getSubject/**],methods=[GET]}" onto public java.util.List<com.explordf.dto.TripleDto> com.explordf.controller.QueryController.getSubject(javax.servlet.http.HttpServletRequest)
+2018-12-09 20:10:46.591  INFO 4848 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/savePredicatesList/{listName}],methods=[POST],consumes=[application/json]}" onto public java.lang.String com.explordf.controller.QueryController.savePredicatesList(java.util.List<com.explordf.dto.PredicateDto>,java.lang.String)
+2018-12-09 20:10:46.591  INFO 4848 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getPredicates/{listName}],methods=[GET]}" onto public java.util.List<com.explordf.dto.PredicateDto> com.explordf.controller.QueryController.getPredicatesList(java.lang.String)
+2018-12-09 20:10:46.591  INFO 4848 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getAllPredicatesLists],methods=[GET]}" onto public java.util.List<java.lang.String> com.explordf.controller.QueryController.getAllPredicatesLists()
+2018-12-09 20:10:46.591  INFO 4848 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/simpleSearch/**/{broaderSearch}],methods=[GET]}" onto public java.util.List<com.explordf.dto.TripleDto> com.explordf.controller.QueryController.simpleSearch(javax.servlet.http.HttpServletRequest,char)
+2018-12-09 20:10:46.591  INFO 4848 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getPredicates],methods=[GET]}" onto public java.util.List<com.explordf.dto.PredicateDto> com.explordf.controller.QueryController.getPredicates()
+2018-12-09 20:10:46.591  INFO 4848 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-12-09 20:10:46.607  INFO 4848 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-12-09 20:10:46.623  INFO 4848 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-12-09 20:10:46.623  INFO 4848 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-12-09 20:10:46.723  INFO 4848 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2018-12-09 20:10:46.977  INFO 4848 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-12-09 20:10:47.008  INFO 4848 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2018-12-09 20:10:47.008  INFO 4848 --- [main] com.explordf.ExploRdfApplication         : Started ExploRdfApplication in 3.192 seconds (JVM running for 4.368)
+2018-12-09 20:10:51.422  INFO 4848 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-12-09 20:10:51.438  INFO 4848 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-12-09 20:10:51.456  INFO 4848 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 18 ms
+2018-12-09 20:10:54.110  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 20:10:55.681  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 20:11:00.010  INFO 4848 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 20:11:02.170  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : savePredicatesList() method entered.
+2018-12-09 20:11:02.171  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : Overwriting test in predicates directory.
+2018-12-09 20:11:02.171  WARN 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : Couldn´t create test in predicates directory.
+2018-12-09 20:11:19.759  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : savePredicatesList() method entered.
+2018-12-09 20:11:19.759  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : Overwriting test in predicates directory.
+2018-12-09 20:11:19.763  WARN 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : Couldn´t create test in predicates directory.
+2018-12-09 20:11:21.365  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 20:11:23.192  INFO 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 20:48:26.343  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:03:54.793  INFO 4848 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 21:03:56.247  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:03:58.455  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 21:04:01.430  INFO 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : savePredicatesList() method entered.
+2018-12-09 21:04:01.430  INFO 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : Overwriting test in predicates directory.
+2018-12-09 21:04:01.430  WARN 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : Couldn´t create test in predicates directory.
+2018-12-09 21:12:13.348  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 21:12:14.911  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:12:41.626  INFO 4848 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 21:12:43.142  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:12:45.251  INFO 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:12:47.916  INFO 4848 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 21:12:49.122  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:12:50.511  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 21:12:56.679  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : savePredicatesList() method entered.
+2018-12-09 21:12:56.679  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : Overwriting test in predicates directory.
+2018-12-09 21:12:56.679  WARN 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : Couldn´t create test in predicates directory.
+2018-12-09 21:12:56.728  INFO 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:12:59.474  INFO 4848 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 21:13:02.309  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:21:20.909  INFO 4848 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 21:21:22.008  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:21:23.760  INFO 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 21:21:32.341  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : savePredicatesList() method entered.
+2018-12-09 21:21:32.341  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Overwriting test in predicates directory.
+2018-12-09 21:21:32.341  WARN 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Couldn´t create test in predicates directory.
+2018-12-09 21:21:32.544  INFO 4848 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:21:58.273  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 21:21:59.293  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:22:00.835  INFO 4848 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 21:22:02.127  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : savePredicatesList() method entered.
+2018-12-09 21:22:02.128  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : Overwriting test in predicates directory.
+2018-12-09 21:22:02.128  WARN 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : Couldn´t create test in predicates directory.
+2018-12-09 21:22:02.272  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:22:22.623  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 21:22:25.268  INFO 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : savePredicatesList() method entered.
+2018-12-09 21:22:25.268  INFO 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : Overwriting test in predicates directory.
+2018-12-09 21:22:25.269  WARN 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : Couldn´t create test in predicates directory.
+2018-12-09 21:22:25.292  INFO 4848 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:28:39.214  INFO 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 21:28:40.709  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:28:42.158  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 21:28:43.733  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : savePredicatesList() method entered.
+2018-12-09 21:28:43.733  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Overwriting test in predicates directory.
+2018-12-09 21:28:43.733  WARN 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Couldn´t create test in predicates directory.
+2018-12-09 21:28:43.791  INFO 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:33:43.696  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 21:33:45.076  INFO 4848 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:33:46.340  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 21:33:50.240  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : savePredicatesList() method entered.
+2018-12-09 21:33:50.240  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : Overwriting test in predicates directory.
+2018-12-09 21:33:50.241  WARN 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : Couldn´t create test in predicates directory.
+2018-12-09 21:33:50.268  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:52:51.262  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 21:52:52.410  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:52:53.458  INFO 4848 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 21:53:00.682  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : savePredicatesList() method entered.
+2018-12-09 21:53:00.682  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Overwriting test in predicates directory.
+2018-12-09 21:53:00.682  WARN 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Couldn´t create test in predicates directory.
+2018-12-09 21:53:00.739  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:56:12.468  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 21:56:13.609  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:56:14.799  INFO 4848 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 21:57:02.712  INFO 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:57:18.745  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 21:58:54.460  INFO 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 21:58:55.908  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:58:58.178  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 21:59:10.023  INFO 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:59:14.360  INFO 4848 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 21:59:23.764  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : savePredicatesList() method entered.
+2018-12-09 21:59:23.765  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : File test2 in predicates directory created.
+2018-12-09 21:59:23.815  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:59:31.195  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 21:59:33.623  INFO 4848 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:59:36.594  INFO 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 21:59:40.613  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : savePredicatesList() method entered.
+2018-12-09 21:59:40.614  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : Overwriting test in predicates directory.
+2018-12-09 21:59:40.614  WARN 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : Couldn´t create test in predicates directory.
+2018-12-09 21:59:40.694  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 21:59:49.324  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 21:59:56.359  INFO 4848 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:01:35.549  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:01:57.785  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:02:04.511  INFO 4848 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:03:45.394  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:04:18.195  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:05:02.530  INFO 4848 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:05:05.933  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:08:14.092  INFO 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:08:15.408  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:08:19.747  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:08:21.247  INFO 4848 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:10:08.180  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:11:33.095  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:11:34.133  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:11:35.591  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:11:39.849  INFO 4848 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:11:42.375  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:12:35.557  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:14:30.895  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:14:32.483  INFO 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:14:33.662  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:15:21.859  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:15:23.212  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:15:24.841  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:16:14.489  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:16:15.545  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:16:34.193  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:16:35.210  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:16:36.390  INFO 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:16:38.399  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:19:39.764  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:19:44.835  INFO 4848 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:23:55.055  INFO 4848 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:23:57.335  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:24:23.874  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:24:24.861  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:24:27.117  INFO 4848 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:24:49.005  INFO 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:24:54.158  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:25:24.440  INFO 4848 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:25:25.491  INFO 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:25:28.707  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:25:43.942  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:25:47.263  INFO 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:27:01.801  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:27:02.949  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:27:03.842  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:28:57.817  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:28:58.794  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:29:00.061  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:29:50.686  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:29:53.291  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:29:54.261  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:31:21.766  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:31:22.951  INFO 4848 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:31:25.254  INFO 4848 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:34:50.500  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:34:51.714  INFO 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:34:52.783  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:35:27.896  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:35:29.546  INFO 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:35:30.751  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:39:52.265  INFO 4848 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:39:55.782  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:39:56.960  INFO 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:40:00.159  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : Method getPredicates() entered.
+2018-12-09 22:41:34.414  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : Method getPredicates() entered.
+2018-12-09 22:42:28.605  INFO 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:42:29.750  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:42:30.730  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:42:32.328  INFO 4848 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : Method getPredicates() entered.
+2018-12-09 22:49:16.991  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:49:18.830  INFO 4848 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:49:20.141  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:49:35.802  INFO 4848 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:49:37.017  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:49:47.485  INFO 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:51:24.748  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:51:25.792  INFO 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:51:26.880  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:51:50.274  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:51:51.429  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:51:53.193  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:52:39.427  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:52:40.668  INFO 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:52:41.672  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 22:55:10.843  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 22:55:11.995  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 22:55:13.238  INFO 4848 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : Method getPredicates() entered.
+2018-12-09 23:01:27.793  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 23:01:29.163  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 23:01:30.494  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 23:14:31.477  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 23:14:32.660  INFO 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 23:14:37.909  INFO 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 23:14:40.110  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 23:14:42.753  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 23:14:58.805  INFO 4848 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 23:15:00.110  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 23:15:04.148  INFO 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : savePredicatesList() method entered.
+2018-12-09 23:15:04.149  INFO 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : Overwriting test in predicates directory.
+2018-12-09 23:15:04.149  WARN 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : Couldn´t create test in predicates directory.
+2018-12-09 23:15:04.185  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 23:15:08.761  INFO 4848 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 23:16:35.596  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 23:16:36.881  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 23:16:37.928  INFO 4848 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 23:16:50.106  INFO 4848 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 23:16:51.416  INFO 4848 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 23:17:16.299  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : savePredicatesList() method entered.
+2018-12-09 23:17:16.299  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : File hallo in predicates directory created.
+2018-12-09 23:17:16.346  INFO 4848 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 23:19:44.527  INFO 4848 --- [http-nio-8081-exec-8] com.explordf.dao.ExploRDFDao             : Method simpleSearch() in entered.
+2018-12-09 23:19:45.646  INFO 4848 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 23:19:51.004  INFO 4848 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2018-12-09 23:20:03.528  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : savePredicatesList() method entered.
+2018-12-09 23:20:03.529  INFO 4848 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : File hallo2 in predicates directory created.
+2018-12-09 23:20:03.599  INFO 4848 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2018-12-09 23:25:28.786  INFO 4848 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2018-12-09 23:25:28.787  INFO 4848 --- [RMI TCP Connection(2)-127.0.0.1] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2925bf5b: startup date [Sun Dec 09 20:10:44 CET 2018]; root of context hierarchy
+2018-12-09 23:25:28.805  INFO 4848 --- [RMI TCP Connection(2)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-12-09 23:25:28.808  INFO 4848 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Method predestroy entered
+2018-12-09 23:25:28.808  INFO 4848 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Shut down
+2018-12-09 23:25:28.808  INFO 4848 --- [RMI TCP Connection(2)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Shut down the repo

@@ -1,5 +1,7 @@
 package com.explordf.service;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -29,6 +31,39 @@ public class QueryService {
 	public List<TripleDto> getSubject(String subject) {
 		System.out.println("Entered sevice");
 		return exploRDFDao.getSubject(subject);
+	}
+
+
+	public List<String> getAllPredicatesLists() {
+		return exploRDFDao.getAllPredicatesLists();
+	}
+
+
+	public String savePredicatesList(List<PredicateDto> predicateDtoList, String listName) {
+		String result = null;
+		try {
+			result = exploRDFDao.savePredicatesList(predicateDtoList, listName);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+
+	public List<PredicateDto> getPredicatesList(String listName) {
+		List<PredicateDto> result = null;
+		try {
+			result = exploRDFDao.getPredicatesList(listName);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 }

@@ -57,6 +57,24 @@ $(document).ready(function() {
   getSupportedServers();
 });
 
+
+// Get all customized types of visualizing the graph.
+function getGraphVisualizationTypes() {
+	$('#visualizationTypeGroup').empty();
+	var visTypes;
+	d3.json("getAllPredicatesLists").then(function(data){
+		visTypes = data;
+		console.log(visTypes);
+		var select = d3.select('#visualizationTypeGroup');
+		var options = select.selectAll('option')
+			.data(visTypes).enter()
+			.append('option')
+			.text(function(d) {return d});		
+	});
+	
+}
+
+
 //Get Connection properties
 function getConnProps() {
 	var connection;
@@ -123,6 +141,7 @@ $('#resultTbody').on("click", "a", function (e) {
     drawChoiceTable(choiceResult, subj);
     $("body").css("cursor", "default");
   });
+  getGraphVisualizationTypes();
   
 //  d3.json("getSubject", {method: 'post', body: subj}).then(function (data) {
 //	    choiceResult = data;
@@ -206,12 +225,39 @@ $("#newVisualizationBtn").on('click', function () {
 	  $('#predicatesDiv').css('display', 'block');
 	  $('#headingChoice').css('display', 'none');
 	  $('#headingPredicates').css('display', 'block');
-  d3.json("getPredicates").then(function (data) {
-    predicates = data;
-    drawPredicatesTable(predicates);
-    $("body").css("cursor", "default");
-  });
+	  
+	  var selectedOpt = $("#visualizationTypeGroup option:selected" ).text();
+	  
+	  if(selectedOpt !== null && selectedOpt !== '') {
+		  $('#predicatesInput').val(selectedOpt);
+		  getPredicatesList(selectedOpt);
+	  } else {
+		  getPredicates();
+	  }
+	  
+	  
+//  d3.json("getPredicates").then(function (data) {
+//    predicates = data;
+//    drawPredicatesTable(predicates);
+//    $("body").css("cursor", "default");
+//  });
 });
+
+function getPredicates() {
+	d3.json("getPredicates").then(function (data) {
+	    predicates = data;
+	    drawPredicatesTable(predicates);
+	    $("body").css("cursor", "default");
+	  });
+}
+
+function getPredicatesList(listName) {
+	d3.json("getPredicates/" + listName).then(function (data) {
+	    predicates = data;
+	    drawPredicatesTable(predicates);
+	    $("body").css("cursor", "default");
+	  });
+}
 
 // Drawing a table with all predicates
 function drawPredicatesTable(data) {
@@ -239,41 +285,130 @@ function drawPredicatesTable(data) {
   });
 }
 
+$('#loadNewPredicatesBtn').on('click', function(){
+	$('#predicatesTbody').empty();
+	$('#predicatesInput').val("");
+	$("body").css("cursor", "progress");
+	getPredicates();
+});
+
 // Keeps only one checkbox checked at the same time. 
 $('#predicatesTable').on('click', 'input.checkboxLabel', function () {
   $('.checkboxLabel').not(this).prop('checked', false);
 });
 
+//Save predicates list with the selected properties
+$('#savePredicatesBtn').on('click', function(){
+	
+	var listName = $('#predicatesInput').val();
+	
+	if(!validateName(listName)){
+		$('#invalidPredicatesListName').html('Please enter a valid predicate type name. Without \ / : * ? " < > |');
+		return;
+	}
+	
+	var exists = false;
+	$("#visualizationTypeGroup option").each(function(){
+		if($(this).text() === listName) {
+			exists = true;
+		}
+	});
+	console.log(exists);
+	var answer;
+	if(exists) {
+		answer = confirm("A customized visualization type already exists with that " +
+				"name. Do you want to overwrite it?");
+		if(!answer) {
+			return;
+		}
+	}
+	
+	console.log("listName: " + listName);
+	var predicates = [];
+	
+	$('#predicatesTbody tr').each(function(index, element){
+		
+		var p = $(this).find('td:eq(0)').text();
+		var l = $(this).find('td:eq(1)').find('input').is(':checked');
+		var e = $(this).find('td:eq(2)').find('input').is(':checked');
 
+		
+		var predicate = {};
+		predicate['predicate'] = p;
+		predicate['label'] = l;
+		predicate['edge'] = e;
+				
+//		console.log(p+" "+l+" "+e);
+//		console.log(predicate);
+		predicates.push(predicate);
+		
+		var urlName = 'savePredicatesList/' + listName;
+		console.log(urlName);
+	});
+	
+	$.ajax({
+		url:'savePredicatesList/' + listName,
+		type:'POST',
+		xhrFields: {
+            withCredentials:true
+        },
+        contentType: 'application/json; charset=utf-8',
+		data: JSON.stringify(predicates),
+        success:function(listName){
+        	console.log(listName);
+        	turnBack();
+        	
+        },
+        error:function() {
+            console.log("fail");
+            alert("Failed to save the predicates.");
+        }
+	});
+});
 
-// Back button depending on the current visible table div.
-$('#searchBackBtn').on('click', function () {
-  var visibleDiv = $(".containerDiv:visible").attr('id');
-  console.log(visibleDiv);
-  switch (visibleDiv) {
-    case "resultDiv":
-      $('#searchDiv').css("display", "block");
-      $('#resultDiv').css("display", "none");
-      $('#contentHeader').css("display", "none");
-      $('#resultTbody').empty();
-      break;
-    case "choiceDiv":
-      $('#resultDiv').css("display", "block");
-      $('#choiceDiv').css("display", "none");
-      $('#headingResult').css('display', 'block');
-      $('#headingChoice').css('display', 'none');
-      $('#choiceTbody').empty();
-      break
-    case "predicatesDiv":
-      $('#choiceDiv').css("display", "block");
-      $('#predicatesDiv').css("display", "none");
-      $('#headingChoice').css('display', 'block');
-      $('#headingPredicates').css('display', 'none');
-      $('#predicatesTbody').empty();
-      break;
-    default:
-      console.log("Something went wrong!");
-  }
+function validateName(name) {
+	if(name == null || $.trim(name) === '') {
+		return false;
+	} else {
+		return /^[A-Za-z0-9]+$/.test(name);
+	}
+}
+
+//Showing the search divs depending on the current visible table div.
+function turnBack() {
+	var visibleDiv = $(".containerDiv:visible").attr('id');
+	  console.log(visibleDiv);
+	  switch (visibleDiv) {
+	    case "resultDiv":
+	      $('#searchDiv').css("display", "block");
+	      $('#resultDiv').css("display", "none");
+	      $('#contentHeader').css("display", "none");
+	      $('#resultTbody').empty();
+	      break;
+	    case "choiceDiv":
+	      $('#resultDiv').css("display", "block");
+	      $('#choiceDiv').css("display", "none");
+	      $('#headingResult').css('display', 'block');
+	      $('#headingChoice').css('display', 'none');
+	      $('#choiceTbody').empty();
+	      break
+	    case "predicatesDiv":
+	      $('#choiceDiv').css("display", "block");
+	      $('#predicatesDiv').css("display", "none");
+	      $('#headingChoice').css('display', 'block');
+	      $('#headingPredicates').css('display', 'none');
+	      $('#predicatesTbody').empty();
+	      $('#invalidPredicatesListName').empty();
+	      getGraphVisualizationTypes();
+	      break;
+	    default:
+	      console.log("Something went wrong!");
+	  }
+}
+
+// Back button for the search divs.
+$('#searchBackBtn').on('click', function() {
+	turnBack();
 });
 /**
    * --------------------------------------------------------------

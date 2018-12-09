@@ -253,13 +253,13 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		}
 		// --------------------------------------------------------------------------
 
-		try {
-			savePredicatesList(resultDto, "test");
-			getPredicatesList("test");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			savePredicatesList(resultDto, "test");
+//			getPredicatesList("test");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 //		try {
 //			writePredicatesToFile(resultDto);
@@ -384,27 +384,34 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		}
 		
 		
-		
-		
-		
-		
-		
 		IRI label = factory.createIRI(predicateLabelIRI);
-		Literal labelValue = factory.createLiteral(false);
+		Literal trueLiteral = factory.createLiteral(true);
 		
 		IRI edge = factory.createIRI(predicateEdgeIRI);
 		
-		Resource labelSub = Models.subject(model.filter(null, label, labelValue))
+		Resource labelSubj = Models.subject(model.filter(null, label, trueLiteral))
 				.orElse(null);
 		
 		
-		for (Statement statement : model.filter(null, label, labelValue)) {
-			String triple = "";
-			triple += statement.getSubject() + " ";
-			triple += statement.getPredicate() + " ";
-			triple += statement.getObject() + " ";
-
-			System.out.println(triple);
+		
+		
+		for (Statement statement : model.filter(null, edge, null)) {
+			
+			Resource edgeSubj = statement.getSubject();
+			
+			String predicateName = edgeSubj.stringValue();
+			boolean predicateLabel = edgeSubj.equals(labelSubj);
+			boolean predicateEdge = trueLiteral.equals(statement.getObject());
+			
+			resultDto.add(new PredicateDto(predicateName, predicateLabel, predicateEdge));
+			
+//			String triple = "";
+//			triple += predicateName + " ";
+//			triple += predicateLabel + " ";
+//			triple += predicateEdge + " ";
+//
+//			System.out.println(triple);
+			
 		}
 		
 		
@@ -484,7 +491,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 
 			for (int i = 0; i < files.length; i++) {
 				if (files[i].endsWith(".ttl")) {
-					predicatesList.add(files[i]);
+					predicatesList.add(files[i].substring(0, files[i].length()-4));
 				}
 			}
 			
@@ -542,11 +549,12 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		
 		predicatesDir = dirNameServer + "/"
 				+ dirNameUrl.replaceFirst("http://", "").replaceAll("/", "").replaceAll(":", "-") + "/" + dirNameRepo;
-		System.out.println(predicatesDir);
+		System.out.println(predicatesRootDir + predicatesDir);
 
 		File file = new File(predicatesRootDir + predicatesDir);
+//		File file = new File("test");
 		if (!file.exists()) {
-			if (file.mkdir()) {
+			if (file.mkdirs()) {
 				logger.info("New predicate folder created.");
 			} else {
 				logger.info("Couldn´t create new predicate folder.");
