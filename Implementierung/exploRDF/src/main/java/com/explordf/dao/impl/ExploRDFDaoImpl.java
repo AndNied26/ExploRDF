@@ -29,6 +29,7 @@ import org.eclipse.rdf4j.query.TupleQuery;
 import org.eclipse.rdf4j.query.TupleQueryResult;
 import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
+import org.eclipse.rdf4j.repository.RepositoryResult;
 import org.eclipse.rdf4j.repository.sail.SailRepository;
 import org.eclipse.rdf4j.rio.RDFFormat;
 import org.eclipse.rdf4j.rio.RDFParser;
@@ -48,8 +49,11 @@ import org.springframework.util.ResourceUtils;
 
 import com.explordf.dao.ExploRDFDao;
 import com.explordf.dto.ConnectionDto;
+import com.explordf.dto.EdgeDto;
+import com.explordf.dto.NodeDto;
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
+import com.explordf.dto.VisualizationNodesDto;
 
 @org.springframework.stereotype.Repository
 @PropertySource("classpath:explordf.properties")
@@ -106,6 +110,130 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 				tripleStoreUserName, tripleStorePassword));
 	}
 
+	
+	@Override
+	public VisualizationNodesDto getNodeData(String subject, String predicatesList) {
+		String label = null;
+		List<String> pEdges = new LinkedList<>();
+		VisualizationNodesDto viz = new VisualizationNodesDto();
+		try {
+			List<PredicateDto> predicatesListDto = getPredicatesList(predicatesList);
+			
+			for (PredicateDto predicateDto : predicatesListDto) {
+				if(predicateDto.isLabel()) {
+					label = predicateDto.getPredicate();
+				}
+				else if(predicateDto.isEdge()) {
+					pEdges.add(predicateDto.getPredicate());
+				}
+			}
+			
+			
+			System.out.println("Hallo");
+			
+			for (String pedge : pEdges) {
+				System.out.println(pedge);
+			}
+			List<TripleDto> nodeData = getSubject(subject);
+			for (TripleDto tripleDto : nodeData) {
+				System.out.println("TripleDtos");
+				System.out.println(tripleDto.getSubject() + " " + tripleDto.getPredicate() + " "+ tripleDto.getObject());
+			}
+			
+			List<NodeDto> nodes = new LinkedList<>();
+			List<EdgeDto> edges = new LinkedList<>();
+			
+			for (TripleDto tripleDto : nodeData) {
+				
+				if(pEdges.contains(tripleDto.getPredicate())) {
+					
+					System.out.println("pEdges: " + tripleDto.getPredicate());
+					EdgeDto edge = new EdgeDto(subject, tripleDto.getObject(), tripleDto.getPredicate());
+					viz.addEdge(edge);
+					String nodeId = tripleDto.getObject();
+					String nodeLabel = getNodeLabel(nodeId, label);
+					NodeDto node = new NodeDto(nodeId, nodeLabel);
+					viz.addNode(node);
+					
+				}
+		
+			}
+			
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return viz;
+	}
+	
+	private String getNodeLabel(String nodeId, String label) {
+		String resultStr = null;
+		try (RepositoryConnection con = repo.getConnection()) {
+			
+			ValueFactory factory = SimpleValueFactory.getInstance();
+			IRI subj = factory.createIRI(nodeId);
+			IRI pred = factory.createIRI(label);
+			
+			try (RepositoryResult<Statement> statements = con.getStatements(subj, pred, null)) {
+				while (statements.hasNext()) {
+
+					Statement st = statements.next();
+					resultStr = "" + st.getObject();
+				}
+			}
+
+		}
+		
+		return resultStr;
+		
+	}
+	
+	@Override
+	public VisualizationNodesDto getNode(String subject, String predicatesList) {
+		String label = null;
+		List<String> pEdges = new LinkedList<>();
+		VisualizationNodesDto viz = new VisualizationNodesDto();
+		try {
+			List<PredicateDto> predicatesListDto = getPredicatesList(predicatesList);
+			
+			for (PredicateDto predicateDto : predicatesListDto) {
+				if(predicateDto.isLabel()) {
+					label = predicateDto.getPredicate();
+				}
+				else if(predicateDto.isEdge()) {
+					pEdges.add(predicateDto.getPredicate());
+				}
+			}
+			
+			System.out.println("Hallo");
+			
+			List<TripleDto> nodeData = getSubject(subject);
+			
+			List<NodeDto> nodes = new LinkedList<>();
+			List<EdgeDto> edges = new LinkedList<>();
+			
+			for (TripleDto tripleDto : nodeData) {
+				
+				
+				if(tripleDto.getPredicate().equals(label)) {
+					System.out.println(tripleDto.getPredicate());
+					NodeDto node = new NodeDto(tripleDto.getSubject(),tripleDto.getObject());
+					viz.addNode(node);
+				}
+			}
+			
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return viz;
+	}
+	
+	
 	@Override
 	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
 		logger.info("Method simpleSearch() in entered.");
@@ -618,5 +746,16 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		logger.info("Password: " + tripleStorePassword + " Env: " + env.getProperty("triplestore.password"));
 		System.out.println();
 	}
+
+
+
+	
+
+
+
+
+
+
+	
 
 }

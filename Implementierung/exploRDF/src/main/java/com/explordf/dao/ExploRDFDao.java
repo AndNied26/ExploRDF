@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.explordf.dto.ConnectionDto;
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
+import com.explordf.dto.VisualizationNodesDto;
 
 /**
  * Interface for a DAO (data access object).
@@ -71,5 +72,9 @@ public interface ExploRDFDao {
 	ConnectionDto setConnectionProps(ConnectionDto connDto);
 	
 	List<String> getSupportedServers();
+
+	VisualizationNodesDto getNode(String subject, String predicatesList);
+
+	VisualizationNodesDto getNodeData(String subject, String predicatesList);
 	
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.explordf.dao.ExploRDFDao;
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
+import com.explordf.dto.VisualizationNodesDto;
 
 @Service
 public class QueryService {
@@ -64,6 +65,16 @@ public class QueryService {
 		}
 		
 		return result;
+	}
+
+
+	public VisualizationNodesDto getNode(String subject, String predicatesList) {
+		return exploRDFDao.getNode(subject, predicatesList);
+	}
+
+
+	public VisualizationNodesDto getNodeData(String subject, String predicatesList) {
+		return exploRDFDao.getNodeData(subject, predicatesList);
 	}
 	
 }

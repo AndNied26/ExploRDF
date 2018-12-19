@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
+import com.explordf.dto.VisualizationNodesDto;
 import com.explordf.service.QueryService;
 
 
@@ -84,5 +85,55 @@ public class QueryController {
 		String subject = request.getRequestURI().split("/getSubject/")[1];
 		return queryService.getSubject(subject);
 	}
+	
+//	@RequestMapping(value="/getNodeData/**", method = RequestMethod.GET)
+//	public VisualizationNodesDto getNodeData(HttpServletRequest request) {
+//		System.out.println("Entered Controller");
+//		String subject = request.getRequestURI().split("/getNodeData/")[1];
+//		return queryService.getNode(subject);
+//	}
+	
+	@RequestMapping(value="/getNode/**/{predicatesList}", method = RequestMethod.GET)
+	public VisualizationNodesDto getNode(HttpServletRequest request, @PathVariable(name = "predicatesList") String predicatesList){
+		System.out.println("Method getNode() entered");
+		
+		String url = "";
+		try {
+			url = URLDecoder.decode(request.getRequestURI(), StandardCharsets.UTF_8.name());
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return null;
+		}
+		System.out.println(url);
+		System.out.println(predicatesList);
+
+		String term = url.split("/getNode/")[1];
+		term = term.substring(0, term.length() - predicatesList.length() - 1);
+		System.out.println("term: " + term + ", predicatesList: " + predicatesList);
+		return queryService.getNode(term, predicatesList);
+//		return null;
+	}
+	
+	@RequestMapping(value="/getNodeData/**/{predicatesList}", method = RequestMethod.GET)
+	public VisualizationNodesDto getNodeData(HttpServletRequest request, @PathVariable(name = "predicatesList") String predicatesList){
+		System.out.println("Method getNodeData() entered");
+		
+		String url = "";
+		try {
+			url = URLDecoder.decode(request.getRequestURI(), StandardCharsets.UTF_8.name());
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return null;
+		}
+		System.out.println(url);
+		System.out.println(predicatesList);
+
+		String term = url.split("/getNodeData/")[1];
+		term = term.substring(0, term.length() - predicatesList.length() - 1);
+		System.out.println("term: " + term + ", predicatesList: " + predicatesList);
+		return queryService.getNodeData(term, predicatesList);
+//		return null;
+	}
+	
 	
 }

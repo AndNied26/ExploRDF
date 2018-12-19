@@ -374,6 +374,11 @@ function validateName(name) {
 	}
 }
 
+//Back button for the search divs.
+$('#searchBackBtn').on('click', function() {
+	turnBack();
+});
+
 //Showing the search divs depending on the current visible table div.
 function turnBack() {
 	var visibleDiv = $(".containerDiv:visible").attr('id');
@@ -406,10 +411,7 @@ function turnBack() {
 	  }
 }
 
-// Back button for the search divs.
-$('#searchBackBtn').on('click', function() {
-	turnBack();
-});
+
 /**
    * --------------------------------------------------------------
    * ----------------Functions concerning the tables---------------
@@ -417,6 +419,19 @@ $('#searchBackBtn').on('click', function() {
    * **************************************************************
    */
 
+/**
+ ***************************************************************
+ * ---------------Functions concerning the exploration.---------
+ * -------------------------------------------------------------
+ * --------------------------START------------------------------
+ */
+
+/**
+ * --------------------------------------------------------------
+ * -------------Functions concerning the exploration-------------
+ * --------------------------END---------------------------------
+ * **************************************************************
+ */
 
 
 
