@@ -1,11 +1,25 @@
 var nodes = [];
 var links = [];
 
-var svg = d3.select("svg"),
+var svg = d3.select("svg").style("background-color", "white"),
     width = +svg.attr("width"),
     height = +svg.attr("height"),
     node,
     link;
+
+var g = svg.append("g");
+
+svg
+	
+	.call(d3.zoom()
+		    .scaleExtent([1/4, 8])
+		    .on("zoom", zoomed))
+		    .on("dblclick.zoom", null);
+
+function zoomed() {
+//	  g.attr("transform", d3.event.transform);
+	g.attr("transform", d3.event.transform);
+	}
 
 $("#exploreBtn").on('click', function () {
   var startNode = $('#headingChoice').text();
@@ -13,15 +27,14 @@ $("#exploreBtn").on('click', function () {
   $('#headingChoice').css('display', 'none');
   $('.content').css('display', 'none');
   $('#exploreDiv').css('display', 'block');
-  alert(startNode);
   getNodesData(startNode);
 });
 
 function getNodesData(nodeId) {
 	var selectedOpt = $("#visualizationTypeGroup option:selected" ).text();
-	  console.log("getNode/" + nodeId + "/" + selectedOpt);
+	  console.log("getNode/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
 	  if(selectedOpt !== null && selectedOpt !== '') {
-		  d3.json("getNode/" + nodeId + "/" + selectedOpt).then(function (data) {
+		  d3.json("getNode/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt).then(function (data) {
 				
 		    updateData(data);
 		    update();
@@ -62,9 +75,9 @@ $('#goBtn').on('click', function () {
 
 function getNodeRelations(nodeId) {
     var selectedOpt = $("#visualizationTypeGroup option:selected" ).text();
-	  console.log("getNodeData/" + nodeId + "/" + selectedOpt);
+	  console.log("getNodeData/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
 	  if(selectedOpt !== null && selectedOpt !== '') {
-		  d3.json("getNodeData/" + nodeId + "/" + selectedOpt).then(function (data) {
+		  d3.json("getNodeData/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt).then(function (data) {
 				
 		    updateData(data);
 		    update();
@@ -83,10 +96,10 @@ $('#dragBtn').on('click', function () {
     console.log("dragBtn");
 })
 
-link = svg.append("g").selectAll(".link");
-node = svg.append("g").selectAll(".node");
-var edgepaths = svg.append("g").selectAll(".edgepath");
-var edgelabels = svg.append("g").selectAll(".edgelabel");
+link = g.append("g").selectAll(".link");
+var edgepaths = g.append("g").selectAll(".edgepath");
+var edgelabels = g.append("g").selectAll(".edgelabel");
+node = g.append("g").selectAll(".node");
 
 function update() {
     console.log("update() entered");
@@ -108,9 +121,9 @@ function update() {
         .enter()
         .append('path')
         .merge(edgepaths)
-        .attr('d', function (d) {
-            return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y
-        })
+//        .attr('d', function (d) {
+//            return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y
+//        })
 
         .attr('class', 'edgepath')
         .attr('fill-opacity', 0)
@@ -128,7 +141,9 @@ function update() {
         .attr('class', 'edgelabel')
         .attr('id', function (d, i) { return 'edgelabel' + i })
         .attr('font-size', 10)
-        .attr('fill', 'grey');
+        .attr('fill', 'black')
+        .attr('z-index', 1)
+        ;
 
     edgelabels = edgelabelsEnter.merge(edgelabels);
 
@@ -138,7 +153,7 @@ function update() {
         .attr('xlink:href', function (d, i) { return '#edgepath' + i })
         .style("text-anchor", "middle")
         .style("pointer-events", "none")
-        .attr("startOffset", "50%")
+        .attr("startOffset", "40%")
         .text(function (d) { return d.edge })
         ;
 
@@ -149,7 +164,6 @@ function update() {
     node = node.data(nodes, function (d) { return d.id; });
 
     node.exit().remove();
-    console.log("ab hier mouslistener");
     var nodeEnter = node.enter()
         .append("g")
         .attr("id", function (d) { return d.id })
@@ -173,6 +187,8 @@ function update() {
             .on("start", dragstarted)
             .on("drag", dragged)
         )
+        .attr("x", width/2)
+        .attr("x", height/2)
         ;
 
     node = nodeEnter.merge(node);
@@ -252,8 +268,7 @@ function update() {
 
 
 function ticked() {
-    node
-        .attr("transform", function (d) { return "translate(" + d.x + ", " + d.y + ")"; });
+   
 
 
     link.attr("x1", function (d) { return d.source.x; })
@@ -277,6 +292,9 @@ function ticked() {
             return 'rotate(0)';
         }
     });
+    
+    node
+    .attr("transform", function (d) { return "translate(" + d.x + ", " + d.y + ")"; });
 }
 
 function dragstarted(d) {

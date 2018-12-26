@@ -43,9 +43,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
 import org.springframework.util.DefaultPropertiesPersister;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.context.annotation.SessionScope;
 
 import com.explordf.dao.ExploRDFDao;
 import com.explordf.dto.ConnectionDto;
@@ -56,7 +58,8 @@ import com.explordf.dto.TripleDto;
 import com.explordf.dto.VisualizationNodesDto;
 
 @org.springframework.stereotype.Repository
-@PropertySource("classpath:explordf.properties")
+@SessionScope
+@PropertySource({"classpath:explordf.properties", "classpath:query.properties"})
 @Qualifier(value = "exploRDFDaoImpl")
 public class ExploRDFDaoImpl implements ExploRDFDao {
 
@@ -90,6 +93,12 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 
 	@Value("${triplestore.password}")
 	private String tripleStorePassword;
+	
+	@Value("${query.search.simple}")
+	private String simpleSearchQuery;
+	
+	@Value("${query.search.broad}")
+	private String broadSearchQuery;
 
 	private final String predicatesRootDir = "temp/exploRDF/predicates/";
 	private final String predicateLabelIRI = "http://example.org/label";
@@ -244,17 +253,16 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		try (RepositoryConnection con = repo.getConnection()) {
 
 			String queryString;
+			String queryString2;
 
 			if (broaderSearch) {
-				queryString = "select ?s ?p ?o " + queryGraph + " where {filter(regex(?o, \"" + term
-						+ "\", \"i\")).?s ?p ?o} order by ?s";
+//				queryString = "select ?s ?p ?o " + queryGraph + " where {filter(regex(?o, \"" + term
+//						+ "\", \"i\")).?s ?p ?o} order by ?s";
+				queryString = String.format(broadSearchQuery, queryGraph, term);
 			} else {
-//				queryString = "select ?s ?p ?o "+this.tripleStoreGraph+" where {filter(?o = \"" 
-//						+ term +"\"). {SELECT ?s ?p ?o WHERE {?s ?p \"" 
-//						+ term + "\". ?s ?p ?o}}}";
-//				queryString = "SELECT ?s ?p ?o "+ queryGraph +" WHERE {filter(?o = \"" + term + "\"). ?s ?p ?o}";
-				queryString = "SELECT ?s ?p ?o WHERE {FILTER(?o = \"" + term + "\"). {SELECT ?s ?p ?o " + queryGraph
-						+ " WHERE {?s ?p \"" + term + "\". ?s ?p ?o}}}";
+//				queryString = "SELECT ?s ?p ?o WHERE {FILTER(?o = \"" + term + "\"). {SELECT ?s ?p ?o " + queryGraph
+//						+ " WHERE {?s ?p \"" + term + "\". ?s ?p ?o}}}";
+				queryString = String.format(simpleSearchQuery, term, queryGraph, term);
 			}
 
 			System.out.println();
@@ -710,6 +718,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		props.setProperty("triplestore.graph", tripleStoreGraph != null ? tripleStoreGraph : "");
 		props.setProperty("triplestore.username", tripleStoreUserName != null ? tripleStoreUserName : "");
 		props.setProperty("triplestore.password", tripleStorePassword != null ? tripleStorePassword : "");
+		props.setProperty("query.search.simple", simpleSearchQuery);
 
 		try {
 			File f = ResourceUtils.getFile(filePath);

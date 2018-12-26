@@ -1,10 +1,10 @@
 
 <http://d-nb.info/standards/elementset/gnd#broaderTermInstantial> <http://example.org/edge>
     false;
-  <http://example.org/label> true .
+  <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#gndIdentifier> <http://example.org/edge>
-    true;
+    false;
   <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#gndSubjectCategory> <http://example.org/edge>
@@ -13,7 +13,7 @@
 
 <http://d-nb.info/standards/elementset/gnd#preferredNameForTheSubjectHeading> <http://example.org/edge>
     false;
-  <http://example.org/label> false .
+  <http://example.org/label> true .
 
 <http://d-nb.info/standards/elementset/gnd#relatedDdcWithDegreeOfDeterminacy2> <http://example.org/edge>
     false;
@@ -27,7 +27,7 @@
   <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#broaderTermGeneric> <http://example.org/edge>
-    false;
+    true;
   <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#relatedDdcWithDegreeOfDeterminacy3> <http://example.org/edge>
@@ -38,7 +38,7 @@
     false;
   <http://example.org/label> false .
 
-<http://www.w3.org/2004/02/skos/core#relatedMatch> <http://example.org/edge> false;
+<http://www.w3.org/2004/02/skos/core#relatedMatch> <http://example.org/edge> true;
   <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#dateOfEstablishmentAndTermination> <http://example.org/edge>
@@ -53,14 +53,14 @@
   <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#relatedTerm> <http://example.org/edge>
-    false;
+    true;
   <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#definition> <http://example.org/edge> false;
   <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#broaderTermPartitive> <http://example.org/edge>
-    false;
+    true;
   <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#languageCode> <http://example.org/edge>
@@ -68,7 +68,7 @@
   <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#broaderTermGeneral> <http://example.org/edge>
-    false;
+    true;
   <http://example.org/label> false .
 
 <http://www.w3.org/2004/02/skos/core#exactMatch> <http://example.org/edge> false;
@@ -101,7 +101,7 @@
     false;
   <http://example.org/label> false .
 
-<http://www.w3.org/2004/02/skos/core#broadMatch> <http://example.org/edge> false;
+<http://www.w3.org/2004/02/skos/core#broadMatch> <http://example.org/edge> true;
   <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#homepage> <http://example.org/edge> false;
@@ -131,7 +131,7 @@
     false;
   <http://example.org/label> false .
 
-<http://www.w3.org/2004/02/skos/core#narrowMatch> <http://example.org/edge> false;
+<http://www.w3.org/2004/02/skos/core#narrowMatch> <http://example.org/edge> true;
   <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#inventor> <http://example.org/edge> false;

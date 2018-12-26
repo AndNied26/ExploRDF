@@ -136,7 +136,7 @@ $('#resultTbody').on("click", "a", function (e) {
   console.log(subj);
   $("body").css("cursor", "progress");
 
-  d3.json("getSubject/" + subj).then(function (data) {
+  d3.json("getSubject/" + subj.replace(/#/g,"%23")).then(function (data) {
     choiceResult = data;
     drawChoiceTable(choiceResult, subj);
     $("body").css("cursor", "default");
@@ -188,9 +188,8 @@ function searchTerm() {
   
   console.log("hallo");
   var broaderSearch = $("#broaderSearchRadio").is(":checked") ? "1" : "0";
-  
-  d3.json("simpleSearch/" + term + "/" + broaderSearch).then(function (data) {
-	  console.log("simpleSearch/" + term + "/" + broaderSearch);
+  d3.json("simpleSearch/" + term.replace(/#/g,"%23") + "/" + broaderSearch).then(function (data) {
+	  console.log("simpleSearch/" + term.replace(/#/g,"%23") + "/" + broaderSearch);
 	searchResults = data;
 	var count = data.length;
 	var res = count==1 ? 'Result':'Results';
