@@ -52,6 +52,7 @@ import org.springframework.web.context.annotation.SessionScope;
 import com.explordf.dao.ExploRDFDao;
 import com.explordf.dto.ConnectionDto;
 import com.explordf.dto.EdgeDto;
+import com.explordf.dto.LabelDto;
 import com.explordf.dto.NodeDto;
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
@@ -94,11 +95,17 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	@Value("${triplestore.password}")
 	private String tripleStorePassword;
 	
-	@Value("${query.search.simple}")
+	@Value("${query.simpleSearch.simple}")
 	private String simpleSearchQuery;
 	
-	@Value("${query.search.broad}")
+	@Value("${query.simpleSearch.broad}")
 	private String broadSearchQuery;
+	
+	@Value("${query.getSubject}")
+	private String getSubjectQuery;
+	
+	@Value("${query.getPredicates}")
+	private String getPredicatesQuery;
 
 	private final String predicatesRootDir = "temp/exploRDF/predicates/";
 	private final String predicateLabelIRI = "http://example.org/label";
@@ -110,6 +117,11 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	private Repository repo;
 	private String queryGraph;
 
+	private String currPredicatesListName;
+	private List<PredicateDto> currPredicatesList;
+	private String vizLabel;
+	private List<String> vizEdges;
+	
 	@PostConstruct
 	private void init() {
 		logger.info("PostConstruct init()");
@@ -118,8 +130,137 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		setConnectionProps(new ConnectionDto(tripleStoreUrl, tripleStoreServer, tripleStoreRepo, tripleStoreGraph,
 				tripleStoreUserName, tripleStorePassword));
 	}
-
 	
+	private void setVisualizationProps() {
+		vizEdges = new LinkedList<>();
+		for (PredicateDto predicateDto : currPredicatesList) {
+			if(predicateDto.isLabel()) {
+				vizLabel = predicateDto.getPredicate();
+			}
+			else if(predicateDto.isEdge()) {
+				vizEdges.add(predicateDto.getPredicate());
+			}
+		}
+	}
+
+	@Override
+	public VisualizationNodesDto getNodeData(String subject, String predicatesList) {
+		
+		VisualizationNodesDto viz = new VisualizationNodesDto();
+		
+		if(!predicatesList.equals(currPredicatesListName) || currPredicatesList == null) {
+			System.out.println("currPredicatesListName has changed or currPredicatesList is null");
+			currPredicatesListName = predicatesList;
+			try {
+				currPredicatesList = getPredicatesList(predicatesList);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+				return null;
+			}
+			setVisualizationProps();
+		}
+		
+		
+			List<TripleDto> nodeData = getSubject(subject);
+//			for (TripleDto tripleDto : nodeData) {
+//				System.out.println("TripleDtos");
+//				System.out.println(tripleDto.getSubject() + " " + tripleDto.getPredicate() + " "+ tripleDto.getObject());
+//			}
+			
+			for (TripleDto tripleDto : nodeData) {
+				
+				String obj = tripleDto.getObject();
+				String pred = tripleDto.getPredicate();
+				
+				ValueFactory factory = SimpleValueFactory.getInstance();
+				String predIRI = factory.createIRI(pred).getLocalName();
+				
+				if(vizEdges.contains(pred)) {
+					
+					String nodeLabel = getNodeLabel(obj, vizLabel);
+					
+					if(nodeLabel != null) {
+						viz.addNode(new NodeDto(obj, nodeLabel));
+						viz.addEdge(new EdgeDto(subject, obj, predIRI));
+					} else {
+						viz.addLabel(new LabelDto(predIRI, obj));
+					}
+					
+					System.out.println("vizEdge: " + predIRI);
+					
+				}
+				viz.addLabel(new LabelDto(predIRI, obj));
+		
+			}
+			
+		return viz;
+	}
+	
+	private String getNodeLabel(String nodeId, String label) {
+		String resultStr = null;
+		try (RepositoryConnection con = repo.getConnection()) {
+			
+			ValueFactory factory = SimpleValueFactory.getInstance();
+			
+			IRI pred = factory.createIRI(label);
+			IRI subj = null;
+			try {
+				subj = factory.createIRI(nodeId);
+			} catch(IllegalArgumentException e) {
+				System.out.println(nodeId + " is not an IRI");
+				return null;
+			}
+			
+			try (RepositoryResult<Statement> statements = con.getStatements(subj, pred, null)) {
+				while (statements.hasNext()) {
+
+					Statement st = statements.next();
+					resultStr = "" + st.getObject();
+				}
+			} 
+
+		}
+		
+		return resultStr;
+		
+	}
+	
+	@Override
+	public VisualizationNodesDto getNode(String subject, String predicatesList) {
+		String label = null;
+		List<String> pEdges = new LinkedList<>();
+		VisualizationNodesDto viz = new VisualizationNodesDto();
+		
+		if(!predicatesList.equals(currPredicatesListName) || currPredicatesList == null) {
+			System.out.println("currPredicatesListName has changed or currPredicatesList is null");
+			currPredicatesListName = predicatesList;
+			try {
+				currPredicatesList = getPredicatesList(predicatesList);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+				return null;
+			}
+			setVisualizationProps();
+		}
+		
+		List<TripleDto> nodeData = getSubject(subject);
+		
+		for (TripleDto tripleDto : nodeData) {
+			
+			
+			if(tripleDto.getPredicate().equals(vizLabel)) {
+				System.out.println(tripleDto.getPredicate());
+
+				viz.addNode(new NodeDto(tripleDto.getSubject(),tripleDto.getObject()));
+			}
+		}
+		
+		return viz;
+	}
+	
+	/*
 	@Override
 	public VisualizationNodesDto getNodeData(String subject, String predicatesList) {
 		String label = null;
@@ -241,7 +382,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		}
 		return viz;
 	}
-	
+	*/
 	
 	@Override
 	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
@@ -253,7 +394,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		try (RepositoryConnection con = repo.getConnection()) {
 
 			String queryString;
-			String queryString2;
 
 			if (broaderSearch) {
 //				queryString = "select ?s ?p ?o " + queryGraph + " where {filter(regex(?o, \"" + term
@@ -292,10 +432,13 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		List<TripleDto> resultDto = new LinkedList<>();
 
 		try (RepositoryConnection con = repo.getConnection()) {
-			String queryString = "SELECT (<" + subject + "> as ?s) ?p ?o " + queryGraph + " WHERE {<" + subject
-					+ "> ?p ?o. "
-					+ "FILTER(!isLiteral(?o) || langMatches(lang(?o), \"EN\") || langMatches(lang(?o), \"DE\") || langMatches(lang(?o), \"\"))}";
+//			String queryString = "SELECT (<" + subject + "> as ?s) ?p ?o " + queryGraph + " WHERE {<" + subject
+//					+ "> ?p ?o. "
+//					+ "FILTER(!isLiteral(?o) || langMatches(lang(?o), \"EN\") || langMatches(lang(?o), \"DE\") || langMatches(lang(?o), \"\"))}";
 
+			String queryString = String.format(getSubjectQuery, "<" + subject + ">", queryGraph, "<" + subject + ">");
+			
+			System.out.println(queryString);
 			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
 
 			try (TupleQueryResult result = tupleQuery.evaluate()) {
@@ -322,8 +465,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 
 		boolean gotAllPredicates = false;
 
-		// DBPedia 438336000 triple geht noch
-//		int offset = 438300000;
 		// maximum results in dbpedia 10000
 		int maxDbPediaResultNum = 9900;
 		int maxLimit = 100000000;
@@ -335,11 +476,11 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		while (!gotAllPredicates) {
 			int resultNum = 0;
 			List<String> queryResult = new LinkedList<>();
-//			List<BindingSet> bindingSetResult = new LinkedList<>();
 			try (RepositoryConnection con = repo.getConnection()) {
 
-				String queryString = "select distinct ?p where {select ?p " + queryGraph + " where {?s ?p ?o} limit "
-						+ limit + " offset " + offset + "}";
+//				String queryString = "select distinct ?p where {select ?p " + queryGraph + " where {?s ?p ?o} limit "
+//						+ limit + " offset " + offset + "}";
+				String queryString = String.format(getPredicatesQuery, queryGraph, limit, offset);
 				System.out.println(queryString);
 
 				TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
@@ -349,9 +490,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 						BindingSet bindingSet = result.next();
 						resultNum += 1;
 						queryResult.add(bindingSet.getValue("p").toString());
-//						bindingSetResult.add(bindingSet);
-//						resultDto.add(new PredicateDto(bindingSet.getValue("p").toString(), false, false));
-//						System.out.println(resultNum + " " + bindingSet.getValue("p").toString());
 					}
 				}
 
@@ -368,10 +506,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 						predicatesAsString.add(qResult);
 					}
 				}
-//				for (BindingSet bindingSet : bindingSetResult) {
-//					
-//					resultDto.add(new PredicateDto(bindingSet.getValue("p").toString(), false, false));
-//				}
+
 				offset += limit;
 
 				limit = limit * 2 > maxLimit ? maxLimit : limit * 2;
@@ -387,109 +522,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		for (String string : predicatesAsString) {
 			resultDto.add(new PredicateDto(string, false, false));
 		}
-		// --------------------------------------------------------------------------
-
-//		try {
-//			savePredicatesList(resultDto, "test");
-//			getPredicatesList("test");
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		
-//		try {
-//			writePredicatesToFile(resultDto);
-//			getPredicatesFromFile();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-
-		// -------------------------------------------------------------------------
-		return resultDto;
-	}
-
-	private void getPredicatesFromFile() throws IOException {
-		logger.info("getPredicatesFromFile() method entered.");
-//		String folderPath = "classpath:static/persistent/";
-//		String predicateFileName = "sachbegriffe.ttl";
-//		File predicateFile = new File(folderPath + predicateFileName);
-		ValueFactory factory = SimpleValueFactory.getInstance();
-		Model model = new LinkedHashModel();
-
-		File dir = new File("temp/exploRDF/predicates");
-//		dir.mkdirs();
-		File tmp = new File(dir, "sachbegriffe.ttl");
-//		tmp.createNewFile();
-
-//		
-		FileInputStream inputStream = new FileInputStream(tmp);
-		RDFParser rdfParser = Rio.createParser(RDFFormat.TURTLE);
-		rdfParser.setRDFHandler(new StatementCollector(model));
-		try {
-			rdfParser.parse(inputStream, tripleStoreUrl);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			inputStream.close();
-		}
-
-		for (Statement statement : model) {
-			String triple = "";
-			triple += statement.getSubject() + " ";
-			triple += statement.getPredicate() + " ";
-			triple += statement.getObject() + " ";
-
-			System.out.println(triple);
-		}
-	}
-
-	private List<PredicateDto> writePredicatesToFile(List<PredicateDto> predicatesDtoList) throws IOException {
-		logger.info("writePredicatesToFile() method entered.");
-
-		List<PredicateDto> resultDto = new LinkedList<>();
-
-//		String folderPath = "classpath:static/persistent/";
-//		String predicateFileName = "sachbegriffe.ttl";
-//		File dataDir = new File(folderPath);
-//		Repository repo = new SailRepository(new NativeStore(dataDir));
-//		repo.initialize();
-
-//		File predicateFile = new File(folderPath + predicateFileName);
-
-		File dir = new File("temp/exploRDF/predicates");
-		dir.mkdirs();
-		File tmp = new File(dir, "sachbegriffe.ttl");
-		tmp.createNewFile();
-//		File predicateFile = ResourceUtils.getFile(folderPath + predicateFileName);
-
-		FileOutputStream out = new FileOutputStream(tmp);
-//		RDFWriter writer = Rio.createWriter(RDFFormat.TURTLE, out);
-
-		ValueFactory factory = SimpleValueFactory.getInstance();
-
-		Model model = new LinkedHashModel();
-
-		for (PredicateDto predicateDto : predicatesDtoList) {
-
-			IRI pred = factory.createIRI(predicateDto.getPredicate());
-			IRI label = factory.createIRI("http://example.org/label");
-			IRI edge = factory.createIRI("http://example.org/edge");
-			Literal labelValue = factory.createLiteral(predicateDto.isLabel());
-			Literal edgeValue = factory.createLiteral(predicateDto.isEdge());
-
-			model.add(pred, label, labelValue);
-			model.add(pred, edge, edgeValue);
-
-		}
-
-		try {
-
-			Rio.write(model, out, RDFFormat.TURTLE);
-		} finally {
-			out.close();
-		}
-
 		return resultDto;
 	}
 
@@ -541,13 +574,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			
 			resultDto.add(new PredicateDto(predicateName, predicateLabel, predicateEdge));
 			
-//			String triple = "";
-//			triple += predicateName + " ";
-//			triple += predicateLabel + " ";
-//			triple += predicateEdge + " ";
-//
-//			System.out.println(triple);
-			
 		}
 		
 		
@@ -565,6 +591,9 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			logger.warn("listName is null.");
 			return null;
 		}
+		
+		currPredicatesList = null;
+		currPredicatesListName = null;
 		
 		String result = null;
 

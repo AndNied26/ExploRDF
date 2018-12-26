@@ -5,15 +5,15 @@
 
 <http://d-nb.info/standards/elementset/gnd#gndIdentifier> <http://example.org/edge>
     false;
-  <http://example.org/label> false .
+  <http://example.org/label> true .
 
 <http://d-nb.info/standards/elementset/gnd#gndSubjectCategory> <http://example.org/edge>
     false;
   <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#preferredNameForTheSubjectHeading> <http://example.org/edge>
-    false;
-  <http://example.org/label> true .
+    true;
+  <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#relatedDdcWithDegreeOfDeterminacy2> <http://example.org/edge>
     false;
@@ -60,7 +60,7 @@
   <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#broaderTermPartitive> <http://example.org/edge>
-    true;
+    false;
   <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#languageCode> <http://example.org/edge>
