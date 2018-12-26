@@ -1,0 +1,193 @@
+
+<http://d-nb.info/standards/elementset/gnd#broaderTermInstantial> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#gndIdentifier> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#gndSubjectCategory> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#preferredNameForTheSubjectHeading> <http://example.org/edge>
+    false;
+  <http://example.org/label> true .
+
+<http://d-nb.info/standards/elementset/gnd#relatedDdcWithDegreeOfDeterminacy2> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#variantNameForTheSubjectHeading> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#broaderTermGeneric> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedDdcWithDegreeOfDeterminacy3> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#oldAuthorityNumber> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#relatedMatch> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#dateOfEstablishmentAndTermination> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#geographicAreaCode> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#place> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedTerm> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#definition> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#broaderTermPartitive> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#languageCode> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#broaderTermGeneral> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#exactMatch> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedPlaceOrGeographicName> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedDdcWithDegreeOfDeterminacy1> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#celebratedCorporateBody> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/dnb#deprecatedUri> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2002/07/owl#sameAs> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#dateOfEstablishment> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#dateOfTermination> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#broadMatch> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#homepage> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#manufacturer> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedDdcWithDegreeOfDeterminacy4> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#dateOfProduction> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#contributingPlaceOrGeographicName> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#biographicalOrHistoricalInformation> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedSubjectHeading> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#narrowMatch> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#inventor> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#contributingPerson> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedPerson> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#complexSeeReferenceSubject> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#creator> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedCorporateBody> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedWork> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#celebratedPerson> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#placeOfManufacture> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#placeOfActivity> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#precedingSubject> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#celebratedTopic> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#succeedingSubjectHeading> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedConferenceOrEvent> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#occasionOfTheSubjectHeading> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .

@@ -1,105 +1,53 @@
 package com.explordf.controller;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.MediaType;
-import org.springframework.util.ResourceUtils;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.explordf.dto.ConnectionDto;
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
+import com.explordf.dto.VisualizationNodesDto;
 import com.explordf.service.QueryService;
 
 
 @RestController
 public class QueryController {
-
-	@Autowired
-	ResourceLoader loader;
 	
 	@Autowired
 	QueryService queryService;
-	
-	@Value("classpath:static/persistent/predicates.txt")
-	Resource resourceFile;
-	
-	String filePath = "classpath:static/persistent/predicates.txt";	
-	
-	@RequestMapping(value = "/writePredicates", method = RequestMethod.POST, consumes = MediaType.TEXT_PLAIN_VALUE)
-	public void writePredicates(@RequestBody String text){
-		System.out.println(text);
-		
-		String fileName="persistent/predicates.txt";
-		
-		try {
-			File file = ResourceUtils.getFile(filePath);
-			if(file.exists()) {
-				System.out.println("exists");
-				BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
-			    writer.append(' ');
-			    writer.append(text);
-			     
-			    writer.close();
-			    
-			    
-			    List<String> lines = Files.readAllLines(Paths.get(resourceFile.getURI()),
-		                StandardCharsets.UTF_8);
-
-		        for (String line : lines) {
-
-		            System.out.println(line);
-
-		        }
-			} else {
-				System.out.println("doesn´t exist");
-			}
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			
-		}
-		
-	}
 
 //	@RequestMapping(value="/simpleSearch/{term}/{broaderSearch}", method = RequestMethod.GET)
 //	public List<TripleDto> simpleSearch(@PathVariable(name="term") String term, @PathVariable(name="broaderSearch") char broaderSearch) {
 //		System.out.println("first Method simpleSearch() entered");
 //		return exploRDFService.simpleSearch(term, broaderSearch == '1');
 //	}
+	
+	@RequestMapping(value="/savePredicatesList/{listName}", method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public String savePredicatesList(@RequestBody List<PredicateDto> predicateDtoList, @PathVariable(name="listName") String listName) {
+		return queryService.savePredicatesList(predicateDtoList, listName);
+	}
+	
+	@RequestMapping(value="/getPredicates/{listName}", method=RequestMethod.GET)
+	public List<PredicateDto> getPredicatesList(@PathVariable(name="listName") String listName) {
+		return queryService.getPredicatesList(listName);
+	}
+	
+	@RequestMapping(value="/getAllPredicatesLists", method = RequestMethod.GET)
+	public List<String> getAllPredicatesLists() {
+		return queryService.getAllPredicatesLists();
+	}
+	
 	
 	@RequestMapping(value="/simpleSearch/**/{broaderSearch}", method = RequestMethod.GET)
 	public List<TripleDto> simpleSearch(HttpServletRequest request, @PathVariable(name = "broaderSearch") char broaderSearch){
@@ -137,5 +85,55 @@ public class QueryController {
 		String subject = request.getRequestURI().split("/getSubject/")[1];
 		return queryService.getSubject(subject);
 	}
+	
+//	@RequestMapping(value="/getNodeData/**", method = RequestMethod.GET)
+//	public VisualizationNodesDto getNodeData(HttpServletRequest request) {
+//		System.out.println("Entered Controller");
+//		String subject = request.getRequestURI().split("/getNodeData/")[1];
+//		return queryService.getNode(subject);
+//	}
+	
+	@RequestMapping(value="/getNode/**/{predicatesList}", method = RequestMethod.GET)
+	public VisualizationNodesDto getNode(HttpServletRequest request, @PathVariable(name = "predicatesList") String predicatesList){
+		System.out.println("Method getNode() entered");
+		
+		String url = "";
+		try {
+			url = URLDecoder.decode(request.getRequestURI(), StandardCharsets.UTF_8.name());
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return null;
+		}
+		System.out.println(url);
+		System.out.println(predicatesList);
+
+		String term = url.split("/getNode/")[1];
+		term = term.substring(0, term.length() - predicatesList.length() - 1);
+		System.out.println("term: " + term + ", predicatesList: " + predicatesList);
+		return queryService.getNode(term, predicatesList);
+//		return null;
+	}
+	
+	@RequestMapping(value="/getNodeData/**/{predicatesList}", method = RequestMethod.GET)
+	public VisualizationNodesDto getNodeData(HttpServletRequest request, @PathVariable(name = "predicatesList") String predicatesList){
+		System.out.println("Method getNodeData() entered");
+		
+		String url = "";
+		try {
+			url = URLDecoder.decode(request.getRequestURI(), StandardCharsets.UTF_8.name());
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return null;
+		}
+		System.out.println(url);
+		System.out.println(predicatesList);
+
+		String term = url.split("/getNodeData/")[1];
+		term = term.substring(0, term.length() - predicatesList.length() - 1);
+		System.out.println("term: " + term + ", predicatesList: " + predicatesList);
+		return queryService.getNodeData(term, predicatesList);
+//		return null;
+	}
+	
 	
 }

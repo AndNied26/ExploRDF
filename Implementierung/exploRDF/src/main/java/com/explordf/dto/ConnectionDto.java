@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 
 public class ConnectionDto {
 
+	@NotNull
 	private String tripleStoreServer;
 	
 	
@@ -12,6 +13,8 @@ public class ConnectionDto {
 	private String tripleStoreUrl;
 	
 	private String tripleStoreRepo;
+	
+	private String tripleStoreGraph;
 	
 	private String tripleStoreUserName;
 	
@@ -21,11 +24,12 @@ public class ConnectionDto {
 	public ConnectionDto() {
 	}
 
-	public ConnectionDto(String tripleStoreUrl, String tripleStoreServer, String tripleStoreRepo, String tripleStoreUsername,
+	public ConnectionDto(String tripleStoreUrl, String tripleStoreServer, String tripleStoreRepo, String tripleStoreGraph, String tripleStoreUsername,
 			String tripleStorePassword) {
 		this.tripleStoreUrl = tripleStoreUrl;
 		this.tripleStoreServer = tripleStoreServer;
 		this.tripleStoreRepo = tripleStoreRepo;
+		this.tripleStoreGraph = tripleStoreGraph;
 		this.tripleStoreUserName = tripleStoreUsername;
 		this.tripleStorePassword = tripleStorePassword;
 	}
@@ -52,6 +56,14 @@ public class ConnectionDto {
 
 	public void setTripleStoreRepo(String tripleStoreRepo) {
 		this.tripleStoreRepo = tripleStoreRepo;
+	}
+	
+	public String getTripleStoreGraph() {
+		return tripleStoreGraph;
+	}
+	
+	public void setTripleStoreGraph(String tripleStoreGraph) {
+		this.tripleStoreGraph = tripleStoreGraph;
 	}
 
 	public String getTripleStoreUserName() {
