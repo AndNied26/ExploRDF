@@ -241,8 +241,8 @@ function update() {
         .attr("height", 12)
         .attr("class", "icon")
         .style("opacity", 0)
-        .on("click", function () {
-            alert("info");
+        .on("click", function (d) {
+            getInfo(d.id);
         });
 
     nodeEnter.append('svg:image')
@@ -266,6 +266,18 @@ function update() {
         .restart();
 }
 
+function getInfo(subject) {
+	d3.json("getSubject/" + subject.replace(/#/g,"%23")).then(function (data) {
+		var infoDiv = d3.select("body")
+			.append("div")
+			.attr("id", "infoDiv");
+		var infoUl = infoDiv.append("ul");
+		infoUl.selectAll("li").data(data).enter()
+			.append("li")
+			.html(function(d){return d.predicate + ": " + d.object});
+	    console.log(data);
+	  });
+}
 
 function ticked() {
    
