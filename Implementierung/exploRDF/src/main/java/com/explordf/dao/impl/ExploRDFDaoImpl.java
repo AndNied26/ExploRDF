@@ -228,8 +228,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	
 	@Override
 	public VisualizationNodesDto getNode(String subject, String predicatesList) {
-		String label = null;
-		List<String> pEdges = new LinkedList<>();
+		
 		VisualizationNodesDto viz = new VisualizationNodesDto();
 		
 		if(!predicatesList.equals(currPredicatesListName) || currPredicatesList == null) {
