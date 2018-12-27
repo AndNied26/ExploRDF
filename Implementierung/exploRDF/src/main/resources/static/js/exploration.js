@@ -274,15 +274,28 @@ function getInfo(subject) {
 		var infoUl = infoDiv.append("ul");
 		infoUl.selectAll("li").data(data).enter()
 			.append("li")
-			.html(function(d){return d.predicate + ": " + d.object});
+			.html(function(d){
+				return '<p style="color: black;font-weight: bold;">' 
+					+ d.predicate + ':</p>' + '<p style="color: cornsilk;">' 
+					+ d.object + '</p>'
+				});
+		infoDiv
+			.append("button")
+			.attr("id", "infoExitBtn")
+			.attr("type", "button")
+			.attr("class", "close btn-sm")
+			.attr("aria-label", "Close")
+			.on("click", function(){
+				$('#infoDiv').remove();
+				})
+			.append("span")
+			.attr("class","glyphicon glyphicon-remove")
 	    console.log(data);
 	  });
 }
 
 function ticked() {
-   
-
-
+ 
     link.attr("x1", function (d) { return d.source.x; })
         .attr("y1", function (d) { return d.source.y; })
         .attr("x2", function (d) { return d.target.x; })

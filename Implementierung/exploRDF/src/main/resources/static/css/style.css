@@ -83,15 +83,36 @@ h2, h3, h4 {
 /* --------------------------START--------------------------- */
 /* ---------------------------------------------------------- */
 #infoDiv {
-	height: 100%; /* Full-height: remove this if you want "auto" height */
+/* 	height: 100%; Full-height: remove this if you want "auto" height */
   	width: 310px; /* Set the width of the sidebar */
  	position: fixed; /* Fixed Sidebar (stay in place on scroll) */
  	z-index: 1; /* Stay on top */
-  	top: 0; /* Stay at the top */
-  	right: 0;
+  	top: 70px; /* Stay at the top */
+  	right: 20px;
+  	bottom: 20px;
   	background-color: grey; /* Black */
   	overflow-x: hidden; /* Disable horizontal scroll */
   	padding: 20px 5px 20px 5px;
+  	opacity: 0.8;
+  	border-radius: 15px;
+}
+
+#infoDiv li {
+	text-decoration: none;
+	font-size: 14px;
+/* 	color: white; */
+	margin-bottom: 10px;
+}
+
+#infoDiv p {
+	margin: 0;
+}
+
+#infoExitBtn {
+	position: fixed;
+	z-index: 1;
+	top: 72px;
+	right: 40px;
 }
 
 /* -------------------------infobox ------------------------- */
