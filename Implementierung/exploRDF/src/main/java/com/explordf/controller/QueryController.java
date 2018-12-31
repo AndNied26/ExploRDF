@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
 import com.explordf.dto.VisualizationNodesDto;
@@ -26,12 +25,6 @@ public class QueryController {
 	
 	@Autowired
 	QueryService queryService;
-
-//	@RequestMapping(value="/simpleSearch/{term}/{broaderSearch}", method = RequestMethod.GET)
-//	public List<TripleDto> simpleSearch(@PathVariable(name="term") String term, @PathVariable(name="broaderSearch") char broaderSearch) {
-//		System.out.println("first Method simpleSearch() entered");
-//		return exploRDFService.simpleSearch(term, broaderSearch == '1');
-//	}
 	
 	@RequestMapping(value="/savePredicatesList/{listName}", method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String savePredicatesList(@RequestBody List<PredicateDto> predicateDtoList, @PathVariable(name="listName") String listName) {
@@ -73,25 +66,12 @@ public class QueryController {
 		return queryService.getPredicates();
 	}
 	
-//	@RequestMapping(value="/getSubject", method = RequestMethod.POST)
-//	public List<TripleDto> getSubject(@RequestBody String subject) {
-//		System.out.println("Entered Controller");
-//		return exploRDFService.getSubject(subject);
-//	}
-	
 	@RequestMapping(value="/getSubject/**", method = RequestMethod.GET)
 	public List<TripleDto> getSubject(HttpServletRequest request) {
 		System.out.println("Entered Controller");
 		String subject = request.getRequestURI().split("/getSubject/")[1];
 		return queryService.getSubject(subject);
 	}
-	
-//	@RequestMapping(value="/getNodeData/**", method = RequestMethod.GET)
-//	public VisualizationNodesDto getNodeData(HttpServletRequest request) {
-//		System.out.println("Entered Controller");
-//		String subject = request.getRequestURI().split("/getNodeData/")[1];
-//		return queryService.getNode(subject);
-//	}
 	
 	@RequestMapping(value="/getNode/**/{predicatesList}", method = RequestMethod.GET)
 	public VisualizationNodesDto getNode(HttpServletRequest request, @PathVariable(name = "predicatesList") String predicatesList){
@@ -111,7 +91,6 @@ public class QueryController {
 		term = term.substring(0, term.length() - predicatesList.length() - 1);
 		System.out.println("term: " + term + ", predicatesList: " + predicatesList);
 		return queryService.getNode(term, predicatesList);
-//		return null;
 	}
 	
 	@RequestMapping(value="/getNodeData/**/{predicatesList}", method = RequestMethod.GET)
@@ -132,7 +111,6 @@ public class QueryController {
 		term = term.substring(0, term.length() - predicatesList.length() - 1);
 		System.out.println("term: " + term + ", predicatesList: " + predicatesList);
 		return queryService.getNodeData(term, predicatesList);
-//		return null;
 	}
 	
 	

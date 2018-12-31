@@ -4,8 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import com.explordf.dto.ConnectionDto;
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
@@ -17,7 +15,6 @@ import com.explordf.dto.VisualizationNodesDto;
  * The whole communication with the triple store is transacted by the 
  * implementation of this class.
  */
-@Repository
 public interface ExploRDFDao {
 
 	/**

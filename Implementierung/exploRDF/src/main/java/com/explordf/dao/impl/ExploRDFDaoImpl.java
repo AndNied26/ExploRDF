@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -44,9 +45,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 import org.springframework.util.DefaultPropertiesPersister;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.annotation.SessionScope;
 
 import com.explordf.dao.ExploRDFDao;
@@ -58,10 +62,11 @@ import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
 import com.explordf.dto.VisualizationNodesDto;
 
-@org.springframework.stereotype.Repository
+//@org.springframework.stereotype.Repository
 @SessionScope
-@PropertySource({"classpath:explordf.properties", "classpath:query.properties"})
+@Component
 @Qualifier(value = "exploRDFDaoImpl")
+@PropertySource({"classpath:explordf.properties", "classpath:query.properties"})
 public class ExploRDFDaoImpl implements ExploRDFDao {
 
 	// muss dann weg

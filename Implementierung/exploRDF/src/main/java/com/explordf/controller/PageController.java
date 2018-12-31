@@ -4,10 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.annotation.SessionScope;
 
 import com.explordf.dto.ConnectionDto;
 
 @Controller
+@SessionScope
 public class PageController {
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)

@@ -4,9 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import com.explordf.dao.ExploRDFDao;
 import com.explordf.dto.PredicateDto;
@@ -17,6 +16,7 @@ import com.explordf.dto.VisualizationNodesDto;
 public class QueryService {
 	
 	@Autowired
+	@Qualifier("exploRDFDaoImpl")
 	ExploRDFDao exploRDFDao;
 	
 	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
