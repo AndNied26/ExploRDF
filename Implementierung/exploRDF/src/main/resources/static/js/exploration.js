@@ -17,7 +17,7 @@ svg
 		    .on("dblclick.zoom", null);
 
 function zoomed() {
-//	  g.attr("transform", d3.event.transform);
+// g.attr("transform", d3.event.transform);
 	g.attr("transform", d3.event.transform);
 	}
 
@@ -40,7 +40,7 @@ function getNodesData(nodeId) {
 		    update();
 		  });
 	  } else {
-//		  getPredicates();
+// getPredicates();
 	  }
 
   
@@ -83,7 +83,7 @@ function getNodeRelations(nodeId) {
 		    update();
 		  });
 	  } else {
-//		  getPredicates();
+// getPredicates();
 	  }
 }
 
@@ -121,9 +121,10 @@ function update() {
         .enter()
         .append('path')
         .merge(edgepaths)
-//        .attr('d', function (d) {
-//            return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y
-//        })
+// .attr('d', function (d) {
+// return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' +
+// d.target.y
+// })
 
         .attr('class', 'edgepath')
         .attr('fill-opacity', 0)
@@ -180,7 +181,8 @@ function update() {
                 ;
         })
         .on("dblclick", function (d) {
-            getNodeRelations(d.id);
+//            getNodeRelations(d.id);
+        	window.open(d.id, '_blank');
        
         })
         .call(d3.drag()
@@ -212,8 +214,10 @@ function update() {
 
     nodeEnter.append('svg:image')
         .attr("xlink:href", "js/delete.svg")
-        .attr("x", 12)
-        .attr("y", -26)
+// .attr("x", 12)
+// .attr("y", -26)
+        .attr("x", 16)
+        .attr("y", -24)
         .attr("width", 12)
         .attr("height", 12)
         .attr("class", "icon")
@@ -233,10 +237,25 @@ function update() {
             console.log(nodes);
             update();
         });
+    
+    nodeEnter.append('svg:image')
+    .attr("xlink:href", "js/expand.svg")
+    .attr("x", -27)
+    .attr("y", -24)
+    .attr("width", 12)
+    .attr("height", 12)
+    .attr("class", "icon")
+    .style("opacity", 0)
+    .on("click", function (d) {
+    	getNodeRelations(d.id);
+    });
+    
     nodeEnter.append('svg:image')
         .attr("xlink:href", "js/info.svg")
-        .attr("x", -24)
-        .attr("y", -26)
+// .attr("x", -24)
+// .attr("y", -26)
+        .attr("x", -12)
+        .attr("y", -33)
         .attr("width", 12)
         .attr("height", 12)
         .attr("class", "icon")
@@ -247,8 +266,10 @@ function update() {
 
     nodeEnter.append('svg:image')
         .attr("xlink:href", "js/pin.svg")
-        .attr("x", -5)
-        .attr("y", -32)
+// .attr("x", -5)
+// .attr("y", -32)
+        .attr("x", 3)
+        .attr("y", -31)
         .attr("width", 12)
         .attr("height", 12)
         .attr("class", "icon")
