@@ -5,7 +5,7 @@
  */
 
 $("#connectBtn").on("click", function(){
-	if($("#tripleStoreUrl").val() == ""){
+	if($("#tripleStoreUrl").val() === ""){
 		$("#invalidURLMsg").html("Please enter a valid Triple Store URL.");
 		return;
 	}

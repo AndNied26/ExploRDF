@@ -48,7 +48,6 @@ import org.springframework.web.context.annotation.SessionScope;
 import com.explordf.dao.ExploRDFDao;
 import com.explordf.dto.ConnectionDto;
 import com.explordf.dto.EdgeDto;
-import com.explordf.dto.LabelDto;
 import com.explordf.dto.NodeDto;
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
@@ -104,6 +103,9 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	@Value("${query.getPredicates}")
 	private String getPredicatesQuery;
 
+	@Value("${query.getLabel}")
+	private String getLabelQuery;
+	
 	private final String predicatesRootDir = "temp/exploRDF/predicates/";
 	private final String predicateLabelIRI = "http://example.org/label";
 	private final String predicateEdgeIRI = "http://example.org/edge";
@@ -160,10 +162,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		
 		
 			List<TripleDto> nodeData = getSubject(subject);
-//			for (TripleDto tripleDto : nodeData) {
-//				System.out.println("TripleDtos");
-//				System.out.println(tripleDto.getSubject() + " " + tripleDto.getPredicate() + " "+ tripleDto.getObject());
-//			}
 			
 			for (TripleDto tripleDto : nodeData) {
 				
@@ -180,14 +178,9 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 					if(nodeLabel != null) {
 						viz.addNode(new NodeDto(obj, nodeLabel));
 						viz.addEdge(new EdgeDto(subject, obj, predIRI));
-					} else {
-						viz.addLabel(new LabelDto(predIRI, obj));
-					}
-					
-					System.out.println("vizEdge: " + predIRI);
-					
+					}	
+										
 				}
-				viz.addLabel(new LabelDto(predIRI, obj));
 		
 			}
 			
@@ -195,31 +188,48 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	}
 	
 	private String getNodeLabel(String nodeId, String label) {
+		if (nodeId.indexOf(':') < 0) {
+			System.out.println(nodeId + " is not an IRI");
+			return null;
+		}
 		String resultStr = null;
 		try (RepositoryConnection con = repo.getConnection()) {
 			
-			ValueFactory factory = SimpleValueFactory.getInstance();
+			String queryString = String.format(getLabelQuery, "<" + nodeId + ">", "<" + label + ">", queryGraph, "<" + nodeId + ">", "<" + label + ">");
 			
-			IRI pred = factory.createIRI(label);
-			IRI subj = null;
-			try {
-				subj = factory.createIRI(nodeId);
-			} catch(IllegalArgumentException e) {
-				System.out.println(nodeId + " is not an IRI");
-				return null;
+			System.out.println(queryString);
+			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+
+			try (TupleQueryResult result = tupleQuery.evaluate()) {
+
+				while (result.hasNext()) {
+					BindingSet bindingSet = result.next();
+					resultStr = "" + bindingSet.getValue("o");
+				}
 			}
 			
-			try (RepositoryResult<Statement> statements = con.getStatements(subj, pred, null)) {
-				while (statements.hasNext()) {
-
-					Statement st = statements.next();
-					resultStr = "" + st.getObject();
-				}
-			} 
+//			ValueFactory factory = SimpleValueFactory.getInstance();
+//			
+//			IRI pred = factory.createIRI(label);
+//			IRI subj = null;
+//			try {
+//				subj = factory.createIRI(nodeId);
+//			} catch(IllegalArgumentException e) {
+//				System.out.println(nodeId + " is not an IRI");
+//				return null;
+//			}
+//			
+//			try (RepositoryResult<Statement> statements = con.getStatements(subj, pred, null)) {
+//				while (statements.hasNext()) {
+//
+//					Statement st = statements.next();
+//					resultStr = "" + st.getObject();
+//				}
+//			} 
 
 		}
 		
-		return resultStr;
+		return resultStr != null ? resultStr : nodeId;
 		
 	}
 	
@@ -241,16 +251,12 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			setVisualizationProps();
 		}
 		
-		List<TripleDto> nodeData = getSubject(subject);
+		String label = getNodeLabel(subject, vizLabel);
 		
-		for (TripleDto tripleDto : nodeData) {
-			
-			
-			if(tripleDto.getPredicate().equals(vizLabel)) {
-				System.out.println(tripleDto.getPredicate());
-
-				viz.addNode(new NodeDto(tripleDto.getSubject(),tripleDto.getObject()));
-			}
+		if(label != null) {
+			viz.addNode(new NodeDto(subject, label));
+		} else {
+			return null;
 		}
 		
 		return viz;
@@ -561,6 +567,8 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			System.out.println("repo != null");
 			shutDown();
 			this.repo = repo;
+			currPredicatesList = null;
+			currPredicatesListName = null;
 
 			tripleStoreUrl = connDto.getTripleStoreUrl();
 			tripleStoreServer = connDto.getTripleStoreServer();

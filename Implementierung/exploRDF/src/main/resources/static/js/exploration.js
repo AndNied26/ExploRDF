@@ -2,8 +2,8 @@ var nodes = [];
 var links = [];
 
 var svg = d3.select("svg").style("background-color", "white"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height"),
+    width,
+    height,
     node,
     link;
 
@@ -27,6 +27,9 @@ $("#exploreBtn").on('click', function () {
   $('#headingChoice').css('display', 'none');
   $('.content').css('display', 'none');
   $('#exploreDiv').css('display', 'block');
+  width = $('#exploreDiv').width();
+  height = $('#exploreDiv').height();
+  simulation.force("center", d3.forceCenter(width / 2, height / 2));
   getNodesData(startNode);
 });
 
@@ -56,7 +59,7 @@ var simulation = d3.forceSimulation()
     .force("charge", d3.forceManyBody()
         .strength(-400)
     )
-    .force("center", d3.forceCenter(width / 2, height / 2));
+//    .force("center", d3.forceCenter(width / 2, height / 2));
 
 // var nodeId = 'nodes_id_1';
 var nodeId = ['nodes_start', 'nodes_id_1', 'nodes_id_2', 'nodes_id_3'];
@@ -121,11 +124,6 @@ function update() {
         .enter()
         .append('path')
         .merge(edgepaths)
-// .attr('d', function (d) {
-// return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' +
-// d.target.y
-// })
-
         .attr('class', 'edgepath')
         .attr('fill-opacity', 0)
         .attr('stroke-opacity', 0)
@@ -203,7 +201,9 @@ function update() {
 
     nodeEnter
         .append('svg:text')
-        .text(function (d) { return d.label; })
+        .text(function (d) { 
+        	console.log("hallo node " + d.id)	
+        	return d.label !== null ? d.label : d.id ; })
         .attr("font-family", "sans-serif")
         .attr("font-size", "15px")
         .attr('font-weight', 'bolder')
@@ -214,8 +214,6 @@ function update() {
 
     nodeEnter.append('svg:image')
         .attr("xlink:href", "js/delete.svg")
-// .attr("x", 12)
-// .attr("y", -26)
         .attr("x", 16)
         .attr("y", -24)
         .attr("width", 12)
@@ -252,8 +250,6 @@ function update() {
     
     nodeEnter.append('svg:image')
         .attr("xlink:href", "js/info.svg")
-// .attr("x", -24)
-// .attr("y", -26)
         .attr("x", -12)
         .attr("y", -33)
         .attr("width", 12)
@@ -266,8 +262,6 @@ function update() {
 
     nodeEnter.append('svg:image')
         .attr("xlink:href", "js/pin.svg")
-// .attr("x", -5)
-// .attr("y", -32)
         .attr("x", 3)
         .attr("y", -31)
         .attr("width", 12)
@@ -278,6 +272,8 @@ function update() {
             d.fx = null;
             d.fy = null;
         });
+    
+    console.log(nodes)
 
 
     simulation.nodes(nodes).on("tick", ticked);
@@ -355,30 +351,20 @@ function dragged(d) {
     d.fx = d3.event.x;
     d.fy = d3.event.y;
 }
-function dragended(d) {
-    if (!d3.event.active) simulation
-        .alphaTarget(0);
-    d.fx = null;
-    d.fy = null;
-}
 
 function updateData(data) {
     var n = data.nodes;
     var l = data.edges;
     n.forEach(element => {
         if (!nodeExists(element.id)) {
-            // console.log("node is not in array");
             nodes.push(element);
         } else {
-            // console.log("node is already in array");
         }
     });
     l.forEach(e => {
         if (!linkExists(e.source, e.target, e.edge)) {
-            // console.log("link is not in array");
             links.push(e);
         } else {
-            // console.log("link is already in array");
         }
     });
 

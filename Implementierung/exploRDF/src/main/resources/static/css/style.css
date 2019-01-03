@@ -434,6 +434,16 @@ table#predicatesTable th {
     min-width: 200px;
 }
 
+#exploreDiv {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#mainSvg {
+	width: 100%;
+    height: 100%;
+}
 
 /* --------------------Hiding the content divs-------------------------- */
 #contentHeader {
