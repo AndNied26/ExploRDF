@@ -52,7 +52,7 @@ public class QueryController {
 	 * Gets the customized predicates list with the specified name.
 	 * 
 	 * @param listName Name of the predicate list selected by user.
-	 * @return List of PredicateDto objects with the customized predicates.
+	 * @return List of PredicateDtos as JSON objects with the customized predicates.
 	 */
 	@RequestMapping(value="/getPredicates/{listName}", method=RequestMethod.GET)
 	public List<PredicateDto> getPredicatesList(@PathVariable(name="listName") String listName) {
@@ -63,14 +63,25 @@ public class QueryController {
 	 * Gets a list of all customized predicates lists concerning the current connection
 	 * properties.
 	 * 
-	 * @return List of predicates lists.
+	 * @return List of predicates lists as JSON objects.
 	 */
 	@RequestMapping(value="/getAllPredicatesLists", method = RequestMethod.GET)
 	public List<String> getAllPredicatesLists() {
 		return queryService.getAllPredicatesLists();
 	}
 	
-	
+	/**
+	 * Gets a list of results of user´s request for a certain searching term. The query 
+	 * can be performed in two different ways: 1. Query for the exact match of the
+	 * searching term and 2. Result that contains the searching term.
+	 * 
+	 * @param request Full HTTP request sent from the user interface of the application.
+	 * @param broaderSearch Determines whether an exact query match is set. If 
+	 * broaderSearch is set to "1", all results which contain the searching
+	 * term are returned, otherwise only exact matches are returned. 
+	 * @return List of TripleDtos as JSON objects containing the results of user´s 
+	 * request.
+	 */
 	@RequestMapping(value="/simpleSearch/**/{broaderSearch}", method = RequestMethod.GET)
 	public List<TripleDto> simpleSearch(HttpServletRequest request, @PathVariable(name = "broaderSearch") char broaderSearch){
 		System.out.println("second Method simpleSearch() entered");
@@ -90,11 +101,26 @@ public class QueryController {
 		return queryService.simpleSearch(term, broaderSearch == '1');
 	}
 	
+	/**
+	 * Gets a list of all RDF predicates (subject-predicate-object) that are used 
+	 * in the connected triple store.
+	 *  
+	 * @return List of PredicateDtos as JSON objects containing all used predicates in 
+	 * the triple store.
+	 */
 	@RequestMapping(value="/getPredicates", method=RequestMethod.GET)
 	public List<PredicateDto> getPredicates() {
 		return queryService.getPredicates();
 	}
 	
+	/**
+	 * Gets a list of all RDF triples containing the IRI of the request resource as a 
+	 * subject (subject-predicate-object).
+	 * 
+	 * @param request Full HTTP request sent from the user interface of the application.
+	 * @return List of TripleDtos as JSON objects containing the results of user´s 
+	 * request.
+	 */
 	@RequestMapping(value="/getSubject/**", method = RequestMethod.GET)
 	public List<TripleDto> getSubject(HttpServletRequest request) {
 		System.out.println("Entered Controller");
@@ -102,8 +128,18 @@ public class QueryController {
 		return queryService.getSubject(subject);
 	}
 	
-	@RequestMapping(value="/getNode/**/{predicatesList}", method = RequestMethod.GET)
-	public VisualizationDto getNode(HttpServletRequest request, @PathVariable(name = "predicatesList") String predicatesList){
+	/**
+	 * Gets a DTO (Data transfer object) of the requested node (RDF subject 
+	 * (subject-predicate-object)) containing the node label selected in the predicate
+	 * list. 
+	 * 
+	 * @param request Full HTTP request sent from the user interface of the application.
+	 * @param listName Name of the predicate list selected by user.
+	 * @return VisualizationDto as a JSON object containing the IRI and label of the 
+	 * node.
+	 */
+	@RequestMapping(value="/getNode/**/{listName}", method = RequestMethod.GET)
+	public VisualizationDto getNode(HttpServletRequest request, @PathVariable(name = "listName") String listName){
 		System.out.println("Method getNode() entered");
 		
 		String url = "";
@@ -114,16 +150,27 @@ public class QueryController {
 			return null;
 		}
 		System.out.println(url);
-		System.out.println(predicatesList);
+		System.out.println(listName);
 
 		String term = url.split("/getNode/")[1];
-		term = term.substring(0, term.length() - predicatesList.length() - 1);
-		System.out.println("term: " + term + ", predicatesList: " + predicatesList);
-		return queryService.getNode(term, predicatesList);
+		term = term.substring(0, term.length() - listName.length() - 1);
+		System.out.println("term: " + term + ", predicatesList: " + listName);
+		return queryService.getNode(term, listName);
 	}
 	
-	@RequestMapping(value="/getNodeData/**/{predicatesList}", method = RequestMethod.GET)
-	public VisualizationDto getNodeData(HttpServletRequest request, @PathVariable(name = "predicatesList") String predicatesList){
+	/**
+	 * Gets a DTO (Data transfer object) of each resource node (RDF object) that is 
+	 * connected with the chosen node (RDF subject) via the selected predicates 
+	 * (subject-predicate-object). Moreover, the VisualizationDto object contains each 
+	 * link between the the subject and the object node as an own DTO.
+	 * 
+	 * @param request Full HTTP request sent from the user interface of the application.
+	 * @param listName Name of the predicate list selected by user.
+	 * @return VisualizationDto as a JSON object containing a NodeDto object of each 
+	 * node and an EdgeDto object of every link between the subject and the object node.
+	 */
+	@RequestMapping(value="/getNodeData/**/{listName}", method = RequestMethod.GET)
+	public VisualizationDto getNodeData(HttpServletRequest request, @PathVariable(name = "listName") String listName){
 		System.out.println("Method getNodeData() entered");
 		
 		String url = "";
@@ -134,12 +181,12 @@ public class QueryController {
 			return null;
 		}
 		System.out.println(url);
-		System.out.println(predicatesList);
+		System.out.println(listName);
 
 		String term = url.split("/getNodeData/")[1];
-		term = term.substring(0, term.length() - predicatesList.length() - 1);
-		System.out.println("term: " + term + ", predicatesList: " + predicatesList);
-		return queryService.getNodeData(term, predicatesList);
+		term = term.substring(0, term.length() - listName.length() - 1);
+		System.out.println("term: " + term + ", predicatesList: " + listName);
+		return queryService.getNodeData(term, listName);
 	}
 	
 	
