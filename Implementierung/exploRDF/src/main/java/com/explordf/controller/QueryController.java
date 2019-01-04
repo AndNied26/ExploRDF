@@ -16,26 +16,55 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
-import com.explordf.dto.VisualizationNodesDto;
+import com.explordf.dto.VisualizationDto;
 import com.explordf.service.QueryService;
 
-
+/**
+ * Spring RestController for managing user´s REST calls concerning the
+ * visualization.
+ * 
+ * @author Andreas Niederquell
+ *
+ */
 @RestController
 public class QueryController {
 	
-	@Autowired
-	QueryService queryService;
 	
+	@Autowired
+	private QueryService queryService;
+	
+	/**
+	 * Saves the predicates that are visualized in the graph. The node label and the
+	 * edges of the graph are selected by the user and transferred in a list.
+	 * 
+	 * @param predicateDtoList List of PredicateDto objects with the selected 
+	 * predicates. 
+	 * @param listName Chosen name of the list the predicates have to be saved in. 
+	 * @return listName if the predicates could be successfully saved, or null if 
+	 * saving the predicates failed. 
+	 */
 	@RequestMapping(value="/savePredicatesList/{listName}", method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String savePredicatesList(@RequestBody List<PredicateDto> predicateDtoList, @PathVariable(name="listName") String listName) {
 		return queryService.savePredicatesList(predicateDtoList, listName);
 	}
 	
+	/**
+	 * Gets the customized predicates list with the specified name.
+	 * 
+	 * @param listName Name of the predicate list selected by user.
+	 * @return List of PredicateDto objects with the customized predicates.
+	 */
 	@RequestMapping(value="/getPredicates/{listName}", method=RequestMethod.GET)
 	public List<PredicateDto> getPredicatesList(@PathVariable(name="listName") String listName) {
 		return queryService.getPredicatesList(listName);
 	}
 	
+	/**
+	 * Gets a list of all customized predicates lists concerning the current connection
+	 * properties.
+	 * 
+	 * @return List of predicates lists.
+	 */
 	@RequestMapping(value="/getAllPredicatesLists", method = RequestMethod.GET)
 	public List<String> getAllPredicatesLists() {
 		return queryService.getAllPredicatesLists();
@@ -74,7 +103,7 @@ public class QueryController {
 	}
 	
 	@RequestMapping(value="/getNode/**/{predicatesList}", method = RequestMethod.GET)
-	public VisualizationNodesDto getNode(HttpServletRequest request, @PathVariable(name = "predicatesList") String predicatesList){
+	public VisualizationDto getNode(HttpServletRequest request, @PathVariable(name = "predicatesList") String predicatesList){
 		System.out.println("Method getNode() entered");
 		
 		String url = "";
@@ -94,7 +123,7 @@ public class QueryController {
 	}
 	
 	@RequestMapping(value="/getNodeData/**/{predicatesList}", method = RequestMethod.GET)
-	public VisualizationNodesDto getNodeData(HttpServletRequest request, @PathVariable(name = "predicatesList") String predicatesList){
+	public VisualizationDto getNodeData(HttpServletRequest request, @PathVariable(name = "predicatesList") String predicatesList){
 		System.out.println("Method getNodeData() entered");
 		
 		String url = "";

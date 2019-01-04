@@ -13,6 +13,9 @@ import com.explordf.dto.ConnectionDto;
  * Spring Controller that returns the appropriate HTML page after a user´s 
  * request.
  * 
+ * This Controller is session scoped, meaning that this class is created in
+ * every session.
+ * 
  * @author Andreas Niederquell
  * 
  */

@@ -51,7 +51,7 @@ import com.explordf.dto.EdgeDto;
 import com.explordf.dto.NodeDto;
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
-import com.explordf.dto.VisualizationNodesDto;
+import com.explordf.dto.VisualizationDto;
 
 //@org.springframework.stereotype.Repository
 @SessionScope
@@ -143,9 +143,9 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	}
 
 	@Override
-	public VisualizationNodesDto getNodeData(String subject, String predicatesList) {
+	public VisualizationDto getNodeData(String subject, String predicatesList) {
 		
-		VisualizationNodesDto viz = new VisualizationNodesDto();
+		VisualizationDto viz = new VisualizationDto();
 		
 		if(!predicatesList.equals(currPredicatesListName) || currPredicatesList == null) {
 			System.out.println("currPredicatesListName has changed or currPredicatesList is null");
@@ -207,25 +207,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 					resultStr = "" + bindingSet.getValue("o");
 				}
 			}
-			
-//			ValueFactory factory = SimpleValueFactory.getInstance();
-//			
-//			IRI pred = factory.createIRI(label);
-//			IRI subj = null;
-//			try {
-//				subj = factory.createIRI(nodeId);
-//			} catch(IllegalArgumentException e) {
-//				System.out.println(nodeId + " is not an IRI");
-//				return null;
-//			}
-//			
-//			try (RepositoryResult<Statement> statements = con.getStatements(subj, pred, null)) {
-//				while (statements.hasNext()) {
-//
-//					Statement st = statements.next();
-//					resultStr = "" + st.getObject();
-//				}
-//			} 
 
 		}
 		
@@ -234,9 +215,9 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	}
 	
 	@Override
-	public VisualizationNodesDto getNode(String subject, String predicatesList) {
+	public VisualizationDto getNode(String subject, String predicatesList) {
 		
-		VisualizationNodesDto viz = new VisualizationNodesDto();
+		VisualizationDto viz = new VisualizationDto();
 		
 		if(!predicatesList.equals(currPredicatesListName) || currPredicatesList == null) {
 			System.out.println("currPredicatesListName has changed or currPredicatesList is null");
@@ -311,9 +292,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		List<TripleDto> resultDto = new LinkedList<>();
 
 		try (RepositoryConnection con = repo.getConnection()) {
-//			String queryString = "SELECT (<" + subject + "> as ?s) ?p ?o " + queryGraph + " WHERE {<" + subject
-//					+ "> ?p ?o. "
-//					+ "FILTER(!isLiteral(?o) || langMatches(lang(?o), \"EN\") || langMatches(lang(?o), \"DE\") || langMatches(lang(?o), \"\"))}";
 
 			String queryString = String.format(getSubjectQuery, "<" + subject + ">", queryGraph, "<" + subject + ">");
 			
@@ -357,8 +335,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			List<String> queryResult = new LinkedList<>();
 			try (RepositoryConnection con = repo.getConnection()) {
 
-//				String queryString = "select distinct ?p where {select ?p " + queryGraph + " where {?s ?p ?o} limit "
-//						+ limit + " offset " + offset + "}";
 				String queryString = String.format(getPredicatesQuery, queryGraph, limit, offset);
 				System.out.println(queryString);
 

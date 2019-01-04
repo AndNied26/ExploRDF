@@ -8,7 +8,7 @@
   <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#gndSubjectCategory> <http://example.org/edge>
-    false;
+    true;
   <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#preferredNameForTheSubjectHeading> <http://example.org/edge>

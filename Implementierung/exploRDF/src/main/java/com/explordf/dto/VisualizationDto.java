@@ -3,17 +3,17 @@ package com.explordf.dto;
 import java.util.LinkedList;
 import java.util.List;
 
-public class VisualizationNodesDto {
+public class VisualizationDto {
 
 	private List<NodeDto> nodes;
 	private List<EdgeDto> edges;
 	
-	public VisualizationNodesDto() {
+	public VisualizationDto() {
 		this.nodes = new LinkedList<NodeDto>();
 		this.edges = new LinkedList<EdgeDto>();
 	}
 	
-	public VisualizationNodesDto(List<NodeDto> nodes, List<EdgeDto> edges) {
+	public VisualizationDto(List<NodeDto> nodes, List<EdgeDto> edges) {
 		this.nodes = nodes;
 		this.edges = edges;
 	}
