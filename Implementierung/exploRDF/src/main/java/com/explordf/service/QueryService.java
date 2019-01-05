@@ -17,7 +17,7 @@ public class QueryService {
 	
 	@Autowired
 	@Qualifier("exploRDFDaoImpl")
-	ExploRDFDao exploRDFDao;
+	private ExploRDFDao exploRDFDao;
 	
 	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
 		return exploRDFDao.simpleSearch(term, broaderSearch);

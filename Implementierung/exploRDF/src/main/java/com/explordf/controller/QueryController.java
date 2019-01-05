@@ -84,7 +84,6 @@ public class QueryController {
 	 */
 	@RequestMapping(value="/simpleSearch/**/{broaderSearch}", method = RequestMethod.GET)
 	public List<TripleDto> simpleSearch(HttpServletRequest request, @PathVariable(name = "broaderSearch") char broaderSearch){
-		System.out.println("second Method simpleSearch() entered");
 		
 		String url = "";
 		try {
@@ -93,11 +92,9 @@ public class QueryController {
 			e.printStackTrace();
 			return new LinkedList<>();
 		}
-		System.out.println(url);
 
 		String term = url.split("/simpleSearch/")[1];
 		term = term.substring(0, term.length()-2);
-		System.out.println("term: " + term + ", broaderSearch: " + (broaderSearch == '1'));
 		return queryService.simpleSearch(term, broaderSearch == '1');
 	}
 	

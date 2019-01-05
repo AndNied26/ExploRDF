@@ -188,7 +188,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	}
 	
 	private String getNodeLabel(String nodeId, String label) {
-		if (nodeId.indexOf(':') < 0) {
+		if (nodeId.indexOf(':') < 0 || nodeId.startsWith("\"")) {
 			System.out.println(nodeId + " is not an IRI");
 			return null;
 		}
@@ -208,6 +208,8 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 				}
 			}
 
+		} catch (RDF4JException e) {
+			logger.warn("Error occured while querying the label of the node " + nodeId);
 		}
 		
 		return resultStr != null ? resultStr : nodeId;

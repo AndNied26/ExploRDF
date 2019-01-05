@@ -35,7 +35,7 @@ $("#exploreBtn").on('click', function () {
 
 function getNodesData(nodeId) {
 	var selectedOpt = $("#visualizationTypeGroup option:selected" ).text();
-	  console.log("getNode/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
+//	  console.log("getNode/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
 	  if(selectedOpt !== null && selectedOpt !== '') {
 		  d3.json("getNode/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt).then(function (data) {
 				
@@ -48,9 +48,6 @@ function getNodesData(nodeId) {
 
   
 }
-
-
-console.log("width: " + width);
 
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function (d) { return d.id })
@@ -78,7 +75,7 @@ $('#goBtn').on('click', function () {
 
 function getNodeRelations(nodeId) {
     var selectedOpt = $("#visualizationTypeGroup option:selected" ).text();
-	  console.log("getNodeData/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
+//	  console.log("getNodeData/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
 	  if(selectedOpt !== null && selectedOpt !== '') {
 		  d3.json("getNodeData/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt).then(function (data) {
 				
@@ -90,71 +87,114 @@ function getNodeRelations(nodeId) {
 	  }
 }
 
-$('#dragBtn').on('click', function () {
-    node.fx = null;
-    node.fy = null;
-
-
-
-    console.log("dragBtn");
-})
-
 link = g.append("g").selectAll(".link");
 var edgepaths = g.append("g").selectAll(".edgepath");
 var edgelabels = g.append("g").selectAll(".edgelabel");
 node = g.append("g").selectAll(".node");
 
 function update() {
-    console.log("update() entered");
+//    console.log("update() entered");
+	
+  link = link.data(links, function (d) { return d.source + "-" + d.edge + "-" + d.target });
+  link.exit().remove();
+  link = link.enter()
+      .append("line")
+      .attr("id", function (d) { return d.source + "-" + d.edge + "-" + d.target })
+      .attr("class", "link")
+      .attr("stroke", "#000")
+      .attr("stroke-width", 1.5)
+      .merge(link);
 
-    link = link.data(links, function (d) { return d.source + "-" + d.edge + "-" + d.target });
-    link.exit().remove();
-    link = link.enter()
-        .append("line")
-        .attr("id", function (d) { return d.source + "-" + d.edge + "-" + d.target })
-        .attr("class", "link")
-        .attr("stroke", "#000")
-        .attr("stroke-width", 1.5)
-        .merge(link);
+  edgepaths = edgepaths.data(links, function (d) { return 'edgepath-' + d.source + "-" + d.edge + "-" + d.target });
+  edgepaths.exit().remove();
+  edgepaths = edgepaths
+      .enter()
+      .append('path')
+//      .merge(edgepaths)
+      .attr('class', 'edgepath')
+      .attr('fill-opacity', 0)
+      .attr('stroke-opacity', 0)
+      .attr('id', function (d) { return 'edgepath-' + d.source + "-" + d.edge + "-" + d.target })
+      .style("pointer-events", "none")
+      .merge(edgepaths)
+      ;
+  console.log(links);
+
+  edgelabels = edgelabels.data(links, function (d) { return 'edgelabel-' + + d.source + "-" + d.edge + "-" + d.target });
+  edgelabels.exit().remove();
+  var edgelabelsEnter = edgelabels.enter()
+      .append('text')
+      .style("pointer-events", "none")
+      .attr('class', 'edgelabel')
+      .attr('id', function (d) { return 'edgelabel-' + d.source + "-" + d.edge + "-" + d.target })
+      .attr('font-size', 10)
+      .attr('fill', 'black')
+      .attr('z-index', 1)
+      ;
+
+  edgelabels = edgelabelsEnter.merge(edgelabels);
 
 
-    edgepaths = edgepaths.data(links, function (d, i) { return 'edgepath' + i });
-    edgepaths.exit().remove();
-    edgepaths = edgepaths
-        .enter()
-        .append('path')
-        .merge(edgepaths)
-        .attr('class', 'edgepath')
-        .attr('fill-opacity', 0)
-        .attr('stroke-opacity', 0)
-        .attr('id', function (d, i) { return 'edgepath' + i })
-        .style("pointer-events", "none")
-        ;
-    console.log(links);
+  edgelabelsEnter
+      .append('textPath')
+      .attr('xlink:href', function (d) { return '#edgepath-' + d.source + "-" + d.edge + "-" + d.target })
+      .style("text-anchor", "middle")
+      .style("pointer-events", "none")
+      .attr("startOffset", "40%")
+      .text(function (d) { return d.edge })
+      ;
+	
+	
+	
+	//------------------ab hier geht´s -----------
 
-    edgelabels = edgelabels.data(links, function (d, i) { return 'edgelabel' + i });
-    edgelabels.exit().remove();
-    var edgelabelsEnter = edgelabels.enter()
-        .append('text')
-        .style("pointer-events", "none")
-        .attr('class', 'edgelabel')
-        .attr('id', function (d, i) { return 'edgelabel' + i })
-        .attr('font-size', 10)
-        .attr('fill', 'black')
-        .attr('z-index', 1)
-        ;
+//    link = link.data(links, function (d) { return d.source + "-" + d.edge + "-" + d.target });
+//    link.exit().remove();
+//    link = link.enter()
+//        .append("line")
+//        .attr("id", function (d) { return d.source + "-" + d.edge + "-" + d.target })
+//        .attr("class", "link")
+//        .attr("stroke", "#000")
+//        .attr("stroke-width", 1.5)
+//        .merge(link);
 
-    edgelabels = edgelabelsEnter.merge(edgelabels);
-
-
-    edgelabelsEnter
-        .append('textPath')
-        .attr('xlink:href', function (d, i) { return '#edgepath' + i })
-        .style("text-anchor", "middle")
-        .style("pointer-events", "none")
-        .attr("startOffset", "40%")
-        .text(function (d) { return d.edge })
-        ;
+//    edgepaths = edgepaths.data(links, function (d, i) { return 'edgepath' + i });
+//    edgepaths.exit().remove();
+//    edgepaths = edgepaths
+//        .enter()
+//        .append('path')
+//        .merge(edgepaths)
+//        .attr('class', 'edgepath')
+//        .attr('fill-opacity', 0)
+//        .attr('stroke-opacity', 0)
+//        .attr('id', function (d, i) { return 'edgepath' + i })
+//        .style("pointer-events", "none")
+//        ;
+//    console.log(links);
+//
+//    edgelabels = edgelabels.data(links, function (d, i) { return 'edgelabel' + i });
+//    edgelabels.exit().remove();
+//    var edgelabelsEnter = edgelabels.enter()
+//        .append('text')
+//        .style("pointer-events", "none")
+//        .attr('class', 'edgelabel')
+//        .attr('id', function (d, i) { return 'edgelabel' + i })
+//        .attr('font-size', 10)
+//        .attr('fill', 'black')
+//        .attr('z-index', 1)
+//        ;
+//
+//    edgelabels = edgelabelsEnter.merge(edgelabels);
+//
+//
+//    edgelabelsEnter
+//        .append('textPath')
+//        .attr('xlink:href', function (d, i) { return '#edgepath' + i })
+//        .style("text-anchor", "middle")
+//        .style("pointer-events", "none")
+//        .attr("startOffset", "40%")
+//        .text(function (d) { return d.edge })
+//        ;
 
 
 
@@ -202,7 +242,7 @@ function update() {
     nodeEnter
         .append('svg:text')
         .text(function (d) { 
-        	console.log("hallo node " + d.id)	
+//        	console.log("hallo node " + d.id)	
         	return d.label !== null ? d.label : d.id ; })
         .attr("font-family", "sans-serif")
         .attr("font-size", "15px")
@@ -221,8 +261,8 @@ function update() {
         .attr("class", "icon")
         .style("opacity", 0)
         .on("click", function (d) {
-            console.log(d);
-            console.log(nodes);
+//            console.log(d);
+//            console.log(nodes);
             if (nodes.length < 2) {
                 return;
             }
@@ -232,7 +272,14 @@ function update() {
             links = links.filter(function (l) {
                 return d.id != l.source.id && d.id != l.target.id;
             });
-            console.log(nodes);
+//            edgepaths = edgepaths.filter(function(ep) {
+//            	return ep.id != 'edgepath' + d.source + "-" + d.edge + "-" + d.target;
+//            });
+//            edgelabels = edgepaths.filter(function(el) {
+//            	return el.id != 'edgelabel' + d.source + "-" + d.edge + "-" + d.target;
+//            });
+            
+//            console.log(nodes);
             update();
         });
     
@@ -273,7 +320,7 @@ function update() {
             d.fy = null;
         });
     
-    console.log(nodes)
+//    console.log(nodes)
 
 
     simulation.nodes(nodes).on("tick", ticked);
