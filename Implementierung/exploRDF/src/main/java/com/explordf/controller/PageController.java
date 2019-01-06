@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.annotation.SessionScope;
 
 import com.explordf.dto.ConnectionDto;
@@ -11,10 +12,11 @@ import com.explordf.dto.ConnectionDto;
 /**
  * 
  * Spring Controller that returns the appropriate HTML page after a user´s 
- * request.
- * 
- * This Controller is session scoped, meaning that this class is created in
- * every session.
+ * request. It is annotated as Spring {@link Controller} to catch the request
+ * from the front end of the application. It is annotated as Spring 
+ * {@link SessionScope}, meaning that this class is created in
+ * every session. Therefore it overwrites the singleton property of the Spring 
+ * {@link Controller}.
  * 
  * @author Andreas Niederquell
  * 

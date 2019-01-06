@@ -12,11 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.explordf.dto.ConnectionDto;
 import com.explordf.service.ConnectionService;
 
+/**
+ * Spring RestController for managing user´s REST calls concerning the
+ * connection to a triple store. It is annotated as Spring {@link RestController}, 
+ * therefore it is created once during the application.
+ * 
+ * @author Andreas Niederquell
+ *
+ */
 @RestController
 public class ConnectionController {
 
 	@Autowired
-	ConnectionService connectionService;
+	private ConnectionService connectionService;
 
 	@RequestMapping(value="/connect", method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ConnectionDto setConnectionProps(@RequestBody ConnectionDto connectionDto) {

@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,8 @@ import com.explordf.service.QueryService;
 
 /**
  * Spring RestController for managing user´s REST calls concerning the
- * visualization.
+ * visualization. It is annotated as Spring {@link RestController}, therefore it is
+ * created once during the application.
  * 
  * @author Andreas Niederquell
  *
