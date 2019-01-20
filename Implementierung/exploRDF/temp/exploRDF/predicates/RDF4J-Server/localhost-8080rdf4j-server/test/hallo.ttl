@@ -19,7 +19,7 @@
     false;
   <http://example.org/label> false .
 
-<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/edge> false;
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/edge> true;
   <http://example.org/label> false .
 
 <http://d-nb.info/standards/elementset/gnd#variantNameForTheSubjectHeading> <http://example.org/edge>

@@ -264,7 +264,9 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			} else {
 //				queryString = "SELECT ?s ?p ?o WHERE {FILTER(?o = \"" + term + "\"). {SELECT ?s ?p ?o " + queryGraph
 //						+ " WHERE {?s ?p \"" + term + "\". ?s ?p ?o}}}";
-				queryString = String.format(simpleSearchQuery, term, queryGraph, term);
+//				queryString = String.format(simpleSearchQuery, term, queryGraph, term);
+				queryString = String.format(simpleSearchQuery, queryGraph, term, term, term);
+//				queryString = "select distinct ?s ?p ?o where {filter(?o=\"Albert Einstein\"@de || ?o=\"Albert Einstein\"@en ). ?s ?p ?o}";
 			}
 
 			System.out.println();
@@ -306,6 +308,8 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 					BindingSet bindingSet = result.next();
 					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
 							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
+					System.out.println(bindingSet.getValue("s").toString() + " " +
+							bindingSet.getValue("p").toString() +" "+ bindingSet.getValue("o").toString());
 				}
 			}
 

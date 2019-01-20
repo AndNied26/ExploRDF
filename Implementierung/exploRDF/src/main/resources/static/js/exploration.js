@@ -63,15 +63,15 @@ var nodeId = ['nodes_start', 'nodes_id_1', 'nodes_id_2', 'nodes_id_3'];
 
 var i = 0;
 
-$('#goBtn').on('click', function () {
-
-    d3.json(nodeId[i] + ".json").then(function (data) {
-        updateData(data);
-        update();
-    });
-    i++;
-    // nodeId = 'nodes_id_2';
-})
+//$('#goBtn').on('click', function () {
+//
+//    d3.json(nodeId[i] + ".json").then(function (data) {
+//        updateData(data);
+//        update();
+//    });
+//    i++;
+//    // nodeId = 'nodes_id_2';
+//})
 
 function getNodeRelations(nodeId) {
     var selectedOpt = $("#visualizationTypeGroup option:selected" ).text();
@@ -95,54 +95,106 @@ node = g.append("g").selectAll(".node");
 function update() {
 //    console.log("update() entered");
 	
-  link = link.data(links, function (d) { return d.source + "-" + d.edge + "-" + d.target });
-  link.exit().remove();
-  link = link.enter()
-      .append("line")
-      .attr("id", function (d) { return d.source + "-" + d.edge + "-" + d.target })
-      .attr("class", "link")
-      .attr("stroke", "#000")
-      .attr("stroke-width", 1.5)
-      .merge(link);
+	
+	link = link.data(links, function (d) { return d.source.id + "-" + d.edge + "-" + d.target.id });
+	  link.exit().remove();
+	  link = link.enter()
+	      .append("line")
+	      .attr("id", function (d) { return d.source + "-" + d.edge + "-" + d.target })
+	      .attr("class", "link")
+	      .attr("stroke", "#000")
+	      .attr("stroke-width", 1.5)
+	      .merge(link);
 
-  edgepaths = edgepaths.data(links, function (d) { return 'edgepath-' + d.source + "-" + d.edge + "-" + d.target });
-  edgepaths.exit().remove();
-  edgepaths = edgepaths
-      .enter()
-      .append('path')
+	  edgepaths = edgepaths.data(links, function (d) { return 'edgepath-' + d.source.id + "-" + d.edge + "-" + d.target.id });
+	  edgepaths.exit().remove();
+	  edgepaths = edgepaths
+	      .enter()
+	      .append('path')
+//	      .merge(edgepaths)
+	      .attr('class', 'edgepath')
+	      .attr('fill-opacity', 0)
+	      .attr('stroke-opacity', 0)
+	      .attr('id', function (d) { return 'edgepath-' + d.source + "-" + d.edge + "-" + d.target })
+	      .style("pointer-events", "none")
+	      .merge(edgepaths)
+	      ;
+	  console.log(links);
+
+	  edgelabels = edgelabels.data(links, function (d) { return 'edgelabel-' + d.source.id + "-" + d.edge + "-" + d.target.id });
+	  edgelabels.exit().remove();
+	  var edgelabelsEnter = edgelabels.enter()
+	      .append('text')
+	      .style("pointer-events", "none")
+	      .attr('class', 'edgelabel')
+	      .attr('id', function (d) { return 'edgelabel-' + d.source + "-" + d.edge + "-" + d.target })
+	      .attr('font-size', 10)
+	      .attr('fill', 'black')
+	      .attr('z-index', 1)
+	      ;
+
+	  edgelabels = edgelabelsEnter.merge(edgelabels);
+
+
+	  edgelabelsEnter
+	      .append('textPath')
+	      .attr('xlink:href', function (d) { return '#edgepath-' + d.source + "-" + d.edge + "-" + d.target })
+	      .style("text-anchor", "middle")
+	      .style("pointer-events", "none")
+	      .attr("startOffset", "40%")
+	      .text(function (d) { return d.edge })
+	      ;
+	
+	//-----------------------------------------------------------
+	
+//  link = link.data(links, function (d) { return d.source + "-" + d.edge + "-" + d.target });
+//  link.exit().remove();
+//  link = link.enter()
+//      .append("line")
+//      .attr("id", function (d) { return d.source + "-" + d.edge + "-" + d.target })
+//      .attr("class", "link")
+//      .attr("stroke", "#000")
+//      .attr("stroke-width", 1.5)
+//      .merge(link);
+//
+//  edgepaths = edgepaths.data(links, function (d) { return 'edgepath-' + d.source + "-" + d.edge + "-" + d.target });
+//  edgepaths.exit().remove();
+//  edgepaths = edgepaths
+//      .enter()
+//      .append('path')
+////      .merge(edgepaths)
+//      .attr('class', 'edgepath')
+//      .attr('fill-opacity', 0)
+//      .attr('stroke-opacity', 0)
+//      .attr('id', function (d) { return 'edgepath-' + d.source + "-" + d.edge + "-" + d.target })
+//      .style("pointer-events", "none")
 //      .merge(edgepaths)
-      .attr('class', 'edgepath')
-      .attr('fill-opacity', 0)
-      .attr('stroke-opacity', 0)
-      .attr('id', function (d) { return 'edgepath-' + d.source + "-" + d.edge + "-" + d.target })
-      .style("pointer-events", "none")
-      .merge(edgepaths)
-      ;
-  console.log(links);
-
-  edgelabels = edgelabels.data(links, function (d) { return 'edgelabel-' + + d.source + "-" + d.edge + "-" + d.target });
-  edgelabels.exit().remove();
-  var edgelabelsEnter = edgelabels.enter()
-      .append('text')
-      .style("pointer-events", "none")
-      .attr('class', 'edgelabel')
-      .attr('id', function (d) { return 'edgelabel-' + d.source + "-" + d.edge + "-" + d.target })
-      .attr('font-size', 10)
-      .attr('fill', 'black')
-      .attr('z-index', 1)
-      ;
-
-  edgelabels = edgelabelsEnter.merge(edgelabels);
-
-
-  edgelabelsEnter
-      .append('textPath')
-      .attr('xlink:href', function (d) { return '#edgepath-' + d.source + "-" + d.edge + "-" + d.target })
-      .style("text-anchor", "middle")
-      .style("pointer-events", "none")
-      .attr("startOffset", "40%")
-      .text(function (d) { return d.edge })
-      ;
+//      ;
+//  console.log(links);
+//
+//  edgelabels = edgelabels.data(links, function (d) { return 'edgelabel-' + d.source + "-" + d.edge + "-" + d.target });
+//  edgelabels.exit().remove();
+//  var edgelabelsEnter = edgelabels.enter()
+//      .append('text')
+//      .style("pointer-events", "none")
+//      .attr('class', 'edgelabel')
+//      .attr('id', function (d) { return 'edgelabel-' + d.source + "-" + d.edge + "-" + d.target })
+//      .attr('font-size', 10)
+//      .attr('fill', 'black')
+//      .attr('z-index', 1)
+//      ;
+//
+//  edgelabels = edgelabelsEnter.merge(edgelabels);
+//
+//
+//  edgelabelsEnter
+//      .append('textPath')
+//      .attr('xlink:href', function (d) { return '#edgepath-' + d.source + "-" + d.edge + "-" + d.target })
+//      .style("text-anchor", "middle")
+//      .style("pointer-events", "none")
+//      .attr("startOffset", "40%")
+//      .text(function (d) { return d.edge })
+//      ;
 	
 	
 	
