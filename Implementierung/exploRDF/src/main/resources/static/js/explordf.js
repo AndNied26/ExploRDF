@@ -136,7 +136,7 @@ $('#resultTbody').on("click", "a", function (e) {
 //  console.log(subj);
   $("body").css("cursor", "progress");
 
-  d3.json("getSubject/" + subj.replace(/#/g,"%23")).then(function (data) {
+  d3.json("getSubject/" + subj.replace(/#/g,"%23") + "/0/1000").then(function (data) {
     choiceResult = data;
     drawChoiceTable(choiceResult, subj);
     $("body").css("cursor", "default");

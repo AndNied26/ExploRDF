@@ -60,11 +60,13 @@ public class QueryService {
 	 * subject (subject-predicate-object).
 	 * 
 	 * @param subject IRI of the requested subject.
+	 * @param limit 
+	 * @param edgeOffset 
 	 * @return List of TripleDtos objects containing the results of user´s request.
 	 */
-	public List<TripleDto> getSubject(String subject) {
+	public List<TripleDto> getSubject(String subject, int edgeOffset, int limit) {
 		System.out.println("Entered sevice");
-		return exploRDFDao.getSubject(subject);
+		return exploRDFDao.getSubject(subject, edgeOffset, limit);
 	}
 
 
@@ -145,12 +147,15 @@ public class QueryService {
 	 * link between the the subject and the object node as an own DTO.
 	 * 
 	 * @param subject IRI of the requested subject node.
+	 * @param limit 
+	 * @param edgeOffset 
+	 * @param edgeViz 
 	 * @param Name of the predicate list selected by user.
 	 * @return VisualizationDto as a JSON object containing a NodeDto object of each 
 	 * node and an EdgeDto object of every link between the subject and the object node.
 	 */
-	public VisualizationDto getNodeData(String subject, String listName) {
-		return exploRDFDao.getNodeData(subject, listName);
+	public VisualizationDto getNodeData(String subject, String listName, int edgeViz, int edgeOffset, int limit) {
+		return exploRDFDao.getNodeData(subject, listName, edgeViz, edgeOffset, limit);
 	}
 	
 }

@@ -120,18 +120,21 @@ public class QueryController {
 	 * @return List of TripleDtos as JSON objects containing the results of user´s 
 	 * request.
 	 */
-	@RequestMapping(value="/getSubject/**", method = RequestMethod.GET)
-	public List<TripleDto> getSubject(HttpServletRequest request) {
+	@RequestMapping(value="/getSubject/**/{edgeOffset}/{limit}", method = RequestMethod.GET)
+	public List<TripleDto> getSubject(HttpServletRequest request,
+			@PathVariable(name = "edgeOffset") int edgeOffset,
+			@PathVariable(name = "limit") int limit) {
 		System.out.println("Entered Controller");
 		String subject = request.getRequestURI().split("/getSubject/")[1];
-		return queryService.getSubject(subject);
+		subject = subject.substring(0, subject.length() - String.valueOf(edgeOffset).length() - String.valueOf(limit).length() - 2);
+		return queryService.getSubject(subject, edgeOffset, limit);
 	}
 	
 	/**
 	 * Gets a DTO (Data transfer object) of the requested node (RDF subject 
 	 * (subject-predicate-object)) containing the node label selected in the predicate
 	 * list. 
-	 * 
+	 * TODO
 	 * @param request Full HTTP request sent from the user interface of the application.
 	 * @param listName Name of the predicate list selected by user.
 	 * @return VisualizationDto as a JSON object containing the IRI and label of the 
@@ -165,11 +168,16 @@ public class QueryController {
 	 * 
 	 * @param request Full HTTP request sent from the user interface of the application.
 	 * @param listName Name of the predicate list selected by user.
+	 * 
 	 * @return VisualizationDto as a JSON object containing a NodeDto object of each 
 	 * node and an EdgeDto object of every link between the subject and the object node.
 	 */
-	@RequestMapping(value="/getNodeData/**/{listName}", method = RequestMethod.GET)
-	public VisualizationDto getNodeData(HttpServletRequest request, @PathVariable(name = "listName") String listName){
+	@RequestMapping(value="/getNodeData/**/{listName}/{edgeViz}/{edgeOffset}/{limit}", method = RequestMethod.GET)
+	public VisualizationDto getNodeData(HttpServletRequest request, 
+			@PathVariable(name = "listName") String listName,
+			@PathVariable(name = "edgeViz") int edgeViz,
+			@PathVariable(name = "edgeOffset") int edgeOffset,
+			@PathVariable(name = "limit") int limit){
 		System.out.println("Method getNodeData() entered");
 		
 		String url = "";
@@ -180,12 +188,14 @@ public class QueryController {
 			return null;
 		}
 		System.out.println(url);
-		System.out.println(listName);
+		System.out.println("listname " + listName);
+		System.out.println("edgeViz " + edgeViz);
+		System.out.println("edgeOffset " + edgeOffset);
 
 		String term = url.split("/getNodeData/")[1];
-		term = term.substring(0, term.length() - listName.length() - 1);
+		term = term.substring(0, term.length() - listName.length() - String.valueOf(edgeViz).length() - String.valueOf(edgeOffset).length() - String.valueOf(limit).length() - 4);
 		System.out.println("term: " + term + ", predicatesList: " + listName);
-		return queryService.getNodeData(term, listName);
+		return queryService.getNodeData(term, listName, edgeViz, edgeOffset, limit);
 	}
 	
 	

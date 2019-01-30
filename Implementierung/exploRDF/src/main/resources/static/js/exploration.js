@@ -9,6 +9,11 @@ var svg = d3.select("svg").style("background-color", "white"),
 
 var g = svg.append("g");
 
+var edgeLevel = 5;
+var edgeLimit = 5;
+var pos = 0;
+var colors = ["#ff6600", "#ffc600"];
+
 svg
 	
 	.call(d3.zoom()
@@ -30,16 +35,17 @@ $("#exploreBtn").on('click', function () {
   width = $('#exploreDiv').width();
   height = $('#exploreDiv').height();
   simulation.force("center", d3.forceCenter(width / 2, height / 2));
+  pos = 0;
   getNodesData(startNode);
 });
 
 function getNodesData(nodeId) {
 	var selectedOpt = $("#visualizationTypeGroup option:selected" ).text();
-//	  console.log("getNode/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
+// console.log("getNode/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
 	  if(selectedOpt !== null && selectedOpt !== '') {
 		  d3.json("getNode/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt).then(function (data) {
 				
-		    updateData(data);
+		    updateData(data, null);
 		    update();
 		  });
 	  } else {
@@ -56,34 +62,25 @@ var simulation = d3.forceSimulation()
     .force("charge", d3.forceManyBody()
         .strength(-400)
     )
-//    .force("center", d3.forceCenter(width / 2, height / 2));
+    .force("center", d3.forceCenter(width / 2, height / 2));
 
-// var nodeId = 'nodes_id_1';
-var nodeId = ['nodes_start', 'nodes_id_1', 'nodes_id_2', 'nodes_id_3'];
 
-var i = 0;
-
-//$('#goBtn').on('click', function () {
+// var nodeId = ['nodes_start', 'nodes_id_1', 'nodes_id_2', 'nodes_id_3'];
 //
-//    d3.json(nodeId[i] + ".json").then(function (data) {
-//        updateData(data);
-//        update();
-//    });
-//    i++;
-//    // nodeId = 'nodes_id_2';
-//})
+// var i = 0;
 
-function getNodeRelations(nodeId, circ, text, loader) {
+
+
+function getNodeRelations(currNode, circ, text, loader) {
     var selectedOpt = $("#visualizationTypeGroup option:selected" ).text();
-//	  console.log("getNodeData/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
+// console.log("getNodeData/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
 	  if(selectedOpt !== null && selectedOpt !== '') {
-		  d3.json("getNodeData/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt).then(function (data) {
+		  d3.json("getNodeData/" + currNode.id.replace(/#/g,"%23") + "/" + selectedOpt + "/" + 0 + "/" + currNode.edgeOffset * edgeLimit +"/" + edgeLimit).then(function (data) {
 				
-		    updateData(data);
+		    updateData(data, currNode);
 		    update();
 		    circ
-				.attr("fill", "#fc8100")
-				.style("opacity", 1);
+		    	.attr("fill", function(d) {return d.num === 0 ? colors[0] : colors[1]});
 		    text
 				.style("opacity", 1);
 		    loader.remove();
@@ -99,7 +96,7 @@ var edgelabels = g.append("g").selectAll(".edgelabel");
 node = g.append("g").selectAll(".node");
 
 function update() {
-//    console.log("update() entered");
+    console.log(nodes);
 	
 	
 	link = link.data(links, function (d) { return d.source.id + "-" + d.edge + "-" + d.target.id });
@@ -117,7 +114,7 @@ function update() {
 	  edgepaths = edgepaths
 	      .enter()
 	      .append('path')
-//	      .merge(edgepaths)
+// .merge(edgepaths)
 	      .attr('class', 'edgepath')
 	      .attr('fill-opacity', 0)
 	      .attr('stroke-opacity', 0)
@@ -170,7 +167,7 @@ function update() {
                 ;
         })
         .on("dblclick", function (d) {
-//            getNodeRelations(d.id);
+// getNodeRelations(d.id);
         	window.open(d.id, '_blank');
        
         })
@@ -187,13 +184,14 @@ function update() {
         .append('svg:circle')
         .attr("class", "circle")
         .attr("r", 20)
-        .attr("fill", "#fc8100")
+// .attr("fill", "#ffc600") //vorher: #fc8100
+        .attr("fill", function(d) {return d.num === 0 ? colors[0] : colors[1]});
         ;
 
     nodeEnter
         .append('svg:text')
         .text(function (d) { 
-//        	console.log("hallo node " + d.id)	
+// console.log("hallo node " + d.id)
         	return d.label !== null ? d.label : d.id ; })
         .attr("font-family", "sans-serif")
         .attr("font-size", "15px")
@@ -236,14 +234,14 @@ function update() {
     .attr("class", "icon")
     .style("opacity", 0)
     .on("click", function (d) {
-    	
+    	d.num = 0;
     	var thisVar = d3.select(this.parentNode);
     	var circ = thisVar.select(".circle");
     	var text = thisVar.select(".nodeText");
     	var icons = thisVar.select(".icon");
     	circ
     		.attr("fill", "#978d75")
-    		.style("opacity", 0.3);
+// .style("opacity", 0.3);
     	text
     		.style("opacity", 0.3);
     	icons
@@ -251,14 +249,14 @@ function update() {
     	console.log(thisVar);
     	
     	var loader = thisVar.append("svg:image")
-    		.attr("xlink:href", "js/spin.gif")
+    		.attr("xlink:href", "js/spinner.gif")
     		.attr("x", -20)
     		.attr("y", -20)
     		.attr("width", 40)
     		.attr("height", 40)
     		.style("opacity", 1)
 
-    	getNodeRelations(d.id, circ, text, loader);
+    	getNodeRelations(d, circ, text, loader);
     });
     
     nodeEnter.append('svg:image')
@@ -296,52 +294,15 @@ function update() {
     .attr("class", "icon")
     .style("opacity", 0)
     .on("click", function (d) {
+    	d.num = d.num === 0 ? pos : 0;
     	var thisVar = d3.select(this.parentNode);
     	var circ = thisVar.select(".circle");
     	circ
-			.attr("fill", "#0000ff");
+    		.attr("fill", function(d) {return d.num === 0 ? colors[0] : colors[1]});
+// .attr("fill", "#ff6600");
+    	console.log(d.num);
     });
     
-
-    
-//    nodeEnter.append('svg:text')
-//        .text("<")
-//        .attr("font-family", "sans-serif")
-//        .attr("font-size", "10px")
-//        .attr('font-weight', 'bolder')
-//        .attr("text-anchor", "middle")
-//        .attr("x", -16)
-//        .attr("y", 24)
-//        .attr("class", "icon")
-//        .style("opacity", 0)
-//        ;
-//    
-//    nodeEnter.append('svg:text')
-//    .text(">")
-//    .attr("font-family", "sans-serif")
-//    .attr("font-size", "10px")
-//    .attr('font-weight', 'bolder')
-//    .attr("text-anchor", "middle")
-//    .attr("x", 16)
-//    .attr("y", 24)
-//    .attr("class", "icon")
-//    .style("opacity", 0)
-//    ;
-//    
-//    nodeEnter.append('svg:text')
-//    .text("1")
-//    .attr("font-family", "sans-serif")
-//    .attr("font-size", "10px")
-//    .attr('font-weight', 'bolder')
-//    .attr("text-anchor", "middle")
-//    .attr("x", 0)
-//    .attr("y", 24)
-//    .attr("class", "icon")
-//    .style("opacity", 0)
-//    ;
-    
-//    console.log(nodes)
-
 
     simulation.nodes(nodes).on("tick", ticked);
     simulation.force("link").links(links);
@@ -351,7 +312,7 @@ function update() {
 }
 
 function getInfo(subject) {
-	d3.json("getSubject/" + subject.replace(/#/g,"%23")).then(function (data) {
+	d3.json("getSubject/" + subject.replace(/#/g,"%23") + "/0/1000").then(function (data) {
 		var infoDiv = d3.select("body")
 			.append("div")
 			.attr("id", "infoDiv");
@@ -419,10 +380,37 @@ function dragged(d) {
     d.fy = d3.event.y;
 }
 
-function updateData(data) {
+function updateData(data, currNode) {
     var n = data.nodes;
     var l = data.edges;
+    
+    if(n.length >= edgeLimit) {
+    	console.log(currNode);
+    	currNode.edgeOffset = currNode.edgeOffset + 1; 
+//    	currNode.edgeOffset++;
+    } else {
+    	if(nodes.length > 0) {
+    		currNode.edgeOffset = 0;
+    	}
+    	
+    }
+    
+    if(data.nodes.length > 0) {
+    	
+    	nodes = nodes.filter(function (n) {
+ 
+            return n.num === 0 || pos - n.num !== edgeLevel;
+            
+            
+        });
+    	links = links.filter(function (l){
+    		return (l.source.num === 0 || pos - l.source.num != edgeLevel)
+    			&& (l.target.num === 0 || pos - l.target.num != edgeLevel)
+    	});
+    }
+    
     n.forEach(element => {
+    	element.num = pos;
         if (!nodeExists(element.id)) {
             nodes.push(element);
         } else {
@@ -434,7 +422,9 @@ function updateData(data) {
         } else {
         }
     });
-
+    if (data.nodes.length > 0) {
+    	pos++;
+    }
 }
 
 function linkExists(source, target, link) {

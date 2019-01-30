@@ -143,7 +143,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	}
 
 	@Override
-	public VisualizationDto getNodeData(String subject, String predicatesList) {
+	public VisualizationDto getNodeData(String subject, String predicatesList, int edgeViz, int edgeOffset, int limit) {
 		
 		VisualizationDto viz = new VisualizationDto();
 		
@@ -161,7 +161,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		}
 		
 		
-			List<TripleDto> nodeData = getSubject(subject);
+			List<TripleDto> nodeData = getSubject(subject, edgeOffset, limit);
 			
 			for (TripleDto tripleDto : nodeData) {
 				
@@ -291,7 +291,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	}
 
 	@Override
-	public List<TripleDto> getSubject(String subject) {
+	public List<TripleDto> getSubject(String subject, int edgeOffset, int limit) {
 		double start = new Date().getTime();
 		List<TripleDto> resultDto = new LinkedList<>();
 
