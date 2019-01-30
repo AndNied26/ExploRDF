@@ -370,8 +370,8 @@ table#predicatesTable th {
 .contentFooter {
     grid-area: contentFooter;
     display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas: "contentFooterFormDiv exploreBtn";
+    grid-template-columns: 1fr 1fr auto;
+    grid-template-areas: "contentFooterFormDiv contentFooterEdgeChoiceDiv exploreBtn";
     text-align: left;
     margin: auto;
     width: 85%;
@@ -380,14 +380,18 @@ table#predicatesTable th {
 
 #contentFooterFormDiv {
     grid-area: contentFooterFormDiv;
-    align-self: center;
+    align-self: left;
     display: grid;
-    justify-content: right;
+    justify-content: left;
 }
 
 #contentFooterInput {
     margin: 0;
     padding-right: 20px;
+}
+
+#contentFooterEdgeChoiceRadio {
+	margin: 0;
 }
 
 #visualizationTypeGroup {

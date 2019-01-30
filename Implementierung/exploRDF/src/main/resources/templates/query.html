@@ -123,17 +123,37 @@
 							<div id="contentFooterInput" class="input-group-sm input-group">
 								<span class="input-group-btn">
 									<button id="newVisualizationBtn" type="button" class="btn">Customize</button>
-								</span> <select id="visualizationTypeGroup" class="form-control">
-									<!--                                     <option value="gnd">GND</option> -->
-									<!--                                     <option value="skos">SKOS</option> -->
-									<!--                                     <option value="eigene">Example</option> -->
+								</span> 
+								<select id="visualizationTypeGroup" class="form-control">
+									
 								</select>
 
 							</div>
-							<small id="emailHelp" class="form-text text-muted">Select
-								which predicates to visualize</small>
+							<small class="form-text text-muted">Select
+								which edges/predicates to visualize</small>
 						</div>
-						<button id="exploreBtn" type="button" class="btn btn-small">Explore</button>
+
+						<div id="contentFooterEdgeChoiceDiv">
+							<div id="contentFooterEdgeChoiceRadio" class="input-group-sm input-group">
+								<form>
+									<label class="radio-inline"> <input type="radio"
+										name="optradio" checked>Outgoing
+									</label> <label class="radio-inline"> <input type="radio"
+										name="optradio">Incoming
+									</label> <label class="radio-inline"> <input type="radio"
+										name="optradio">Both
+									</label>
+								</form>
+								
+							</div>
+							<small class="form-text text-muted">Select whether to show outgoing, incoming or both types of edges.</small>
+						</div>
+
+						<div>
+							<button id="exploreBtn" type="button" class="btn btn-small">Explore</button>
+						</div>
+
+
 
 					</div>
 				</div>
@@ -160,19 +180,20 @@
 						<!-- <div> -->
 						<!--   <button id="loadNewPredicatesBtn" class="btn btn-small" type="button">New Predicates</button> -->
 						<!-- </div> -->
-						<div id="loadNewPredicatesBtnDiv" class="input-group-sm input-group">
-						<span class="input-group-btn">
-							<button id="loadNewPredicatesBtn" class="btn" type="button">New Predicates</button>
-						</span>
+						<div id="loadNewPredicatesBtnDiv"
+							class="input-group-sm input-group">
+							<span class="input-group-btn">
+								<button id="loadNewPredicatesBtn" class="btn" type="button">New
+									Predicates</button>
+							</span>
 						</div>
 						<div id="predicatesInputDiv" class="input-group-sm input-group">
 							<input id="predicatesInput" type="text" class="form-control">
 							<span class="input-group-btn">
 								<button id="savePredicatesBtn" class="btn" type="button">Save</button>
-							</span>
-							
-							<small id="invalidPredicatesListName" class="form-text text-muted danger"></small>
-							
+							</span> <small id="invalidPredicatesListName"
+								class="form-text text-muted danger"></small>
+
 						</div>
 					</div>
 
@@ -184,7 +205,7 @@
 
 			<!-- Container for exploring the graph -->
 			<div id="exploreDiv" class="containerDiv">
-<!-- 				<svg id="mainSvg" width="960" height="500"></svg> -->
+				<!-- 				<svg id="mainSvg" width="960" height="500"></svg> -->
 				<svg id="mainSvg"></svg>
 			</div>
 

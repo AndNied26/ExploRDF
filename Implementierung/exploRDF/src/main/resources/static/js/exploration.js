@@ -372,6 +372,49 @@ function update() {
             d.fy = null;
         });
     
+//    nodeEnter.append('svg:circle')
+//        .attr("cx", 16)
+//        .attr("cy", 24)
+//        .attr("r", 8)
+//        .attr("fill", "#ffffff")
+//        .attr("class", "icon");
+    
+    nodeEnter.append('svg:text')
+        .text("<")
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "10px")
+        .attr('font-weight', 'bolder')
+        .attr("text-anchor", "middle")
+        .attr("x", -16)
+        .attr("y", 24)
+        .attr("class", "icon")
+        .style("opacity", 0)
+        ;
+    
+    nodeEnter.append('svg:text')
+    .text(">")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "10px")
+    .attr('font-weight', 'bolder')
+    .attr("text-anchor", "middle")
+    .attr("x", 16)
+    .attr("y", 24)
+    .attr("class", "icon")
+    .style("opacity", 0)
+    ;
+    
+    nodeEnter.append('svg:text')
+    .text("1")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "10px")
+    .attr('font-weight', 'bolder')
+    .attr("text-anchor", "middle")
+    .attr("x", 0)
+    .attr("y", 24)
+    .attr("class", "icon")
+    .style("opacity", 0)
+    ;
+    
 //    console.log(nodes)
 
 
