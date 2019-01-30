@@ -341,8 +341,8 @@ $('#savePredicatesBtn').on('click', function(){
 //		console.log(predicate);
 		predicates.push(predicate);
 		
-		var urlName = 'savePredicatesList/' + listName;
-		console.log(urlName);
+//		var urlName = 'savePredicatesList/' + listName;
+//		console.log(urlName);
 	});
 	
 	$.ajax({

@@ -73,7 +73,7 @@ var i = 0;
 //    // nodeId = 'nodes_id_2';
 //})
 
-function getNodeRelations(nodeId) {
+function getNodeRelations(nodeId, circ, text, loader) {
     var selectedOpt = $("#visualizationTypeGroup option:selected" ).text();
 //	  console.log("getNodeData/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
 	  if(selectedOpt !== null && selectedOpt !== '') {
@@ -81,7 +81,13 @@ function getNodeRelations(nodeId) {
 				
 		    updateData(data);
 		    update();
-		  });
+		    circ
+				.attr("fill", "#fc8100")
+				.style("opacity", 1);
+		    text
+				.style("opacity", 1);
+		    loader.remove();
+		  	});
 	  } else {
 // getPredicates();
 	  }
@@ -144,113 +150,6 @@ function update() {
 	      .attr("startOffset", "40%")
 	      .text(function (d) { return d.edge })
 	      ;
-	
-	//-----------------------------------------------------------
-	
-//  link = link.data(links, function (d) { return d.source + "-" + d.edge + "-" + d.target });
-//  link.exit().remove();
-//  link = link.enter()
-//      .append("line")
-//      .attr("id", function (d) { return d.source + "-" + d.edge + "-" + d.target })
-//      .attr("class", "link")
-//      .attr("stroke", "#000")
-//      .attr("stroke-width", 1.5)
-//      .merge(link);
-//
-//  edgepaths = edgepaths.data(links, function (d) { return 'edgepath-' + d.source + "-" + d.edge + "-" + d.target });
-//  edgepaths.exit().remove();
-//  edgepaths = edgepaths
-//      .enter()
-//      .append('path')
-////      .merge(edgepaths)
-//      .attr('class', 'edgepath')
-//      .attr('fill-opacity', 0)
-//      .attr('stroke-opacity', 0)
-//      .attr('id', function (d) { return 'edgepath-' + d.source + "-" + d.edge + "-" + d.target })
-//      .style("pointer-events", "none")
-//      .merge(edgepaths)
-//      ;
-//  console.log(links);
-//
-//  edgelabels = edgelabels.data(links, function (d) { return 'edgelabel-' + d.source + "-" + d.edge + "-" + d.target });
-//  edgelabels.exit().remove();
-//  var edgelabelsEnter = edgelabels.enter()
-//      .append('text')
-//      .style("pointer-events", "none")
-//      .attr('class', 'edgelabel')
-//      .attr('id', function (d) { return 'edgelabel-' + d.source + "-" + d.edge + "-" + d.target })
-//      .attr('font-size', 10)
-//      .attr('fill', 'black')
-//      .attr('z-index', 1)
-//      ;
-//
-//  edgelabels = edgelabelsEnter.merge(edgelabels);
-//
-//
-//  edgelabelsEnter
-//      .append('textPath')
-//      .attr('xlink:href', function (d) { return '#edgepath-' + d.source + "-" + d.edge + "-" + d.target })
-//      .style("text-anchor", "middle")
-//      .style("pointer-events", "none")
-//      .attr("startOffset", "40%")
-//      .text(function (d) { return d.edge })
-//      ;
-	
-	
-	
-	//------------------ab hier geht´s -----------
-
-//    link = link.data(links, function (d) { return d.source + "-" + d.edge + "-" + d.target });
-//    link.exit().remove();
-//    link = link.enter()
-//        .append("line")
-//        .attr("id", function (d) { return d.source + "-" + d.edge + "-" + d.target })
-//        .attr("class", "link")
-//        .attr("stroke", "#000")
-//        .attr("stroke-width", 1.5)
-//        .merge(link);
-
-//    edgepaths = edgepaths.data(links, function (d, i) { return 'edgepath' + i });
-//    edgepaths.exit().remove();
-//    edgepaths = edgepaths
-//        .enter()
-//        .append('path')
-//        .merge(edgepaths)
-//        .attr('class', 'edgepath')
-//        .attr('fill-opacity', 0)
-//        .attr('stroke-opacity', 0)
-//        .attr('id', function (d, i) { return 'edgepath' + i })
-//        .style("pointer-events", "none")
-//        ;
-//    console.log(links);
-//
-//    edgelabels = edgelabels.data(links, function (d, i) { return 'edgelabel' + i });
-//    edgelabels.exit().remove();
-//    var edgelabelsEnter = edgelabels.enter()
-//        .append('text')
-//        .style("pointer-events", "none")
-//        .attr('class', 'edgelabel')
-//        .attr('id', function (d, i) { return 'edgelabel' + i })
-//        .attr('font-size', 10)
-//        .attr('fill', 'black')
-//        .attr('z-index', 1)
-//        ;
-//
-//    edgelabels = edgelabelsEnter.merge(edgelabels);
-//
-//
-//    edgelabelsEnter
-//        .append('textPath')
-//        .attr('xlink:href', function (d, i) { return '#edgepath' + i })
-//        .style("text-anchor", "middle")
-//        .style("pointer-events", "none")
-//        .attr("startOffset", "40%")
-//        .text(function (d) { return d.edge })
-//        ;
-
-
-
-
 
     node = node.data(nodes, function (d) { return d.id; });
 
@@ -300,6 +199,7 @@ function update() {
         .attr("font-size", "15px")
         .attr('font-weight', 'bolder')
         .attr("text-anchor", "middle")
+        .attr("class", "nodeText")
         .attr("x", 0)
         .attr("y", 3)
         ;
@@ -313,8 +213,7 @@ function update() {
         .attr("class", "icon")
         .style("opacity", 0)
         .on("click", function (d) {
-//            console.log(d);
-//            console.log(nodes);
+
             if (nodes.length < 2) {
                 return;
             }
@@ -324,14 +223,7 @@ function update() {
             links = links.filter(function (l) {
                 return d.id != l.source.id && d.id != l.target.id;
             });
-//            edgepaths = edgepaths.filter(function(ep) {
-//            	return ep.id != 'edgepath' + d.source + "-" + d.edge + "-" + d.target;
-//            });
-//            edgelabels = edgepaths.filter(function(el) {
-//            	return el.id != 'edgelabel' + d.source + "-" + d.edge + "-" + d.target;
-//            });
-            
-//            console.log(nodes);
+
             update();
         });
     
@@ -344,7 +236,29 @@ function update() {
     .attr("class", "icon")
     .style("opacity", 0)
     .on("click", function (d) {
-    	getNodeRelations(d.id);
+    	
+    	var thisVar = d3.select(this.parentNode);
+    	var circ = thisVar.select(".circle");
+    	var text = thisVar.select(".nodeText");
+    	var icons = thisVar.select(".icon");
+    	circ
+    		.attr("fill", "#978d75")
+    		.style("opacity", 0.3);
+    	text
+    		.style("opacity", 0.3);
+    	icons
+    		.style("opacity", 0)
+    	console.log(thisVar);
+    	
+    	var loader = thisVar.append("svg:image")
+    		.attr("xlink:href", "js/spin.gif")
+    		.attr("x", -20)
+    		.attr("y", -20)
+    		.attr("width", 40)
+    		.attr("height", 40)
+    		.style("opacity", 1)
+
+    	getNodeRelations(d.id, circ, text, loader);
     });
     
     nodeEnter.append('svg:image')
@@ -372,48 +286,59 @@ function update() {
             d.fy = null;
         });
     
-//    nodeEnter.append('svg:circle')
-//        .attr("cx", 16)
-//        .attr("cy", 24)
-//        .attr("r", 8)
-//        .attr("fill", "#ffffff")
-//        .attr("class", "icon");
     
-    nodeEnter.append('svg:text')
-        .text("<")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "10px")
-        .attr('font-weight', 'bolder')
-        .attr("text-anchor", "middle")
-        .attr("x", -16)
-        .attr("y", 24)
-        .attr("class", "icon")
-        .style("opacity", 0)
-        ;
-    
-    nodeEnter.append('svg:text')
-    .text(">")
-    .attr("font-family", "sans-serif")
-    .attr("font-size", "10px")
-    .attr('font-weight', 'bolder')
-    .attr("text-anchor", "middle")
+    nodeEnter.append('svg:image')
+    .attr("xlink:href", "js/pencil.svg")
     .attr("x", 16)
-    .attr("y", 24)
+    .attr("y", 6)
+    .attr("width", 12)
+    .attr("height", 12)
     .attr("class", "icon")
     .style("opacity", 0)
-    ;
+    .on("click", function (d) {
+    	var thisVar = d3.select(this.parentNode);
+    	var circ = thisVar.select(".circle");
+    	circ
+			.attr("fill", "#0000ff");
+    });
     
-    nodeEnter.append('svg:text')
-    .text("1")
-    .attr("font-family", "sans-serif")
-    .attr("font-size", "10px")
-    .attr('font-weight', 'bolder')
-    .attr("text-anchor", "middle")
-    .attr("x", 0)
-    .attr("y", 24)
-    .attr("class", "icon")
-    .style("opacity", 0)
-    ;
+
+    
+//    nodeEnter.append('svg:text')
+//        .text("<")
+//        .attr("font-family", "sans-serif")
+//        .attr("font-size", "10px")
+//        .attr('font-weight', 'bolder')
+//        .attr("text-anchor", "middle")
+//        .attr("x", -16)
+//        .attr("y", 24)
+//        .attr("class", "icon")
+//        .style("opacity", 0)
+//        ;
+//    
+//    nodeEnter.append('svg:text')
+//    .text(">")
+//    .attr("font-family", "sans-serif")
+//    .attr("font-size", "10px")
+//    .attr('font-weight', 'bolder')
+//    .attr("text-anchor", "middle")
+//    .attr("x", 16)
+//    .attr("y", 24)
+//    .attr("class", "icon")
+//    .style("opacity", 0)
+//    ;
+//    
+//    nodeEnter.append('svg:text')
+//    .text("1")
+//    .attr("font-family", "sans-serif")
+//    .attr("font-size", "10px")
+//    .attr('font-weight', 'bolder')
+//    .attr("text-anchor", "middle")
+//    .attr("x", 0)
+//    .attr("y", 24)
+//    .attr("class", "icon")
+//    .style("opacity", 0)
+//    ;
     
 //    console.log(nodes)
 
