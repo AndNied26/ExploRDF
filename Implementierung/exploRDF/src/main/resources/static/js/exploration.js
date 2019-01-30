@@ -2,8 +2,8 @@ var nodes = [];
 var links = [];
 
 var svg = d3.select("svg").style("background-color", "white"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height"),
+    width,
+    height,
     node,
     link;
 
@@ -17,7 +17,7 @@ svg
 		    .on("dblclick.zoom", null);
 
 function zoomed() {
-//	  g.attr("transform", d3.event.transform);
+// g.attr("transform", d3.event.transform);
 	g.attr("transform", d3.event.transform);
 	}
 
@@ -27,12 +27,15 @@ $("#exploreBtn").on('click', function () {
   $('#headingChoice').css('display', 'none');
   $('.content').css('display', 'none');
   $('#exploreDiv').css('display', 'block');
+  width = $('#exploreDiv').width();
+  height = $('#exploreDiv').height();
+  simulation.force("center", d3.forceCenter(width / 2, height / 2));
   getNodesData(startNode);
 });
 
 function getNodesData(nodeId) {
 	var selectedOpt = $("#visualizationTypeGroup option:selected" ).text();
-	  console.log("getNode/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
+//	  console.log("getNode/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
 	  if(selectedOpt !== null && selectedOpt !== '') {
 		  d3.json("getNode/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt).then(function (data) {
 				
@@ -40,14 +43,11 @@ function getNodesData(nodeId) {
 		    update();
 		  });
 	  } else {
-//		  getPredicates();
+// getPredicates();
 	  }
 
   
 }
-
-
-console.log("width: " + width);
 
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function (d) { return d.id })
@@ -56,26 +56,26 @@ var simulation = d3.forceSimulation()
     .force("charge", d3.forceManyBody()
         .strength(-400)
     )
-    .force("center", d3.forceCenter(width / 2, height / 2));
+//    .force("center", d3.forceCenter(width / 2, height / 2));
 
 // var nodeId = 'nodes_id_1';
 var nodeId = ['nodes_start', 'nodes_id_1', 'nodes_id_2', 'nodes_id_3'];
 
 var i = 0;
 
-$('#goBtn').on('click', function () {
-
-    d3.json(nodeId[i] + ".json").then(function (data) {
-        updateData(data);
-        update();
-    });
-    i++;
-    // nodeId = 'nodes_id_2';
-})
+//$('#goBtn').on('click', function () {
+//
+//    d3.json(nodeId[i] + ".json").then(function (data) {
+//        updateData(data);
+//        update();
+//    });
+//    i++;
+//    // nodeId = 'nodes_id_2';
+//})
 
 function getNodeRelations(nodeId) {
     var selectedOpt = $("#visualizationTypeGroup option:selected" ).text();
-	  console.log("getNodeData/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
+//	  console.log("getNodeData/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
 	  if(selectedOpt !== null && selectedOpt !== '') {
 		  d3.json("getNodeData/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt).then(function (data) {
 				
@@ -83,18 +83,9 @@ function getNodeRelations(nodeId) {
 		    update();
 		  });
 	  } else {
-//		  getPredicates();
+// getPredicates();
 	  }
 }
-
-$('#dragBtn').on('click', function () {
-    node.fx = null;
-    node.fy = null;
-
-
-
-    console.log("dragBtn");
-})
 
 link = g.append("g").selectAll(".link");
 var edgepaths = g.append("g").selectAll(".edgepath");
@@ -102,60 +93,160 @@ var edgelabels = g.append("g").selectAll(".edgelabel");
 node = g.append("g").selectAll(".node");
 
 function update() {
-    console.log("update() entered");
+//    console.log("update() entered");
+	
+	
+	link = link.data(links, function (d) { return d.source.id + "-" + d.edge + "-" + d.target.id });
+	  link.exit().remove();
+	  link = link.enter()
+	      .append("line")
+	      .attr("id", function (d) { return d.source + "-" + d.edge + "-" + d.target })
+	      .attr("class", "link")
+	      .attr("stroke", "#000")
+	      .attr("stroke-width", 1.5)
+	      .merge(link);
 
-    link = link.data(links, function (d) { return d.source + "-" + d.edge + "-" + d.target });
-    link.exit().remove();
-    link = link.enter()
-        .append("line")
-        .attr("id", function (d) { return d.source + "-" + d.edge + "-" + d.target })
-        .attr("class", "link")
-        .attr("stroke", "#000")
-        .attr("stroke-width", 1.5)
-        .merge(link);
+	  edgepaths = edgepaths.data(links, function (d) { return 'edgepath-' + d.source.id + "-" + d.edge + "-" + d.target.id });
+	  edgepaths.exit().remove();
+	  edgepaths = edgepaths
+	      .enter()
+	      .append('path')
+//	      .merge(edgepaths)
+	      .attr('class', 'edgepath')
+	      .attr('fill-opacity', 0)
+	      .attr('stroke-opacity', 0)
+	      .attr('id', function (d) { return 'edgepath-' + d.source + "-" + d.edge + "-" + d.target })
+	      .style("pointer-events", "none")
+	      .merge(edgepaths)
+	      ;
+	  console.log(links);
 
+	  edgelabels = edgelabels.data(links, function (d) { return 'edgelabel-' + d.source.id + "-" + d.edge + "-" + d.target.id });
+	  edgelabels.exit().remove();
+	  var edgelabelsEnter = edgelabels.enter()
+	      .append('text')
+	      .style("pointer-events", "none")
+	      .attr('class', 'edgelabel')
+	      .attr('id', function (d) { return 'edgelabel-' + d.source + "-" + d.edge + "-" + d.target })
+	      .attr('font-size', 10)
+	      .attr('fill', 'black')
+	      .attr('z-index', 1)
+	      ;
 
-    edgepaths = edgepaths.data(links, function (d, i) { return 'edgepath' + i });
-    edgepaths.exit().remove();
-    edgepaths = edgepaths
-        .enter()
-        .append('path')
-        .merge(edgepaths)
-//        .attr('d', function (d) {
-//            return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y
-//        })
-
-        .attr('class', 'edgepath')
-        .attr('fill-opacity', 0)
-        .attr('stroke-opacity', 0)
-        .attr('id', function (d, i) { return 'edgepath' + i })
-        .style("pointer-events", "none")
-        ;
-    console.log(links);
-
-    edgelabels = edgelabels.data(links, function (d, i) { return 'edgelabel' + i });
-    edgelabels.exit().remove();
-    var edgelabelsEnter = edgelabels.enter()
-        .append('text')
-        .style("pointer-events", "none")
-        .attr('class', 'edgelabel')
-        .attr('id', function (d, i) { return 'edgelabel' + i })
-        .attr('font-size', 10)
-        .attr('fill', 'black')
-        .attr('z-index', 1)
-        ;
-
-    edgelabels = edgelabelsEnter.merge(edgelabels);
+	  edgelabels = edgelabelsEnter.merge(edgelabels);
 
 
-    edgelabelsEnter
-        .append('textPath')
-        .attr('xlink:href', function (d, i) { return '#edgepath' + i })
-        .style("text-anchor", "middle")
-        .style("pointer-events", "none")
-        .attr("startOffset", "40%")
-        .text(function (d) { return d.edge })
-        ;
+	  edgelabelsEnter
+	      .append('textPath')
+	      .attr('xlink:href', function (d) { return '#edgepath-' + d.source + "-" + d.edge + "-" + d.target })
+	      .style("text-anchor", "middle")
+	      .style("pointer-events", "none")
+	      .attr("startOffset", "40%")
+	      .text(function (d) { return d.edge })
+	      ;
+	
+	//-----------------------------------------------------------
+	
+//  link = link.data(links, function (d) { return d.source + "-" + d.edge + "-" + d.target });
+//  link.exit().remove();
+//  link = link.enter()
+//      .append("line")
+//      .attr("id", function (d) { return d.source + "-" + d.edge + "-" + d.target })
+//      .attr("class", "link")
+//      .attr("stroke", "#000")
+//      .attr("stroke-width", 1.5)
+//      .merge(link);
+//
+//  edgepaths = edgepaths.data(links, function (d) { return 'edgepath-' + d.source + "-" + d.edge + "-" + d.target });
+//  edgepaths.exit().remove();
+//  edgepaths = edgepaths
+//      .enter()
+//      .append('path')
+////      .merge(edgepaths)
+//      .attr('class', 'edgepath')
+//      .attr('fill-opacity', 0)
+//      .attr('stroke-opacity', 0)
+//      .attr('id', function (d) { return 'edgepath-' + d.source + "-" + d.edge + "-" + d.target })
+//      .style("pointer-events", "none")
+//      .merge(edgepaths)
+//      ;
+//  console.log(links);
+//
+//  edgelabels = edgelabels.data(links, function (d) { return 'edgelabel-' + d.source + "-" + d.edge + "-" + d.target });
+//  edgelabels.exit().remove();
+//  var edgelabelsEnter = edgelabels.enter()
+//      .append('text')
+//      .style("pointer-events", "none")
+//      .attr('class', 'edgelabel')
+//      .attr('id', function (d) { return 'edgelabel-' + d.source + "-" + d.edge + "-" + d.target })
+//      .attr('font-size', 10)
+//      .attr('fill', 'black')
+//      .attr('z-index', 1)
+//      ;
+//
+//  edgelabels = edgelabelsEnter.merge(edgelabels);
+//
+//
+//  edgelabelsEnter
+//      .append('textPath')
+//      .attr('xlink:href', function (d) { return '#edgepath-' + d.source + "-" + d.edge + "-" + d.target })
+//      .style("text-anchor", "middle")
+//      .style("pointer-events", "none")
+//      .attr("startOffset", "40%")
+//      .text(function (d) { return d.edge })
+//      ;
+	
+	
+	
+	//------------------ab hier geht´s -----------
+
+//    link = link.data(links, function (d) { return d.source + "-" + d.edge + "-" + d.target });
+//    link.exit().remove();
+//    link = link.enter()
+//        .append("line")
+//        .attr("id", function (d) { return d.source + "-" + d.edge + "-" + d.target })
+//        .attr("class", "link")
+//        .attr("stroke", "#000")
+//        .attr("stroke-width", 1.5)
+//        .merge(link);
+
+//    edgepaths = edgepaths.data(links, function (d, i) { return 'edgepath' + i });
+//    edgepaths.exit().remove();
+//    edgepaths = edgepaths
+//        .enter()
+//        .append('path')
+//        .merge(edgepaths)
+//        .attr('class', 'edgepath')
+//        .attr('fill-opacity', 0)
+//        .attr('stroke-opacity', 0)
+//        .attr('id', function (d, i) { return 'edgepath' + i })
+//        .style("pointer-events", "none")
+//        ;
+//    console.log(links);
+//
+//    edgelabels = edgelabels.data(links, function (d, i) { return 'edgelabel' + i });
+//    edgelabels.exit().remove();
+//    var edgelabelsEnter = edgelabels.enter()
+//        .append('text')
+//        .style("pointer-events", "none")
+//        .attr('class', 'edgelabel')
+//        .attr('id', function (d, i) { return 'edgelabel' + i })
+//        .attr('font-size', 10)
+//        .attr('fill', 'black')
+//        .attr('z-index', 1)
+//        ;
+//
+//    edgelabels = edgelabelsEnter.merge(edgelabels);
+//
+//
+//    edgelabelsEnter
+//        .append('textPath')
+//        .attr('xlink:href', function (d, i) { return '#edgepath' + i })
+//        .style("text-anchor", "middle")
+//        .style("pointer-events", "none")
+//        .attr("startOffset", "40%")
+//        .text(function (d) { return d.edge })
+//        ;
 
 
 
@@ -180,7 +271,8 @@ function update() {
                 ;
         })
         .on("dblclick", function (d) {
-            getNodeRelations(d.id);
+//            getNodeRelations(d.id);
+        	window.open(d.id, '_blank');
        
         })
         .call(d3.drag()
@@ -201,7 +293,9 @@ function update() {
 
     nodeEnter
         .append('svg:text')
-        .text(function (d) { return d.label; })
+        .text(function (d) { 
+//        	console.log("hallo node " + d.id)	
+        	return d.label !== null ? d.label : d.id ; })
         .attr("font-family", "sans-serif")
         .attr("font-size", "15px")
         .attr('font-weight', 'bolder')
@@ -212,15 +306,15 @@ function update() {
 
     nodeEnter.append('svg:image')
         .attr("xlink:href", "js/delete.svg")
-        .attr("x", 12)
-        .attr("y", -26)
+        .attr("x", 16)
+        .attr("y", -24)
         .attr("width", 12)
         .attr("height", 12)
         .attr("class", "icon")
         .style("opacity", 0)
         .on("click", function (d) {
-            console.log(d);
-            console.log(nodes);
+//            console.log(d);
+//            console.log(nodes);
             if (nodes.length < 2) {
                 return;
             }
@@ -230,25 +324,45 @@ function update() {
             links = links.filter(function (l) {
                 return d.id != l.source.id && d.id != l.target.id;
             });
-            console.log(nodes);
+//            edgepaths = edgepaths.filter(function(ep) {
+//            	return ep.id != 'edgepath' + d.source + "-" + d.edge + "-" + d.target;
+//            });
+//            edgelabels = edgepaths.filter(function(el) {
+//            	return el.id != 'edgelabel' + d.source + "-" + d.edge + "-" + d.target;
+//            });
+            
+//            console.log(nodes);
             update();
         });
+    
+    nodeEnter.append('svg:image')
+    .attr("xlink:href", "js/expand.svg")
+    .attr("x", -27)
+    .attr("y", -24)
+    .attr("width", 12)
+    .attr("height", 12)
+    .attr("class", "icon")
+    .style("opacity", 0)
+    .on("click", function (d) {
+    	getNodeRelations(d.id);
+    });
+    
     nodeEnter.append('svg:image')
         .attr("xlink:href", "js/info.svg")
-        .attr("x", -24)
-        .attr("y", -26)
+        .attr("x", -12)
+        .attr("y", -33)
         .attr("width", 12)
         .attr("height", 12)
         .attr("class", "icon")
         .style("opacity", 0)
-        .on("click", function () {
-            alert("info");
+        .on("click", function (d) {
+            getInfo(d.id);
         });
 
     nodeEnter.append('svg:image')
         .attr("xlink:href", "js/pin.svg")
-        .attr("x", -5)
-        .attr("y", -32)
+        .attr("x", 3)
+        .attr("y", -31)
         .attr("width", 12)
         .attr("height", 12)
         .attr("class", "icon")
@@ -257,6 +371,51 @@ function update() {
             d.fx = null;
             d.fy = null;
         });
+    
+//    nodeEnter.append('svg:circle')
+//        .attr("cx", 16)
+//        .attr("cy", 24)
+//        .attr("r", 8)
+//        .attr("fill", "#ffffff")
+//        .attr("class", "icon");
+    
+    nodeEnter.append('svg:text')
+        .text("<")
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "10px")
+        .attr('font-weight', 'bolder')
+        .attr("text-anchor", "middle")
+        .attr("x", -16)
+        .attr("y", 24)
+        .attr("class", "icon")
+        .style("opacity", 0)
+        ;
+    
+    nodeEnter.append('svg:text')
+    .text(">")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "10px")
+    .attr('font-weight', 'bolder')
+    .attr("text-anchor", "middle")
+    .attr("x", 16)
+    .attr("y", 24)
+    .attr("class", "icon")
+    .style("opacity", 0)
+    ;
+    
+    nodeEnter.append('svg:text')
+    .text("1")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "10px")
+    .attr('font-weight', 'bolder')
+    .attr("text-anchor", "middle")
+    .attr("x", 0)
+    .attr("y", 24)
+    .attr("class", "icon")
+    .style("opacity", 0)
+    ;
+    
+//    console.log(nodes)
 
 
     simulation.nodes(nodes).on("tick", ticked);
@@ -266,11 +425,36 @@ function update() {
         .restart();
 }
 
+function getInfo(subject) {
+	d3.json("getSubject/" + subject.replace(/#/g,"%23")).then(function (data) {
+		var infoDiv = d3.select("body")
+			.append("div")
+			.attr("id", "infoDiv");
+		var infoUl = infoDiv.append("ul");
+		infoUl.selectAll("li").data(data).enter()
+			.append("li")
+			.html(function(d){
+				return '<p style="color: black;font-weight: bold;">' 
+					+ d.predicate + ':</p>' + '<p style="color: cornsilk;">' 
+					+ d.object + '</p>'
+				});
+		infoDiv
+			.append("button")
+			.attr("id", "infoExitBtn")
+			.attr("type", "button")
+			.attr("class", "close btn-sm")
+			.attr("aria-label", "Close")
+			.on("click", function(){
+				$('#infoDiv').remove();
+				})
+			.append("span")
+			.attr("class","glyphicon glyphicon-remove")
+	    console.log(data);
+	  });
+}
 
 function ticked() {
-   
-
-
+ 
     link.attr("x1", function (d) { return d.source.x; })
         .attr("y1", function (d) { return d.source.y; })
         .attr("x2", function (d) { return d.target.x; })
@@ -309,30 +493,20 @@ function dragged(d) {
     d.fx = d3.event.x;
     d.fy = d3.event.y;
 }
-function dragended(d) {
-    if (!d3.event.active) simulation
-        .alphaTarget(0);
-    d.fx = null;
-    d.fy = null;
-}
 
 function updateData(data) {
     var n = data.nodes;
     var l = data.edges;
     n.forEach(element => {
         if (!nodeExists(element.id)) {
-            // console.log("node is not in array");
             nodes.push(element);
         } else {
-            // console.log("node is already in array");
         }
     });
     l.forEach(e => {
         if (!linkExists(e.source, e.target, e.edge)) {
-            // console.log("link is not in array");
             links.push(e);
         } else {
-            // console.log("link is already in array");
         }
     });
 

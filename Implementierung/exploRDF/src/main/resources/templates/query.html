@@ -1,22 +1,229 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+<head th:fragment="head">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>ExploRDF</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
 
-<head th:replace="index :: head"></head>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
 
 <body>
 
-	<div th:replace="index :: sidebar"></div>
+	<div id="grid">
 
-	<div class="main">
-		<h1>Das ist die Query-Seite</h1>
-		<svg id="main-svg"></svg>
+
+
+		<div th:fragment="sidebar" id="sidebar" class="sidebar">
+			<div id="mainSidebar" class="mainSidebar">
+				<ul>
+					<li id="navLogo"><a href="/">ExploRDF</a></li>
+					<li id="navConnect"><a href="connect">Connect</a></li>
+					<li id="navQuery"><a href="query">Query</a></li>
+					<li id="navHelp"><a href="help">Help</a></li>
+				</ul>
+			</div>
+			<div id="sidebarToggle" class="sidebarToggle">
+				<button id="toggleButton" type="button"
+					class="btn btn-default btn-sm closebtn">
+					<span id="buttonSymbol" class="glyphicon glyphicon-chevron-left"></span>
+				</button>
+			</div>
+		</div>
+
+		<!------------------------------------------------------------->
+
+		<!-- Main content - begin -->
+		<div id="main" class="main">
+			<!-- Caption - begin -->
+			<div class="caption">
+				<h3 id="captionHead">Simple Search</h3>
+				<div th:fragment="captionConnection" id="captionConnection">
+					<p>
+						Triple-Store: <span id="dbSpan">no server</span>
+					</p>
+					<p>
+						Repository: <span id="repoSpan">-</span>
+					</p>
+				</div>
+			</div>
+			<!-- Caption - end -->
+
+			<!-- Content - begin -->
+			<div class="content">
+
+				<!-- Container for simple search -->
+				<div id="searchDiv" class="containerDiv">
+					<div id="searchInput" class="input-group">
+						<input id="searchTerm" type="text" class="form-control"
+							placeholder="Enter a search term..."> <span
+							class="input-group-btn">
+							<button id="searchBtn" class="btn" type="button">Go!</button>
+						</span>
+					</div>
+					<form class="radio-search radio-inline">
+						<label class="radio-search radio-inline radio-label"> <input
+							type="radio" name="optradio" checked>Simple Search
+						</label> <label class="radio-search radio-inline radio-label"> <input
+							id="broaderSearchRadio" type="radio" name="optradio">Broader
+							Search
+						</label>
+					</form>
+				</div>
+
+				<!-- Header for all possible tables  -->
+				<div id="contentHeader">
+					<h4 id="headingResult" class="heading">Results for ""</h4>
+					<h4 id="headingChoice" class="heading"></h4>
+					<h4 id="headingPredicates" class="heading">Choose Predicates</h4>
+					<button id="searchBackBtn" type="button" class="btn btn-sm">Back</button>
+				</div>
+
+				<!-- Container for result table -->
+				<div id="resultDiv" class="containerDiv">
+					<div id="resultTableDiv" class="tableDiv">
+						<table class="table table-fixed table-bordered text-center">
+							<thead>
+								<tr>
+									<th>Subject</th>
+									<th>Predicate</th>
+									<th>Object</th>
+								</tr>
+							</thead>
+							<tbody id="resultTbody"></tbody>
+						</table>
+					</div>
+				</div>
+
+				<!-- Container for chosen result -->
+				<div id="choiceDiv" class="containerDiv">
+					<div id="choiceTableDiv" class="tableDiv">
+						<table class="table table-fixed table-bordered text-center">
+							<thead>
+								<tr>
+									<th>Subject</th>
+									<th>Predicate</th>
+									<th>Object</th>
+								</tr>
+							</thead>
+							<tbody id="choiceTbody"></tbody>
+						</table>
+
+
+					</div>
+
+					<!-- Footer with explore button -->
+					<div class="contentFooter">
+						<div id="contentFooterFormDiv">
+							<div id="contentFooterInput" class="input-group-sm input-group">
+								<span class="input-group-btn">
+									<button id="newVisualizationBtn" type="button" class="btn">Customize</button>
+								</span> 
+								<select id="visualizationTypeGroup" class="form-control">
+									
+								</select>
+
+							</div>
+							<small class="form-text text-muted">Select
+								which edges/predicates to visualize</small>
+						</div>
+
+						<div id="contentFooterEdgeChoiceDiv">
+							<div id="contentFooterEdgeChoiceRadio" class="input-group-sm input-group">
+								<form>
+									<label class="radio-inline"> <input type="radio"
+										name="optradio" checked>Outgoing
+									</label> <label class="radio-inline"> <input type="radio"
+										name="optradio">Incoming
+									</label> <label class="radio-inline"> <input type="radio"
+										name="optradio">Both
+									</label>
+								</form>
+								
+							</div>
+							<small class="form-text text-muted">Select whether to show outgoing, incoming or both types of edges.</small>
+						</div>
+
+						<div>
+							<button id="exploreBtn" type="button" class="btn btn-small">Explore</button>
+						</div>
+
+
+
+					</div>
+				</div>
+
+				<!-- Container for predicates choice -->
+				<div id="predicatesDiv" class="containerDiv">
+
+
+					<div id="predicatesTableDiv" class="tableDiv">
+						<table id="predicatesTable"
+							class="table table-fixed table-bordered text-center">
+							<thead>
+								<tr>
+									<th>Predicate</th>
+									<th>Label</th>
+									<th>Edge</th>
+								</tr>
+							</thead>
+							<tbody id="predicatesTbody"></tbody>
+						</table>
+					</div>
+
+					<div id="savePredicatesDiv" class="contentFooter">
+						<!-- <div> -->
+						<!--   <button id="loadNewPredicatesBtn" class="btn btn-small" type="button">New Predicates</button> -->
+						<!-- </div> -->
+						<div id="loadNewPredicatesBtnDiv"
+							class="input-group-sm input-group">
+							<span class="input-group-btn">
+								<button id="loadNewPredicatesBtn" class="btn" type="button">New
+									Predicates</button>
+							</span>
+						</div>
+						<div id="predicatesInputDiv" class="input-group-sm input-group">
+							<input id="predicatesInput" type="text" class="form-control">
+							<span class="input-group-btn">
+								<button id="savePredicatesBtn" class="btn" type="button">Save</button>
+							</span> <small id="invalidPredicatesListName"
+								class="form-text text-muted danger"></small>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+
+
+			<!-- Container for exploring the graph -->
+			<div id="exploreDiv" class="containerDiv">
+				<!-- 				<svg id="mainSvg" width="960" height="500"></svg> -->
+				<svg id="mainSvg"></svg>
+			</div>
+
+
+		</div>
+
+		<!-- Help - begin -->
+		<div class="help"></div>
+		<!-- Help - end -->
+
 	</div>
+
+
 
 
 	<script src="https://d3js.org/d3.v5.js"></script>
 	<script src="js/explordf.js"></script>
-
+	<script src="js/exploration.js"></script>
 </body>
 
 </html>

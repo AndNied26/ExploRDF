@@ -8,7 +8,7 @@
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-areas: "sidebar main";
-    overflow-x: hidden; /* disable horizontal scroll*/
+    overflow: hidden; /* disable horizontal scroll*/
 }
 
 a:hover {
@@ -78,6 +78,46 @@ h2, h3, h4 {
 /* --------------------------End----------------------------- */
 /* ---------------------------------------------------------- */
 
+
+/* -------------------------infobox ------------------------- */
+/* --------------------------START--------------------------- */
+/* ---------------------------------------------------------- */
+#infoDiv {
+/* 	height: 100%; Full-height: remove this if you want "auto" height */
+  	width: 310px; /* Set the width of the sidebar */
+ 	position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+ 	z-index: 1; /* Stay on top */
+  	top: 70px; /* Stay at the top */
+  	right: 0;
+  	bottom: 20px;
+  	background-color: grey; /* Black */
+  	overflow-x: hidden; /* Disable horizontal scroll */
+  	padding: 20px 5px 20px 5px;
+  	opacity: 0.8;
+  	border-radius: 15px;
+}
+
+#infoDiv li {
+	text-decoration: none;
+	font-size: 14px;
+/* 	color: white; */
+	margin-bottom: 10px;
+}
+
+#infoDiv p {
+	margin: 0;
+}
+
+#infoExitBtn {
+	position: fixed;
+	z-index: 1;
+	top: 72px;
+	right: 20px;
+}
+
+/* -------------------------infobox ------------------------- */
+/* ---------------------------END---------------------------- */
+/* ---------------------------------------------------------- */
 
 /* ---------------------------------------------------------- */
 /* -------------------------main ---------------------------- */
@@ -330,8 +370,8 @@ table#predicatesTable th {
 .contentFooter {
     grid-area: contentFooter;
     display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas: "contentFooterFormDiv exploreBtn";
+    grid-template-columns: 1fr 1fr auto;
+    grid-template-areas: "contentFooterFormDiv contentFooterEdgeChoiceDiv exploreBtn";
     text-align: left;
     margin: auto;
     width: 85%;
@@ -340,14 +380,18 @@ table#predicatesTable th {
 
 #contentFooterFormDiv {
     grid-area: contentFooterFormDiv;
-    align-self: center;
+    align-self: left;
     display: grid;
-    justify-content: right;
+    justify-content: left;
 }
 
 #contentFooterInput {
     margin: 0;
     padding-right: 20px;
+}
+
+#contentFooterEdgeChoiceRadio {
+	margin: 0;
 }
 
 #visualizationTypeGroup {
@@ -394,6 +438,16 @@ table#predicatesTable th {
     min-width: 200px;
 }
 
+#exploreDiv {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#mainSvg {
+	width: 100%;
+    height: 100%;
+}
 
 /* --------------------Hiding the content divs-------------------------- */
 #contentHeader {

@@ -5,7 +5,7 @@
  */
 
 $("#connectBtn").on("click", function(){
-	if($("#tripleStoreUrl").val() == ""){
+	if($("#tripleStoreUrl").val() === ""){
 		$("#invalidURLMsg").html("Please enter a valid Triple Store URL.");
 		return;
 	}
@@ -64,7 +64,7 @@ function getGraphVisualizationTypes() {
 	var visTypes;
 	d3.json("getAllPredicatesLists").then(function(data){
 		visTypes = data;
-		console.log(visTypes);
+//		console.log(visTypes);
 		var select = d3.select('#visualizationTypeGroup');
 		var options = select.selectAll('option')
 			.data(visTypes).enter()
@@ -94,7 +94,7 @@ function getSupportedServers() {
 	var servers;
 	d3.json("getSupportedServers").then(function(data){
 		servers = data;
-		console.log(servers);
+//		console.log(servers);
 		var select = d3.select('#tripleStoreServer');
 		var options = select.selectAll('option')
 			.data(servers).enter()
@@ -133,7 +133,7 @@ var predicateHeadings = ["Predicate", "Label", "Edge"];
 // Choosing one element from the result table.
 $('#resultTbody').on("click", "a", function (e) {
   var subj = $(e.target).text();
-  console.log(subj);
+//  console.log(subj);
   $("body").css("cursor", "progress");
 
   d3.json("getSubject/" + subj.replace(/#/g,"%23")).then(function (data) {
@@ -186,10 +186,10 @@ function searchTerm() {
   $("body").css("cursor", "progress");
   $('#headingResult').text('Results for "' + term + '"');
   
-  console.log("hallo");
+//  console.log("hallo");
   var broaderSearch = $("#broaderSearchRadio").is(":checked") ? "1" : "0";
   d3.json("simpleSearch/" + term.replace(/#/g,"%23") + "/" + broaderSearch).then(function (data) {
-	  console.log("simpleSearch/" + term.replace(/#/g,"%23") + "/" + broaderSearch);
+//	  console.log("simpleSearch/" + term.replace(/#/g,"%23") + "/" + broaderSearch);
 	searchResults = data;
 	var count = data.length;
 	var res = count==1 ? 'Result':'Results';
@@ -417,20 +417,6 @@ function turnBack() {
    * --------------------------END---------------------------------
    * **************************************************************
    */
-
-/**
- ***************************************************************
- * ---------------Functions concerning the exploration.---------
- * -------------------------------------------------------------
- * --------------------------START------------------------------
- */
-
-/**
- * --------------------------------------------------------------
- * -------------Functions concerning the exploration-------------
- * --------------------------END---------------------------------
- * **************************************************************
- */
 
 
 

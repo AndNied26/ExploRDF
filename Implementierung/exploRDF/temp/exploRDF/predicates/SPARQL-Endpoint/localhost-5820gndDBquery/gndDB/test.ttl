@@ -1,0 +1,752 @@
+
+<http://rdaregistry.info/Elements/u/P60050> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60048> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/elements/1.1/identifier> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://umbel.org/umbel#isLike> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/extent> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/isPartOf> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/issued> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/ontology/bibo/issue> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2002/07/owl#sameAs> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/medium> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60049> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/oth> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#preferredName> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://purl.org/ontology/bibo/pageStart> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/ontology/bibo/pageEnd> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60470> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/ontology/bibo/issn> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://xmlns.com/foaf/0.1/isPrimaryTopicOf> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/language> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60327> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/elements/1.1/title> <http://example.org/edge> false;
+  <http://example.org/label> true .
+
+<http://id.loc.gov/vocabulary/relators/aut> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/creator> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/elements/1.1/publisher> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60163> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60333> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/ontology/bibo/isbn13> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/ontology/bibo/isbn10> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/ontology/bibo/gtin14> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/ontology/bibo/edition> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/subject> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60493> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/edt> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/isFormatOf> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/pbl> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://schema.org/genre> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#notation> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#prefLabel> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/alternative> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60489> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/elements/1.1/subject> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/title> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/bibliographicCitation> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/aui> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/trl> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60521> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60539> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/tableOfContents> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://iflastandards.info/ns/isbd/elements/P1053> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/dgs> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://schema.org/gtin13> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://schema.org/recordLabel> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/ontology/mo/lc> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://schema.org/productID> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/dateCopyrighted> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/sng> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/prf> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/ctg> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/spatial> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://www.opengis.net/ont/geosparql#asWKT> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/art> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60438> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60160> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60330> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/orm> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://schema.org/exampleOfWork> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/cmp> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/itr> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://schema.org/location> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/ctb> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/isb> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60576> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/audience> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/accrualPeriodicity> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/ill> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60527> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60469> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/dgg> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/com> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/pht> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/wpr> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/dnb#ismn> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60488> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/nrt> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#duration> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/hnr> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/hasPart> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/win> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60200> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60259> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/aft> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://schema.org/albumReleaseType> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60287> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60168> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/pro> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60281> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/lyr> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/cnd> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/hasVersion> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60339> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/wst> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/abr> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/arr> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/dsr> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60306> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/enj> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/drt> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/dnc> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60297> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60329> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60247> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60505> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60199> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60054> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/lbt> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/prt> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/plt> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/contributor> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/ive> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60256> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/wat> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60443> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60162> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60331> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/description> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/cre> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/his> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/wac> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60194> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60223> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60286> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60209> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/license> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/arc> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60517> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60301> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60504> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/ivr> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/bkd> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/act> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60261> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60070> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60294> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60278> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60574> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60083> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/dc/terms/relation> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/med> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60503> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/own> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60302> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/red> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/ontology/bibo/shortTitle> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/prg> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://purl.org/ontology/bibo/coden> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60275> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/hst> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/dte> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/ltg> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/cur> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/spn> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60072> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60277> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/egr> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/rcp> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60244> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/aus> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/wal> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60196> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/pat> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/spk> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/fmk> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60263> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/mfr> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/bnd> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/pbd> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/prm> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/cll> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60241> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/rcd> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/jug> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60216> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60183> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60271> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60198> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60280> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60253> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60104> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P69075> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://schema.org/encodingFormat> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60221> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60103> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/col> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60248> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/cns> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60204> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60211> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/fmp> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60272> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60088> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60182> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60250> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/csl> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60225> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60217> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/scl> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/mtk> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60480> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/pra> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/rsp> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/ppm> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/cmm> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60220> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/ppt> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60102> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60577> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/chr> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60260> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60479> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60289> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/trc> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/ctr> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60310> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/dpt> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60205> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/res> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/fmo> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/bkdc> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/other> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/dto> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/mod> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/dst> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/ptf> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/sll> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/cor> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60307> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/etr> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/sgd> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/cng> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/ann> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/msd> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/lgd> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/fmd> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60305> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/ilu> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/dfd> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://rdaregistry.info/Elements/u/P60243> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/tch> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://id.loc.gov/vocabulary/relators/tlp> <http://example.org/edge> false;
+  <http://example.org/label> false .

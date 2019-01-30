@@ -2,7 +2,6 @@ package com.explordf.dao.impl;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
@@ -30,21 +29,18 @@ import org.eclipse.rdf4j.query.TupleQueryResult;
 import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
 import org.eclipse.rdf4j.repository.RepositoryResult;
-import org.eclipse.rdf4j.repository.sail.SailRepository;
 import org.eclipse.rdf4j.rio.RDFFormat;
 import org.eclipse.rdf4j.rio.RDFParser;
-import org.eclipse.rdf4j.rio.RDFWriter;
 import org.eclipse.rdf4j.rio.Rio;
 import org.eclipse.rdf4j.rio.helpers.StatementCollector;
-import org.eclipse.rdf4j.sail.nativerdf.NativeStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 import org.springframework.util.DefaultPropertiesPersister;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.context.annotation.SessionScope;
@@ -52,16 +48,16 @@ import org.springframework.web.context.annotation.SessionScope;
 import com.explordf.dao.ExploRDFDao;
 import com.explordf.dto.ConnectionDto;
 import com.explordf.dto.EdgeDto;
-import com.explordf.dto.LabelDto;
 import com.explordf.dto.NodeDto;
 import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
-import com.explordf.dto.VisualizationNodesDto;
+import com.explordf.dto.VisualizationDto;
 
-@org.springframework.stereotype.Repository
+//@org.springframework.stereotype.Repository
 @SessionScope
-@PropertySource({"classpath:explordf.properties", "classpath:query.properties"})
+@Component
 @Qualifier(value = "exploRDFDaoImpl")
+@PropertySource({"classpath:explordf.properties", "classpath:query.properties"})
 public class ExploRDFDaoImpl implements ExploRDFDao {
 
 	// muss dann weg
@@ -107,6 +103,9 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	@Value("${query.getPredicates}")
 	private String getPredicatesQuery;
 
+	@Value("${query.getLabel}")
+	private String getLabelQuery;
+	
 	private final String predicatesRootDir = "temp/exploRDF/predicates/";
 	private final String predicateLabelIRI = "http://example.org/label";
 	private final String predicateEdgeIRI = "http://example.org/edge";
@@ -144,9 +143,9 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	}
 
 	@Override
-	public VisualizationNodesDto getNodeData(String subject, String predicatesList) {
+	public VisualizationDto getNodeData(String subject, String predicatesList) {
 		
-		VisualizationNodesDto viz = new VisualizationNodesDto();
+		VisualizationDto viz = new VisualizationDto();
 		
 		if(!predicatesList.equals(currPredicatesListName) || currPredicatesList == null) {
 			System.out.println("currPredicatesListName has changed or currPredicatesList is null");
@@ -163,10 +162,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		
 		
 			List<TripleDto> nodeData = getSubject(subject);
-//			for (TripleDto tripleDto : nodeData) {
-//				System.out.println("TripleDtos");
-//				System.out.println(tripleDto.getSubject() + " " + tripleDto.getPredicate() + " "+ tripleDto.getObject());
-//			}
 			
 			for (TripleDto tripleDto : nodeData) {
 				
@@ -183,14 +178,9 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 					if(nodeLabel != null) {
 						viz.addNode(new NodeDto(obj, nodeLabel));
 						viz.addEdge(new EdgeDto(subject, obj, predIRI));
-					} else {
-						viz.addLabel(new LabelDto(predIRI, obj));
-					}
-					
-					System.out.println("vizEdge: " + predIRI);
-					
+					}	
+										
 				}
-				viz.addLabel(new LabelDto(predIRI, obj));
 		
 			}
 			
@@ -198,38 +188,38 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	}
 	
 	private String getNodeLabel(String nodeId, String label) {
+		if (nodeId.indexOf(':') < 0 || nodeId.startsWith("\"")) {
+			System.out.println(nodeId + " is not an IRI");
+			return null;
+		}
 		String resultStr = null;
 		try (RepositoryConnection con = repo.getConnection()) {
 			
-			ValueFactory factory = SimpleValueFactory.getInstance();
+			String queryString = String.format(getLabelQuery, "<" + nodeId + ">", "<" + label + ">", queryGraph, "<" + nodeId + ">", "<" + label + ">");
 			
-			IRI pred = factory.createIRI(label);
-			IRI subj = null;
-			try {
-				subj = factory.createIRI(nodeId);
-			} catch(IllegalArgumentException e) {
-				System.out.println(nodeId + " is not an IRI");
-				return null;
-			}
-			
-			try (RepositoryResult<Statement> statements = con.getStatements(subj, pred, null)) {
-				while (statements.hasNext()) {
+			System.out.println(queryString);
+			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
 
-					Statement st = statements.next();
-					resultStr = "" + st.getObject();
+			try (TupleQueryResult result = tupleQuery.evaluate()) {
+
+				while (result.hasNext()) {
+					BindingSet bindingSet = result.next();
+					resultStr = "" + bindingSet.getValue("o");
 				}
-			} 
+			}
 
+		} catch (RDF4JException e) {
+			logger.warn("Error occured while querying the label of the node " + nodeId);
 		}
 		
-		return resultStr;
+		return resultStr != null ? resultStr : nodeId;
 		
 	}
 	
 	@Override
-	public VisualizationNodesDto getNode(String subject, String predicatesList) {
+	public VisualizationDto getNode(String subject, String predicatesList) {
 		
-		VisualizationNodesDto viz = new VisualizationNodesDto();
+		VisualizationDto viz = new VisualizationDto();
 		
 		if(!predicatesList.equals(currPredicatesListName) || currPredicatesList == null) {
 			System.out.println("currPredicatesListName has changed or currPredicatesList is null");
@@ -244,144 +234,17 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			setVisualizationProps();
 		}
 		
-		List<TripleDto> nodeData = getSubject(subject);
+		String label = getNodeLabel(subject, vizLabel);
 		
-		for (TripleDto tripleDto : nodeData) {
-			
-			
-			if(tripleDto.getPredicate().equals(vizLabel)) {
-				System.out.println(tripleDto.getPredicate());
-
-				viz.addNode(new NodeDto(tripleDto.getSubject(),tripleDto.getObject()));
-			}
+		if(label != null) {
+			viz.addNode(new NodeDto(subject, label));
+		} else {
+			return null;
 		}
 		
 		return viz;
 	}
 	
-	/*
-	@Override
-	public VisualizationNodesDto getNodeData(String subject, String predicatesList) {
-		String label = null;
-		List<String> pEdges = new LinkedList<>();
-		VisualizationNodesDto viz = new VisualizationNodesDto();
-		try {
-			List<PredicateDto> predicatesListDto = getPredicatesList(predicatesList);
-			
-			for (PredicateDto predicateDto : predicatesListDto) {
-				if(predicateDto.isLabel()) {
-					label = predicateDto.getPredicate();
-				}
-				else if(predicateDto.isEdge()) {
-					pEdges.add(predicateDto.getPredicate());
-				}
-			}
-			
-			
-			System.out.println("Hallo");
-			
-			for (String pedge : pEdges) {
-				System.out.println(pedge);
-			}
-			List<TripleDto> nodeData = getSubject(subject);
-			for (TripleDto tripleDto : nodeData) {
-				System.out.println("TripleDtos");
-				System.out.println(tripleDto.getSubject() + " " + tripleDto.getPredicate() + " "+ tripleDto.getObject());
-			}
-			
-			List<NodeDto> nodes = new LinkedList<>();
-			List<EdgeDto> edges = new LinkedList<>();
-			
-			for (TripleDto tripleDto : nodeData) {
-				
-				if(pEdges.contains(tripleDto.getPredicate())) {
-					
-					System.out.println("pEdges: " + tripleDto.getPredicate());
-					EdgeDto edge = new EdgeDto(subject, tripleDto.getObject(), tripleDto.getPredicate());
-					viz.addEdge(edge);
-					String nodeId = tripleDto.getObject();
-					String nodeLabel = getNodeLabel(nodeId, label);
-					NodeDto node = new NodeDto(nodeId, nodeLabel);
-					viz.addNode(node);
-					
-				}
-		
-			}
-			
-			
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return viz;
-	}
-	
-	private String getNodeLabel(String nodeId, String label) {
-		String resultStr = null;
-		try (RepositoryConnection con = repo.getConnection()) {
-			
-			ValueFactory factory = SimpleValueFactory.getInstance();
-			IRI subj = factory.createIRI(nodeId);
-			IRI pred = factory.createIRI(label);
-			
-			try (RepositoryResult<Statement> statements = con.getStatements(subj, pred, null)) {
-				while (statements.hasNext()) {
-
-					Statement st = statements.next();
-					resultStr = "" + st.getObject();
-				}
-			}
-
-		}
-		
-		return resultStr;
-		
-	}
-	
-	@Override
-	public VisualizationNodesDto getNode(String subject, String predicatesList) {
-		String label = null;
-		List<String> pEdges = new LinkedList<>();
-		VisualizationNodesDto viz = new VisualizationNodesDto();
-		try {
-			List<PredicateDto> predicatesListDto = getPredicatesList(predicatesList);
-			
-			for (PredicateDto predicateDto : predicatesListDto) {
-				if(predicateDto.isLabel()) {
-					label = predicateDto.getPredicate();
-				}
-				else if(predicateDto.isEdge()) {
-					pEdges.add(predicateDto.getPredicate());
-				}
-			}
-			
-			System.out.println("Hallo");
-			
-			List<TripleDto> nodeData = getSubject(subject);
-			
-			List<NodeDto> nodes = new LinkedList<>();
-			List<EdgeDto> edges = new LinkedList<>();
-			
-			for (TripleDto tripleDto : nodeData) {
-				
-				
-				if(tripleDto.getPredicate().equals(label)) {
-					System.out.println(tripleDto.getPredicate());
-					NodeDto node = new NodeDto(tripleDto.getSubject(),tripleDto.getObject());
-					viz.addNode(node);
-				}
-			}
-			
-			
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return viz;
-	}
-	*/
 	
 	@Override
 	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
@@ -401,7 +264,9 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			} else {
 //				queryString = "SELECT ?s ?p ?o WHERE {FILTER(?o = \"" + term + "\"). {SELECT ?s ?p ?o " + queryGraph
 //						+ " WHERE {?s ?p \"" + term + "\". ?s ?p ?o}}}";
-				queryString = String.format(simpleSearchQuery, term, queryGraph, term);
+//				queryString = String.format(simpleSearchQuery, term, queryGraph, term);
+				queryString = String.format(simpleSearchQuery, queryGraph, term, term, term);
+//				queryString = "select distinct ?s ?p ?o where {filter(?o=\"Albert Einstein\"@de || ?o=\"Albert Einstein\"@en ). ?s ?p ?o}";
 			}
 
 			System.out.println();
@@ -431,9 +296,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		List<TripleDto> resultDto = new LinkedList<>();
 
 		try (RepositoryConnection con = repo.getConnection()) {
-//			String queryString = "SELECT (<" + subject + "> as ?s) ?p ?o " + queryGraph + " WHERE {<" + subject
-//					+ "> ?p ?o. "
-//					+ "FILTER(!isLiteral(?o) || langMatches(lang(?o), \"EN\") || langMatches(lang(?o), \"DE\") || langMatches(lang(?o), \"\"))}";
 
 			String queryString = String.format(getSubjectQuery, "<" + subject + ">", queryGraph, "<" + subject + ">");
 			
@@ -446,6 +308,8 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 					BindingSet bindingSet = result.next();
 					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
 							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
+					System.out.println(bindingSet.getValue("s").toString() + " " +
+							bindingSet.getValue("p").toString() +" "+ bindingSet.getValue("o").toString());
 				}
 			}
 
@@ -477,8 +341,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			List<String> queryResult = new LinkedList<>();
 			try (RepositoryConnection con = repo.getConnection()) {
 
-//				String queryString = "select distinct ?p where {select ?p " + queryGraph + " where {?s ?p ?o} limit "
-//						+ limit + " offset " + offset + "}";
 				String queryString = String.format(getPredicatesQuery, queryGraph, limit, offset);
 				System.out.println(queryString);
 
@@ -687,6 +549,8 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			System.out.println("repo != null");
 			shutDown();
 			this.repo = repo;
+			currPredicatesList = null;
+			currPredicatesListName = null;
 
 			tripleStoreUrl = connDto.getTripleStoreUrl();
 			tripleStoreServer = connDto.getTripleStoreServer();
