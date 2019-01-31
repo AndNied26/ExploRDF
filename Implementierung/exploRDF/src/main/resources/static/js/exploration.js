@@ -9,8 +9,8 @@ var svg = d3.select("svg").style("background-color", "white"),
 
 var g = svg.append("g");
 
-var edgeLevel = 5;
-var edgeLimit = 100;
+var edgeLevel = 10;
+var edgeLimit = 10;
 var pos = 0;
 var colors = ["#ff6600", "#ffc600"];
 
@@ -34,9 +34,14 @@ $("#exploreBtn").on('click', function () {
   $('#exploreDiv').css('display', 'block');
   width = $('#exploreDiv').width();
   height = $('#exploreDiv').height();
-  simulation.force("center", d3.forceCenter(width / 2, height / 2));
+  
+  console.log(width);
+  console.log(height);
+  
+//  simulation.force("center", d3.forceCenter(width / 2, height / 2));
   pos = 0;
   getNodesData(startNode);
+  
 });
 
 function getNodesData(nodeId) {
@@ -47,6 +52,7 @@ function getNodesData(nodeId) {
 				
 		    updateData(data, null);
 		    update();
+		    
 		  });
 	  } else {
 // getPredicates();
@@ -62,7 +68,7 @@ var simulation = d3.forceSimulation()
     .force("charge", d3.forceManyBody()
         .strength(-400)
     )
-    .force("center", d3.forceCenter(width / 2, height / 2));
+//    .force("center", d3.forceCenter(width / 2, height / 2));
 
 
 // var nodeId = ['nodes_start', 'nodes_id_1', 'nodes_id_2', 'nodes_id_3'];
@@ -74,8 +80,10 @@ var simulation = d3.forceSimulation()
 function getNodeRelations(currNode, circ, text, loader) {
     var selectedOpt = $("#visualizationTypeGroup option:selected" ).text();
 // console.log("getNodeData/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
+    var edgeDirection = $('input[name="edgeDirOpt"]:checked').val();
+//    console.log(edgeDirection);
 	  if(selectedOpt !== null && selectedOpt !== '') {
-		  d3.json("getNodeData/" + currNode.id.replace(/#/g,"%23") + "/" + selectedOpt + "/" + 0 + "/" + currNode.edgeOffset * edgeLimit +"/" + edgeLimit).then(function (data) {
+		  d3.json("getNodeData/" + currNode.id.replace(/#/g,"%23") + "/" + selectedOpt + "/" + edgeDirection + "/" + currNode.edgeOffset * edgeLimit +"/" + edgeLimit).then(function (data) {
 				
 		    updateData(data, currNode);
 		    update();
@@ -96,6 +104,7 @@ var edgelabels = g.append("g").selectAll(".edgelabel");
 node = g.append("g").selectAll(".node");
 
 function update() {
+
     console.log(nodes);
 	
 	
@@ -105,7 +114,7 @@ function update() {
 	      .append("line")
 	      .attr("id", function (d) { return d.source + "-" + d.edge + "-" + d.target })
 	      .attr("class", "link")
-	      .attr("stroke", "#000")
+	      .attr("stroke", "#cacaca")
 	      .attr("stroke-width", 1.5)
 	      .merge(link);
 
@@ -132,7 +141,8 @@ function update() {
 	      .attr('class', 'edgelabel')
 	      .attr('id', function (d) { return 'edgelabel-' + d.source + "-" + d.edge + "-" + d.target })
 	      .attr('font-size', 10)
-	      .attr('fill', 'black')
+	      .attr('y', 9)
+	      .attr('fill', '#898989')
 	      .attr('z-index', 1)
 	      ;
 
@@ -174,10 +184,7 @@ function update() {
         .call(d3.drag()
             .on("start", dragstarted)
             .on("drag", dragged)
-        )
-        .attr("x", width/2)
-        .attr("x", height/2)
-        ;
+        );
 
     node = nodeEnter.merge(node);
     nodeEnter
@@ -312,6 +319,7 @@ function update() {
 }
 
 function getInfo(subject) {
+	$('#infoDiv').remove();
 	d3.json("getSubject/" + subject.replace(/#/g,"%23")).then(function (data) {
 		var infoDiv = d3.select("body")
 			.append("div")
@@ -384,14 +392,22 @@ function updateData(data, currNode) {
     var n = data.nodes;
     var l = data.edges;
     
+    var newNodes = false;
+    
+    
+    
+    
     if(n.length >= edgeLimit) {
-    	console.log(currNode);
+//    	console.log("Offset");
     	currNode.edgeOffset = currNode.edgeOffset + 1; 
-//    	currNode.edgeOffset++;
+//    	console.log(currNode.edgeOffset);
+
     } else {
     	if(nodes.length > 0) {
     		currNode.edgeOffset = 0;
+//    		console.log(currNode.edgeOffset);
     	}
+    	
     	
     }
     
@@ -399,19 +415,38 @@ function updateData(data, currNode) {
     	
     	nodes = nodes.filter(function (n) {
  
-            return n.num === 0 || pos - n.num !== edgeLevel;
+    		return n.num === 0 || (pos - n.num !== edgeLevel && n.sourceNode !== currNode.id);
+    		
+//            return n.num === 0 || (pos - n.num !== edgeLevel);
             
             
         });
     	links = links.filter(function (l){
-    		return (l.source.num === 0 || pos - l.source.num != edgeLevel)
-    			&& (l.target.num === 0 || pos - l.target.num != edgeLevel)
+    		
+    		var stay = false;
+    		if((l.source.num === 0 || pos - l.source.num !== edgeLevel) && (l.target.num === 0 || pos - l.target.num !== edgeLevel)) {
+    			stay = true;
+    		}
+    		if((l.source.num !== 0 && l.source.sourceNode === currNode.id) || (l.target.num !== 0 && l.target.sourceNode === currNode.id)) {
+    			stay = false;
+    		}
+    		
+    		return ((l.source.num === 0 || pos - l.source.num !== edgeLevel) 
+    					&& (l.target.num === 0 || pos - l.target.num !== edgeLevel))
+    			&& !((l.source.num !== 0 && l.source.sourceNode === currNode.id) 
+    					|| (l.target.num !== 0 && l.target.sourceNode === currNode.id));
+    		
+//    		return stay;
+    		
+//    		return (l.source.num === 0 || pos - l.source.num != edgeLevel)
+//    			&& (l.target.num === 0 || pos - l.target.num != edgeLevel)
     	});
     }
     
     n.forEach(element => {
     	element.num = pos;
         if (!nodeExists(element.id)) {
+        	newNodes = true;
             nodes.push(element);
         } else {
         }
@@ -422,7 +457,7 @@ function updateData(data, currNode) {
         } else {
         }
     });
-    if (data.nodes.length > 0) {
+    if (data.nodes.length > 0 && newNodes) {
     	pos++;
     }
 }

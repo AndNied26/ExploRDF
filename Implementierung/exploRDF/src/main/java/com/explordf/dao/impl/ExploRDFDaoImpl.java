@@ -209,31 +209,310 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	private VisualizationDto getOutgoingNodes(String subject, int edgeOffset, int limit) {
 		VisualizationDto viz = new VisualizationDto();
 		
+		int localOffset = 0;
+		int localLimit = 100; //magic number 100
+		int reachedLimit = limit;
+		int reachedOffset = edgeOffset;
+		boolean searchDone = false;
 		
-		List<TripleDto> nodeData = getSubjectTriples(subject, edgeOffset, limit);
-		
-		for (TripleDto tripleDto : nodeData) {
+		while(reachedLimit > 0 && !searchDone) {
+			List<TripleDto> nodeData = getResourceTriples(subject, localOffset * localLimit, localLimit);
 			
-			String obj = tripleDto.getObject();
-			String pred = tripleDto.getPredicate();
+			localOffset++;
+			System.out.println("nodeData " + nodeData.size());
 			
-			ValueFactory factory = SimpleValueFactory.getInstance();
-			String predIRI = factory.createIRI(pred).getLocalName();
-			
-			if(vizEdges.contains(pred)) {
-				
-				String nodeLabel = getNodeLabel(obj, vizLabel);
-				
-				if(nodeLabel != null) {
-					viz.addNode(new NodeDto(obj, nodeLabel));
-					viz.addEdge(new EdgeDto(subject, obj, predIRI));
-				}	
-									
+			if(nodeData.isEmpty()) {
+				searchDone = true;
 			}
+			
+			for (TripleDto tripleDto : nodeData) {
+				
+				String obj = tripleDto.getObject();
+				String pred = tripleDto.getPredicate();
+				
+				ValueFactory factory = SimpleValueFactory.getInstance();
+				String predIRI = factory.createIRI(pred).getLocalName();
+				
+				if(vizEdges.contains(pred)) {
+					
+					String nodeLabel = getNodeLabel(obj, vizLabel);
+					
+					if(nodeLabel != null) {
+						if(!(reachedOffset > 0)) {
+							viz.addNode(new NodeDto(obj, nodeLabel, subject));
+							viz.addEdge(new EdgeDto(subject, obj, predIRI));
+							reachedLimit--;
+						} else {
+							reachedOffset--;
+						}
 	
+					}	
+										
+				}
+				if(!(reachedLimit > 0)) {
+					break;
+				}
+		
+			}
 		}
 		
+//		List<TripleDto> nodeData = getSubjectTriples(subject, edgeOffset, limit);
+//		
+//		for (TripleDto tripleDto : nodeData) {
+//			
+//			String obj = tripleDto.getObject();
+//			String pred = tripleDto.getPredicate();
+//			
+//			ValueFactory factory = SimpleValueFactory.getInstance();
+//			String predIRI = factory.createIRI(pred).getLocalName();
+//			
+//			if(vizEdges.contains(pred)) {
+//				
+//				String nodeLabel = getNodeLabel(obj, vizLabel);
+//				
+//				if(nodeLabel != null) {
+//					viz.addNode(new NodeDto(obj, nodeLabel));
+//					viz.addEdge(new EdgeDto(subject, obj, predIRI));
+//				}	
+//									
+//			}
+//	
+//		}
+		
 	return viz;
+	}
+	
+	private VisualizationDto getIncomingNodes(String object, int edgeOffset, int limit) {
+		
+		VisualizationDto viz = new VisualizationDto();
+		
+		int localOffset = 0;
+		int localLimit = 100; //magic number 100
+		int reachedLimit = limit;
+		int reachedOffset = edgeOffset;
+		boolean searchDone = false;
+		
+		while(reachedLimit > 0 && !searchDone) {
+			List<TripleDto> nodeData = getResourceTriples(object, localOffset * localLimit, localLimit);
+			
+			localOffset++;
+			System.out.println("nodeData " + nodeData.size());
+			
+			if(nodeData.isEmpty()) {
+				searchDone = true;
+			}
+			
+			for (TripleDto tripleDto : nodeData) {
+				
+				String subj = tripleDto.getSubject();
+				String pred = tripleDto.getPredicate();
+				
+				ValueFactory factory = SimpleValueFactory.getInstance();
+				String predIRI = factory.createIRI(pred).getLocalName();
+				
+				if(vizEdges.contains(pred)) {
+					
+					String nodeLabel = getNodeLabel(subj, vizLabel);
+					
+					if(nodeLabel != null) {
+						if(!(reachedOffset > 0)) {
+							viz.addNode(new NodeDto(subj, nodeLabel, object));
+							viz.addEdge(new EdgeDto(subj, object, predIRI));
+							reachedLimit--;
+						} else {
+							reachedOffset--;
+						}
+	
+					}	
+										
+				}
+				if(!(reachedLimit > 0)) {
+					break;
+				}
+		
+			}
+			
+		}
+		
+//		List<TripleDto> nodeData = getObjectTriples(object, edgeOffset, limit);
+//		
+//		for (TripleDto tripleDto : nodeData) {
+//			
+//			String subj = tripleDto.getSubject();
+//			String pred = tripleDto.getPredicate();
+//			
+//			ValueFactory factory = SimpleValueFactory.getInstance();
+//			String predIRI = factory.createIRI(pred).getLocalName();
+//			
+//			if(vizEdges.contains(pred)) {
+//				
+//				String nodeLabel = getNodeLabel(subj, vizLabel);
+//				
+//				if(nodeLabel != null) {
+//					viz.addNode(new NodeDto(subj, nodeLabel));
+//					viz.addEdge(new EdgeDto(subj, object, predIRI));
+//				}	
+//									
+//			}
+//	
+//		}
+		
+	return viz;
+	}
+	
+	private VisualizationDto getInAndOutgoingNodes(String resource, int edgeOffset, int limit) {
+		
+		VisualizationDto viz = new VisualizationDto();
+		
+		int localOffset = 0;
+		int localLimit = 100; //magic number 100
+		int reachedLimit = limit;
+		int reachedOffset = edgeOffset;
+		boolean searchDone = false;
+		
+		while(reachedLimit > 0 && !searchDone) {
+			List<TripleDto> nodeData = getResourceTriples(resource, localOffset * localLimit, localLimit);
+			localOffset++;
+			System.out.println("nodeData " + nodeData.size());
+			
+			if(nodeData.isEmpty()) {
+				searchDone = true;
+			}
+			
+			for(TripleDto tripleDto : nodeData) {
+				String subj = tripleDto.getSubject();
+				String pred = tripleDto.getPredicate();
+				String obj = tripleDto.getObject();
+				
+				ValueFactory factory = SimpleValueFactory.getInstance();
+				String predIRI = factory.createIRI(pred).getLocalName();
+				
+				String res = null;
+				
+				if(resource.equals(subj)) {
+					res = obj;
+				} else if (resource.equals(obj)) {
+					res = subj;
+				} else {
+					System.out.println("hier: " + resource + " " + subj + " " + pred + " " + obj);
+				}
+				
+				if(vizEdges.contains(pred)) {
+					
+					String nodeLabel = getNodeLabel(res, vizLabel);
+					
+					if(nodeLabel != null) {
+						if(!(reachedOffset > 0)) {
+							viz.addNode(new NodeDto(res, nodeLabel, resource));
+							viz.addEdge(new EdgeDto(subj, obj, predIRI));
+							reachedLimit--;
+						} else {
+							reachedOffset--;
+						}
+						
+					} 
+										
+				}
+				if(!(reachedLimit > 0)) {
+					break;
+				}
+			}
+			
+			
+		}
+		
+		
+		
+//		List<TripleDto> nodeData = getResourceTriples(resource, edgeOffset, limit);
+//		
+//		System.out.println("nodeData " + nodeData.size());
+//		
+//		for (TripleDto tripleDto : nodeData) {
+//			
+//			String subj = tripleDto.getSubject();
+//			String pred = tripleDto.getPredicate();
+//			String obj = tripleDto.getObject();
+//			
+//			ValueFactory factory = SimpleValueFactory.getInstance();
+//			String predIRI = factory.createIRI(pred).getLocalName();
+//			
+//			String res = null;
+//			
+////			System.out.println(subj + " " + pred + " " + obj);
+//			
+//			if(resource.equals(subj)) {
+//				res = obj;
+//			} else if (resource.equals(obj)) {
+//				res = subj;
+//			} else {
+//				System.out.println("hier: " + resource + " " + subj + " " + pred + " " + obj);
+//			}
+//			
+//			if(vizEdges.contains(pred)) {
+//				
+//				String nodeLabel = getNodeLabel(res, vizLabel);
+//				
+//				if(nodeLabel != null) {
+//					viz.addNode(new NodeDto(res, nodeLabel));
+//					viz.addEdge(new EdgeDto(subj, obj, predIRI));
+//				}	
+//									
+//			}
+//	
+//		}
+		System.out.println("viz groesse: " + viz.getNodes().size());
+		
+	return viz;
+	}
+	
+	private List<TripleDto> getResourceTriples(String resource, int edgeOffset, int limit) {
+		List<TripleDto> resultDto = new LinkedList<>();
+		
+		try (RepositoryConnection con = repo.getConnection()) {
+
+			String queryString = String.format(getTriplesSubAndObject, resource, queryGraph, resource, resource, queryGraph, resource, limit, edgeOffset );
+			
+			System.out.println(queryString);
+			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+
+			try (TupleQueryResult result = tupleQuery.evaluate()) {
+
+				while (result.hasNext()) {
+					BindingSet bindingSet = result.next();
+					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
+							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
+//					System.out.println(bindingSet.getValue("s").toString() + " " +
+//							bindingSet.getValue("p").toString() +" "+ bindingSet.getValue("o").toString());
+				}
+			}
+		}
+		
+		return resultDto;
+	}
+
+	private List<TripleDto> getObjectTriples(String object, int edgeOffset, int limit) {
+		List<TripleDto> resultDto = new LinkedList<>();
+		
+		try (RepositoryConnection con = repo.getConnection()) {
+
+			String queryString = String.format(getTriplesObject, object, queryGraph, object, limit, edgeOffset );
+			
+			System.out.println(queryString);
+			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+
+			try (TupleQueryResult result = tupleQuery.evaluate()) {
+
+				while (result.hasNext()) {
+					BindingSet bindingSet = result.next();
+					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
+							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
+//					System.out.println(bindingSet.getValue("s").toString() + " " +
+//							bindingSet.getValue("p").toString() +" "+ bindingSet.getValue("o").toString());
+				}
+			}
+		}
+		
+		return resultDto;
 	}
 	
 	private List<TripleDto> getSubjectTriples(String subject, int edgeOffset, int limit) {
@@ -253,8 +532,8 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 					BindingSet bindingSet = result.next();
 					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
 							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
-					System.out.println(bindingSet.getValue("s").toString() + " " +
-							bindingSet.getValue("p").toString() +" "+ bindingSet.getValue("o").toString());
+//					System.out.println(bindingSet.getValue("s").toString() + " " +
+//							bindingSet.getValue("p").toString() +" "+ bindingSet.getValue("o").toString());
 				}
 			}
 
@@ -265,19 +544,14 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		return resultDto;
 	}
 	
-	private VisualizationDto getIncomingNodes(String subject, int edgeOffset, int limit) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
-	private VisualizationDto getInAndOutgoingNodes(String subject, int edgeOffset, int limit) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	
 
 	private String getNodeLabel(String nodeId, String label) {
+		System.out.println(nodeId);
 		if (nodeId.indexOf(':') < 0 || nodeId.startsWith("\"")) {
 			System.out.println(nodeId + " is not an IRI");
 			return null;

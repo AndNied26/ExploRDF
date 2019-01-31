@@ -6,6 +6,7 @@ public class NodeDto {
 	private String label;
 	private int num;
 	private int edgeOffset;
+	private String sourceNode;
 	
 	public NodeDto() {
 		this.edgeOffset = 0;
@@ -15,6 +16,13 @@ public class NodeDto {
 		this.id = id;
 		this.label = label;
 		this.edgeOffset = 0;
+	}
+	
+	public NodeDto(String id, String label, String sourceNode) {
+		this.id = id;
+		this.label = label;
+		this.edgeOffset = 0;
+		this.sourceNode = sourceNode;
 	}
 
 	public String getId() {
@@ -47,6 +55,14 @@ public class NodeDto {
 
 	public void setEdgeOffset(int edgeOffset) {
 		this.edgeOffset = edgeOffset;
+	}
+
+	public String getSourceNode() {
+		return sourceNode;
+	}
+
+	public void setSourceNode(String sourceNode) {
+		this.sourceNode = sourceNode;
 	}
 	
 	
