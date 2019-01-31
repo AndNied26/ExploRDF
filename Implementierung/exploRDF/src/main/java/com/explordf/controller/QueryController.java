@@ -120,15 +120,12 @@ public class QueryController {
 	 * @return List of TripleDtos as JSON objects containing the results of user´s 
 	 * request.
 	 */
-	@RequestMapping(value="/getSubject/**/{edgeOffset}/{limit}", method = RequestMethod.GET)
-	public List<TripleDto> getSubject(HttpServletRequest request,
-			@PathVariable(name = "edgeOffset") int edgeOffset,
-			@PathVariable(name = "limit") int limit) {
+	@RequestMapping(value="/getSubject/**", method = RequestMethod.GET)
+	public List<TripleDto> getSubject(HttpServletRequest request) {
 		System.out.println("Entered Controller");
 		String subject = request.getRequestURI().split("/getSubject/")[1];
-		subject = subject.substring(0, subject.length() - String.valueOf(edgeOffset).length() - String.valueOf(limit).length() - 2);
-		return queryService.getSubject(subject, edgeOffset, limit);
-	}
+		return queryService.getSubject(subject);
+}
 	
 	/**
 	 * Gets a DTO (Data transfer object) of the requested node (RDF subject 

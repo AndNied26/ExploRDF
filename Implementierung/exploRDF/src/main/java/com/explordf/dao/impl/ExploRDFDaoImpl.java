@@ -106,6 +106,15 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	@Value("${query.getLabel}")
 	private String getLabelQuery;
 	
+	@Value("${query.getTriples.subject}")
+	private String getTriplesSubject;
+	
+	@Value("${query.getTriples.object}")
+	private String getTriplesObject;
+	
+	@Value("${query.getTriples.subAndObject}")
+	private String getTriplesSubAndObject;
+	
 	private final String predicatesRootDir = "temp/exploRDF/predicates/";
 	private final String predicateLabelIRI = "http://example.org/label";
 	private final String predicateEdgeIRI = "http://example.org/edge";
@@ -145,7 +154,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	@Override
 	public VisualizationDto getNodeData(String subject, String predicatesList, int edgeViz, int edgeOffset, int limit) {
 		
-		VisualizationDto viz = new VisualizationDto();
+//		VisualizationDto viz = new VisualizationDto();
 		
 		if(!predicatesList.equals(currPredicatesListName) || currPredicatesList == null) {
 			System.out.println("currPredicatesListName has changed or currPredicatesList is null");
@@ -161,32 +170,113 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		}
 		
 		
-			List<TripleDto> nodeData = getSubject(subject, edgeOffset, limit);
-			
-			for (TripleDto tripleDto : nodeData) {
-				
-				String obj = tripleDto.getObject();
-				String pred = tripleDto.getPredicate();
-				
-				ValueFactory factory = SimpleValueFactory.getInstance();
-				String predIRI = factory.createIRI(pred).getLocalName();
-				
-				if(vizEdges.contains(pred)) {
-					
-					String nodeLabel = getNodeLabel(obj, vizLabel);
-					
-					if(nodeLabel != null) {
-						viz.addNode(new NodeDto(obj, nodeLabel));
-						viz.addEdge(new EdgeDto(subject, obj, predIRI));
-					}	
-										
-				}
+		if(edgeViz == 0) {
+			return getOutgoingNodes(subject, edgeOffset, limit);
+		} else if (edgeViz == 1) {
+			return getIncomingNodes(subject, edgeOffset, limit);
+		} else {
+			return getInAndOutgoingNodes(subject, edgeOffset, limit);
+		}
 		
-			}
+		
+		
+//			List<TripleDto> nodeData = getSubject(subject, edgeOffset, limit);
+//			
+//			for (TripleDto tripleDto : nodeData) {
+//				
+//				String obj = tripleDto.getObject();
+//				String pred = tripleDto.getPredicate();
+//				
+//				ValueFactory factory = SimpleValueFactory.getInstance();
+//				String predIRI = factory.createIRI(pred).getLocalName();
+//				
+//				if(vizEdges.contains(pred)) {
+//					
+//					String nodeLabel = getNodeLabel(obj, vizLabel);
+//					
+//					if(nodeLabel != null) {
+//						viz.addNode(new NodeDto(obj, nodeLabel));
+//						viz.addEdge(new EdgeDto(subject, obj, predIRI));
+//					}	
+//										
+//				}
+//		
+//			}
 			
-		return viz;
+//		return viz;
 	}
 	
+	private VisualizationDto getOutgoingNodes(String subject, int edgeOffset, int limit) {
+		VisualizationDto viz = new VisualizationDto();
+		
+		
+		List<TripleDto> nodeData = getSubjectTriples(subject, edgeOffset, limit);
+		
+		for (TripleDto tripleDto : nodeData) {
+			
+			String obj = tripleDto.getObject();
+			String pred = tripleDto.getPredicate();
+			
+			ValueFactory factory = SimpleValueFactory.getInstance();
+			String predIRI = factory.createIRI(pred).getLocalName();
+			
+			if(vizEdges.contains(pred)) {
+				
+				String nodeLabel = getNodeLabel(obj, vizLabel);
+				
+				if(nodeLabel != null) {
+					viz.addNode(new NodeDto(obj, nodeLabel));
+					viz.addEdge(new EdgeDto(subject, obj, predIRI));
+				}	
+									
+			}
+	
+		}
+		
+	return viz;
+	}
+	
+	private List<TripleDto> getSubjectTriples(String subject, int edgeOffset, int limit) {
+		double start = new Date().getTime();
+		List<TripleDto> resultDto = new LinkedList<>();
+
+		try (RepositoryConnection con = repo.getConnection()) {
+
+			String queryString = String.format(getTriplesSubject, subject, queryGraph, subject, limit, edgeOffset );
+			
+			System.out.println(queryString);
+			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+
+			try (TupleQueryResult result = tupleQuery.evaluate()) {
+
+				while (result.hasNext()) {
+					BindingSet bindingSet = result.next();
+					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
+							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
+					System.out.println(bindingSet.getValue("s").toString() + " " +
+							bindingSet.getValue("p").toString() +" "+ bindingSet.getValue("o").toString());
+				}
+			}
+
+		}
+
+		double end = new Date().getTime();
+		System.out.println("Query time: " + (end - start) / 1000);
+		return resultDto;
+	}
+	
+	private VisualizationDto getIncomingNodes(String subject, int edgeOffset, int limit) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private VisualizationDto getInAndOutgoingNodes(String subject, int edgeOffset, int limit) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
 	private String getNodeLabel(String nodeId, String label) {
 		if (nodeId.indexOf(':') < 0 || nodeId.startsWith("\"")) {
 			System.out.println(nodeId + " is not an IRI");
@@ -216,6 +306,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		
 	}
 	
+		
 	@Override
 	public VisualizationDto getNode(String subject, String predicatesList) {
 		
@@ -291,33 +382,34 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	}
 
 	@Override
-	public List<TripleDto> getSubject(String subject, int edgeOffset, int limit) {
-		double start = new Date().getTime();
-		List<TripleDto> resultDto = new LinkedList<>();
-
-		try (RepositoryConnection con = repo.getConnection()) {
-
-			String queryString = String.format(getSubjectQuery, "<" + subject + ">", queryGraph, "<" + subject + ">");
-			
-			System.out.println(queryString);
-			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
-
-			try (TupleQueryResult result = tupleQuery.evaluate()) {
-
-				while (result.hasNext()) {
-					BindingSet bindingSet = result.next();
-					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
-							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
-					System.out.println(bindingSet.getValue("s").toString() + " " +
-							bindingSet.getValue("p").toString() +" "+ bindingSet.getValue("o").toString());
-				}
-			}
-
-		}
-
-		double end = new Date().getTime();
-		System.out.println("Query time: " + (end - start) / 1000);
-		return resultDto;
+	public List<TripleDto> getSubject(String subject) {
+		return getSubjectTriples(subject, 0, 1000);
+//		double start = new Date().getTime();
+//		List<TripleDto> resultDto = new LinkedList<>();
+//
+//		try (RepositoryConnection con = repo.getConnection()) {
+//
+//			String queryString = String.format(getSubjectQuery, "<" + subject + ">", queryGraph, "<" + subject + ">");
+//			
+//			System.out.println(queryString);
+//			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+//
+//			try (TupleQueryResult result = tupleQuery.evaluate()) {
+//
+//				while (result.hasNext()) {
+//					BindingSet bindingSet = result.next();
+//					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
+//							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
+//					System.out.println(bindingSet.getValue("s").toString() + " " +
+//							bindingSet.getValue("p").toString() +" "+ bindingSet.getValue("o").toString());
+//				}
+//			}
+//
+//		}
+//
+//		double end = new Date().getTime();
+//		System.out.println("Query time: " + (end - start) / 1000);
+//		return resultDto;
 	}
 
 	@Override
@@ -528,6 +620,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		}
 	}
 
+	
 	@Override
 	public ConnectionDto getConnectionProps() {
 		if (repo != null) {

@@ -33,11 +33,9 @@ public interface ExploRDFDao {
 	/**
 	 * Gets all triples that contain a certain subject.
 	 * @param subject URI as String to search for.
-	 * @param limit 
-	 * @param edgeOffset 
 	 * @return A list of all found triples in the Triple Store.
 	 */
-	List<TripleDto> getSubject(String subject, int edgeOffset, int limit);
+	List<TripleDto> getSubject(String subject);
 	
 	/**
 	 * Gets all existing predicates in the triple store.

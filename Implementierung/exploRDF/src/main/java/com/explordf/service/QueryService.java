@@ -60,13 +60,11 @@ public class QueryService {
 	 * subject (subject-predicate-object).
 	 * 
 	 * @param subject IRI of the requested subject.
-	 * @param limit 
-	 * @param edgeOffset 
 	 * @return List of TripleDtos objects containing the results of user´s request.
 	 */
-	public List<TripleDto> getSubject(String subject, int edgeOffset, int limit) {
+	public List<TripleDto> getSubject(String subject) {
 		System.out.println("Entered sevice");
-		return exploRDFDao.getSubject(subject, edgeOffset, limit);
+		return exploRDFDao.getSubject(subject);
 	}
 
 

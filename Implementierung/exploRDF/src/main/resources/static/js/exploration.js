@@ -10,7 +10,7 @@ var svg = d3.select("svg").style("background-color", "white"),
 var g = svg.append("g");
 
 var edgeLevel = 5;
-var edgeLimit = 5;
+var edgeLimit = 100;
 var pos = 0;
 var colors = ["#ff6600", "#ffc600"];
 
@@ -312,7 +312,7 @@ function update() {
 }
 
 function getInfo(subject) {
-	d3.json("getSubject/" + subject.replace(/#/g,"%23") + "/0/1000").then(function (data) {
+	d3.json("getSubject/" + subject.replace(/#/g,"%23")).then(function (data) {
 		var infoDiv = d3.select("body")
 			.append("div")
 			.attr("id", "infoDiv");
