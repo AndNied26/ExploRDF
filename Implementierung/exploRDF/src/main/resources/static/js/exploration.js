@@ -7,22 +7,27 @@ var svg = d3.select("svg").style("background-color", "white"),
     node,
     link;
 
-var g = svg.append("g");
+width = $('#exploreDiv').width();
+height = $('#exploreDiv').height();
+
+var g = svg.append("g")
+		.attr("transform", function(){return "translate(" + width/2 + "," + height/2 + ") scale(1)"})
 
 var edgeLevel = 10;
 var edgeLimit = 10;
 var pos = 0;
 var colors = ["#ff6600", "#ffc600"];
 
-svg
-	
-	.call(d3.zoom()
-		    .scaleExtent([1/4, 8])
-		    .on("zoom", zoomed))
+var zoom = d3.zoom()
+.scaleExtent([1/4, 8])
+.on("zoom", zoomed);
+
+svg.call(zoom)
 		    .on("dblclick.zoom", null);
 
+svg.call(zoom.transform, d3.zoomIdentity.translate(width/2, height/2));
+
 function zoomed() {
-// g.attr("transform", d3.event.transform);
 	g.attr("transform", d3.event.transform);
 	}
 
@@ -32,11 +37,11 @@ $("#exploreBtn").on('click', function () {
   $('#headingChoice').css('display', 'none');
   $('.content').css('display', 'none');
   $('#exploreDiv').css('display', 'block');
-  width = $('#exploreDiv').width();
-  height = $('#exploreDiv').height();
+//  width = $('#exploreDiv').width();
+//  height = $('#exploreDiv').height();
   
-  console.log(width);
-  console.log(height);
+//  console.log(width);
+//  console.log(height);
   
 //  simulation.force("center", d3.forceCenter(width / 2, height / 2));
   pos = 0;
@@ -105,7 +110,7 @@ node = g.append("g").selectAll(".node");
 
 function update() {
 
-    console.log(nodes);
+//    console.log(nodes);
 	
 	
 	link = link.data(links, function (d) { return d.source.id + "-" + d.edge + "-" + d.target.id });
@@ -131,7 +136,7 @@ function update() {
 	      .style("pointer-events", "none")
 	      .merge(edgepaths)
 	      ;
-	  console.log(links);
+//	  console.log(links);
 
 	  edgelabels = edgelabels.data(links, function (d) { return 'edgelabel-' + d.source.id + "-" + d.edge + "-" + d.target.id });
 	  edgelabels.exit().remove();
@@ -253,7 +258,7 @@ function update() {
     		.style("opacity", 0.3);
     	icons
     		.style("opacity", 0)
-    	console.log(thisVar);
+//    	console.log(thisVar);
     	
     	var loader = thisVar.append("svg:image")
     		.attr("xlink:href", "js/spinner.gif")
