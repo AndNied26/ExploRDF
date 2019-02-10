@@ -8,7 +8,7 @@
 <title>ExploRDF</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style2.css">
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
@@ -17,24 +17,24 @@
 
 	<div id="grid">
 
+<div th:replace="index :: sidebar"></div>
 
-
-		<div th:fragment="sidebar" id="sidebar" class="sidebar">
-			<div id="mainSidebar" class="mainSidebar">
-				<ul>
-					<li id="navLogo"><a href="/">ExploRDF</a></li>
-					<li id="navConnect"><a href="connect">Connect</a></li>
-					<li id="navQuery"><a href="query">Query</a></li>
-					<li id="navHelp"><a href="help">Help</a></li>
-				</ul>
-			</div>
-			<div id="sidebarToggle" class="sidebarToggle">
-				<button id="toggleButton" type="button"
-					class="btn btn-default btn-sm closebtn">
-					<span id="buttonSymbol" class="glyphicon glyphicon-chevron-left"></span>
-				</button>
-			</div>
-		</div>
+<!-- 		<div th:fragment="sidebar" id="sidebar" class="sidebar"> -->
+<!-- 			<div id="mainSidebar" class="mainSidebar"> -->
+<!-- 				<ul> -->
+<!-- 					<li id="navLogo"><a href="/">ExploRDF</a></li> -->
+<!-- 					<li id="navConnect"><a href="connect">Connect</a></li> -->
+<!-- 					<li id="navQuery"><a href="query">Query</a></li> -->
+<!-- 					<li id="navHelp"><a href="help">Help</a></li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
+<!-- 			<div id="sidebarToggle" class="sidebarToggle"> -->
+<!-- 				<button id="toggleButton" type="button" -->
+<!-- 					class="btn btn-default btn-sm closebtn"> -->
+<!-- 					<span id="buttonSymbol" class="glyphicon glyphicon-chevron-left"></span> -->
+<!-- 				</button> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 
 		<!------------------------------------------------------------->
 
@@ -43,15 +43,19 @@
 			<!-- Caption - begin -->
 			<div class="caption">
 				<h3 id="captionHead">Simple Search</h3>
-				<div th:fragment="captionConnection" id="captionConnection">
-					<p>
-						Triple-Store: <span id="dbSpan">no server</span>
-					</p>
-					<p>
-						Repository: <span id="repoSpan">-</span>
-					</p>
-				</div>
+				<div th:replace="index :: captionConnection"></div>
 			</div>
+<!-- 			<div class="caption"> -->
+<!-- 				<h3 id="captionHead">Simple Search</h3> -->
+<!-- 				<div th:fragment="captionConnection" id="captionConnection"> -->
+<!-- 					<p> -->
+<!-- 						Triple-Store: <span id="dbSpan">no server</span> -->
+<!-- 					</p> -->
+<!-- 					<p> -->
+<!-- 						Repository: <span id="repoSpan">-</span> -->
+<!-- 					</p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 			<!-- Caption - end -->
 
 			<!-- Content - begin -->

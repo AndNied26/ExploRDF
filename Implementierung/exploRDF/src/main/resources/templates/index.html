@@ -19,9 +19,9 @@
         <div th:fragment="sidebar" id="sidebar" class="sidebar">
             <div id="mainSidebar" class="mainSidebar">
                 <ul>
-                    <li id="navLogo"><a href="/">ExploRDF</a></li>
+                    <li id="navLogo"><a href="">ExploRDF</a></li>
                     <li id="navConnect"><a href="connect">Connect</a></li>
-                    <li id="navQuery"><a href="query">Query</a></li>
+                    <li id="navQuery"><a href="query">Explore</a></li>
                     <li id="navHelp"><a href="help">Help</a></li>
                 </ul>
             </div>
@@ -40,7 +40,7 @@
             <div class="caption">
                 <h3 id="captionHead">Welcome</h3>
                 <div th:fragment="captionConnection" id="captionConnection">
-                    <p>Triple-Store: <span id="dbSpan">no server</span></p>
+                    <p>Triple-Store: <span id="dbSpan">no connection</span></p>
                     <p>Repository: <span id="repoSpan">-</span></p>                    
                 </div>
             </div>
@@ -51,7 +51,7 @@
             
             	<div id="contentInnerDiv">
                     <div id="contentInnerDivQuery" class="contentGridDiv">
-                        <a href="query"><h3>Query</h3></a>
+                        <a href="query"><h3>Explore</h3></a>
                         <p>Search for a term in the connected Triple Store</p>
                     </div>
                     <div id="contentInnerDivConnect" class="contentGridDiv">

@@ -216,7 +216,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		boolean searchDone = false;
 		
 		while(reachedLimit > 0 && !searchDone) {
-			List<TripleDto> nodeData = getResourceTriples(subject, localOffset * localLimit, localLimit);
+			List<TripleDto> nodeData = getSubjectTriples(subject, localOffset * localLimit, localLimit);
 			
 			localOffset++;
 			System.out.println("nodeData " + nodeData.size());
@@ -293,7 +293,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		boolean searchDone = false;
 		
 		while(reachedLimit > 0 && !searchDone) {
-			List<TripleDto> nodeData = getResourceTriples(object, localOffset * localLimit, localLimit);
+			List<TripleDto> nodeData = getObjectTriples(object, localOffset * localLimit, localLimit);
 			
 			localOffset++;
 			System.out.println("nodeData " + nodeData.size());
@@ -696,7 +696,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 
 		// maximum results in dbpedia 10000
 		int maxDbPediaResultNum = 9900;
-		int maxLimit = 100000000;
+		int maxLimit = 80000000;
 		int offset = 0;
 		int limit = 10000000;
 

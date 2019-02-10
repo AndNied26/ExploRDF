@@ -298,6 +298,7 @@ h2, h3, h4 {
 
 .tableDiv tbody {
     overflow-y: auto;
+    width: 100%;
 }
 
 tr:nth-of-type(odd) { 
@@ -309,6 +310,7 @@ tr:nth-of-type(odd) {
     padding: 6px; 
     border: 1px solid rgb(21, 28, 32); 
     text-align: left; 
+    
 }
   
 .tableDiv th {
@@ -327,10 +329,17 @@ tr:nth-of-type(odd) {
     -ms-overflow-style: -ms-autohiding-scrollbar;
   } 
 
-table#predicatesTable th {
+#predicatesTable th {
     width: 100%;
     
 }  
+
+.table td {
+	max-width: 90%;
+	word-wrap: break-word;
+	overflow: hidden;
+}
+
 .checkboxTd {
     width: 100%;
     text-align: center;

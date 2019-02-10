@@ -13,7 +13,7 @@ height = $('#exploreDiv').height();
 var g = svg.append("g")
 		.attr("transform", function(){return "translate(" + width/2 + "," + height/2 + ") scale(1)"})
 
-var edgeLevel = 10;
+var edgeLevel = 5;
 var edgeLimit = 10;
 var pos = 0;
 var colors = ["#ff6600", "#ffc600"];
@@ -37,13 +37,7 @@ $("#exploreBtn").on('click', function () {
   $('#headingChoice').css('display', 'none');
   $('.content').css('display', 'none');
   $('#exploreDiv').css('display', 'block');
-//  width = $('#exploreDiv').width();
-//  height = $('#exploreDiv').height();
-  
-//  console.log(width);
-//  console.log(height);
-  
-//  simulation.force("center", d3.forceCenter(width / 2, height / 2));
+
   pos = 0;
   getNodesData(startNode);
   
@@ -76,12 +70,6 @@ var simulation = d3.forceSimulation()
 //    .force("center", d3.forceCenter(width / 2, height / 2));
 
 
-// var nodeId = ['nodes_start', 'nodes_id_1', 'nodes_id_2', 'nodes_id_3'];
-//
-// var i = 0;
-
-
-
 function getNodeRelations(currNode, circ, text, loader) {
     var selectedOpt = $("#visualizationTypeGroup option:selected" ).text();
 // console.log("getNodeData/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
@@ -109,9 +97,6 @@ var edgelabels = g.append("g").selectAll(".edgelabel");
 node = g.append("g").selectAll(".node");
 
 function update() {
-
-//    console.log(nodes);
-	
 	
 	link = link.data(links, function (d) { return d.source.id + "-" + d.edge + "-" + d.target.id });
 	  link.exit().remove();
@@ -166,6 +151,7 @@ function update() {
     node = node.data(nodes, function (d) { return d.id; });
 
     node.exit().remove();
+    
     var nodeEnter = node.enter()
         .append("g")
         .attr("id", function (d) { return d.id })
@@ -178,7 +164,7 @@ function update() {
         })
         .on("mouseout", function () {
             d3.select(this).selectAll(".icon")
-                .transition().delay(150).style("opacity", 0)
+                .transition().delay(150).style("opacity", 0) // 150 ms
                 ;
         })
         .on("dblclick", function (d) {
@@ -258,8 +244,8 @@ function update() {
     		.style("opacity", 0.3);
     	icons
     		.style("opacity", 0)
-//    	console.log(thisVar);
-    	
+    	console.log(thisVar);
+//    	console.log(d);
     	var loader = thisVar.append("svg:image")
     		.attr("xlink:href", "js/spinner.gif")
     		.attr("x", -20)
@@ -270,6 +256,18 @@ function update() {
 
     	getNodeRelations(d, circ, text, loader);
     });
+    
+    nodeEnter.append('svg:text')
+//    .text(function(d) {return d.num})
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "10px")
+    .attr('font-weight', 'bolder')
+    .attr("text-anchor", "middle")
+    .attr("x", -22)
+    .attr("y", 15)
+    .attr("class", "icon node-page")
+    .style("opacity", 0)
+    .style("fill", "grey");
     
     nodeEnter.append('svg:image')
         .attr("xlink:href", "js/info.svg")
@@ -315,6 +313,8 @@ function update() {
     	console.log(d.num);
     });
     
+    nodePage = node.selectAll(".node-page");
+    nodePage.text(function(d){return d.edgeOffset});
 
     simulation.nodes(nodes).on("tick", ticked);
     simulation.force("link").links(links);
@@ -398,14 +398,17 @@ function updateData(data, currNode) {
     var l = data.edges;
     
     var newNodes = false;
-    
-    
-    
+   
+    console.log(n.length);
+    console.log(n);
     
     if(n.length >= edgeLimit) {
 //    	console.log("Offset");
     	currNode.edgeOffset = currNode.edgeOffset + 1; 
 //    	console.log(currNode.edgeOffset);
+//    	var thisVar = d3.select(currNode.parentNode);
+//    	var nodePage = thisVar.select(".node-page");
+//    	nodePage.text("" + currNode.edgeOffset)
 
     } else {
     	if(nodes.length > 0) {
