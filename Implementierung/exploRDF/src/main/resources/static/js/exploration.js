@@ -96,6 +96,22 @@ var edgepaths = g.append("g").selectAll(".edgepath");
 var edgelabels = g.append("g").selectAll(".edgelabel");
 node = g.append("g").selectAll(".node");
 
+
+svg.append('defs').append('marker')
+.attr('id','arrowhead')
+.attr('viewBox','-0 -5 10 10')
+.attr('refX',31)
+.attr('refY',0)
+.attr('orient','auto')
+.attr('markerWidth',6)
+.attr('markerHeight',6)
+.attr('xoverflow','visible')
+.append('svg:path')
+.attr('d', 'M 0,-5 L 10 ,0 L 0,5')
+.attr('fill', '#cacaca')
+.style('stroke','none')
+
+
 function update() {
 	
 	link = link.data(links, function (d) { return d.source.id + "-" + d.edge + "-" + d.target.id });
@@ -106,6 +122,7 @@ function update() {
 	      .attr("class", "link")
 	      .attr("stroke", "#cacaca")
 	      .attr("stroke-width", 1.5)
+	      .attr('marker-end','url(#arrowhead)')
 	      .merge(link);
 
 	  edgepaths = edgepaths.data(links, function (d) { return 'edgepath-' + d.source.id + "-" + d.edge + "-" + d.target.id });
@@ -267,7 +284,16 @@ function update() {
     .attr("y", 15)
     .attr("class", "icon node-page")
     .style("opacity", 0)
-    .style("fill", "grey");
+    .style("fill", "grey")
+    .on("click", function (d) {
+            var pageNum = prompt("Enter the Offset", "0");
+            if(!isNaN(pageNum)){
+            	d.edgeOffset = parseInt(pageNum, 10);
+            	var thisVar = d3.select(this.parentNode);
+            	var circ = thisVar.select(".node-page")
+            					  .text(d.edgeOffset);
+            }
+        })
     
     nodeEnter.append('svg:image')
         .attr("xlink:href", "js/info.svg")
@@ -403,23 +429,14 @@ function updateData(data, currNode) {
     console.log(n);
     
     if(n.length >= edgeLimit) {
-//    	console.log("Offset");
     	currNode.edgeOffset = currNode.edgeOffset + 1; 
-//    	console.log(currNode.edgeOffset);
-//    	var thisVar = d3.select(currNode.parentNode);
-//    	var nodePage = thisVar.select(".node-page");
-//    	nodePage.text("" + currNode.edgeOffset)
-
     } else {
     	if(nodes.length > 0) {
     		currNode.edgeOffset = 0;
-//    		console.log(currNode.edgeOffset);
     	}
-    	
-    	
     }
     
-    if(data.nodes.length > 0) {
+    if(n.length > 0) {
     	
     	nodes = nodes.filter(function (n) {
  
@@ -443,13 +460,13 @@ function updateData(data, currNode) {
     					&& (l.target.num === 0 || pos - l.target.num !== edgeLevel))
     			&& !((l.source.num !== 0 && l.source.sourceNode === currNode.id) 
     					|| (l.target.num !== 0 && l.target.sourceNode === currNode.id));
-    		
-//    		return stay;
-    		
-//    		return (l.source.num === 0 || pos - l.source.num != edgeLevel)
-//    			&& (l.target.num === 0 || pos - l.target.num != edgeLevel)
     	});
+    	
+      node = node.data(nodes, function (d) { return d.id; });
+      node.exit().remove();
     }
+    
+
     
     n.forEach(element => {
     	element.num = pos;
