@@ -9,7 +9,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -97,6 +96,7 @@ public class QueryController {
 
 		String term = url.split("/simpleSearch/")[1];
 		term = term.substring(0, term.length()-2);
+		
 		return queryService.simpleSearch(term, broaderSearch == '1');
 	}
 	
@@ -122,8 +122,14 @@ public class QueryController {
 	 */
 	@RequestMapping(value="/getSubject/**", method = RequestMethod.GET)
 	public List<TripleDto> getSubject(HttpServletRequest request) {
-		System.out.println("Entered Controller");
+		
 		String subject = request.getRequestURI().split("/getSubject/")[1];
+		
+		try {
+			subject = URLDecoder.decode(subject, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}		
 		return queryService.getSubject(subject);
 }
 	

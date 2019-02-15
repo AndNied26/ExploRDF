@@ -133,7 +133,7 @@ var predicateHeadings = ["Predicate", "Label", "Edge"];
 // Choosing one element from the result table.
 $('#resultTbody').on("click", "a", function (e) {
   var subj = $(e.target).text();
-//  console.log(subj);
+  console.log(subj);
   $("body").css("cursor", "progress");
 
   d3.json("getSubject/" + subj.replace(/#/g,"%23")).then(function (data) {

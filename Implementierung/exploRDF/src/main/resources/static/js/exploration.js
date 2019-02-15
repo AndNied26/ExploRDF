@@ -287,7 +287,10 @@ function update() {
     .style("fill", "grey")
     .on("click", function (d) {
             var pageNum = prompt("Enter the Offset", "0");
-            if(!isNaN(pageNum)){
+            console.log(pageNum);
+            if(pageNum == null || pageNum == '') {
+            	return;
+            } else if(!isNaN(pageNum)){
             	d.edgeOffset = parseInt(pageNum, 10);
             	var thisVar = d3.select(this.parentNode);
             	var circ = thisVar.select(".node-page")

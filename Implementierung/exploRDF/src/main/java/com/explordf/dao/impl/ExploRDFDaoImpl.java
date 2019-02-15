@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +27,7 @@ import org.eclipse.rdf4j.query.BindingSet;
 import org.eclipse.rdf4j.query.QueryLanguage;
 import org.eclipse.rdf4j.query.TupleQuery;
 import org.eclipse.rdf4j.query.TupleQueryResult;
+import org.eclipse.rdf4j.queryrender.RenderUtils;
 import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
 import org.eclipse.rdf4j.repository.RepositoryResult;
@@ -627,11 +629,8 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 //						+ "\", \"i\")).?s ?p ?o} order by ?s";
 				queryString = String.format(broadSearchQuery, queryGraph, term);
 			} else {
-//				queryString = "SELECT ?s ?p ?o WHERE {FILTER(?o = \"" + term + "\"). {SELECT ?s ?p ?o " + queryGraph
-//						+ " WHERE {?s ?p \"" + term + "\". ?s ?p ?o}}}";
-//				queryString = String.format(simpleSearchQuery, term, queryGraph, term);
+			
 				queryString = String.format(simpleSearchQuery, queryGraph, term, term, term);
-//				queryString = "select distinct ?s ?p ?o where {filter(?o=\"Albert Einstein\"@de || ?o=\"Albert Einstein\"@en ). ?s ?p ?o}";
 			}
 
 			System.out.println();
@@ -639,6 +638,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			System.out.println();
 
 			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+			
 
 			try (TupleQueryResult result = tupleQuery.evaluate()) {
 				while (result.hasNext()) {
