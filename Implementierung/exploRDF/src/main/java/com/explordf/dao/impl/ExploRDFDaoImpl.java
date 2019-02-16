@@ -619,6 +619,24 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		double start = new Date().getTime();
 
 		List<TripleDto> resultDto = new LinkedList<>();
+		
+		//-------------------------------------
+				for(int i = 0; i < term.length(); i++) {
+					System.out.println(term.charAt(i));
+				}
+				// Encode umlauts (ÄÖÜäöü) as chars and '' (Needed for GND). 
+				String trema = term.replace("Ä", "A"+ (char)776)
+						.replace("Ö", "O" + (char)776).replace("Ü", "U" + (char)776)
+						.replace("ä", "a"+ (char)776).replace("ö", "o" + (char)776)
+						.replace("ü", "u" + (char)776);
+				
+				for(int i = 0; i < trema.length(); i++) {
+					System.out.println(trema.charAt(i) + " " + (int)(trema.charAt(i)));
+					
+				}
+				
+				//---------------------------------------
+		
 
 		try (RepositoryConnection con = repo.getConnection()) {
 
@@ -629,8 +647,8 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 //						+ "\", \"i\")).?s ?p ?o} order by ?s";
 				queryString = String.format(broadSearchQuery, queryGraph, term);
 			} else {
-			
-				queryString = String.format(simpleSearchQuery, queryGraph, term, term, term);
+//				queryString = String.format(simpleSearchQuery, queryGraph, term, term, term);
+				queryString = String.format(simpleSearchQuery, queryGraph, term, term, term, trema, trema, trema);
 			}
 
 			System.out.println();
