@@ -1,4 +1,4 @@
-package com.explordf.dao.impl;
+package com.explordf.dao.impl_rdf4j;
 
 import java.util.Collections;
 import java.util.Map;

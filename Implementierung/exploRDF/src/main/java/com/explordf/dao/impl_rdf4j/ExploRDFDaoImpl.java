@@ -1,4 +1,4 @@
-package com.explordf.dao.impl;
+package com.explordf.dao.impl_rdf4j;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -95,6 +95,9 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	
 	@Value("${query.simpleSearch.simple}")
 	private String simpleSearchQuery;
+	
+	@Value("${query.simpleSearch.simple.trema}")
+	private String simpleSearchTremaQuery;
 	
 	@Value("${query.simpleSearch.broad}")
 	private String broadSearchQuery;
@@ -545,12 +548,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		System.out.println("Query time: " + (end - start) / 1000);
 		return resultDto;
 	}
-	
-	
 
-	
-
-	
 
 	private String getNodeLabel(String nodeId, String label) {
 		System.out.println(nodeId);
@@ -620,22 +618,11 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 
 		List<TripleDto> resultDto = new LinkedList<>();
 		
-		//-------------------------------------
-				for(int i = 0; i < term.length(); i++) {
-					System.out.println(term.charAt(i));
-				}
 				// Encode umlauts (ÄÖÜäöü) as chars and '' (Needed for GND). 
 				String trema = term.replace("Ä", "A"+ (char)776)
 						.replace("Ö", "O" + (char)776).replace("Ü", "U" + (char)776)
 						.replace("ä", "a"+ (char)776).replace("ö", "o" + (char)776)
 						.replace("ü", "u" + (char)776);
-				
-				for(int i = 0; i < trema.length(); i++) {
-					System.out.println(trema.charAt(i) + " " + (int)(trema.charAt(i)));
-					
-				}
-				
-				//---------------------------------------
 		
 
 		try (RepositoryConnection con = repo.getConnection()) {
@@ -643,12 +630,14 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			String queryString;
 
 			if (broaderSearch) {
-//				queryString = "select ?s ?p ?o " + queryGraph + " where {filter(regex(?o, \"" + term
-//						+ "\", \"i\")).?s ?p ?o} order by ?s";
 				queryString = String.format(broadSearchQuery, queryGraph, term);
 			} else {
-//				queryString = String.format(simpleSearchQuery, queryGraph, term, term, term);
-				queryString = String.format(simpleSearchQuery, queryGraph, term, term, term, trema, trema, trema);
+				if(trema.length() > term.length()) {
+					queryString = String.format(simpleSearchTremaQuery, queryGraph, term, term, term, trema, trema, trema);
+				} else {
+					queryString = String.format(simpleSearchQuery, queryGraph, term, term, term);
+				}
+					
 			}
 
 			System.out.println();
@@ -911,7 +900,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			return null;
 		}
 	}
-
 	
 	@Override
 	public ConnectionDto getConnectionProps() {
@@ -952,7 +940,9 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 
 			return getConnectionProps();
 		} else {
-			System.out.println("Something´s wrong.");
+			logger.warn("Could not connect to Endpoint: " + connDto.getTripleStoreUrl() 
+			+ ", Repository: " + connDto.getTripleStoreRepo()
+			+ ", Graph: " + connDto.getTripleStoreGraph() + ".");
 			return null;
 		}
 

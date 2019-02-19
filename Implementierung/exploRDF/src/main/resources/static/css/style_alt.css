@@ -102,7 +102,6 @@ h2, h3, h4 {
 	font-size: 14px;
 /* 	color: white; */
 	margin-bottom: 10px;
-	word-wrap: break-word;
 }
 
 #infoDiv p {
@@ -215,10 +214,6 @@ h2, h3, h4 {
 	color: red;
 }
 
-/* #connectBtnDiv { */
-/* 	float: right; */
-/* } */
-
 /* -------------------------Search div------------------------- */
 #searchDiv {
     padding-top: 60px;
@@ -294,15 +289,11 @@ h2, h3, h4 {
     max-height: 450px;
     width: 85%;
     margin: auto;
-    
 }
 
 .tableDiv table {
     border-collapse: collapse;
     width: 100%;
-    overflow-x: hidden;
-    word-wrap:break-word;
-    table-layout: fixed;
 }
 
 .tableDiv tbody {
@@ -339,17 +330,15 @@ tr:nth-of-type(odd) {
   } 
 
 #predicatesTable th {
-    width: 100%;  
-} 
+    width: 100%;
+    
+}  
 
-#predicatesTable th:nth-child(2) {
-    width: 60px;  
+.table td {
+	max-width: 90%;
+	word-wrap: break-word;
+	overflow: hidden;
 }
-
-#predicatesTable th:nth-child(3) {
-    width: 60px; 
-}
-
 
 .checkboxTd {
     width: 100%;

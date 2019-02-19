@@ -1,4 +1,4 @@
-package com.explordf.dao.impl;
+package com.explordf.dao.impl_rdf4j;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -10,6 +10,7 @@ import org.eclipse.rdf4j.query.TupleQuery;
 import org.eclipse.rdf4j.query.TupleQueryResult;
 import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
+import org.eclipse.rdf4j.repository.http.HTTPQueryEvaluationException;
 import org.eclipse.rdf4j.repository.http.HTTPRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -107,6 +108,8 @@ public class RepositoryServer {
 			try (TupleQueryResult result = tupleQuery.evaluate()) {
 				System.out.println("TupleQueryResult");
 				connected = true;
+			} catch(HTTPQueryEvaluationException e) {
+				logger.warn("Could not evaluate tuple query.");
 			}
 		} catch (RDF4JException e) {
 			logger.warn("Could not connect to Endpoint: " + connDto.getTripleStoreUrl() 

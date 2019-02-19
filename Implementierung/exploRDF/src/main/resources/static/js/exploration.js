@@ -218,7 +218,7 @@ function update() {
         ;
 
     nodeEnter.append('svg:image')
-        .attr("xlink:href", "js/delete.svg")
+        .attr("xlink:href", "js/graphics/delete.svg")
         .attr("x", 16)
         .attr("y", -24)
         .attr("width", 12)
@@ -241,7 +241,7 @@ function update() {
         });
     
     nodeEnter.append('svg:image')
-    .attr("xlink:href", "js/expand.svg")
+    .attr("xlink:href", "js/graphics/expand.svg")
     .attr("x", -27)
     .attr("y", -24)
     .attr("width", 12)
@@ -264,7 +264,7 @@ function update() {
     	console.log(thisVar);
 //    	console.log(d);
     	var loader = thisVar.append("svg:image")
-    		.attr("xlink:href", "js/spinner.gif")
+    		.attr("xlink:href", "js/graphics/spinner.gif")
     		.attr("x", -20)
     		.attr("y", -20)
     		.attr("width", 40)
@@ -299,7 +299,7 @@ function update() {
         })
     
     nodeEnter.append('svg:image')
-        .attr("xlink:href", "js/info.svg")
+        .attr("xlink:href", "js/graphics/info.svg")
         .attr("x", -12)
         .attr("y", -33)
         .attr("width", 12)
@@ -311,7 +311,7 @@ function update() {
         });
 
     nodeEnter.append('svg:image')
-        .attr("xlink:href", "js/pin.svg")
+        .attr("xlink:href", "js/graphics/pin.svg")
         .attr("x", 3)
         .attr("y", -31)
         .attr("width", 12)
@@ -325,7 +325,7 @@ function update() {
     
     
     nodeEnter.append('svg:image')
-    .attr("xlink:href", "js/pencil.svg")
+    .attr("xlink:href", "js/graphics/pencil.svg")
     .attr("x", 16)
     .attr("y", 6)
     .attr("width", 12)
