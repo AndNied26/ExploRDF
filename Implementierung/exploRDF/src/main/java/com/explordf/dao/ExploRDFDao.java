@@ -114,6 +114,6 @@ public interface ExploRDFDao {
 	 * @return VisualizationDto object with the nodes and edges related to
 	 * the selected node.
 	 */
-	VisualizationDto getNodeData(String subject, String predicatesList, int edgeViz, int edgeOffset, int limit);
+	VisualizationDto getNodeRelations(String subject, String predicatesList, int edgeViz, int edgeOffset, int limit);
 	
 }

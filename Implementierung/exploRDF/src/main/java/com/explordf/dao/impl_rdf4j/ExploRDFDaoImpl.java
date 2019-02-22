@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,10 +26,8 @@ import org.eclipse.rdf4j.query.BindingSet;
 import org.eclipse.rdf4j.query.QueryLanguage;
 import org.eclipse.rdf4j.query.TupleQuery;
 import org.eclipse.rdf4j.query.TupleQueryResult;
-import org.eclipse.rdf4j.queryrender.RenderUtils;
 import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
-import org.eclipse.rdf4j.repository.RepositoryResult;
 import org.eclipse.rdf4j.rio.RDFFormat;
 import org.eclipse.rdf4j.rio.RDFParser;
 import org.eclipse.rdf4j.rio.Rio;
@@ -157,7 +154,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	}
 
 	@Override
-	public VisualizationDto getNodeData(String subject, String predicatesList, int edgeViz, int edgeOffset, int limit) {
+	public VisualizationDto getNodeRelations(String subject, String predicatesList, int edgeViz, int edgeOffset, int limit) {
 		
 //		VisualizationDto viz = new VisualizationDto();
 		
@@ -215,7 +212,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		VisualizationDto viz = new VisualizationDto();
 		
 		int localOffset = 0;
-		int localLimit = 100; //magic number 100
+		int localLimit = 9900; // maximum results in dbpedia 10000
 		int reachedLimit = limit;
 		int reachedOffset = edgeOffset;
 		boolean searchDone = false;
@@ -292,7 +289,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		VisualizationDto viz = new VisualizationDto();
 		
 		int localOffset = 0;
-		int localLimit = 100; //magic number 100
+		int localLimit = 9900; // maximum results in dbpedia 10000
 		int reachedLimit = limit;
 		int reachedOffset = edgeOffset;
 		boolean searchDone = false;
@@ -370,7 +367,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		VisualizationDto viz = new VisualizationDto();
 		
 		int localOffset = 0;
-		int localLimit = 100; //magic number 100
+		int localLimit = 9900; // maximum results in dbpedia 10000
 		int reachedLimit = limit;
 		int reachedOffset = edgeOffset;
 		boolean searchDone = false;
@@ -617,12 +614,14 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		double start = new Date().getTime();
 
 		List<TripleDto> resultDto = new LinkedList<>();
-		
+		System.out.println(term);
+		term = term.replace("\"", "\\\"");
 				// Encode umlauts (ÄÖÜäöü) as chars and '' (Needed for GND). 
 				String trema = term.replace("Ä", "A"+ (char)776)
 						.replace("Ö", "O" + (char)776).replace("Ü", "U" + (char)776)
 						.replace("ä", "a"+ (char)776).replace("ö", "o" + (char)776)
 						.replace("ü", "u" + (char)776);
+				System.out.println("\\\"");
 		
 
 		try (RepositoryConnection con = repo.getConnection()) {
@@ -653,8 +652,12 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
 							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
 				}
+			} catch (RDF4JException e) {
+				logger.warn("An exception occured while evaluating the query.");
 			}
 
+		} catch (RDF4JException e) {
+			logger.warn("An excecption occured while connecting to the repository.");
 		}
 
 		double end = new Date().getTime();
@@ -917,7 +920,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	@Override
 	public ConnectionDto setConnectionProps(ConnectionDto connDto) {
 		logger.info("Method setConnectionProps() entered.");
-		Repository repo = RepositoryServer.getRepository(connDto);
+		Repository repo = ExploRDFRepositoryServer.getRepository(connDto);
 		if (repo != null) {
 			System.out.println("repo != null");
 			shutDown();
@@ -971,7 +974,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 
 	@Override
 	public List<String> getSupportedServers() {
-		return RepositoryServer.getSupportedServers();
+		return ExploRDFRepositoryServer.getSupportedServers();
 	}
 
 	private void saveConnProps() {

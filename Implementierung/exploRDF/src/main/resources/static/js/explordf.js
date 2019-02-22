@@ -4,7 +4,25 @@
  * ---------------------------START--------------------------------
  */
 
+// Gets current connection properties. 
+$(document).ready(function() {
+  getConnProps();
+  getSupportedServers();
+});
+
+// Enables to send connection credentials via pushing the ENTER key.
+$('#connectForm').keypress(function(event){
+  if(event.key != "Enter") return;
+  setConnection();
+});
+
+// Sending connection credentials via pushing the connect button.
 $("#connectBtn").on("click", function(){
+	setConnection();
+});
+
+// Set new connection properties defined in the connection form.
+function setConnection() {
 	if($("#tripleStoreUrl").val() === ""){
 		$("#invalidURLMsg").html("Please enter a valid Triple Store URL.");
 		return;
@@ -15,6 +33,7 @@ $("#connectBtn").on("click", function(){
 		connForm[y.id] = $(y).val();
 	});
 	
+	$("body").css("cursor", "progress");
 	
 	$.ajax({
 		url:'connect',
@@ -25,46 +44,40 @@ $("#connectBtn").on("click", function(){
         contentType: 'application/json; charset=utf-8',
 		data:JSON.stringify(connForm),
         success:function(data){
-        	console.log(data);
+//        	console.log(data);
         	$('#connectDiv').css('display', 'none');
         	if(data != null && data.tripleStoreUrl != null) {
         		getConnProps();
-        		
         		$('#connectSuccess').css('display', 'block');
         	}
         	else {
-        		$('#connectFail').css('display', 'block');
-        		
-        		
-        		$('#connectFailSpan').html(connForm.tripleStoreUrl + ' ' + connForm.tripleStoreRepo);
+        		$('#connectFail').css('display', 'block'); 		
+        		$('#connectFailSpan').html(connForm.tripleStoreUrl + ' ' 
+        				+ connForm.tripleStoreRepo);
         	}
+        	$("body").css("cursor", "default");
         },
         error:function() {
             console.log("fail");
+            $("body").css("cursor", "default");
         }
 	});
+};
 
-});
-
+// Button to continue on if connection to the defined database failed.
 $("#connectionFailBtn").on("click", function(){
 	$('#connectFail').css('display', 'none');
 	$('#connectDiv').css('display', 'block');
 });
 
 
-$(document).ready(function() {
-  getConnProps();
-  getSupportedServers();
-});
-
-
-// Get all customized types of visualizing the graph.
+// Gets all customized predicate lists.
 function getGraphVisualizationTypes() {
 	$('#visualizationTypeGroup').empty();
 	var visTypes;
 	d3.json("getAllPredicatesLists").then(function(data){
 		visTypes = data;
-//		console.log(visTypes);
+
 		var select = d3.select('#visualizationTypeGroup');
 		var options = select.selectAll('option')
 			.data(visTypes).enter()
@@ -89,12 +102,12 @@ function getConnProps() {
 	  });
 }
 
-// Get all supported Servers as option 
+// Get all supported Servers as select options 
 function getSupportedServers() {
 	var servers;
 	d3.json("getSupportedServers").then(function(data){
 		servers = data;
-//		console.log(servers);
+
 		var select = d3.select('#tripleStoreServer');
 		var options = select.selectAll('option')
 			.data(servers).enter()
@@ -141,17 +154,10 @@ $('#resultTbody').on("click", "a", function (e) {
     drawChoiceTable(choiceResult, subj);
     $("body").css("cursor", "default");
   });
-  getGraphVisualizationTypes();
-  
-//  d3.json("getSubject", {method: 'post', body: subj}).then(function (data) {
-//	    choiceResult = data;
-//	    drawChoiceTable(choiceResult, subj);
-//	    $("body").css("cursor", "default");
-//	  });
-  
+  getGraphVisualizationTypes();  
 });
 
-// Drawing a table of all information about the choosen element.
+// Drawing a table with all information about the chosen element.
 function drawChoiceTable(data, subj) {
   var tbody = d3.select('#choiceTbody');
   $('#resultDiv').css("display", "none");
@@ -170,26 +176,36 @@ function drawChoiceTable(data, subj) {
   });
 }
 
-// Simple search: Searching for a certain term.
+// Searches for a certain term by pressing the ENTER key.
 $('#searchInput').keypress(function(event){
   if(event.key != "Enter") return;
   searchTerm();
 });
 
+//Searches for a certain term by pressing the search button.
 $('#searchBtn').on('click', function(){
   searchTerm();
 });
 
-//Function for searching for a certain term.
+// Function for searching for a certain term.
 function searchTerm() {
   var term = $('#searchTerm').val();
+  
+  if(term === '.') {
+	  term = "";
+  }
+  
   $("body").css("cursor", "progress");
   $('#headingResult').text('Results for "' + term + '"');
   
-//  console.log("hallo");
   var broaderSearch = $("#broaderSearchRadio").is(":checked") ? "1" : "0";
-  d3.json("simpleSearch/" + term.replace(/#/g,"%23") + "/" + broaderSearch).then(function (data) {
-//	  console.log("simpleSearch/" + term.replace(/#/g,"%23") + "/" + broaderSearch);
+  
+  searchingTerm = term.replace(/#/g,"%23").replace(/%/g, "%25").replace(/\?/g, "%3F")
+  					  .replace(/\|/g,"%7C").replace(/\[/g,"%5B").replace(/\]/g,"%5D")
+  					  .replace(/\+/g, "%2B");
+  
+  d3.json("simpleSearch/" + searchingTerm + "/" + broaderSearch)
+  		.then(function (data) {
 	searchResults = data;
 	var count = data.length;
 	var res = count==1 ? 'Result':'Results';
@@ -202,7 +218,7 @@ function searchTerm() {
   $('#contentHeader').css("display", "grid");
 };
 
-//Drawing a table with all results of a query.
+//Drawing a table with all result triples with the entered search term.
 function drawSearchTable(data) {
   var tbody = d3.select('#resultTbody');
   tbody.selectAll('tr')
@@ -217,7 +233,7 @@ function drawSearchTable(data) {
   });
 }
 
-// Choosing which predicates to visualize.
+// Button to proceed to predicates list customization.
 $("#newVisualizationBtn").on('click', function () {
 	$("body").css("cursor", "progress");
 	$('#choiceDiv').css("display", "none");
@@ -232,16 +248,10 @@ $("#newVisualizationBtn").on('click', function () {
 		  getPredicatesList(selectedOpt);
 	  } else {
 		  getPredicates();
-	  }
-	  
-	  
-//  d3.json("getPredicates").then(function (data) {
-//    predicates = data;
-//    drawPredicatesTable(predicates);
-//    $("body").css("cursor", "default");
-//  });
+	  }	 
 });
 
+// Calls for all different predicates from the current database.
 function getPredicates() {
 	d3.json("getPredicates").then(function (data) {
 	    predicates = data;
@@ -250,6 +260,7 @@ function getPredicates() {
 	  });
 }
 
+// Gets the customized predicate list.
 function getPredicatesList(listName) {
 	d3.json("getPredicates/" + listName).then(function (data) {
 	    predicates = data;
@@ -261,10 +272,7 @@ function getPredicatesList(listName) {
 // Drawing a table with all predicates
 function drawPredicatesTable(data) {
   var tbody = d3.select('#predicatesTbody');
-//  $('#choiceDiv').css("display", "none");
-//  $('#predicatesDiv').css('display', 'block');
-//  $('#headingChoice').css('display', 'none');
-//  $('#headingPredicates').css('display', 'block');
+
   tbody.selectAll('tr')
     .data(data).enter()
     .append('tr')
@@ -284,6 +292,7 @@ function drawPredicatesTable(data) {
   });
 }
 
+// Button for requesting a new predicate list.
 $('#loadNewPredicatesBtn').on('click', function(){
 	$('#predicatesTbody').empty();
 	$('#predicatesInput').val("");
@@ -300,7 +309,6 @@ $('#predicatesTable').on('click', 'input.checkboxLabel', function () {
 $('#savePredicatesBtn').on('click', function(){
 	
 	var listName = $('#predicatesInput').val();
-	
 	if(!validateName(listName)){
 		$('#invalidPredicatesListName').html('Please enter a valid predicate type name. Without \ / : * ? " < > |');
 		return;
@@ -315,8 +323,8 @@ $('#savePredicatesBtn').on('click', function(){
 	console.log(exists);
 	var answer;
 	if(exists) {
-		answer = confirm("A customized visualization type already exists with that " +
-				"name. Do you want to overwrite it?");
+		answer = confirm("A predicate list with that name already exists. " 
+				+ "Do you want to overwrite it?");
 		if(!answer) {
 			return;
 		}
@@ -331,18 +339,13 @@ $('#savePredicatesBtn').on('click', function(){
 		var l = $(this).find('td:eq(1)').find('input').is(':checked');
 		var e = $(this).find('td:eq(2)').find('input').is(':checked');
 
-		
 		var predicate = {};
 		predicate['predicate'] = p;
 		predicate['label'] = l;
 		predicate['edge'] = e;
-				
-//		console.log(p+" "+l+" "+e);
-//		console.log(predicate);
+
 		predicates.push(predicate);
-		
-//		var urlName = 'savePredicatesList/' + listName;
-//		console.log(urlName);
+
 	});
 	
 	$.ajax({
@@ -365,6 +368,7 @@ $('#savePredicatesBtn').on('click', function(){
 	});
 });
 
+// Function to validate the entered predicate list.
 function validateName(name) {
 	if(name == null || $.trim(name) === '') {
 		return false;
@@ -408,9 +412,8 @@ function turnBack() {
 	    default:
 	      console.log("Something went wrong!");
 	  }
+	  $("body").css("cursor", "default");
 }
-
-
 /**
    * --------------------------------------------------------------
    * ----------------Functions concerning the tables---------------

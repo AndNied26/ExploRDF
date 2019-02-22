@@ -21,8 +21,8 @@ import com.explordf.dto.ConnectionDto;
  * @author Andreas Niederquell
  * 
  */
-@Controller
 @SessionScope
+@Controller
 public class PageController {
 	
 	/**
@@ -30,7 +30,7 @@ public class PageController {
 	 * 
 	 * @return "index" HTML page.
 	 */
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	@RequestMapping(value= {"/", "/index", "/start"}, method=RequestMethod.GET)
 	public String index() {
 		return "index";
 	}
@@ -38,11 +38,11 @@ public class PageController {
 	/**
 	 * Returns a HTML page on which queries can be done.
 	 * 
-	 * @return "query" HTML page.
+	 * @return "explore" HTML page.
 	 */
-	@RequestMapping(value="/query", method=RequestMethod.GET)
-	public String query() {
-		return "query";
+	@RequestMapping(value="/explore", method=RequestMethod.GET)
+	public String explore() {
+		return "explore";
 	}
 	
 	/**

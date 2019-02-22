@@ -86,6 +86,8 @@ public class QueryController {
 	@RequestMapping(value="/simpleSearch/**/{broaderSearch}", method = RequestMethod.GET)
 	public List<TripleDto> simpleSearch(HttpServletRequest request, @PathVariable(name = "broaderSearch") char broaderSearch){
 		
+		System.out.println(request);
+		
 		String url = "";
 		try {
 			url = URLDecoder.decode(request.getRequestURI(), StandardCharsets.UTF_8.name());
@@ -96,6 +98,8 @@ public class QueryController {
 
 		String term = url.split("/simpleSearch/")[1];
 		term = term.substring(0, term.length()-2);
+		
+		
 		
 		return queryService.simpleSearch(term, broaderSearch == '1');
 	}
@@ -175,13 +179,13 @@ public class QueryController {
 	 * @return VisualizationDto as a JSON object containing a NodeDto object of each 
 	 * node and an EdgeDto object of every link between the subject and the object node.
 	 */
-	@RequestMapping(value="/getNodeData/**/{listName}/{edgeViz}/{edgeOffset}/{limit}", method = RequestMethod.GET)
-	public VisualizationDto getNodeData(HttpServletRequest request, 
+	@RequestMapping(value="/getNodeRelations/**/{listName}/{edgeViz}/{edgeOffset}/{limit}", method = RequestMethod.GET)
+	public VisualizationDto getNodeRelations(HttpServletRequest request, 
 			@PathVariable(name = "listName") String listName,
 			@PathVariable(name = "edgeViz") int edgeViz,
 			@PathVariable(name = "edgeOffset") int edgeOffset,
 			@PathVariable(name = "limit") int limit){
-		System.out.println("Method getNodeData() entered");
+		System.out.println("Method getNodeRelations() entered");
 		
 		String url = "";
 		try {
@@ -195,10 +199,10 @@ public class QueryController {
 		System.out.println("edgeViz " + edgeViz);
 		System.out.println("edgeOffset " + edgeOffset);
 
-		String term = url.split("/getNodeData/")[1];
+		String term = url.split("/getNodeRelations/")[1];
 		term = term.substring(0, term.length() - listName.length() - String.valueOf(edgeViz).length() - String.valueOf(edgeOffset).length() - String.valueOf(limit).length() - 4);
 		System.out.println("term: " + term + ", predicatesList: " + listName);
-		return queryService.getNodeData(term, listName, edgeViz, edgeOffset, limit);
+		return queryService.getNodeRelations(term, listName, edgeViz, edgeOffset, limit);
 	}
 	
 	

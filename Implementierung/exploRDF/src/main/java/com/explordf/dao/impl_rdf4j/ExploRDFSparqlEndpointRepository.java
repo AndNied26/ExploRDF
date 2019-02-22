@@ -11,7 +11,7 @@ import org.eclipse.rdf4j.query.resultio.TupleQueryResultFormat;
 import org.eclipse.rdf4j.repository.sparql.SPARQLConnection;
 import org.eclipse.rdf4j.repository.sparql.SPARQLRepository;
 
-public class MyRepository extends SPARQLRepository {
+public class ExploRDFSparqlEndpointRepository extends SPARQLRepository {
 	
 
 //	private boolean quadMode = false;
@@ -34,7 +34,7 @@ public class MyRepository extends SPARQLRepository {
 
 	private volatile Map<String, String> additionalHttpHeaders = Collections.emptyMap();
 
-	public MyRepository(String endpointUrl) {
+	public ExploRDFSparqlEndpointRepository(String endpointUrl) {
 		super(endpointUrl);
 		this.queryEndpointUrl = endpointUrl;
 		this.updateEndpointUrl = endpointUrl;
@@ -44,7 +44,7 @@ public class MyRepository extends SPARQLRepository {
 	protected SPARQLProtocolSession createHTTPClient() {
 		// initialize HTTP client
 		SPARQLProtocolSession httpClient = getHttpClientSessionManager().createSPARQLProtocolSession(queryEndpointUrl, updateEndpointUrl);
-		httpClient.setValueFactory(MyValueFactory.getInstance());
+		httpClient.setValueFactory(ExploRDFValueFactory.getInstance());
 		httpClient.setPreferredTupleQueryResultFormat(TupleQueryResultFormat.SPARQL);
 		httpClient.setAdditionalHttpHeaders(additionalHttpHeaders);
 		if (username != null) {

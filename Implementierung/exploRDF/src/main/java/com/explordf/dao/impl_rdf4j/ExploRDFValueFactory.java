@@ -8,13 +8,13 @@ import org.eclipse.rdf4j.model.impl.SimpleValueFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MyValueFactory extends AbstractValueFactory {
+public class ExploRDFValueFactory extends AbstractValueFactory {
 	
-	private static final MyValueFactory sharedInstance = new MyValueFactory();
+	private static final ExploRDFValueFactory sharedInstance = new ExploRDFValueFactory();
 	
-	private static final Logger logger = LoggerFactory.getLogger(MyValueFactory.class);
+	private static final Logger logger = LoggerFactory.getLogger(ExploRDFValueFactory.class);
 	
-	public static MyValueFactory getInstance() {
+	public static ExploRDFValueFactory getInstance() {
 		return sharedInstance;
 	}
 
@@ -47,7 +47,7 @@ public class MyValueFactory extends AbstractValueFactory {
 	/**
 	 * Hidden constructor to enforce singleton pattern.
 	 */
-	protected MyValueFactory() {
+	protected ExploRDFValueFactory() {
 	}
 
 }

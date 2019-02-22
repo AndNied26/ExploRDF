@@ -152,8 +152,8 @@ public class QueryService {
 	 * @return VisualizationDto as a JSON object containing a NodeDto object of each 
 	 * node and an EdgeDto object of every link between the subject and the object node.
 	 */
-	public VisualizationDto getNodeData(String subject, String listName, int edgeViz, int edgeOffset, int limit) {
-		return exploRDFDao.getNodeData(subject, listName, edgeViz, edgeOffset, limit);
+	public VisualizationDto getNodeRelations(String subject, String listName, int edgeViz, int edgeOffset, int limit) {
+		return exploRDFDao.getNodeRelations(subject, listName, edgeViz, edgeOffset, limit);
 	}
 	
 }

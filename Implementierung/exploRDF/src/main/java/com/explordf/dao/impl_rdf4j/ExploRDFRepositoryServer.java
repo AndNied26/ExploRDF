@@ -19,14 +19,14 @@ import com.complexible.stardog.api.ConnectionConfiguration;
 import com.complexible.stardog.rdf4j.StardogRepository;
 import com.explordf.dto.ConnectionDto;
 
-public class RepositoryServer {
+public class ExploRDFRepositoryServer {
 	
-	private static final Logger logger = LoggerFactory.getLogger(RepositoryServer.class);
+	private static final Logger logger = LoggerFactory.getLogger(ExploRDFRepositoryServer.class);
 	
 	private final static List<String> supportedServers = new LinkedList<String>(
 			Arrays.asList("RDF4J-Server", "Stardog-Server", "SPARQL-Endpoint"));
 	
-	private RepositoryServer() {
+	private ExploRDFRepositoryServer() {
 		
 	}
 	
@@ -38,7 +38,7 @@ public class RepositoryServer {
 		case "Stardog-Server":
 			return getStardogRepository(connDto);
 		case "SPARQL-Endpoint":
-			return getMyRepository(connDto);
+			return ExploRDFSparqlEndpointRepository(connDto);
 		default:
 			return null;
 		}
@@ -48,14 +48,14 @@ public class RepositoryServer {
 	 * Tries to connect to SPARQL-Endpoint via an instance of MyRepository.
 	 * 
 	 * @param connDto All needed properties for the connection to the SPARQL-Endpoint.
-	 * @return Initialized instance of MyRepository or null if connection failed. 
+	 * @return Initialized instance of ExploRDFSparqlEndpointRepository or null if connection failed. 
 	 */
-	private static Repository getMyRepository(ConnectionDto connDto) {
-		logger.info("Method getMyRepository() entered.");
-		Repository repo = new MyRepository(connDto.getTripleStoreUrl());
+	private static Repository ExploRDFSparqlEndpointRepository(ConnectionDto connDto) {
+		logger.info("Method ExploRDFSparqlEndpointRepository() entered.");
+		Repository repo = new ExploRDFSparqlEndpointRepository(connDto.getTripleStoreUrl());
 		
 		if (connDto.getTripleStoreUserName() != "" && connDto.getTripleStorePassword() != "") {
-			((MyRepository) repo).setUsernameAndPassword(connDto.getTripleStoreUserName(),
+			((ExploRDFSparqlEndpointRepository) repo).setUsernameAndPassword(connDto.getTripleStoreUserName(),
 					connDto.getTripleStorePassword());
 		}
 		

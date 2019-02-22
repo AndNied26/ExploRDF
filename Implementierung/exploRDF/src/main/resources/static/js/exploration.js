@@ -76,7 +76,7 @@ function getNodeRelations(currNode, circ, text, loader) {
     var edgeDirection = $('input[name="edgeDirOpt"]:checked').val();
 //    console.log(edgeDirection);
 	  if(selectedOpt !== null && selectedOpt !== '') {
-		  d3.json("getNodeData/" + currNode.id.replace(/#/g,"%23") + "/" + selectedOpt + "/" + edgeDirection + "/" + currNode.edgeOffset * edgeLimit +"/" + edgeLimit).then(function (data) {
+		  d3.json("getNodeRelations/" + currNode.id.replace(/#/g,"%23") + "/" + selectedOpt + "/" + edgeDirection + "/" + currNode.edgeOffset * edgeLimit +"/" + edgeLimit).then(function (data) {
 				
 		    updateData(data, currNode);
 		    update();
@@ -225,19 +225,23 @@ function update() {
         .attr("height", 12)
         .attr("class", "icon")
         .style("opacity", 0)
-        .on("click", function (d) {
-
-            if (nodes.length < 2) {
-                return;
-            }
-            nodes = nodes.filter(function (n) {
-                return n.id != d.id;
-            });
-            links = links.filter(function (l) {
-                return d.id != l.source.id && d.id != l.target.id;
-            });
-
-            update();
+//        .on("click", function (d) {
+//
+//            if (nodes.length < 2) {
+//                return;
+//            }
+//            nodes = nodes.filter(function (n) {
+//                return n.id != d.id;
+//            });
+//            links = links.filter(function (l) {
+//                return d.id != l.source.id && d.id != l.target.id;
+//            });
+//
+//            update();
+//        });
+        .on("click", function(d){
+        	deleteNode(d);
+        	update();
         });
     
     nodeEnter.append('svg:image')
@@ -352,6 +356,46 @@ function update() {
         .restart();
 }
 
+function deleteNode(d) {
+
+    
+    
+    var nodesToCheck = [];
+    var nodesWithEdges = [];
+    
+    links = links.filter(function (l) {
+        if(d.id === l.source.id) {
+        	if(l.target.num !== 0){
+        		nodesToCheck.push(l.target);
+        	}     	
+        } else if(d.id === l.target.id) {
+        	if(l.source.num !== 0){
+        		nodesToCheck.push(l.source);
+        	} 
+        } else {
+        	nodesWithEdges.push(l.source);
+        	nodesWithEdges.push(l.target);
+        	return true;
+        }
+    	
+//    	return d.id != l.source.id && d.id != l.target.id;
+    });
+    
+    var nodesToRemove = nodesToCheck.filter( ( el ) => !nodesWithEdges.includes( el ) );
+    
+    nodes = nodes.filter( ( el ) => !nodesToRemove.includes( el ) );
+    
+    if (nodes.length < 2) {
+        return;
+    }
+    
+    nodes = nodes.filter(function (n) {         	
+    	return n.id != d.id;
+    });
+ 
+}
+
+
 function getInfo(subject) {
 	$('#infoDiv').remove();
 	d3.json("getSubject/" + subject.replace(/#/g,"%23")).then(function (data) {
@@ -442,7 +486,6 @@ function updateData(data, currNode) {
     if(n.length > 0) {
     	
     	nodes = nodes.filter(function (n) {
- 
     		return n.num === 0 || (pos - n.num !== edgeLevel && n.sourceNode !== currNode.id);
     		
 //            return n.num === 0 || (pos - n.num !== edgeLevel);
@@ -451,13 +494,13 @@ function updateData(data, currNode) {
         });
     	links = links.filter(function (l){
     		
-    		var stay = false;
-    		if((l.source.num === 0 || pos - l.source.num !== edgeLevel) && (l.target.num === 0 || pos - l.target.num !== edgeLevel)) {
-    			stay = true;
-    		}
-    		if((l.source.num !== 0 && l.source.sourceNode === currNode.id) || (l.target.num !== 0 && l.target.sourceNode === currNode.id)) {
-    			stay = false;
-    		}
+//    		var stay = false;
+//    		if((l.source.num === 0 || pos - l.source.num !== edgeLevel) && (l.target.num === 0 || pos - l.target.num !== edgeLevel)) {
+//    			stay = true;
+//    		}
+//    		if((l.source.num !== 0 && l.source.sourceNode === currNode.id) || (l.target.num !== 0 && l.target.sourceNode === currNode.id)) {
+//    			stay = false;
+//    		}
     		
     		return ((l.source.num === 0 || pos - l.source.num !== edgeLevel) 
     					&& (l.target.num === 0 || pos - l.target.num !== edgeLevel))
