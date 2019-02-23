@@ -37,6 +37,7 @@ $("#exploreBtn").on('click', function () {
   $('#headingChoice').css('display', 'none');
   $('.content').css('display', 'none');
   $('#exploreDiv').css('display', 'block');
+  $("body").css("cursor", "progress");
 
   pos = 0;
   getNodesData(startNode);
@@ -48,10 +49,10 @@ function getNodesData(nodeId) {
 // console.log("getNode/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
 	  if(selectedOpt !== null && selectedOpt !== '') {
 		  d3.json("getNode/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt).then(function (data) {
-				
+			
 		    updateData(data, null);
 		    update();
-		    
+		    $("body").css("cursor", "default");
 		  });
 	  } else {
 // getPredicates();

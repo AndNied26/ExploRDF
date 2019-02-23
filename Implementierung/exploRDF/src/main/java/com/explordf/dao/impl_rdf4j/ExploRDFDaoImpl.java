@@ -616,28 +616,83 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		List<TripleDto> resultDto = new LinkedList<>();
 		System.out.println(term);
 		term = term.replace("\"", "\\\"");
-				// Encode umlauts (ÄÖÜäöü) as chars and '' (Needed for GND). 
-				String trema = term.replace("Ä", "A"+ (char)776)
-						.replace("Ö", "O" + (char)776).replace("Ü", "U" + (char)776)
-						.replace("ä", "a"+ (char)776).replace("ö", "o" + (char)776)
-						.replace("ü", "u" + (char)776);
-				System.out.println("\\\"");
+//				// Encode umlauts (ÄÖÜäöü) as chars and '' (Needed for GND). 
+//				String trema = term.replace("Ä", "A"+ (char)776)
+//						.replace("Ö", "O" + (char)776).replace("Ü", "U" + (char)776)
+//						.replace("ä", "a"+ (char)776).replace("ö", "o" + (char)776)
+//						.replace("ü", "u" + (char)776);
 		
+		if(broaderSearch) {
+			resultDto = broaderSearch(term);
+		} else {
+//			String queryString;
+//			if(trema.length() > term.length()) {
+//				queryString = String.format(simpleSearchTremaQuery, queryGraph, term, term, term, trema, trema, trema);
+//			} else {
+//				queryString = String.format(simpleSearchQuery, queryGraph, term, term, term);
+//			}
+//			resultDto = simpleSearch(queryString);
+			resultDto = simpleSearch(term);
+		}
 
+//		try (RepositoryConnection con = repo.getConnection()) {
+//
+//			String queryString;
+//
+//			if (broaderSearch) {
+//				queryString = String.format(broadSearchQuery, queryGraph, term);
+//			} else {
+//				if(trema.length() > term.length()) {
+//					queryString = String.format(simpleSearchTremaQuery, queryGraph, term, term, term, trema, trema, trema);
+//				} else {
+//					queryString = String.format(simpleSearchQuery, queryGraph, term, term, term);
+//				}
+//					
+//			}
+//
+//			System.out.println();
+//			System.out.println(queryString);
+//			System.out.println();
+//
+//			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+//			
+//
+//			try (TupleQueryResult result = tupleQuery.evaluate()) {
+//				while (result.hasNext()) {
+//					BindingSet bindingSet = result.next();
+//					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
+//							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
+//				}
+//			} catch (RDF4JException e) {
+//				logger.warn("An exception occured while evaluating the query.");
+//			}
+//
+//		} catch (RDF4JException e) {
+//			logger.warn("An excecption occured while connecting to the repository.");
+//		}
+
+		double end = new Date().getTime();
+		System.out.println((end - start) / 1000);
+		return resultDto;
+	}
+	
+	private List<TripleDto> simpleSearch(String term) {
+		List<TripleDto> resultDto = new LinkedList<>();
+		
+		// Encode umlauts (ÄÖÜäöü) as chars and '' (Needed for GND). 
+		String trema = term.replace("Ä", "A"+ (char)776)
+				.replace("Ö", "O" + (char)776).replace("Ü", "U" + (char)776)
+				.replace("ä", "a"+ (char)776).replace("ö", "o" + (char)776)
+				.replace("ü", "u" + (char)776);
+		
+		String queryString;
+		if(trema.length() > term.length()) {
+			queryString = String.format(simpleSearchTremaQuery, queryGraph, term, term, term, trema, trema, trema);
+		} else {
+			queryString = String.format(simpleSearchQuery, queryGraph, term, term, term);
+		}
+		
 		try (RepositoryConnection con = repo.getConnection()) {
-
-			String queryString;
-
-			if (broaderSearch) {
-				queryString = String.format(broadSearchQuery, queryGraph, term);
-			} else {
-				if(trema.length() > term.length()) {
-					queryString = String.format(simpleSearchTremaQuery, queryGraph, term, term, term, trema, trema, trema);
-				} else {
-					queryString = String.format(simpleSearchQuery, queryGraph, term, term, term);
-				}
-					
-			}
 
 			System.out.println();
 			System.out.println(queryString);
@@ -660,8 +715,54 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			logger.warn("An excecption occured while connecting to the repository.");
 		}
 
-		double end = new Date().getTime();
-		System.out.println((end - start) / 1000);
+		return resultDto;
+		
+	}
+	
+	private List<TripleDto> broaderSearch(String term) {
+		
+		List<TripleDto> resultDto = new LinkedList<>();
+
+		boolean gotAllResultTriples = false;
+		int resultLimit = 10000;
+		int offset = 0;
+		int limit = 10000000;
+		
+
+		
+		while(!gotAllResultTriples && resultLimit > 0) {
+			try (RepositoryConnection con = repo.getConnection()) {
+				
+				String queryString = String.format(broadSearchQuery, queryGraph, offset,  term, queryGraph, limit, offset);
+				TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
+				
+				System.out.println(queryString);
+				System.out.println("number of results: " + (10000 - resultLimit));
+
+				try (TupleQueryResult result = tupleQuery.evaluate()) {
+					if(result.hasNext()) {
+						result.next();
+					} else {
+						gotAllResultTriples = true;
+					}
+					while (result.hasNext()) {
+						BindingSet bindingSet = result.next();
+						resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
+								bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
+						resultLimit--;
+					}
+				} catch (RDF4JException e) {
+					logger.warn("An exception occured while evaluating the query.");
+				}
+
+			} catch (RDF4JException e) {
+				logger.warn("An excecption occured while connecting to the repository.");
+				break;
+			}
+			offset += limit;
+		}
+			
+		
 		return resultDto;
 	}
 

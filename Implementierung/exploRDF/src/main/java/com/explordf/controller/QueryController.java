@@ -86,8 +86,6 @@ public class QueryController {
 	@RequestMapping(value="/simpleSearch/**/{broaderSearch}", method = RequestMethod.GET)
 	public List<TripleDto> simpleSearch(HttpServletRequest request, @PathVariable(name = "broaderSearch") char broaderSearch){
 		
-		System.out.println(request);
-		
 		String url = "";
 		try {
 			url = URLDecoder.decode(request.getRequestURI(), StandardCharsets.UTF_8.name());

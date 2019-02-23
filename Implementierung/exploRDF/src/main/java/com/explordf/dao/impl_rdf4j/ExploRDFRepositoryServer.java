@@ -19,6 +19,13 @@ import com.complexible.stardog.api.ConnectionConfiguration;
 import com.complexible.stardog.rdf4j.StardogRepository;
 import com.explordf.dto.ConnectionDto;
 
+/**
+ * Static class for creating a Repository instance and first attempt to connecting to a
+ * triple store.
+ * 
+ * @author Andreas Niederquell
+ *
+ */
 public class ExploRDFRepositoryServer {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ExploRDFRepositoryServer.class);
@@ -30,7 +37,13 @@ public class ExploRDFRepositoryServer {
 		
 	}
 	
-	
+	/**
+	 * Gets the Repository instance according to the connection data in the ConnectionDto.
+	 * 
+	 * @param connDto All needed properties for the connection to a triple store.
+	 * @return Repository object if the connection attempt was successful.
+	 * 		   Return null if attempt failed.
+	 */
 	public static Repository getRepository(ConnectionDto connDto) {
 		switch (connDto.getTripleStoreServer()) {
 		case "RDF4J-Server":
@@ -45,7 +58,7 @@ public class ExploRDFRepositoryServer {
 	}
 	
 	/**
-	 * Tries to connect to SPARQL-Endpoint via an instance of MyRepository.
+	 * Creates a ExploRDFSparqlEndpointRepository for querying a SPARQL-Endpoint.
 	 * 
 	 * @param connDto All needed properties for the connection to the SPARQL-Endpoint.
 	 * @return Initialized instance of ExploRDFSparqlEndpointRepository or null if connection failed. 
@@ -63,6 +76,12 @@ public class ExploRDFRepositoryServer {
 		return getConnectedRepository(repo, connDto);
 	}
 	
+	/**
+	 * Creates a HTTPRepository for querying a RDF4J-server. 
+	 * 
+	 * @param connDto All needed properties for the connection to the RDF4J-server.
+	 * @return Initialized instance of HTTPRepository or null if connection failed. 
+	 */
 	private static Repository getHTTPRepository(ConnectionDto connDto) {
 		logger.info("Method getHTTPRepository() entered.");
 		
@@ -76,6 +95,12 @@ public class ExploRDFRepositoryServer {
 		return getConnectedRepository(repo, connDto);
 	}
 	
+	/**
+	 * Creates a StardogRepository for querying a Stardog-server. 
+	 * 
+	 * @param connDto All needed properties for the connection to the Stardog-server.
+	 * @return Initialized instance of StardogRepository or null if connection failed. 
+	 */
 	private static Repository getStardogRepository(ConnectionDto connDto) {
 		logger.info("Method getStardogRepository() entered.");
 		
@@ -86,14 +111,17 @@ public class ExploRDFRepositoryServer {
 		return getConnectedRepository(repo, connDto);
 	}
 	
+	/**
+	 * Tries to connect to the triple store according to the connection properties in the
+	 * ConnectionDto object.
+	 * 
+	 * @param repo Repository instance with set credentials.
+	 * @param connDto ConnectionDto with the connection properties.
+	 * @return return The same Repository object if the connection attempt was successful.
+	 * 		   Return null if attempt failed.
+	 */
 	private static Repository getConnectedRepository(Repository repo, ConnectionDto connDto) {
 		boolean connected = false;
-		
-		System.out.println("server: " + connDto.getTripleStoreServer() + ", url: " + connDto.getTripleStoreUrl()
-		+ ", repo: " + connDto.getTripleStoreRepo() + ", graph: " + connDto.getTripleStoreGraph() 
-		+ ", username: " + connDto.getTripleStoreUserName()
-		+ ", password: " + connDto.getTripleStorePassword());
-		
 		
 		String graph = !connDto.getTripleStoreGraph().isEmpty() 
 				? "from <" + connDto.getTripleStoreGraph() + ">" : "";
@@ -106,7 +134,6 @@ public class ExploRDFRepositoryServer {
 			System.out.println(queryString);
 			
 			try (TupleQueryResult result = tupleQuery.evaluate()) {
-				System.out.println("TupleQueryResult");
 				connected = true;
 			} catch(HTTPQueryEvaluationException e) {
 				logger.warn("Could not evaluate tuple query.");
@@ -121,6 +148,11 @@ public class ExploRDFRepositoryServer {
 		return connected ? repo : null;
 	}
 	
+	/**
+	 * Gets all supported triple-store types.
+	 * 
+	 * @return List with the supported triple-stores.
+	 */
 	public static List<String> getSupportedServers() {
 		return supportedServers;
 	}
