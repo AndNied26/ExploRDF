@@ -203,7 +203,7 @@ function searchTerm() {
 		.replace(/\|/g, "%7C").replace(/\[/g, "%5B").replace(/\]/g, "%5D")
 		.replace(/\+/g, "%2B");
 
-	d3.json("simpleSearch/" + searchingTerm + "/" + broaderSearch)
+	d3.json("searchTerm/" + searchingTerm + "/" + broaderSearch)
 		.then(function (data) {
 			searchResults = data;
 			var count = data.length;

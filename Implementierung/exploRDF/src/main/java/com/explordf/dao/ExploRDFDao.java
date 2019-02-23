@@ -28,7 +28,7 @@ public interface ExploRDFDao {
 	 * 		  a broader search (e.g. objects contain the term) is preferred. 
 	 * @return A list of all found triples in the Triple Store.
 	 */
-	List<TripleDto> simpleSearch(String term, boolean broaderSearch);
+	List<TripleDto> searchTerm(String term, boolean broaderSearch);
 
 	/**
 	 * Gets all triples that contain a certain subject.

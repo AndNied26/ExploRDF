@@ -38,8 +38,8 @@ public class QueryService {
 	 * term are returned, otherwise only exact matches are returned.
 	 * @return List of TripleDtos objects containing the results of user´s request.
 	 */
-	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
-		return exploRDFDao.simpleSearch(term, broaderSearch);
+	public List<TripleDto> searchTerm(String term, boolean broaderSearch) {
+		return exploRDFDao.searchTerm(term, broaderSearch);
 	}
 
 

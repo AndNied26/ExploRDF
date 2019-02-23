@@ -90,13 +90,13 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	@Value("${triplestore.password}")
 	private String tripleStorePassword;
 	
-	@Value("${query.simpleSearch.simple}")
+	@Value("${query.searchTerm.simple}")
 	private String simpleSearchQuery;
 	
-	@Value("${query.simpleSearch.simple.trema}")
+	@Value("${query.searchTerm.simple.trema}")
 	private String simpleSearchTremaQuery;
 	
-	@Value("${query.simpleSearch.broad}")
+	@Value("${query.searchTerm.broad}")
 	private String broadSearchQuery;
 	
 	@Value("${query.getSubject}")
@@ -534,11 +534,8 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 					BindingSet bindingSet = result.next();
 					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
 							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
-//					System.out.println(bindingSet.getValue("s").toString() + " " +
-//							bindingSet.getValue("p").toString() +" "+ bindingSet.getValue("o").toString());
 				}
 			}
-
 		}
 
 		double end = new Date().getTime();
@@ -609,67 +606,19 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	
 	
 	@Override
-	public List<TripleDto> simpleSearch(String term, boolean broaderSearch) {
-		logger.info("Method simpleSearch() in entered.");
+	public List<TripleDto> searchTerm(String term, boolean broaderSearch) {
+		logger.info("Method searchTerm() in entered.");
 		double start = new Date().getTime();
 
 		List<TripleDto> resultDto = new LinkedList<>();
 		System.out.println(term);
 		term = term.replace("\"", "\\\"");
-//				// Encode umlauts (ÄÖÜäöü) as chars and '' (Needed for GND). 
-//				String trema = term.replace("Ä", "A"+ (char)776)
-//						.replace("Ö", "O" + (char)776).replace("Ü", "U" + (char)776)
-//						.replace("ä", "a"+ (char)776).replace("ö", "o" + (char)776)
-//						.replace("ü", "u" + (char)776);
 		
 		if(broaderSearch) {
 			resultDto = broaderSearch(term);
 		} else {
-//			String queryString;
-//			if(trema.length() > term.length()) {
-//				queryString = String.format(simpleSearchTremaQuery, queryGraph, term, term, term, trema, trema, trema);
-//			} else {
-//				queryString = String.format(simpleSearchQuery, queryGraph, term, term, term);
-//			}
-//			resultDto = simpleSearch(queryString);
 			resultDto = simpleSearch(term);
 		}
-
-//		try (RepositoryConnection con = repo.getConnection()) {
-//
-//			String queryString;
-//
-//			if (broaderSearch) {
-//				queryString = String.format(broadSearchQuery, queryGraph, term);
-//			} else {
-//				if(trema.length() > term.length()) {
-//					queryString = String.format(simpleSearchTremaQuery, queryGraph, term, term, term, trema, trema, trema);
-//				} else {
-//					queryString = String.format(simpleSearchQuery, queryGraph, term, term, term);
-//				}
-//					
-//			}
-//
-//			System.out.println();
-//			System.out.println(queryString);
-//			System.out.println();
-//
-//			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
-//			
-//
-//			try (TupleQueryResult result = tupleQuery.evaluate()) {
-//				while (result.hasNext()) {
-//					BindingSet bindingSet = result.next();
-//					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
-//							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
-//				}
-//			} catch (RDF4JException e) {
-//				logger.warn("An exception occured while evaluating the query.");
-//			}
-//
-//		} catch (RDF4JException e) {
-//			logger.warn("An excecption occured while connecting to the repository.");
-//		}
 
 		double end = new Date().getTime();
 		System.out.println((end - start) / 1000);
@@ -726,10 +675,8 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		boolean gotAllResultTriples = false;
 		int resultLimit = 10000;
 		int offset = 0;
-		int limit = 10000000;
-		
+		final int limit = 10000000;
 
-		
 		while(!gotAllResultTriples && resultLimit > 0) {
 			try (RepositoryConnection con = repo.getConnection()) {
 				
@@ -769,32 +716,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	@Override
 	public List<TripleDto> getSubject(String subject) {
 		return getSubjectTriples(subject, 0, 1000);
-//		double start = new Date().getTime();
-//		List<TripleDto> resultDto = new LinkedList<>();
-//
-//		try (RepositoryConnection con = repo.getConnection()) {
-//
-//			String queryString = String.format(getSubjectQuery, "<" + subject + ">", queryGraph, "<" + subject + ">");
-//			
-//			System.out.println(queryString);
-//			TupleQuery tupleQuery = con.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
-//
-//			try (TupleQueryResult result = tupleQuery.evaluate()) {
-//
-//				while (result.hasNext()) {
-//					BindingSet bindingSet = result.next();
-//					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
-//							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
-//					System.out.println(bindingSet.getValue("s").toString() + " " +
-//							bindingSet.getValue("p").toString() +" "+ bindingSet.getValue("o").toString());
-//				}
-//			}
-//
-//		}
-//
-//		double end = new Date().getTime();
-//		System.out.println("Query time: " + (end - start) / 1000);
-//		return resultDto;
 	}
 
 	@Override
@@ -805,8 +726,8 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 
 		boolean gotAllPredicates = false;
 
-		// maximum results in dbpedia 10000
-		int maxDbPediaResultNum = 9900;
+		
+		int maxDbPediaResultNum = 9900; // Maximum results-triples from dbpedia 10000.
 		int maxLimit = 80000000;
 		int offset = 0;
 		int limit = 10000000;

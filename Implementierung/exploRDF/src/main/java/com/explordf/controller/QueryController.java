@@ -83,8 +83,8 @@ public class QueryController {
 	 * @return List of TripleDtos as JSON objects containing the results of user´s 
 	 * request.
 	 */
-	@RequestMapping(value="/simpleSearch/**/{broaderSearch}", method = RequestMethod.GET)
-	public List<TripleDto> simpleSearch(HttpServletRequest request, @PathVariable(name = "broaderSearch") char broaderSearch){
+	@RequestMapping(value="/searchTerm/**/{broaderSearch}", method = RequestMethod.GET)
+	public List<TripleDto> searchTerm(HttpServletRequest request, @PathVariable(name = "broaderSearch") char broaderSearch){
 		
 		String url = "";
 		try {
@@ -94,12 +94,12 @@ public class QueryController {
 			return new LinkedList<>();
 		}
 
-		String term = url.split("/simpleSearch/")[1];
+		String term = url.split("/searchTerm/")[1];
 		term = term.substring(0, term.length()-2);
 		
 		
 		
-		return queryService.simpleSearch(term, broaderSearch == '1');
+		return queryService.searchTerm(term, broaderSearch == '1');
 	}
 	
 	/**
