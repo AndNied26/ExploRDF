@@ -2,8 +2,13 @@ package com.explordf.dao.impl_rdf4j;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -41,6 +46,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.util.DefaultPropertiesPersister;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -52,7 +58,6 @@ import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
 import com.explordf.dto.VisualizationDto;
 
-//@org.springframework.stereotype.Repository
 @SessionScope
 @Component
 @Qualifier(value = "exploRDFDaoImpl")
@@ -155,9 +160,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 
 	@Override
 	public VisualizationDto getNodeRelations(String subject, String predicatesList, int edgeViz, int edgeOffset, int limit) {
-		
-//		VisualizationDto viz = new VisualizationDto();
-		
+				
 		if(!predicatesList.equals(currPredicatesListName) || currPredicatesList == null) {
 			System.out.println("currPredicatesListName has changed or currPredicatesList is null");
 			currPredicatesListName = predicatesList;
@@ -179,33 +182,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		} else {
 			return getInAndOutgoingNodes(subject, edgeOffset, limit);
 		}
-		
-		
-		
-//			List<TripleDto> nodeData = getSubject(subject, edgeOffset, limit);
-//			
-//			for (TripleDto tripleDto : nodeData) {
-//				
-//				String obj = tripleDto.getObject();
-//				String pred = tripleDto.getPredicate();
-//				
-//				ValueFactory factory = SimpleValueFactory.getInstance();
-//				String predIRI = factory.createIRI(pred).getLocalName();
-//				
-//				if(vizEdges.contains(pred)) {
-//					
-//					String nodeLabel = getNodeLabel(obj, vizLabel);
-//					
-//					if(nodeLabel != null) {
-//						viz.addNode(new NodeDto(obj, nodeLabel));
-//						viz.addEdge(new EdgeDto(subject, obj, predIRI));
-//					}	
-//										
-//				}
-//		
-//			}
-			
-//		return viz;
+
 	}
 	
 	private VisualizationDto getOutgoingNodes(String subject, int edgeOffset, int limit) {
@@ -257,29 +234,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		
 			}
 		}
-		
-//		List<TripleDto> nodeData = getSubjectTriples(subject, edgeOffset, limit);
-//		
-//		for (TripleDto tripleDto : nodeData) {
-//			
-//			String obj = tripleDto.getObject();
-//			String pred = tripleDto.getPredicate();
-//			
-//			ValueFactory factory = SimpleValueFactory.getInstance();
-//			String predIRI = factory.createIRI(pred).getLocalName();
-//			
-//			if(vizEdges.contains(pred)) {
-//				
-//				String nodeLabel = getNodeLabel(obj, vizLabel);
-//				
-//				if(nodeLabel != null) {
-//					viz.addNode(new NodeDto(obj, nodeLabel));
-//					viz.addEdge(new EdgeDto(subject, obj, predIRI));
-//				}	
-//									
-//			}
-//	
-//		}
 		
 	return viz;
 	}
@@ -335,29 +289,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			}
 			
 		}
-		
-//		List<TripleDto> nodeData = getObjectTriples(object, edgeOffset, limit);
-//		
-//		for (TripleDto tripleDto : nodeData) {
-//			
-//			String subj = tripleDto.getSubject();
-//			String pred = tripleDto.getPredicate();
-//			
-//			ValueFactory factory = SimpleValueFactory.getInstance();
-//			String predIRI = factory.createIRI(pred).getLocalName();
-//			
-//			if(vizEdges.contains(pred)) {
-//				
-//				String nodeLabel = getNodeLabel(subj, vizLabel);
-//				
-//				if(nodeLabel != null) {
-//					viz.addNode(new NodeDto(subj, nodeLabel));
-//					viz.addEdge(new EdgeDto(subj, object, predIRI));
-//				}	
-//									
-//			}
-//	
-//		}
 		
 	return viz;
 	}
@@ -422,46 +353,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			
 			
 		}
-		
-		
-		
-//		List<TripleDto> nodeData = getResourceTriples(resource, edgeOffset, limit);
-//		
-//		System.out.println("nodeData " + nodeData.size());
-//		
-//		for (TripleDto tripleDto : nodeData) {
-//			
-//			String subj = tripleDto.getSubject();
-//			String pred = tripleDto.getPredicate();
-//			String obj = tripleDto.getObject();
-//			
-//			ValueFactory factory = SimpleValueFactory.getInstance();
-//			String predIRI = factory.createIRI(pred).getLocalName();
-//			
-//			String res = null;
-//			
-////			System.out.println(subj + " " + pred + " " + obj);
-//			
-//			if(resource.equals(subj)) {
-//				res = obj;
-//			} else if (resource.equals(obj)) {
-//				res = subj;
-//			} else {
-//				System.out.println("hier: " + resource + " " + subj + " " + pred + " " + obj);
-//			}
-//			
-//			if(vizEdges.contains(pred)) {
-//				
-//				String nodeLabel = getNodeLabel(res, vizLabel);
-//				
-//				if(nodeLabel != null) {
-//					viz.addNode(new NodeDto(res, nodeLabel));
-//					viz.addEdge(new EdgeDto(subj, obj, predIRI));
-//				}	
-//									
-//			}
-//	
-//		}
+	
 		System.out.println("viz groesse: " + viz.getNodes().size());
 		
 	return viz;
@@ -483,8 +375,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 					BindingSet bindingSet = result.next();
 					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
 							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
-//					System.out.println(bindingSet.getValue("s").toString() + " " +
-//							bindingSet.getValue("p").toString() +" "+ bindingSet.getValue("o").toString());
 				}
 			}
 		}
@@ -508,8 +398,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 					BindingSet bindingSet = result.next();
 					resultDto.add(new TripleDto(bindingSet.getValue("s").toString(),
 							bindingSet.getValue("p").toString(), bindingSet.getValue("o").toString()));
-//					System.out.println(bindingSet.getValue("s").toString() + " " +
-//							bindingSet.getValue("p").toString() +" "+ bindingSet.getValue("o").toString());
 				}
 			}
 		}
@@ -973,16 +861,35 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 
 	}
 
-	private void createPredicatesDir(String dirNameServer, String dirNameUrl, String dirNameRepo) {
+	private void createPredicatesDir(String tripleStoreServer, String tripleStoreUrl, String tripleStoreRepo) {
 		
-		predicatesDir = dirNameServer + "/"
-				+ dirNameUrl.replaceFirst("http://", "").replaceAll("/", "").replaceAll(":", "-") + "/" + dirNameRepo;
+		predicatesDir = tripleStoreServer + "/"
+				+ tripleStoreUrl.replaceFirst("http://", "").replaceAll("[\\/:*<>\"?|]", "-") + "/" + tripleStoreRepo;
 		System.out.println(predicatesRootDir + predicatesDir);
 
 		File file = new File(predicatesRootDir + predicatesDir);
-//		File file = new File("test");
 		if (!file.exists()) {
 			if (file.mkdirs()) {
+				
+				String gndPredicateListName = "gnd.ttl";
+				String skosPredicateListName = "skos.ttl";
+				
+				File gndFile = null;
+				File skosFile = null;
+				try {
+					gndFile = ResourceUtils.getFile("classpath:predicates/" + gndPredicateListName);
+					skosFile = ResourceUtils.getFile("classpath:predicates/" + skosPredicateListName);
+					if(gndFile != null && skosFile != null) {
+						FileCopyUtils.copy(gndFile, new File(file + "/" + gndPredicateListName));
+						FileCopyUtils.copy(skosFile, new File(file + "/" + skosPredicateListName));
+					}
+				} catch (FileNotFoundException e) {
+					logger.warn("No such files in resources folder: " + gndPredicateListName + " and " + skosPredicateListName);
+				} catch (IOException e) {
+					logger.warn("Files " + gndPredicateListName + " and " + skosPredicateListName 
+							+ "could not be created in new predicate folder");
+				}
+	
 				logger.info("New predicate folder created.");
 			} else {
 				logger.info("Couldn´t create new predicate folder.");
@@ -1047,16 +954,5 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		logger.info("Password: " + tripleStorePassword + " Env: " + env.getProperty("triplestore.password"));
 		System.out.println();
 	}
-
-
-
-	
-
-
-
-
-
-
-	
 
 }

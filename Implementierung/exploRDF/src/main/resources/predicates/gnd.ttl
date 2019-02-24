@@ -1,0 +1,723 @@
+
+<http://d-nb.info/standards/elementset/gnd#preferredName> <http://example.org/edge>
+    false;
+  <http://example.org/label> true .
+
+<http://d-nb.info/standards/elementset/gnd#preferredNameForTheConferenceOrEvent> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#preferredNameForTheCorporateBody> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#preferredNameForTheFamily> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#preferredNameForThePerson> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#preferredNameForThePlaceOrGeographicName>
+  <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#preferredNameForTheSubjectHeading> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#preferredNameForTheWork> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#accordingWork> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#accreditedArtist> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#accreditedAuthor> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#accreditedComposer> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#acquaintanceshipOrFriendship> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#addressee> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#affiliation> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#annotator> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#architect> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#arranger> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#artist> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#associatedPlace> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#author> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#benefactor> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#bookbinder> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#bookdesigner> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#broaderTerm> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#broaderTermGeneral> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#broaderTermGeneric> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#broaderTermInstantial> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#broaderTermPartitive> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#broaderTermWithMoreThanOneElement> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#broderTermGeneral> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#buildingOwner> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#cartographer> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#celebratedCorporateBody> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#celebratedFamily> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#celebratedPerson> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#celebratedTopic> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#characteristicPlace> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#choreographer> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#citedArtist> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#citedAuthor> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#citedComposer> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#collector> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#compiler> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#complexSeeReferenceSubject> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#composer> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#conferrer> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#contributinFamily> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#contributingCorporateBody> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#contributingFamily> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#contributingPerson> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#contributingPlaceOrGeographicName> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#copist> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#corporateBodyIsMember> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#correspondent> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#creator> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#curator> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#dedicatee> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#designer> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#director> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#directorOfPhotography> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#doubtfulArtist> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#doubtfulAuthor> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#doubtfulComposer> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#editor> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#engraver> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#etcher> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#exhibitor> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#familialRelationship> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#fictitiousAuthor> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#fieldOfActivity> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#fieldOfStudy> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#firstArtist> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#firstAuthor> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#firstComposer> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#formerOwner> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#formOfWorkAndExpression> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#founder> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#functionOrRole> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#gender> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#geographicAreaCode> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#gndSubjectCategory> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#hierarchicalSuperior> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#hierarchicalSuperiorOfPlaceOrGeographicName>
+  <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#hierarchicalSuperiorOfTheConferenceOrEvent>
+  <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#hierarchicalSuperiorOfTheCorporateBody>
+  <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#homepage> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#illustratorOrIlluminator> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#initiator> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#instrument> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#instrumentalist> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#inventor> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#language> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#languageCode> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#librettist> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#literarySource> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#lithographer> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#manufacturer> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#mediumOfPerformance> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#member> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#memberOfTheFamily> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#musician> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#narrator> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#narrowerTermGeneral> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#narrowerTermGeneric> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#narrowerTermInstantial> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#narrowerTermPartitive> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#occasion> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#occasionOfTheSubjectHeading> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#occasionOfTheWork> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#organizerOrHost> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#otherPlace> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#owner> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#painter> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#photographer> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#place> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#placeOfActivity> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#placeOfBirth> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#placeOfBusiness> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#placeOfConferenceOrEvent> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#placeOfCustody> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#placeOfDeath> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#placeOfDiscovery> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#placeOfExile> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#placeOfManufacture> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#placeOrGeographicNameIsMember> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#playedInstrument> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#poet> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#precedingConferenceOrEvent> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#precedingCorporateBody> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#precedingPlaceOrGeographicName> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#precedingSubject> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#precedingWork> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#predecessor> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#preferredNameEntityForThePerson> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#printer> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#professionalRelationship> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#professionOrOccupation> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#pseudonym> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#realIdentity> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedConferenceOrEvent> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedCorporateBody> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedDdcWithDegreeOfDeterminacy1> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedDdcWithDegreeOfDeterminacy2> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedDdcWithDegreeOfDeterminacy3> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedDdcWithDegreeOfDeterminacy4> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedFamily> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedPerson> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedPlaceOrGeographicName> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedSubjecHeading> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedSubjectHeading> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedTerm> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#relatedWork> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#restorer> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#revisor> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#screenwriter> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#scriptorium> <http://example.org/edge>
+    true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#sculptor> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#singer> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#spatialAreaOfActivity> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#sponsorOrPatron> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#StartingOrFinalPointOfADistance> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#subeditor> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#succeedingConferenceOrEvent> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#succeedingCorporateBody> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#succeedingPlaceOrGeographicName> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#succeedingSubjectHeading> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#succeedingWork> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#successor> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#superPropertyOf> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#temporaryName> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#temporaryNameOfTheConferenceOrEvent> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#temporaryNameOfTheCorporateBody> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#temporaryNameOfThePlaceOrGeographicName>
+  <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#titleOfNobility> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#topic> <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#translator> <http://example.org/edge> true;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#typeOfCoordinates> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#variantNameEntityForThePerson> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#writerOfAddedCommentary> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#abbreviatedNameForTheConferenceOrEvent>
+  <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#abbreviatedNameForTheCorporateBody> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#abbreviatedNameForThePlaceOrGeographicName>
+  <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#abbreviatedNameForTheWork> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#marc21equivalent> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#variantName> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#variantNameForTheConferenceOrEvent> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#variantNameForTheCorporateBody> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#variantNameForTheFamily> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#variantNameForThePerson> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#variantNameForThePlaceOrGeographicName>
+  <http://example.org/edge> false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#variantNameForTheSubjectHeading> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://d-nb.info/standards/elementset/gnd#variantNameForTheWork> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
