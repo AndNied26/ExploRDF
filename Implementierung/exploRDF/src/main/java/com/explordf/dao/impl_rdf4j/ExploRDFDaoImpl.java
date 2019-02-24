@@ -61,7 +61,7 @@ import com.explordf.dto.VisualizationDto;
 @SessionScope
 @Component
 @Qualifier(value = "exploRDFDaoImpl")
-@PropertySource({"classpath:explordf.properties", "classpath:query.properties"})
+@PropertySource({"classpath:connection.properties", "classpath:query.properties", "classpath:explordf.properties"})
 public class ExploRDFDaoImpl implements ExploRDFDao {
 
 	// muss dann weg
@@ -122,10 +122,16 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	@Value("${query.getTriples.subAndObject}")
 	private String getTriplesSubAndObject;
 	
+		
 	private final String predicatesRootDir = "temp/exploRDF/predicates/";
 	private final String predicateLabelIRI = "http://example.org/label";
 	private final String predicateEdgeIRI = "http://example.org/edge";
 	
+	@Value("${predicates.load.gnd}")
+	private boolean loadGNDPredicateList;
+	
+	@Value("${predicates.load.skos}")
+	private boolean loadSKOSPredicateList;
 	
 	private String predicatesDir;
 
@@ -158,6 +164,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		}
 	}
 
+	
 	@Override
 	public VisualizationDto getNodeRelations(String subject, String predicatesList, int edgeViz, int edgeOffset, int limit) {
 				
@@ -293,6 +300,8 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	return viz;
 	}
 	
+	
+
 	private VisualizationDto getInAndOutgoingNodes(String resource, int edgeOffset, int limit) {
 		
 		VisualizationDto viz = new VisualizationDto();
@@ -359,6 +368,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	return viz;
 	}
 	
+	
 	private List<TripleDto> getResourceTriples(String resource, int edgeOffset, int limit) {
 		List<TripleDto> resultDto = new LinkedList<>();
 		
@@ -382,6 +392,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		return resultDto;
 	}
 
+	
 	private List<TripleDto> getObjectTriples(String object, int edgeOffset, int limit) {
 		List<TripleDto> resultDto = new LinkedList<>();
 		
@@ -404,6 +415,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		
 		return resultDto;
 	}
+	
 	
 	private List<TripleDto> getSubjectTriples(String subject, int edgeOffset, int limit) {
 		double start = new Date().getTime();
@@ -606,6 +618,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		return getSubjectTriples(subject, 0, 1000);
 	}
 
+	
 	@Override
 	public List<PredicateDto> getPredicates() {
 		logger.info("Method getPredicates() entered.");
@@ -615,7 +628,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		boolean gotAllPredicates = false;
 
 		
-		int maxDbPediaResultNum = 9900; // Maximum results-triples from dbpedia 10000.
+		int dbpediaMaxLimit = 9900; // Maximum results-triples from DBPpedia 10000.
 		int maxLimit = 80000000;
 		int offset = 0;
 		int limit = 10000000;
@@ -645,8 +658,8 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			if (resultNum == 0) {
 				gotAllPredicates = true;
 			}
-			if (resultNum > maxDbPediaResultNum) {
-				limit = maxDbPediaResultNum;
+			if (resultNum > dbpediaMaxLimit) {
+				limit = dbpediaMaxLimit;
 			} else {
 				for (String qResult : queryResult) {
 					if (!predicatesAsString.contains(qResult)) {
@@ -779,11 +792,10 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		}
 
 		try {
-
 			Rio.write(model, out, RDFFormat.TURTLE);
 			result = listName;
 		} catch (RDF4JException e) {
-			e.printStackTrace();
+			logger.warn("Couldn´t write Predicates into file.");
 		}
 		finally {
 			out.close();
@@ -861,6 +873,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 
 	}
 
+	
 	private void createPredicatesDir(String tripleStoreServer, String tripleStoreUrl, String tripleStoreRepo) {
 		
 		predicatesDir = tripleStoreServer + "/"
@@ -871,18 +884,23 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		if (!file.exists()) {
 			if (file.mkdirs()) {
 				
+				System.out.println("Predicates " + loadGNDPredicateList + " " + loadSKOSPredicateList);
+				
 				String gndPredicateListName = "gnd.ttl";
 				String skosPredicateListName = "skos.ttl";
 				
-				File gndFile = null;
-				File skosFile = null;
+				File gndFile;
+				File skosFile;
 				try {
-					gndFile = ResourceUtils.getFile("classpath:predicates/" + gndPredicateListName);
-					skosFile = ResourceUtils.getFile("classpath:predicates/" + skosPredicateListName);
-					if(gndFile != null && skosFile != null) {
+					if(loadGNDPredicateList) {
+						gndFile = ResourceUtils.getFile("classpath:predicates/" + gndPredicateListName);
 						FileCopyUtils.copy(gndFile, new File(file + "/" + gndPredicateListName));
+					}
+					if(loadSKOSPredicateList) {
+						skosFile = ResourceUtils.getFile("classpath:predicates/" + skosPredicateListName);
 						FileCopyUtils.copy(skosFile, new File(file + "/" + skosPredicateListName));
 					}
+					
 				} catch (FileNotFoundException e) {
 					logger.warn("No such files in resources folder: " + gndPredicateListName + " and " + skosPredicateListName);
 				} catch (IOException e) {
@@ -908,7 +926,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 
 	private void saveConnProps() {
 		DefaultPropertiesPersister persister = new DefaultPropertiesPersister();
-		String filePath = "classpath:explordf.properties";
+		String filePath = "classpath:connection.properties";
 		Properties props = new Properties();
 
 		props.setProperty("triplestore.server", tripleStoreServer);

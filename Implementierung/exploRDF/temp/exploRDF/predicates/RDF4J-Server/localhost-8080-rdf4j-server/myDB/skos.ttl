@@ -1,0 +1,112 @@
+<http://www.w3.org/2004/02/skos/core#altLabel> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#broadMatch> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#broader> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#broaderTransitive> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#changeNote> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#closeMatch> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#definition> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#editorialNote> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#exactMatch> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#example> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#hasTopConcept> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#hiddenLabel> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#historyNote> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#inScheme> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#mappingRelation> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#member> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#memberList> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#narrowMatch> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#narrower> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#narrowerTransitive> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#notation> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#note> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#prefLabel> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#related> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#relatedMatch> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#scopeNote> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#semanticRelation> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+
+<http://www.w3.org/2004/02/skos/core#topConceptOf> <http://example.org/edge>
+    false;
+  <http://example.org/label> false .
+

@@ -1,36 +1,43 @@
+//Data for the nodes and the edges to visualize.
 var nodes = [];
 var links = [];
 
+//Select the svg element as platform for the graph visualisation.
 var svg = d3.select("svg").style("background-color", "white"),
     width,
     height,
-    node,
-    link;
+    node, // Visualized node elements.
+    link; // Visualized edge elements.
 
 width = $('#exploreDiv').width();
 height = $('#exploreDiv').height();
-
-var g = svg.append("g")
-		.attr("transform", function(){return "translate(" + width/2 + "," + height/2 + ") scale(1)"})
 
 var edgeLevel = 5;
 var edgeLimit = 10;
 var pos = 0;
 var colors = ["#ff6600", "#ffc600"];
 
+// Appends a g-element to the svg.
+var g = svg.append("g")
+		.attr("transform", function(){return "translate(" + width/2 + "," + height/2 + ") scale(1)"})
+
+// Defines the zooming properties.
 var zoom = d3.zoom()
 .scaleExtent([1/4, 8])
 .on("zoom", zoomed);
 
-svg.call(zoom)
-		    .on("dblclick.zoom", null);
+// Disables zoom on double click.
+svg.call(zoom).on("dblclick.zoom", null);
 
+// Specifies the zooming properties.
 svg.call(zoom.transform, d3.zoomIdentity.translate(width/2, height/2));
 
+// Function for zooming in and out of the svg.
 function zoomed() {
 	g.attr("transform", d3.event.transform);
 	}
 
+// Starts the visualisation of the graph.
 $("#exploreBtn").on('click', function () {
   var startNode = $('#headingChoice').text();
   $('#choiceDiv').css("display", "none");
@@ -44,9 +51,9 @@ $("#exploreBtn").on('click', function () {
   
 });
 
+// Gets the starting node with its label.
 function getNodesData(nodeId) {
 	var selectedOpt = $("#visualizationTypeGroup option:selected" ).text();
-// console.log("getNode/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
 	  if(selectedOpt !== null && selectedOpt !== '') {
 		  d3.json("getNode/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt).then(function (data) {
 			
@@ -55,12 +62,10 @@ function getNodesData(nodeId) {
 		    $("body").css("cursor", "default");
 		  });
 	  } else {
-// getPredicates();
 	  }
-
-  
 }
 
+// D3.js simulation properties. 
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function (d) { return d.id })
         .distance(200).strength(0.5)
@@ -68,16 +73,16 @@ var simulation = d3.forceSimulation()
     .force("charge", d3.forceManyBody()
         .strength(-400)
     )
-//    .force("center", d3.forceCenter(width / 2, height / 2));
 
-
+// Gets the next relation of the selected node.
 function getNodeRelations(currNode, circ, text, loader) {
     var selectedOpt = $("#visualizationTypeGroup option:selected" ).text();
-// console.log("getNodeData/" + nodeId.replace(/#/g,"%23") + "/" + selectedOpt);
     var edgeDirection = $('input[name="edgeDirOpt"]:checked').val();
-//    console.log(edgeDirection);
 	  if(selectedOpt !== null && selectedOpt !== '') {
-		  d3.json("getNodeRelations/" + currNode.id.replace(/#/g,"%23") + "/" + selectedOpt + "/" + edgeDirection + "/" + currNode.edgeOffset * edgeLimit +"/" + edgeLimit).then(function (data) {
+		  d3.json("getNodeRelations/" + currNode.id.replace(/#/g,"%23") + "/" 
+				  + selectedOpt + "/" + edgeDirection + "/" 
+				  + currNode.edgeOffset * edgeLimit +"/" + edgeLimit)
+				  		.then(function (data) {
 				
 		    updateData(data, currNode);
 		    update();
@@ -88,16 +93,15 @@ function getNodeRelations(currNode, circ, text, loader) {
 		    loader.remove();
 		  	});
 	  } else {
-// getPredicates();
 	  }
 }
 
-link = g.append("g").selectAll(".link");
-var edgepaths = g.append("g").selectAll(".edgepath");
-var edgelabels = g.append("g").selectAll(".edgelabel");
-node = g.append("g").selectAll(".node");
+link = g.append("g").selectAll(".link"); // Selects all elements with the ".link"-class.
+var edgepaths = g.append("g").selectAll(".edgepath"); // svg-path for the links.
+var edgelabels = g.append("g").selectAll(".edgelabel"); // Edge labels.
+node = g.append("g").selectAll(".node"); // Selects all elements with the ".node"-class.
 
-
+// Arrow heads for the link ends.
 svg.append('defs').append('marker')
 .attr('id','arrowhead')
 .attr('viewBox','-0 -5 10 10')
@@ -112,9 +116,10 @@ svg.append('defs').append('marker')
 .attr('fill', '#cacaca')
 .style('stroke','none')
 
-
+// Updates the nodes and links of the graph visualisation.
 function update() {
 	
+	// Updating the visualized edges.
 	link = link.data(links, function (d) { return d.source.id + "-" + d.edge + "-" + d.target.id });
 	  link.exit().remove();
 	  link = link.enter()
@@ -126,12 +131,12 @@ function update() {
 	      .attr('marker-end','url(#arrowhead)')
 	      .merge(link);
 
+	  // Text paths for the edge labels.
 	  edgepaths = edgepaths.data(links, function (d) { return 'edgepath-' + d.source.id + "-" + d.edge + "-" + d.target.id });
 	  edgepaths.exit().remove();
 	  edgepaths = edgepaths
 	      .enter()
 	      .append('path')
-// .merge(edgepaths)
 	      .attr('class', 'edgepath')
 	      .attr('fill-opacity', 0)
 	      .attr('stroke-opacity', 0)
@@ -139,8 +144,8 @@ function update() {
 	      .style("pointer-events", "none")
 	      .merge(edgepaths)
 	      ;
-//	  console.log(links);
 
+	  // Edge labels.
 	  edgelabels = edgelabels.data(links, function (d) { return 'edgelabel-' + d.source.id + "-" + d.edge + "-" + d.target.id });
 	  edgelabels.exit().remove();
 	  var edgelabelsEnter = edgelabels.enter()
@@ -156,7 +161,7 @@ function update() {
 
 	  edgelabels = edgelabelsEnter.merge(edgelabels);
 
-
+	  // Text path of the edge labels.
 	  edgelabelsEnter
 	      .append('textPath')
 	      .attr('xlink:href', function (d) { return '#edgepath-' + d.source + "-" + d.edge + "-" + d.target })
@@ -170,6 +175,7 @@ function update() {
 
     node.exit().remove();
     
+    // Updates the visualized nodes.
     var nodeEnter = node.enter()
         .append("g")
         .attr("id", function (d) { return d.id })
@@ -186,7 +192,6 @@ function update() {
                 ;
         })
         .on("dblclick", function (d) {
-// getNodeRelations(d.id);
         	window.open(d.id, '_blank');
        
         })
@@ -195,19 +200,19 @@ function update() {
             .on("drag", dragged)
         );
 
+    // Adds a circle for each node.
     node = nodeEnter.merge(node);
     nodeEnter
         .append('svg:circle')
         .attr("class", "circle")
         .attr("r", 20)
-// .attr("fill", "#ffc600") //vorher: #fc8100
         .attr("fill", function(d) {return d.num === 0 ? colors[0] : colors[1]});
         ;
 
+    // Node label.
     nodeEnter
         .append('svg:text')
         .text(function (d) { 
-// console.log("hallo node " + d.id)
         	return d.label !== null ? d.label : d.id ; })
         .attr("font-family", "sans-serif")
         .attr("font-size", "15px")
@@ -218,6 +223,7 @@ function update() {
         .attr("y", 3)
         ;
 
+    // Icon for deleting the selected node.
     nodeEnter.append('svg:image')
         .attr("xlink:href", "js/graphics/delete.svg")
         .attr("x", 16)
@@ -226,25 +232,12 @@ function update() {
         .attr("height", 12)
         .attr("class", "icon")
         .style("opacity", 0)
-//        .on("click", function (d) {
-//
-//            if (nodes.length < 2) {
-//                return;
-//            }
-//            nodes = nodes.filter(function (n) {
-//                return n.id != d.id;
-//            });
-//            links = links.filter(function (l) {
-//                return d.id != l.source.id && d.id != l.target.id;
-//            });
-//
-//            update();
-//        });
         .on("click", function(d){
         	deleteNode(d);
         	update();
         });
     
+    // Icon for searching for the next relations of the selected node.
     nodeEnter.append('svg:image')
     .attr("xlink:href", "js/graphics/expand.svg")
     .attr("x", -27)
@@ -261,13 +254,11 @@ function update() {
     	var icons = thisVar.select(".icon");
     	circ
     		.attr("fill", "#978d75")
-// .style("opacity", 0.3);
     	text
     		.style("opacity", 0.3);
     	icons
     		.style("opacity", 0)
     	console.log(thisVar);
-//    	console.log(d);
     	var loader = thisVar.append("svg:image")
     		.attr("xlink:href", "js/graphics/spinner.gif")
     		.attr("x", -20)
@@ -279,8 +270,8 @@ function update() {
     	getNodeRelations(d, circ, text, loader);
     });
     
+    // Number of the amount of relations that has been visualized so far (pagination).
     nodeEnter.append('svg:text')
-//    .text(function(d) {return d.num})
     .attr("font-family", "sans-serif")
     .attr("font-size", "10px")
     .attr('font-weight', 'bolder')
@@ -303,6 +294,7 @@ function update() {
             }
         })
     
+        // Icon for info box.
     nodeEnter.append('svg:image')
         .attr("xlink:href", "js/graphics/info.svg")
         .attr("x", -12)
@@ -315,6 +307,7 @@ function update() {
             getInfo(d.id);
         });
 
+    // Icon for unpin the node.
     nodeEnter.append('svg:image')
         .attr("xlink:href", "js/graphics/pin.svg")
         .attr("x", 3)
@@ -328,7 +321,7 @@ function update() {
             d.fy = null;
         });
     
-    
+    // Icon for marking the node as relevant.
     nodeEnter.append('svg:image')
     .attr("xlink:href", "js/graphics/pencil.svg")
     .attr("x", 16)
@@ -343,7 +336,6 @@ function update() {
     	var circ = thisVar.select(".circle");
     	circ
     		.attr("fill", function(d) {return d.num === 0 ? colors[0] : colors[1]});
-// .attr("fill", "#ff6600");
     	console.log(d.num);
     });
     
@@ -357,10 +349,8 @@ function update() {
         .restart();
 }
 
+// Deletes the selected node and all unmarked nodes without any relations. 
 function deleteNode(d) {
-
-    
-    
     var nodesToCheck = [];
     var nodesWithEdges = [];
     
@@ -378,12 +368,9 @@ function deleteNode(d) {
         	nodesWithEdges.push(l.target);
         	return true;
         }
-    	
-//    	return d.id != l.source.id && d.id != l.target.id;
     });
     
     var nodesToRemove = nodesToCheck.filter( ( el ) => !nodesWithEdges.includes( el ) );
-    
     nodes = nodes.filter( ( el ) => !nodesToRemove.includes( el ) );
     
     if (nodes.length < 2) {
@@ -396,7 +383,7 @@ function deleteNode(d) {
  
 }
 
-
+// Gets an info box for the selected node.
 function getInfo(subject) {
 	$('#infoDiv').remove();
 	d3.json("getSubject/" + subject.replace(/#/g,"%23")).then(function (data) {
@@ -426,8 +413,8 @@ function getInfo(subject) {
 	  });
 }
 
+// Draws the changing graph parts on every tick.
 function ticked() {
- 
     link.attr("x1", function (d) { return d.source.x; })
         .attr("y1", function (d) { return d.source.y; })
         .attr("x2", function (d) { return d.target.x; })
@@ -454,6 +441,7 @@ function ticked() {
     .attr("transform", function (d) { return "translate(" + d.x + ", " + d.y + ")"; });
 }
 
+// Function for dragging the nodes.
 function dragstarted(d) {
     if (!d3.event.active) simulation
         .alphaTarget(0.3)
@@ -462,11 +450,13 @@ function dragstarted(d) {
     d.fy = d.y;
 }
 
+// Function for dragging the nodes.
 function dragged(d) {
     d.fx = d3.event.x;
     d.fy = d3.event.y;
 }
 
+// Updates the data of the nodes and edges to be visualized.
 function updateData(data, currNode) {
     var n = data.nodes;
     var l = data.edges;
@@ -488,20 +478,8 @@ function updateData(data, currNode) {
     	
     	nodes = nodes.filter(function (n) {
     		return n.num === 0 || (pos - n.num !== edgeLevel && n.sourceNode !== currNode.id);
-    		
-//            return n.num === 0 || (pos - n.num !== edgeLevel);
-            
-            
         });
     	links = links.filter(function (l){
-    		
-//    		var stay = false;
-//    		if((l.source.num === 0 || pos - l.source.num !== edgeLevel) && (l.target.num === 0 || pos - l.target.num !== edgeLevel)) {
-//    			stay = true;
-//    		}
-//    		if((l.source.num !== 0 && l.source.sourceNode === currNode.id) || (l.target.num !== 0 && l.target.sourceNode === currNode.id)) {
-//    			stay = false;
-//    		}
     		
     		return ((l.source.num === 0 || pos - l.source.num !== edgeLevel) 
     					&& (l.target.num === 0 || pos - l.target.num !== edgeLevel))
@@ -512,9 +490,7 @@ function updateData(data, currNode) {
       node = node.data(nodes, function (d) { return d.id; });
       node.exit().remove();
     }
-    
 
-    
     n.forEach(element => {
     	element.num = pos;
         if (!nodeExists(element.id)) {
@@ -534,6 +510,7 @@ function updateData(data, currNode) {
     }
 }
 
+// Checks whether a certain edge already exists.
 function linkExists(source, target, link) {
     for (var i = 0; i < links.length; i++) {
         if (links[i].source.id === source
@@ -545,6 +522,7 @@ function linkExists(source, target, link) {
     return false;
 }
 
+//Checks whether a certain node already exists.
 function nodeExists(id) {
     for (var i = 0; i < nodes.length; i++) {
         if (nodes[i].id === id) {
