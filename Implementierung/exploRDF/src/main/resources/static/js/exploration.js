@@ -171,11 +171,10 @@ function update() {
 	      .text(function (d) { return d.edge })
 	      ;
 
+	// Updates the visualized nodes.
     node = node.data(nodes, function (d) { return d.id; });
-
-    node.exit().remove();
+    node.exit().remove(); 
     
-    // Updates the visualized nodes.
     var nodeEnter = node.enter()
         .append("g")
         .attr("id", function (d) { return d.id })
@@ -207,7 +206,6 @@ function update() {
         .attr("class", "circle")
         .attr("r", 20)
         .attr("fill", function(d) {return d.num === 0 ? colors[0] : colors[1]});
-        ;
 
     // Node label.
     nodeEnter
@@ -339,9 +337,10 @@ function update() {
     	console.log(d.num);
     });
     
-    nodePage = node.selectAll(".node-page");
+    var nodePage = node.selectAll(".node-page");
     nodePage.text(function(d){return d.edgeOffset});
 
+ // Starts the graph simulation anew.
     simulation.nodes(nodes).on("tick", ticked);
     simulation.force("link").links(links);
     simulation
@@ -475,12 +474,10 @@ function updateData(data, currNode) {
     }
     
     if(n.length > 0) {
-    	
     	nodes = nodes.filter(function (n) {
     		return n.num === 0 || (pos - n.num !== edgeLevel && n.sourceNode !== currNode.id);
         });
-    	links = links.filter(function (l){
-    		
+    	links = links.filter(function (l){	
     		return ((l.source.num === 0 || pos - l.source.num !== edgeLevel) 
     					&& (l.target.num === 0 || pos - l.target.num !== edgeLevel))
     			&& !((l.source.num !== 0 && l.source.sourceNode === currNode.id) 
@@ -496,14 +493,12 @@ function updateData(data, currNode) {
         if (!nodeExists(element.id)) {
         	newNodes = true;
             nodes.push(element);
-        } else {
-        }
+        } 
     });
     l.forEach(e => {
         if (!linkExists(e.source, e.target, e.edge)) {
             links.push(e);
-        } else {
-        }
+        } 
     });
     if (data.nodes.length > 0 && newNodes) {
     	pos++;
