@@ -144,7 +144,7 @@ public class QueryService {
 	 * (subject-predicate-object). Moreover, the VisualizationDto object contains each 
 	 * link between the the subject and the object node as an own DTO.
 	 * 
-	 * @param subject IRI of the requested subject node.
+	 * @param resource IRI of the requested subject node.
 	 * @param limit 
 	 * @param edgeOffset 
 	 * @param edgeViz 
@@ -152,8 +152,8 @@ public class QueryService {
 	 * @return VisualizationDto as a JSON object containing a NodeDto object of each 
 	 * node and an EdgeDto object of every link between the subject and the object node.
 	 */
-	public VisualizationDto getNodeRelations(String subject, String listName, int edgeViz, int edgeOffset, int limit) {
-		return exploRDFDao.getNodeRelations(subject, listName, edgeViz, edgeOffset, limit);
+	public VisualizationDto getNodeRelations(String resource, String listName, int edgeViz, int edgeOffset, int limit) {
+		return exploRDFDao.getNodeRelations(resource, listName, edgeViz, edgeOffset, limit);
 	}
 	
 }

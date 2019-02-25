@@ -1,5 +1,12 @@
 package com.explordf.dto;
 
+/**
+ * Data Transfer Object (DTO) for each predicate of a predicates list.
+ * The predicates are to be visualized as graph edges or as node labels.
+ * 
+ * @author Andreas Niederquell
+ *
+ */
 public class PredicateDto {
 
 	private String predicate;

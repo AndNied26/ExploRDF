@@ -3,26 +3,19 @@ package com.explordf.dao.impl_rdf4j;
 import java.util.Collections;
 import java.util.Map;
 
-import org.eclipse.rdf4j.http.client.HttpClientSessionManager;
 import org.eclipse.rdf4j.http.client.SPARQLProtocolSession;
-import org.eclipse.rdf4j.http.client.SharedHttpClientSessionManager;
-import org.eclipse.rdf4j.model.impl.SimpleValueFactory;
 import org.eclipse.rdf4j.query.resultio.TupleQueryResultFormat;
-import org.eclipse.rdf4j.repository.sparql.SPARQLConnection;
 import org.eclipse.rdf4j.repository.sparql.SPARQLRepository;
 
+/**
+ * Extension class of RDF4J´s SPARQLRepository.
+ * Class is needed for continuing the request even if 
+ * a malformed Literal is returned.
+ * 
+ * @author Andreas Niederquell
+ *
+ */
 public class ExploRDFSparqlEndpointRepository extends SPARQLRepository {
-	
-
-//	private boolean quadMode = false;
-
-	/**
-	 * The HTTP client that takes care of the client-server communication.
-	 */
-//	private volatile HttpClientSessionManager client;
-
-	/** dependent life cycle */
-//	private volatile SharedHttpClientSessionManager dependentClient;
 
 	private String username;
 

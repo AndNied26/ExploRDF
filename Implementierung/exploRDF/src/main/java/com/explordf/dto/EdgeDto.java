@@ -1,5 +1,11 @@
 package com.explordf.dto;
 
+/**
+ * Data Transfer Object (DTO) for an edge of the visualized graph.
+ * 
+ * @author Andreas Niederquell
+ *
+ */
 public class EdgeDto {
 
 	private String source;

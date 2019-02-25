@@ -1,5 +1,11 @@
 package com.explordf.dto;
 
+/**
+ * Data Transfer Object (DTO) for a RDF triple.
+ * 
+ * @author Andreas Niederquell
+ *
+ */
 public class TripleDto {
 
 	private String subject;

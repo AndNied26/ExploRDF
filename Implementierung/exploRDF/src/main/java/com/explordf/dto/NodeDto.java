@@ -1,5 +1,11 @@
 package com.explordf.dto;
 
+/**
+ * Data Transfer Object (DTO) for a node of the visualized graph.
+ * 
+ * @author Andreas Niederquell
+ *
+ */
 public class NodeDto {
 
 	private String id;

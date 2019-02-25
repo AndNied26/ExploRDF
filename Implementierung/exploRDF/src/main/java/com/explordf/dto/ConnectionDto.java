@@ -2,7 +2,12 @@ package com.explordf.dto;
 
 import javax.validation.constraints.NotNull;
 
-
+/**
+ * Data Transfer Object (DTO) for the connection properties of a Triple Store.
+ * 
+ * @author Andreas Niederquell
+ *
+ */
 public class ConnectionDto {
 
 	@NotNull
@@ -24,8 +29,9 @@ public class ConnectionDto {
 	public ConnectionDto() {
 	}
 
-	public ConnectionDto(String tripleStoreUrl, String tripleStoreServer, String tripleStoreRepo, String tripleStoreGraph, String tripleStoreUsername,
-			String tripleStorePassword) {
+	public ConnectionDto(String tripleStoreUrl, String tripleStoreServer, 
+			String tripleStoreRepo, String tripleStoreGraph, 
+			String tripleStoreUsername, String tripleStorePassword) {
 		this.tripleStoreUrl = tripleStoreUrl;
 		this.tripleStoreServer = tripleStoreServer;
 		this.tripleStoreRepo = tripleStoreRepo;

@@ -109,11 +109,11 @@ public interface ExploRDFDao {
 	 * Gets all connections of the selected node according to the chosen
 	 * predicate list.
 	 * 
-	 * @param subject Id of the selected node.
+	 * @param resource Id of the selected node.
 	 * @param predicatesList Chosen predicate list. 
 	 * @return VisualizationDto object with the nodes and edges related to
 	 * the selected node.
 	 */
-	VisualizationDto getNodeRelations(String subject, String predicatesList, int edgeViz, int edgeOffset, int limit);
+	VisualizationDto getNodeRelations(String resource, String predicatesList, int edgeViz, int edgeOffset, int limit);
 	
 }

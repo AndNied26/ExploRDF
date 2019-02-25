@@ -3,6 +3,13 @@ package com.explordf.dto;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Data Transfer Object (DTO) for nodes and edges of the visualized graph.
+ * 
+ * 
+ * @author Andreas Niederquell
+ *
+ */
 public class VisualizationDto {
 
 	private List<NodeDto> nodes;

@@ -6,9 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -58,6 +56,16 @@ import com.explordf.dto.PredicateDto;
 import com.explordf.dto.TripleDto;
 import com.explordf.dto.VisualizationDto;
 
+/**
+ * Implementation class of the ExploRDFDao interface.
+ * The whole communication with the triple store is transacted by this class.
+ * 
+ * This class has to be created once in every user session. Therefore it is
+ * annotated with Spring´s @SessionScope and @Component.  
+ * 
+ * @author Andreas Niederquell
+ *
+ */
 @SessionScope
 @Component
 @Qualifier(value = "exploRDFDaoImpl")
@@ -166,7 +174,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 
 	
 	@Override
-	public VisualizationDto getNodeRelations(String subject, String predicatesList, int edgeViz, int edgeOffset, int limit) {
+	public VisualizationDto getNodeRelations(String resource, String predicatesList, int edgeViz, int edgeOffset, int limit) {
 				
 		if(!predicatesList.equals(currPredicatesListName) || currPredicatesList == null) {
 			System.out.println("currPredicatesListName has changed or currPredicatesList is null");
@@ -183,11 +191,11 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		
 		
 		if(edgeViz == 0) {
-			return getOutgoingNodes(subject, edgeOffset, limit);
+			return getOutgoingNodes(resource, edgeOffset, limit);
 		} else if (edgeViz == 1) {
-			return getIncomingNodes(subject, edgeOffset, limit);
+			return getIncomingNodes(resource, edgeOffset, limit);
 		} else {
-			return getInAndOutgoingNodes(subject, edgeOffset, limit);
+			return getInAndOutgoingNodes(resource, edgeOffset, limit);
 		}
 
 	}
@@ -196,7 +204,7 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		VisualizationDto viz = new VisualizationDto();
 		
 		int localOffset = 0;
-		int localLimit = 9900; // maximum results in dbpedia 10000
+		int localLimit = 9900; // Maximum results in DBpedia 10000.
 		int reachedLimit = limit;
 		int reachedOffset = edgeOffset;
 		boolean searchDone = false;

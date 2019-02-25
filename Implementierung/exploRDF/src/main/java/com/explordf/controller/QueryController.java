@@ -197,10 +197,10 @@ public class QueryController {
 		System.out.println("edgeViz " + edgeViz);
 		System.out.println("edgeOffset " + edgeOffset);
 
-		String term = url.split("/getNodeRelations/")[1];
-		term = term.substring(0, term.length() - listName.length() - String.valueOf(edgeViz).length() - String.valueOf(edgeOffset).length() - String.valueOf(limit).length() - 4);
-		System.out.println("term: " + term + ", predicatesList: " + listName);
-		return queryService.getNodeRelations(term, listName, edgeViz, edgeOffset, limit);
+		String resource = url.split("/getNodeRelations/")[1];
+		resource = resource.substring(0, resource.length() - listName.length() - String.valueOf(edgeViz).length() - String.valueOf(edgeOffset).length() - String.valueOf(limit).length() - 4);
+		System.out.println("term: " + resource + ", predicatesList: " + listName);
+		return queryService.getNodeRelations(resource, listName, edgeViz, edgeOffset, limit);
 	}
 	
 	
