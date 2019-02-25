@@ -842,6 +842,13 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	@Override
 	public ConnectionDto setConnectionProps(ConnectionDto connDto) {
 		logger.info("Method setConnectionProps() entered.");
+		
+		try {
+			new URL(connDto.getTripleStoreUrl());
+		} catch (MalformedURLException e) {
+			logger.warn("Malformed URL.");
+			return null;
+		}
 		Repository repo = ExploRDFRepositoryServer.getRepository(connDto);
 		if (repo != null) {
 			System.out.println("repo != null");

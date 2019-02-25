@@ -6,11 +6,158 @@
 
 <body>
 
-	<div th:replace="index :: sidebar"></div>
+	<div id="grid">
+		<div th:replace="index :: sidebar"></div>
 
-	<div class="main">
-		<h1>Das ist die Help-Seite</h1>
+		<div id="main" class="main">
+			<div class="caption">
+				<h3 id="captionHead">Help</h3>
+				<div th:replace="index :: captionConnection"></div>
+			</div>
+			<div class="helpContent">
+
+				<div class="imageDiv">
+					<p>
+						This web application is made for visualizing RDF Graphs (Resource Description Framework).
+						<br>
+						The following guideline will try to help you to get used to the application and solve some
+						of the occurred questions.
+					</p>
+				</div>
+
+
+				<div class="imageDiv">
+					<h5>Connecting to a RDF Triple Store</h5>
+
+					<p>First of all you have to connect to a RDF Triple Store. Therefore you need to fill in the form at
+						the <a href="connect">Connect</a> site.
+						<br>
+						You can choose between a RDF4J-Triple-Store, a Stardog-Triple-Store or a SPARQL-Endpoint to get
+						connected to.</p>
+					<img th:src="@{images/connectForm.PNG}" class="helpImage" width="400">
+					<p>
+						After the connection attempt succeeded, the connection properties are to be refreshed and shown
+						in the right upper corner.
+					</p>
+					<img th:src="@{images/connectStatus.PNG}" class="helpImage" width="300">
+				</div>
+
+
+				<div class="imageDiv">
+					<h5>Searching for a term</h5>
+
+					<p>To search the RDF triple store for a certain term you have to enter your search term in the
+						search field on the <a href="explore">Explore</a> site.
+						<img th:src="@{images/exploreSearch.PNG}" class="helpImage" width="400">
+
+						You can choose between simple and broader search whereas the first search method means that the
+						result must exactly match the search term and the latter method means that the result must only
+						contain the search term.
+						<br>
+						Therefore, broader search is case insensitive. However, the second search method requires much
+						more time than the first one.</p>
+				</div>
+				<div class="imageDiv">
+					<h5>Choosing a Starting Resource</h5>
+					<p>
+						After entering a search term a table with matching resources found in the triple store is drawn.
+						<br>
+						You have to choose one of the found resources by clicking on its "link" (IRI) in the first
+						column.
+
+					</p>
+					<img th:src="@{images/exploreSearchResults.PNG}" class="helpImage" width="800">
+					<p>
+						After you have chosen a resource to begin the RDF Graph exploration with, you get another table
+						with all database information that is linked to the chosen resource.
+
+					</p>
+					<img th:src="@{images/exploreSearchRessource.PNG}" class="helpImage" width="800">
+					<p>
+						In the bar under the information table you have the possibility to adjust some of the parameters
+						of how the RDF data is going to be visualized.
+						You can specify whether only the outgoing, incoming or both kind of edges of the graph nodes are
+						to be shown in the simulation.
+						<br>
+						Furthermore you need to choose, which predicates to be visualized in the graph. Therefore you
+						need to select a predicates list on the left side of the bar. If you want to modify the
+						predicates list or create a new list you need to click on the Customize button.
+						<br>
+						After clicking the button a new table with all the different predicates of the connected Triple
+						Store is drawn.
+					</p>
+					<img th:src="@{images/exploreSearchPredicates.PNG}" class="helpImage" width="800">
+					<p>
+						The predicates table consists of the three columns Predicate, Label and Edge. Under the
+						Predicate column the identifier (IRI) of each predicate can be found. In both the other cells of
+						each row a checkbox is set. If the the Label checkbox is checked the predicate of the row is
+						going to determine the node label in the graph visualization. Only one checked Label checkbox in
+						a predicate list is possible. If the Edge checkbox is checked the predicate is shown as an edge
+						in the graph simulation in case the predicate is not connecting a node to a RDF literal.
+						<br>
+						By entering a list name and clicking on the Save button the predicates list will be overwritten
+						or created anew.
+						After saving the predicates list you will be led back to the start resource information table.
+						By clicking the Explore button you can start the visualization.
+					</p>
+
+				</div>
+				<div class="imageDiv">
+					<h5>Exploring the RDF Graph</h5>
+					<p>
+						The visualization starts with the chosen starting node in the middle of the SVG element (white
+						zoomable area).
+					</p>
+					<img th:src="@{images/exploreVisualisationIcons.PNG}" class="helpImage" width="400">
+					<p>
+						By hovering over the node, six different icons appear near the node, each with an other
+						functionality.
+					</p>
+					<img th:src="@{images/nodeIcons.PNG}" class="helpImage" width="400">
+					<p>
+
+						<ul>
+							<li>
+								By clicking on the Expand icon the next relations of the node are visualized. Only 10 of
+								such relations of a node are shown at the same time. If there are more than ten
+								relations, you can click on the Expand icon for exposing the next 10 relations.
+							</li>
+							<li>
+								The Offset number shows which amount of relations is currently visualized.
+							</li>
+							<li>
+								You can remove a node from the simulation by clicking the Remove icon.
+
+							</li>
+							<li>
+								By clicking the Info icon all information of the nodes resource are shown in an info
+								box.
+							</li>
+							<li>A node stays always at the last position it is dragged to. But by clicking on the Unpin
+								icon the nodes position is calculated according to the other nodes in the simulation and
+								is automatically dragged to its new position.</li>
+							<li>After a node appears in the simulation, it stays 10 further exploration units (clicks on
+								nodes) on screen. To avoid the removal of certain nodes, they can be marked manually. By
+								clicking on the Mark icon the node remains in the simulation until its end or after
+								undoing the mark (clicking the icon another time).</li>
+						</ul>
+						<br>
+						<br>
+						<br>
+						
+
+					</p>
+				</div>
+			<p><cite>ExploRDF</cite> by Andreas Niederquell</p>
+			</div>
+
+
+		</div>
+
+
 	</div>
+
+
 
 
 	<script src="https://d3js.org/d3.v5.js"></script>
