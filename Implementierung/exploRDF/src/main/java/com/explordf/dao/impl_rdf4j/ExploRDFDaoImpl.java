@@ -151,6 +151,10 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	private String vizLabel;
 	private List<String> vizEdges;
 	
+	/**
+	 * Method triggered after the creation of this class. Setting connection properties
+	 * that are saved in the connection.properties file.
+	 */
 	@PostConstruct
 	private void init() {
 		logger.info("PostConstruct init()");
@@ -160,6 +164,10 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 				tripleStoreUserName, tripleStorePassword));
 	}
 	
+	/**
+	 * Sets the properties of the visualization, namely the
+	 * chosen predicates list and node label.
+	 */
 	private void setVisualizationProps() {
 		vizEdges = new LinkedList<>();
 		for (PredicateDto predicateDto : currPredicatesList) {
@@ -200,6 +208,14 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 
 	}
 	
+	/**
+	 * Gets a VisualizationDto object containing the outgoing nodes and edges.
+	 * 
+	 * @param subject IRI of the requested node.
+	 * @param edgeOffset Offset to begin the search at.
+	 * @param limit Limit of the requested triples.
+	 * @return List of VisualizationDto objects containing the nodes and edges.
+	 */
 	private VisualizationDto getOutgoingNodes(String subject, int edgeOffset, int limit) {
 		VisualizationDto viz = new VisualizationDto();
 		
@@ -253,12 +269,20 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	return viz;
 	}
 	
+	/**
+	 * Gets a VisualizationDto object containing the incoming nodes and edges.
+	 * 
+	 * @param object IRI of the requested node.
+	 * @param edgeOffset Offset to begin the search at.
+	 * @param limit Limit of the requested triples.
+	 * @return List of VisualizationDto objects containing the nodes and edges.
+	 */
 	private VisualizationDto getIncomingNodes(String object, int edgeOffset, int limit) {
 		
 		VisualizationDto viz = new VisualizationDto();
 		
 		int localOffset = 0;
-		int localLimit = 9900; // maximum results in dbpedia 10000
+		int localLimit = 9900; // Maximum results in DBpedia 10000.
 		int reachedLimit = limit;
 		int reachedOffset = edgeOffset;
 		boolean searchDone = false;
@@ -309,13 +333,20 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	}
 	
 	
-
+	/**
+	 * Gets a VisualizationDto object containing the nodes and edges.
+	 * 
+	 * @param resource IRI of the requested node.
+	 * @param edgeOffset Offset to begin the search at.
+	 * @param limit Limit of the requested triples.
+	 * @return List of VisualizationDto objects containing the nodes and edges.
+	 */
 	private VisualizationDto getInAndOutgoingNodes(String resource, int edgeOffset, int limit) {
 		
 		VisualizationDto viz = new VisualizationDto();
 		
 		int localOffset = 0;
-		int localLimit = 9900; // maximum results in dbpedia 10000
+		int localLimit = 9900; // Maximum results in DBpedia 10000.
 		int reachedLimit = limit;
 		int reachedOffset = edgeOffset;
 		boolean searchDone = false;
@@ -376,7 +407,14 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	return viz;
 	}
 	
-	
+	/**
+	 * Gets a certain amount of RDF triples with the requested node´s IRI as subject and object.
+	 * 
+	 * @param resource IRI of the requested node.
+	 * @param edgeOffset Offset to begin the search at.
+	 * @param limit Limit of the requested triples.
+	 * @return List of TripleDto objects containing the RDF triples.  
+	 */
 	private List<TripleDto> getResourceTriples(String resource, int edgeOffset, int limit) {
 		List<TripleDto> resultDto = new LinkedList<>();
 		
@@ -400,7 +438,14 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		return resultDto;
 	}
 
-	
+	/**
+	 * Gets a certain amount of RDF triples with the requested node´s IRI as object.
+	 * 
+	 * @param object IRI of the requested node.
+	 * @param edgeOffset Offset to begin the search at.
+	 * @param limit Limit of the requested triples.
+	 * @return List of TripleDto objects containing the RDF triples.  
+	 */
 	private List<TripleDto> getObjectTriples(String object, int edgeOffset, int limit) {
 		List<TripleDto> resultDto = new LinkedList<>();
 		
@@ -424,7 +469,14 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		return resultDto;
 	}
 	
-	
+	/**
+	 * Gets a certain amount of RDF triples with the requested node´s IRI as subject.
+	 * 
+	 * @param subject IRI of the requested node.
+	 * @param edgeOffset Offset to begin the search at.
+	 * @param limit Limit of the requested triples.
+	 * @return List of TripleDto objects containing the RDF triples.  
+	 */
 	private List<TripleDto> getSubjectTriples(String subject, int edgeOffset, int limit) {
 		double start = new Date().getTime();
 		List<TripleDto> resultDto = new LinkedList<>();
@@ -452,6 +504,13 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 	}
 
 
+	/**
+	 * Queries the triple store for the requested node´s label.
+	 * 
+	 * @param nodeId IRI of the node.
+	 * @param label IRI of the predicate to be visualized as the node label.
+	 * @return RDF triple object´s name if any exists.
+	 */
 	private String getNodeLabel(String nodeId, String label) {
 		System.out.println(nodeId);
 		if (nodeId.indexOf(':') < 0 || nodeId.startsWith("\"")) {
@@ -533,6 +592,12 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		return resultDto;
 	}
 	
+	/**
+	 * Gets the RDF triples of the simple search.
+	 * 
+	 * @param term Searching term.
+	 * @return List of TripleDto objects containing the RDF triples. 
+	 */
 	private List<TripleDto> simpleSearch(String term) {
 		List<TripleDto> resultDto = new LinkedList<>();
 		
@@ -576,6 +641,12 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		
 	}
 	
+	/**
+	 * Gets the RDF triples of the broad search.
+	 * 
+	 * @param term Searching term.
+	 * @return List of TripleDto objects containing the RDF triples. 
+	 */
 	private List<TripleDto> broaderSearch(String term) {
 		
 		List<TripleDto> resultDto = new LinkedList<>();
@@ -888,7 +959,13 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 
 	}
 
-	
+	/**
+	 * Creates a folder to for the data set the application is currently connected to.
+	 *  
+	 * @param tripleStoreServer Triple Store type (RDF4J, Stardog, SPARQL-Endpoint).
+	 * @param tripleStoreUrl Triple Store URL.
+	 * @param tripleStoreRepo Name of the data set.
+	 */
 	private void createPredicatesDir(String tripleStoreServer, String tripleStoreUrl, String tripleStoreRepo) {
 		
 		predicatesDir = tripleStoreServer + "/"
@@ -939,6 +1016,9 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		return ExploRDFRepositoryServer.getSupportedServers();
 	}
 
+	/**
+	 * Saves the connection properties to the application environment.
+	 */
 	private void saveConnProps() {
 		DefaultPropertiesPersister persister = new DefaultPropertiesPersister();
 		String filePath = "classpath:connection.properties";
@@ -957,12 +1037,14 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 			FileOutputStream out = new FileOutputStream(f);
 			persister.store(props, out, "db");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.warn("Connection properties couldn´t be saved in the environment.");
 		}
 		showConnProps();
 	}
 
+	/**
+	 * Shuts down the repository.
+	 */
 	private void shutDown() {
 		logger.info("Shut down");
 		if (this.repo != null && this.repo.isInitialized()) {
@@ -971,12 +1053,18 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		}
 	}
 
+	/**
+	 * Method for triggering the shutDown()-method before the application shut down.
+	 */
 	@PreDestroy
 	private void close() {
 		logger.info("Method predestroy entered");
 		shutDown();
 	}
 
+	/**
+	 * Shows the connection properties of the currently connected triple store.
+	 */
 	private void showConnProps() {
 		logger.info("Connection properties:");
 		logger.info("Server: " + tripleStoreServer + " Env: " + env.getProperty("triplestore.server"));
