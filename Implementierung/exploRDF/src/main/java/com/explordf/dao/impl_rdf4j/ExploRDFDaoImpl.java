@@ -72,14 +72,6 @@ import com.explordf.dto.VisualizationDto;
 @PropertySource({"classpath:connection.properties", "classpath:query.properties", "classpath:explordf.properties"})
 public class ExploRDFDaoImpl implements ExploRDFDao {
 
-	// muss dann weg
-	String endpoint = "http://localhost:5820/sachbegriffeDB/query";
-	String endpointDBPedia = "http://dbpedia.org/sparql"; // graph: http://dbpedia.org
-	String endpointRdf4j = "http://localhost:8080/rdf4j-server/repositories/test";
-	String stardogServer = "http://localhost:5820";
-	String username = "admin", password = "admin";
-	String db = "geograficumDB";
-
 	private static final Logger logger = LoggerFactory.getLogger(ExploRDFDao.class);
 
 	@Autowired
@@ -985,14 +977,14 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 				File skosFile;
 				try {
 					if(loadGNDPredicateList) {
-						gndFile = ResourceUtils.getFile("classpath:predicates/" + gndPredicateListName);
+						gndFile = ResourceUtils.getFile("classpath:" + gndPredicateListName);
 						FileCopyUtils.copy(gndFile, new File(file + "/" + gndPredicateListName));
 					}
 					if(loadSKOSPredicateList) {
-						skosFile = ResourceUtils.getFile("classpath:predicates/" + skosPredicateListName);
+						skosFile = ResourceUtils.getFile("classpath:" + skosPredicateListName);
 						FileCopyUtils.copy(skosFile, new File(file + "/" + skosPredicateListName));
 					}
-					
+					logger.info("Predicates list GND and SKOS " + loadGNDPredicateList + " " + loadSKOSPredicateList);
 				} catch (FileNotFoundException e) {
 					logger.warn("No such files in resources folder: " + gndPredicateListName + " and " + skosPredicateListName);
 				} catch (IOException e) {
@@ -1030,7 +1022,6 @@ public class ExploRDFDaoImpl implements ExploRDFDao {
 		props.setProperty("triplestore.graph", tripleStoreGraph != null ? tripleStoreGraph : "");
 		props.setProperty("triplestore.username", tripleStoreUserName != null ? tripleStoreUserName : "");
 		props.setProperty("triplestore.password", tripleStorePassword != null ? tripleStorePassword : "");
-		props.setProperty("query.search.simple", simpleSearchQuery);
 
 		try {
 			File f = ResourceUtils.getFile(filePath);

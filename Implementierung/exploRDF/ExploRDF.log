@@ -1,0 +1,131 @@
+2019-02-26 00:37:32.610  WARN 204 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/Andreas/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/Andreas/.m2/repository/org/json/json/20090211/json-20090211.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2019-02-26 00:37:32.641  INFO 204 --- [main] com.explordf.ExploRdfApplicationTests    : Starting ExploRdfApplicationTests on Dienand-PC with PID 204 (started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
+2019-02-26 00:37:32.641  INFO 204 --- [main] com.explordf.ExploRdfApplicationTests    : No active profile set, falling back to default profiles: default
+2019-02-26 00:37:35.344  INFO 204 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-26 00:37:35.770  INFO 204 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-26 00:37:37.083  INFO 204 --- [main] com.explordf.ExploRdfApplicationTests    : Started ExploRdfApplicationTests in 5.067 seconds (JVM running for 6.859)
+2019-02-26 00:37:37.738  INFO 204 --- [Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-26 00:46:37.111  WARN 8248 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/Andreas/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/Andreas/.m2/repository/org/json/json/20090211/json-20090211.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2019-02-26 00:46:37.144  INFO 8248 --- [main] com.explordf.ExploRdfApplicationTests    : Starting ExploRdfApplicationTests on Dienand-PC with PID 8248 (started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
+2019-02-26 00:46:37.144  INFO 8248 --- [main] com.explordf.ExploRdfApplicationTests    : No active profile set, falling back to default profiles: default
+2019-02-26 00:46:40.671  INFO 8248 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-26 00:46:41.069  INFO 8248 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-26 00:46:42.006  INFO 8248 --- [main] com.explordf.ExploRdfApplicationTests    : Started ExploRdfApplicationTests in 5.317 seconds (JVM running for 6.492)
+2019-02-26 00:46:42.289  INFO 8248 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-26 00:50:24.582  WARN 3416 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/Andreas/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/Andreas/.m2/repository/org/json/json/20090211/json-20090211.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2019-02-26 00:50:24.598  INFO 3416 --- [main] com.explordf.ExploRdfApplicationTests    : Starting ExploRdfApplicationTests on Dienand-PC with PID 3416 (started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
+2019-02-26 00:50:24.598  INFO 3416 --- [main] com.explordf.ExploRdfApplicationTests    : No active profile set, falling back to default profiles: default
+2019-02-26 00:50:27.607  INFO 3416 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-26 00:50:28.335  INFO 3416 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-26 00:50:29.512  INFO 3416 --- [main] com.explordf.ExploRdfApplicationTests    : Started ExploRdfApplicationTests in 5.324 seconds (JVM running for 6.877)
+2019-02-26 00:50:30.021  INFO 3416 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-26 01:00:18.023  INFO 2472 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 2472 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
+2019-02-26 01:00:18.023  INFO 2472 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
+2019-02-26 01:00:19.007  INFO 2472 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2019-02-26 01:00:19.037  INFO 2472 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-26 01:00:19.037  INFO 2472 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-02-26 01:00:19.037  INFO 2472 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\OpenVPN\bin;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
+2019-02-26 01:00:19.287  INFO 2472 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-26 01:00:19.287  INFO 2472 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1217 ms
+2019-02-26 01:00:19.537  INFO 2472 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-26 01:00:19.631  INFO 2472 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-26 01:00:20.271  INFO 2472 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2019-02-26 01:00:20.274  INFO 2472 --- [main] com.explordf.ExploRdfApplication         : Started ExploRdfApplication in 2.594 seconds (JVM running for 3.698)
+2019-02-26 01:00:40.539  INFO 2472 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-02-26 01:00:40.554  INFO 2472 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-02-26 01:00:40.556  INFO 2472 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2019-02-26 01:00:41.291  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : PostConstruct init()
+2019-02-26 01:00:41.291  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Connection properties:
+2019-02-26 01:00:41.291  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
+2019-02-26 01:00:41.291  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
+2019-02-26 01:00:41.291  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
+2019-02-26 01:00:41.291  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
+2019-02-26 01:00:41.306  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Username:  Env: 
+2019-02-26 01:00:41.306  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Password:  Env: 
+2019-02-26 01:00:41.306  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
+2019-02-26 01:00:41.306  INFO 2472 --- [http-nio-8081-exec-7] c.e.d.i.ExploRDFRepositoryServer         : Method getHTTPRepository() entered.
+2019-02-26 01:00:43.041  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Shut down
+2019-02-26 01:00:43.048  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Connection properties:
+2019-02-26 01:00:43.049  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
+2019-02-26 01:00:43.049  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
+2019-02-26 01:00:43.049  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
+2019-02-26 01:00:43.049  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
+2019-02-26 01:00:43.049  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Username:  Env: 
+2019-02-26 01:00:43.049  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Password:  Env: 
+2019-02-26 01:00:43.049  INFO 2472 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : predicate folder already exists.
+2019-02-26 01:01:08.855  INFO 2472 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
+2019-02-26 01:01:08.855  INFO 2472 --- [http-nio-8081-exec-4] c.e.d.i.ExploRDFRepositoryServer         : Method ExploRDFSparqlEndpointRepository() entered.
+2019-02-26 01:01:08.950  INFO 2472 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : Shut down
+2019-02-26 01:01:08.950  INFO 2472 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : Shut down the repo
+2019-02-26 01:01:08.950  INFO 2472 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : Connection properties:
+2019-02-26 01:01:08.950  INFO 2472 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : Server: SPARQL-Endpoint Env: RDF4J-Server
+2019-02-26 01:01:08.950  INFO 2472 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : Name: http://dbpedia.org/sparql Env: http://localhost:8080/rdf4j-server
+2019-02-26 01:01:08.950  INFO 2472 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : Repo:  Env: test
+2019-02-26 01:01:08.950  INFO 2472 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : Graph: http://dbpedia.org Env: 
+2019-02-26 01:01:08.950  INFO 2472 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : Username:  Env: 
+2019-02-26 01:01:08.950  INFO 2472 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : Password:  Env: 
+2019-02-26 01:01:08.950  INFO 2472 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : predicate folder already exists.
+2019-02-26 01:01:20.340  INFO 2472 --- [http-nio-8081-exec-1] com.explordf.dao.ExploRDFDao             : Method searchTerm() in entered.
+2019-02-26 01:01:22.508  INFO 2472 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: right, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Introduction to Astrophysics/Albert Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein in 1921, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein playing violin, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Einstein with writer, musician and Nobel laureate Rabindranath Tagore, 1930, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: vertical, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: *, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Jewish, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert_Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein violin.jpg, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Rabindranath with Einstein.jpg, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Einstein's equation turns 100, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Author:Albert Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein signature 1934.svg, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: MIT OpenCourseWare STS.042J/8.225J: Einstein, Oppenheimer, Feynman: Physics in the 20th century, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: no, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:01:22.818  WARN 2472 --- [rdf4j-sesameclientimpl-3] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: *, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 01:29:24.388  INFO 2472 --- [RMI TCP Connection(3)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-02-26 01:29:24.393  INFO 2472 --- [RMI TCP Connection(3)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-26 01:29:24.649  INFO 2472 --- [RMI TCP Connection(3)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Method predestroy entered
+2019-02-26 01:29:24.649  INFO 2472 --- [RMI TCP Connection(3)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Shut down
+2019-02-26 01:29:24.649  INFO 2472 --- [RMI TCP Connection(3)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Shut down the repo
+2019-02-26 01:31:39.548  INFO 12824 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 12824 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
+2019-02-26 01:31:39.548  INFO 12824 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
+2019-02-26 01:31:40.517  INFO 12824 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2019-02-26 01:31:40.535  INFO 12824 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-26 01:31:40.535  INFO 12824 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-02-26 01:31:40.535  INFO 12824 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\OpenVPN\bin;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
+2019-02-26 01:31:40.722  INFO 12824 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-26 01:31:40.722  INFO 12824 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1127 ms
+2019-02-26 01:31:40.925  INFO 12824 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-26 01:31:41.035  INFO 12824 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-26 01:31:41.644  INFO 12824 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2019-02-26 01:31:41.656  INFO 12824 --- [main] com.explordf.ExploRdfApplication         : Started ExploRdfApplication in 2.45 seconds (JVM running for 3.539)
+2019-02-26 01:32:23.388  INFO 12824 --- [RMI TCP Connection(3)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-02-26 01:32:23.395  INFO 12824 --- [RMI TCP Connection(3)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'

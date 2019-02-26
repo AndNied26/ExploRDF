@@ -1,0 +1,214 @@
+2019-02-26 01:32:28.709  INFO 13020 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 13020 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
+2019-02-26 01:32:28.709  INFO 13020 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
+2019-02-26 01:32:29.568  INFO 13020 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2019-02-26 01:32:29.583  INFO 13020 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-26 01:32:29.583  INFO 13020 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-02-26 01:32:29.599  INFO 13020 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\OpenVPN\bin;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
+2019-02-26 01:32:29.787  INFO 13020 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-26 01:32:29.790  INFO 13020 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1047 ms
+2019-02-26 01:32:29.995  INFO 13020 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-26 01:32:30.089  INFO 13020 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-26 01:32:30.714  INFO 13020 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2019-02-26 01:32:30.714  INFO 13020 --- [main] com.explordf.ExploRdfApplication         : Started ExploRdfApplication in 2.329 seconds (JVM running for 3.405)
+2019-02-26 01:32:41.604  INFO 13020 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-02-26 01:32:41.604  INFO 13020 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-02-26 01:32:41.611  INFO 13020 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2019-02-26 01:32:42.345  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : PostConstruct init()
+2019-02-26 01:32:42.345  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Connection properties:
+2019-02-26 01:32:42.345  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
+2019-02-26 01:32:42.345  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
+2019-02-26 01:32:42.345  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
+2019-02-26 01:32:42.345  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
+2019-02-26 01:32:42.345  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Username:  Env: 
+2019-02-26 01:32:42.345  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Password:  Env: 
+2019-02-26 01:32:42.345  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
+2019-02-26 01:32:42.345  INFO 13020 --- [http-nio-8081-exec-6] c.e.d.i.ExploRDFRepositoryServer         : Method getHTTPRepository() entered.
+2019-02-26 01:32:42.861  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Shut down
+2019-02-26 01:32:42.871  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Connection properties:
+2019-02-26 01:32:42.872  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Server: RDF4J-Server Env: RDF4J-Server
+2019-02-26 01:32:42.872  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Name: http://localhost:8080/rdf4j-server Env: http://localhost:8080/rdf4j-server
+2019-02-26 01:32:42.872  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Repo: test Env: test
+2019-02-26 01:32:42.872  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Graph:  Env: 
+2019-02-26 01:32:42.872  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Username:  Env: 
+2019-02-26 01:32:42.872  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Password:  Env: 
+2019-02-26 01:32:42.872  INFO 13020 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : predicate folder already exists.
+2019-02-26 01:56:19.108  INFO 13020 --- [RMI TCP Connection(3)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-02-26 01:56:19.122  INFO 13020 --- [RMI TCP Connection(3)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-26 01:56:19.363  INFO 13020 --- [RMI TCP Connection(3)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Method predestroy entered
+2019-02-26 01:56:19.363  INFO 13020 --- [RMI TCP Connection(3)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Shut down
+2019-02-26 01:56:19.363  INFO 13020 --- [RMI TCP Connection(3)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Shut down the repo
+2019-02-26 01:57:31.728  WARN 10612 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/Andreas/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/Andreas/.m2/repository/org/json/json/20090211/json-20090211.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2019-02-26 01:57:31.759  INFO 10612 --- [main] com.explordf.ExploRdfApplicationTests    : Starting ExploRdfApplicationTests on Dienand-PC with PID 10612 (started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
+2019-02-26 01:57:31.759  INFO 10612 --- [main] com.explordf.ExploRdfApplicationTests    : No active profile set, falling back to default profiles: default
+2019-02-26 01:57:34.808  INFO 10612 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-26 01:57:35.691  INFO 10612 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-26 01:57:36.910  INFO 10612 --- [main] com.explordf.ExploRdfApplicationTests    : Started ExploRdfApplicationTests in 5.526 seconds (JVM running for 6.648)
+2019-02-26 01:57:37.326  INFO 10612 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-26 02:33:16.819  WARN 2644 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/Andreas/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/Andreas/.m2/repository/org/json/json/20090211/json-20090211.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2019-02-26 02:33:16.897  INFO 2644 --- [main] com.explordf.ExploRdfApplicationTests    : Starting ExploRdfApplicationTests on Dienand-PC with PID 2644 (started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
+2019-02-26 02:33:16.901  INFO 2644 --- [main] com.explordf.ExploRdfApplicationTests    : No active profile set, falling back to default profiles: default
+2019-02-26 02:33:18.669  INFO 2644 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-26 02:33:19.038  INFO 2644 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-26 02:33:19.882  INFO 2644 --- [main] com.explordf.ExploRdfApplicationTests    : Started ExploRdfApplicationTests in 3.392 seconds (JVM running for 4.98)
+2019-02-26 02:33:21.497  INFO 2644 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-26 02:34:14.476  INFO 13476 --- [main] com.explordf.ExploRdfApplication         : Starting ExploRdfApplication on Dienand-PC with PID 13476 (D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF\target\classes started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
+2019-02-26 02:34:14.476  INFO 13476 --- [main] com.explordf.ExploRdfApplication         : No active profile set, falling back to default profiles: default
+2019-02-26 02:34:15.382  INFO 13476 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2019-02-26 02:34:15.413  INFO 13476 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-26 02:34:15.413  INFO 13476 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-02-26 02:34:15.413  INFO 13476 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_181/bin/server;C:/Program Files/Java/jre1.8.0_181/bin;C:/Program Files/Java/jre1.8.0_181/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Calibre2\;C:\TDM-GCC-64\bin;C:\Program Files\PostgreSQL\9.5\bin;C:\Program Files\PostgreSQL\9.5\lib;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Git\cmd;C:\Program Files\doxygen\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\OpenVPN\bin;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Andreas\AppData\Local\Programs\Python\Python36-32\;C:\Users\Andreas\AppData\Local\Microsoft\WindowsApps;;D:\Programme\Visual Studio Code\Microsoft VS Code\bin;D:\Programme\spring-tool-suite-4-4.0.0.RELEASE-e4.9.0-win32.win32.x86_64\sts-4.0.0.RELEASE;;.]
+2019-02-26 02:34:15.616  INFO 13476 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-26 02:34:15.631  INFO 13476 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1094 ms
+2019-02-26 02:34:15.835  INFO 13476 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-26 02:34:15.945  INFO 13476 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-26 02:34:16.585  INFO 13476 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2019-02-26 02:34:16.585  INFO 13476 --- [main] com.explordf.ExploRdfApplication         : Started ExploRdfApplication in 2.465 seconds (JVM running for 3.574)
+2019-02-26 02:40:40.420  INFO 13476 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-02-26 02:40:40.434  INFO 13476 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-02-26 02:40:40.436  INFO 13476 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2019-02-26 02:40:41.186  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : PostConstruct init()
+2019-02-26 02:40:41.186  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Connection properties:
+2019-02-26 02:40:41.186  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Server: SPARQL-Endpoint Env: SPARQL-Endpoint
+2019-02-26 02:40:41.186  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Name: http://dbpedia.org/sparql Env: http://dbpedia.org/sparql
+2019-02-26 02:40:41.186  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Repo:  Env: 
+2019-02-26 02:40:41.186  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Graph: http://dbpedia.org Env: http://dbpedia.org
+2019-02-26 02:40:41.186  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Username:  Env: 
+2019-02-26 02:40:41.186  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Password:  Env: 
+2019-02-26 02:40:41.186  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Method setConnectionProps() entered.
+2019-02-26 02:40:41.186  INFO 13476 --- [http-nio-8081-exec-6] c.e.d.i.ExploRDFRepositoryServer         : Method ExploRDFSparqlEndpointRepository() entered.
+2019-02-26 02:40:41.422  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Shut down
+2019-02-26 02:40:41.423  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Connection properties:
+2019-02-26 02:40:41.423  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Server: SPARQL-Endpoint Env: SPARQL-Endpoint
+2019-02-26 02:40:41.423  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Name: http://dbpedia.org/sparql Env: http://dbpedia.org/sparql
+2019-02-26 02:40:41.423  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Repo:  Env: 
+2019-02-26 02:40:41.423  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Graph: http://dbpedia.org Env: http://dbpedia.org
+2019-02-26 02:40:41.423  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Username:  Env: 
+2019-02-26 02:40:41.423  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : Password:  Env: 
+2019-02-26 02:40:41.423  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : predicate folder already exists.
+2019-02-26 02:40:44.032  INFO 13476 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : Method searchTerm() in entered.
+2019-02-26 02:40:45.335  INFO 13476 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2019-02-26 02:40:45.569  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.569  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: right, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.569  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Introduction to Astrophysics/Albert Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.569  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein in 1921, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.569  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein playing violin, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.569  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Einstein with writer, musician and Nobel laureate Rabindranath Tagore, 1930, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.569  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: vertical, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.569  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: *, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.569  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Jewish, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.569  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert_Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.569  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein violin.jpg, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.569  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Rabindranath with Einstein.jpg, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.569  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Einstein's equation turns 100, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.569  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Author:Albert Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.569  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein signature 1934.svg, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.585  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: MIT OpenCourseWare STS.042J/8.225J: Einstein, Oppenheimer, Feynman: Physics in the 20th century, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.585  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: no, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.585  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:40:45.585  WARN 13476 --- [rdf4j-sesameclientimpl-2] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: *, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:41:20.176  INFO 13476 --- [http-nio-8081-exec-10] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2019-02-26 02:41:52.618  INFO 13476 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : savePredicatesList() method entered.
+2019-02-26 02:41:52.618  INFO 13476 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : Overwriting gnd in predicates directory.
+2019-02-26 02:41:52.634  WARN 13476 --- [http-nio-8081-exec-3] com.explordf.dao.ExploRDFDao             : Couldn´t create gnd in predicates directory.
+2019-02-26 02:41:52.713  INFO 13476 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2019-02-26 02:44:56.284  INFO 13476 --- [http-nio-8081-exec-2] com.explordf.dao.ExploRDFDao             : Method searchTerm() in entered.
+2019-02-26 02:44:57.565  INFO 13476 --- [http-nio-8081-exec-4] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: right, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Introduction to Astrophysics/Albert Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein in 1921, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein playing violin, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Einstein with writer, musician and Nobel laureate Rabindranath Tagore, 1930, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: vertical, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: *, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Jewish, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert_Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein violin.jpg, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Rabindranath with Einstein.jpg, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Einstein's equation turns 100, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Author:Albert Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein signature 1934.svg, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: MIT OpenCourseWare STS.042J/8.225J: Einstein, Oppenheimer, Feynman: Physics in the 20th century, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: no, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:57.816  WARN 13476 --- [rdf4j-sesameclientimpl-4] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: *, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:44:59.097  INFO 13476 --- [http-nio-8081-exec-6] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2019-02-26 02:45:01.810  INFO 13476 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : savePredicatesList() method entered.
+2019-02-26 02:45:01.825  INFO 13476 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : Overwriting gnd in predicates directory.
+2019-02-26 02:45:01.825  WARN 13476 --- [http-nio-8081-exec-5] com.explordf.dao.ExploRDFDao             : Couldn´t create gnd in predicates directory.
+2019-02-26 02:45:01.873  INFO 13476 --- [http-nio-8081-exec-7] com.explordf.dao.ExploRDFDao             : getAllPredicatesLists() method entered.
+2019-02-26 02:45:04.336  INFO 13476 --- [http-nio-8081-exec-9] com.explordf.dao.ExploRDFDao             : getPredicatesList() method entered.
+2019-02-26 02:45:06.098  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: right, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Introduction to Astrophysics/Albert Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein in 1921, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein playing violin, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Einstein with writer, musician and Nobel laureate Rabindranath Tagore, 1930, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: vertical, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: *, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Jewish, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert_Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein violin.jpg, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Rabindranath with Einstein.jpg, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Einstein's equation turns 100, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Author:Albert Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein signature 1934.svg, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: MIT OpenCourseWare STS.042J/8.225J: Einstein, Oppenheimer, Feynman: Physics in the 20th century, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: no, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:06.113  WARN 13476 --- [rdf4j-sesameclientimpl-6] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: *, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: right, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Introduction to Astrophysics/Albert Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein in 1921, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein playing violin, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Einstein with writer, musician and Nobel laureate Rabindranath Tagore, 1930, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: vertical, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: *, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Jewish, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert_Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein violin.jpg, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Rabindranath with Einstein.jpg, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Einstein's equation turns 100, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Author:Albert Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Albert Einstein signature 1934.svg, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: MIT OpenCourseWare STS.042J/8.225J: Einstein, Oppenheimer, Feynman: Physics in the 20th century, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: no, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: Einstein, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:07.439  WARN 13476 --- [rdf4j-sesameclientimpl-8] c.e.dao.impl_rdf4j.ExploRDFValueFactory  : Error at createLiteral(); Value: *, Datatype: http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+2019-02-26 02:45:18.875  INFO 13476 --- [RMI TCP Connection(6)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-02-26 02:45:18.879  INFO 13476 --- [RMI TCP Connection(6)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-26 02:45:19.120  INFO 13476 --- [RMI TCP Connection(6)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Method predestroy entered
+2019-02-26 02:45:19.120  INFO 13476 --- [RMI TCP Connection(6)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Shut down
+2019-02-26 02:45:19.120  INFO 13476 --- [RMI TCP Connection(6)-127.0.0.1] com.explordf.dao.ExploRDFDao             : Shut down the repo
+2019-02-26 02:47:19.575  WARN 13484 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/Andreas/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/Andreas/.m2/repository/org/json/json/20090211/json-20090211.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2019-02-26 02:47:19.591  INFO 13484 --- [main] com.explordf.ExploRdfApplicationTests    : Starting ExploRdfApplicationTests on Dienand-PC with PID 13484 (started by Andreas in D:\BachelorarbeitDaten\Bachelorarbeit\Implementierung\exploRDF)
+2019-02-26 02:47:19.591  INFO 13484 --- [main] com.explordf.ExploRdfApplicationTests    : No active profile set, falling back to default profiles: default
+2019-02-26 02:47:21.428  INFO 13484 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-26 02:47:21.727  INFO 13484 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-26 02:47:22.899  INFO 13484 --- [main] com.explordf.ExploRdfApplicationTests    : Started ExploRdfApplicationTests in 3.637 seconds (JVM running for 4.702)
+2019-02-26 02:47:23.156  INFO 13484 --- [Thread-2] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'

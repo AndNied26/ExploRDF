@@ -256,7 +256,7 @@ function update() {
     		.style("opacity", 0.3);
     	icons
     		.style("opacity", 0)
-    	console.log(thisVar);
+    	
     	var loader = thisVar.append("svg:image")
     		.attr("xlink:href", "js/graphics/spinner.gif")
     		.attr("x", -20)
@@ -281,7 +281,7 @@ function update() {
     .style("fill", "grey")
     .on("click", function (d) {
             var pageNum = prompt("Enter the Offset", "0");
-            console.log(pageNum);
+            
             if(pageNum == null || pageNum == '') {
             	return;
             } else if(!isNaN(pageNum)){
@@ -334,7 +334,7 @@ function update() {
     	var circ = thisVar.select(".circle");
     	circ
     		.attr("fill", function(d) {return d.num === 0 ? colors[0] : colors[1]});
-    	console.log(d.num);
+    	
     });
     
     var nodePage = node.selectAll(".node-page");
@@ -408,7 +408,7 @@ function getInfo(subject) {
 				})
 			.append("span")
 			.attr("class","glyphicon glyphicon-remove")
-	    console.log(data);
+	    
 	  });
 }
 
@@ -461,9 +461,6 @@ function updateData(data, currNode) {
     var l = data.edges;
     
     var newNodes = false;
-   
-    console.log(n.length);
-    console.log(n);
     
     if(n.length >= edgeLimit) {
     	currNode.edgeOffset = currNode.edgeOffset + 1; 

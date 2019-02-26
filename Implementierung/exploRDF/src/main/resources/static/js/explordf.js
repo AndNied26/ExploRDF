@@ -145,7 +145,7 @@ var predicateHeadings = ["Predicate", "Label", "Edge"];
 // Choosing one element from the result table.
 $('#resultTbody').on("click", "a", function (e) {
 	var subj = $(e.target).text();
-	console.log(subj);
+	
 	$("body").css("cursor", "progress");
 
 	d3.json("getSubject/" + subj.replace(/#/g, "%23")).then(function (data) {
@@ -319,7 +319,7 @@ $('#savePredicatesBtn').on('click', function () {
 			exists = true;
 		}
 	});
-	console.log(exists);
+	
 	var answer;
 	if (exists) {
 		answer = confirm("A predicate list with that name already exists. "
@@ -329,7 +329,7 @@ $('#savePredicatesBtn').on('click', function () {
 		}
 	}
 
-	console.log("listName: " + listName);
+	
 	var predicates = [];
 
 	$('#predicatesTbody tr').each(function (index, element) {
@@ -356,7 +356,7 @@ $('#savePredicatesBtn').on('click', function () {
 		contentType: 'application/json; charset=utf-8',
 		data: JSON.stringify(predicates),
 		success: function (listName) {
-			console.log(listName);
+			
 			turnBack();
 
 		},
@@ -384,7 +384,7 @@ $('#searchBackBtn').on('click', function () {
 //Showing the search divs depending on the current visible table div.
 function turnBack() {
 	var visibleDiv = $(".containerDiv:visible").attr('id');
-	console.log(visibleDiv);
+	
 	switch (visibleDiv) {
 		case "resultDiv":
 			$('#searchDiv').css("display", "block");
